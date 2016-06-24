@@ -1,0 +1,44 @@
+{{model.id}}
+<h4>{{model.name}}</h4>
+<p>Tomatoes: {{model.tomatoes}}</p>
+<p>Money: {{model.money}}</p>
+
+<h5>Received offers</h5>
+{{#each model.receivedOpenOffers as |offer|}}
+  <p> &lt;-- <b>{{offer.senderName}}</b>  {{moment-format offer.ts "HH:mm:ss"}} / {{moment-from-now offer.ts hideSuffix=true interval=1000}} T: {{offer.tomatoes}} M: {{offer.price}}
+    <button {{action 'acceptOffer' offer}}>accept</button>
+    <button {{action 'declineOffer' offer}}>decline</button>
+  </p>
+{{/each}}
+
+<h5>Sent offers</h5>
+{{#each model.sentOpenOffers as |offer|}}
+  <p> --&gt; <b>{{offer.receiver.name}}</b>  {{moment-format offer.ts "HH:mm:ss"}} / {{moment-from-now offer.ts hideSuffix=true interval=1000}} T: {{offer.tomatoes}} M: {{offer.price}}
+    <button {{action 'recallOffer' offer}}>Recall</button>
+  </p>
+{{/each}}
+
+<h5>Trading {{model.name}}</h5> 
+<p>Tomatoes: {{input value=model._offerTomato}} </p>
+<p>Price: {{input value=model._offerPrice}}</p>
+
+{{#if model.hasValidOffer}}
+  <p>To everyone
+    <button {{action 'sendOfferAll' model.userGame model}}>send offer</button>
+  </p>
+  {{#each model.traders as |trader|}}
+    <p>{{trader.name}}
+      <button {{action 'sendOffer' model.userGame model trader}}>send offer</button>
+    </p>
+  {{/each}}
+{{else}}
+  <p>Please place a valid offer where both values are greater 0</p>
+{{/if}}
+
+
+{{#each model.historicOffers as |offer|}}
+          <p> [{{offer.state}}] <b>{{offer.senderName}}</b> --&gt; <b>{{offer.receiver.name}}</b>  {{moment-format offer.ts "HH:mm:ss"}} / {{moment-from-now offer.ts hideSuffix=true interval=1000}} T: {{offer.tomatoes}} M: {{offer.price}}</p>
+
+{{/each}}
+
+{{outlet}}

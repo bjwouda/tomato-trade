@@ -1,0 +1,78 @@
+<div class="container">
+  <div class="starter-template">
+    <button type="button" class="btn btn-default" {{action 'createNewGame'}}>New Game</button>
+  
+    {{#each model as |game|}}
+      {{#unless game.isDeleted}}
+        <p>{{game.id}} {{game.history}} <button {{action 'removeGame' game}}>delete</button></p>
+        
+        <button {{action 'addUser' game 'seller'}}>Add seller</button>
+        <button {{action 'addUser' game 'buyer'}}>Add buyer</button>
+
+        
+        <h3>Sellers</h3>
+        {{#each game.sellers as |seller|}}
+          {{input value=seller.name}}
+          Tomatoes: {{input value=seller.tomatoes}}
+          Money: {{input value=seller.money}}
+          {{#if seller.hasDirtyAttributes}}
+            <button {{action 'saveUser' seller}}>save</button>
+            <button {{action 'rollbackUser' seller}}>cancel</button>
+          {{/if}}
+          <button {{action 'sendOffer' game 0 seller}}>send offer</button>
+          <button {{action 'setActiveUser' seller}}>active</button>
+          {{#link-to 'player' seller}}Activate{{/link-to}}
+          
+          <h5>Received offers</h5>
+          {{#each seller.receivedOpenOffers as |offer|}}
+            <p><b>{{offer.senderName}}</b> T: {{offer.tomatoes}} M: {{offer.price}} <button {{action 'acceptOffer' offer}}>accept</button> <button {{action 'declineOffer' offer}}>decline</button> </p>
+          {{/each}}
+        {{/each}}
+    
+        <h3>Buyers</h3>
+        {{#each game.buyers as |buyer|}}
+          {{input value=buyer.name}}
+          Tomatoes: {{input value=buyer.tomatoes}}
+          Money: {{input value=buyer.money}}
+          {{#if buyer.hasDirtyAttributes}}
+            <button {{action 'saveUser' buyer}}>save</button>
+            <button {{action 'rollbackUser' buyer}}>cancel</button>
+          {{/if}}
+          <button {{action 'sendOffer' game 0 buyer}}>send offer</button>
+          <button {{action 'setActiveUser' buyer}}>active</button>
+          {{#link-to 'player' buyer}}Activate{{/link-to}}
+
+
+          <h5>Received offers</h5>
+          {{#each buyer.receivedOpenOffers as |offer|}}
+            <p><b>{{offer.senderName}}</b> T: {{offer.tomatoes}} M: {{offer.price}} <button {{action 'acceptOffer' offer}}>accept</button> <button {{action 'declineOffer' offer}}>decline</button> </p>
+          {{/each}}
+        {{/each}}
+
+
+        <h3>Offers</h3>
+        {{#each game.sortedOffers as |offer|}}
+          <p> [{{offer.state}}] <b>{{offer.senderName}}</b> --&gt; <b>{{offer.receiver.name}}</b>  {{moment-format offer.ts "HH:mm:ss"}} / {{moment-from-now offer.ts hideSuffix=true interval=1000}} T: {{offer.tomatoes}} M: {{offer.price}}</p>
+        {{/each}}
+
+
+
+        <h3>Traders {{activeUser.name}}</h3>
+
+        Tomato: {{input value=activeUser._offerTomato}}
+        Price: {{input value=activeUser._offerPrice}}
+        {{#if activeUser.hasValidOffer}}
+          <p>To everyone <button {{action 'sendOfferAll' game activeUser}}>send offer</button></p>
+          {{#each activeUser.traders as |trader|}}
+            <p>{{trader.name}} <button {{action 'sendOffer' game activeUser trader}}>send offer</button></p>
+          {{/each}}
+        {{else}}
+          <p>Please place a valid offer where both values are greater 0</p>
+        {{/if}}
+      {{/unless}}
+    {{/each}}
+
+  </div>
+</div>
+<!-- /.container -->
+{{outlet}}
