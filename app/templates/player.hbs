@@ -1,44 +1,111 @@
-{{model.id}}
-<h4>{{model.name}}</h4>
-<p>Tomatoes: {{model.tomatoes}}</p>
-<p>Money: {{model.money}}</p>
+<div class="title-container">
+    <span class="line-1">Tomato trade</span>
+    <span class="line-2">{{model.name}}</span>
+</div>
 
-<h5>Received offers</h5>
-{{#each model.receivedOpenOffers as |offer|}}
-  <p> &lt;-- <b>{{offer.senderName}}</b>  {{moment-format offer.ts "HH:mm:ss"}} / {{moment-from-now offer.ts hideSuffix=true interval=1000}} T: {{offer.tomatoes}} M: {{offer.price}}
-    <button {{action 'acceptOffer' offer}}>accept</button>
-    <button {{action 'declineOffer' offer}}>decline</button>
-  </p>
-{{/each}}
+<div class="container">
 
-<h5>Sent offers</h5>
-{{#each model.sentOpenOffers as |offer|}}
-  <p> --&gt; <b>{{offer.receiver.name}}</b>  {{moment-format offer.ts "HH:mm:ss"}} / {{moment-from-now offer.ts hideSuffix=true interval=1000}} T: {{offer.tomatoes}} M: {{offer.price}}
-    <button {{action 'recallOffer' offer}}>Recall</button>
-  </p>
-{{/each}}
-
-<h5>Trading {{model.name}}</h5> 
-<p>Tomatoes: {{input value=model._offerTomato}} </p>
-<p>Price: {{input value=model._offerPrice}}</p>
-
-{{#if model.hasValidOffer}}
-  <p>To everyone
-    <button {{action 'sendOfferAll' model.userGame model}}>send offer</button>
-  </p>
-  {{#each model.traders as |trader|}}
-    <p>{{trader.name}}
-      <button {{action 'sendOffer' model.userGame model trader}}>send offer</button>
-    </p>
-  {{/each}}
-{{else}}
-  <p>Please place a valid offer where both values are greater 0</p>
-{{/if}}
+  <div class="row">
 
 
-{{#each model.historicOffers as |offer|}}
-          <p> [{{offer.state}}] <b>{{offer.senderName}}</b> --&gt; <b>{{offer.receiver.name}}</b>  {{moment-format offer.ts "HH:mm:ss"}} / {{moment-from-now offer.ts hideSuffix=true interval=1000}} T: {{offer.tomatoes}} M: {{offer.price}}</p>
+    <div class="col-sm-6">
+      <h3>Trading Menu</h3> 
+      
+      <div class="form-inline">
+        <div class="form-group">
+          <label for="offerTomato">Tomatoes <span class="to-tomato"></span></label>
+          {{input value=model._offerTomato type="text" class="form-control" id="offerTomato" placeholder="# of tomatoes"}}
+        </div>
+        <div class="form-group">
+          <label for="offerPrice">Price <span class="to-money"></span></label>
+          {{input value=model._offerPrice type="text" class="form-control" id="offerPrice" placeholder="price per kg tomatoes"}}
+        </div>
+      </div>
 
-{{/each}}
+      <br>
 
-{{outlet}}
+      {{#if model.hasValidOffer}}
+          {{#each model.traders as |trader|}}
+            <p>
+              <button class="btn btn-default" {{action 'sendOffer' model.userGame model trader}}>Send individual offer to <b>{{trader.name}}</b></button>
+            </p>
+          {{/each}}
+          <p>
+            <button class="btn btn-info" {{action 'sendOfferAll' model.userGame model}}>Send offer everyone</button>
+          </p>
+      {{else}}
+        <div class="alert alert-danger" role="alert">Please place a valid offer where both values are greater 0</div>
+      {{/if}}
+    </div> {{!-- end col-sm-6 --}}
+
+    <div class="col-sm-6">
+      <h3>Resource overview</h3>
+
+      <table class="table table-bordered table-hover">
+        <thead>
+          <tr>
+            <th>Type</th>
+            <th>Amount</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Money</td>
+            <td>{{model.money}}  <span class="to-money"></span></td>
+          </tr>
+          <tr>
+            <td>Tomatoes</td>
+            <td>{{model.tomatoes}} <span class="to-tomato"></span></td>
+          </tr>
+        </tbody>
+      </table>
+
+      {{#if model.receivedOpenOffers}}
+        <h5>Received Offers</h5>
+        <ul class="list-group">
+          {{#each model.receivedOpenOffers as |offer|}}
+            <li class="list-group-item">  
+              &lt;-- <b>{{offer.senderName}}</b> <i>{{moment-format offer.ts "HH:mm:ss"}} / {{moment-from-now offer.ts hideSuffix=true interval=1000}}</i> <br>
+
+              {{offer.tomatoes}} <span class="to-tomato"></span> for {{offer.price}} <span class="to-money"></span> 
+              
+              <button  class="btn btn-success" {{action 'acceptOffer' offer}}>accept</button>
+              <button  class="btn btn-default" {{action 'declineOffer' offer}}>decline</button>
+            </li>
+          {{/each}}
+        </ul>
+      {{/if}}
+
+      {{#if model.sentOpenOffers}}
+        <h5>Sent offers</h5>
+        <ul class="list-group">
+          {{#each model.sentOpenOffers as |offer|}}
+            <li class="list-group-item">
+              --&gt; <b>{{offer.receiver.name}}</b> <i>{{moment-format offer.ts "HH:mm:ss"}} / {{moment-from-now offer.ts hideSuffix=true interval=1000}}</i> <br>
+
+              {{offer.tomatoes}} <span class="to-tomato"></span> for {{offer.price}} <span class="to-money"></span> 
+              
+              <button class="btn btn-default" {{action 'recallOffer' offer}}>Recall</button>
+            </li>
+          {{/each}}
+        </ul>
+      {{/if}}
+    </div>  {{!-- end col-sm-6 --}}
+
+  </div>  {{!-- <div class="row"> --}}
+
+  <div class="row">
+    <div class="col-sm-12">
+      <h3>Transaction history</h3>
+      <ul class="list-group">
+        {{#each model.historicOffers as |offer|}}
+          <li class="list-group-item">[{{offer.state}}] <b>{{offer.senderName}}</b> --&gt; <b>{{offer.receiver.name}}</b>  {{moment-format offer.ts "HH:mm:ss"}} / {{moment-from-now offer.ts hideSuffix=true interval=1000}} T: {{offer.tomatoes}} M: {{offer.price}}</li>
+        {{/each}}
+      </ul>
+    </div>
+  </div>
+
+
+  {{outlet}}
+
+</div>

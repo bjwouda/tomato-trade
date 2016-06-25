@@ -1,0 +1,64 @@
+@charset "UTF-8";
+@import url(http://fonts.googleapis.com/css?family=PT+Sans:700|Pacifico|Changa+One);
+body {
+  background: #ffffff url(http://subtlepatterns.com/patterns/groovepaper.png) repeat;
+  color: #000000;
+}
+
+.title-container {
+  font-family: "Pacifico", cursive;
+  font-weight: 400;
+  position: relative;
+  margin: 20px auto;
+  width: 400px;
+  font-size: 30px;
+  text-align: center;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
+  opacity: 0.8;
+}
+
+.line-1 {
+  position: relative;
+}
+.line-1:before, .line-1:after {
+  content: "";
+  font-family: FontAwesome;
+  position: relative;
+  font-style: normal;
+  font-weight: normal;
+  text-decoration: inherit;
+  font-size: 16px;
+  margin: 0 30px;
+  top: -5px;
+}
+
+.line-2 {
+  font-family: "Changa One", sans-serif;
+  font-weight: 400;
+  text-transform: uppercase;
+  font-size: 90px;
+  letter-spacing: 15px;
+  margin: 0 0;
+}
+
+
+span.to-tomato {
+    color: #D20009;
+    font-size: 18pt;
+}
+
+span.to-tomato:before{
+   top: 6px;
+   position: relative;  
+}
+
+
+span.to-money {
+    color: #8C9566;
+    font-size: 18pt;
+}
+
+span.to-money:before{
+   top: 6px;
+   position: relative;  
+}
