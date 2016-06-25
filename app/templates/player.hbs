@@ -1,23 +1,29 @@
+<div class="container">
+  <div class="row text-right">
+    <a href="#" class="{{if (eq i18n.locale 'en') 'lead'}}" {{action "changeLang" 'en'}}>EN</a>
+    <a href="#" class="{{if (eq i18n.locale 'nl') 'lead'}}" class="lead" {{action "changeLang" 'nl'}}>NL</a>
+    <a href="#" class="{{if (eq i18n.locale 'zh') 'lead'}}" {{action "changeLang" 'zh'}}>ZH</a>
+  </div>
+</div>
+
 <div class="title-container">
-    <span class="line-1">Tomato trade</span>
+    <span class="line-1">{{t 'player.title'}}</span>
     <span class="line-2">{{model.name}}</span>
 </div>
 
 <div class="container">
-
   <div class="row">
 
-
     <div class="col-sm-6">
-      <h3>Trading Menu</h3> 
+      <h3>{{t 'player.tradingMenu'}}</h3> 
       
       <div class="form-inline">
         <div class="form-group">
-          <label for="offerTomato">Tomatoes <span class="to-tomato"></span></label>
+          <label for="offerTomato">{{t 'tomatoes'}} <span class="to-tomato"></span></label>
           {{input value=model._offerTomato type="text" class="form-control" id="offerTomato" placeholder="kg of tomatoes"}}
         </div>
         <div class="form-group">
-          <label for="offerPrice">Price <span class="to-money"></span></label>
+          <label for="offerPrice">{{t 'price'}} <span class="to-money"></span></label>
           {{input value=model._offerPrice type="text" class="form-control" id="offerPrice" placeholder="price"}}
         </div>
       </div>
@@ -27,19 +33,19 @@
       {{#if model.hasValidOffer}}
           {{#each model.traders as |trader|}}
             <p>
-              <button class="btn btn-default" {{action 'sendOffer' model.userGame model trader}}>Send individual offer to <b>{{trader.name}}</b></button>
+              <button class="btn btn-default" {{action 'sendOffer' model.userGame model trader}}>{{t 'sendOfferTo'}} <b>{{trader.name}}</b></button>
             </p>
           {{/each}}
           <p>
-            <button class="btn btn-info" {{action 'sendOfferAll' model.userGame model}}>Send offer everyone</button>
+            <button class="btn btn-info" {{action 'sendOfferAll' model.userGame model}}>{{t 'sendOfferToEveryone'}}</button>
           </p>
       {{else}}
-        <div class="alert alert-danger" role="alert">Please place a valid offer where both values are greater 0</div>
+        <div class="alert alert-danger" role="alert">{{t 'offerNotValid'}}</div>
       {{/if}}
     </div> {{!-- end col-sm-6 --}}
 
     <div class="col-sm-6">
-      <h3>Resource overview</h3>
+      <h3>{{t 'player.resourceOverview'}}</h3>
 
       <table class="table table-bordered table-hover">
         <thead>
@@ -50,18 +56,18 @@
         </thead>
         <tbody>
           <tr>
-            <td>Money</td>
+            <td>{{capitalize (t 'money')}}</td>
             <td>{{model.money}}  <span class="to-money"></span></td>
           </tr>
           <tr>
-            <td>Tomatoes</td>
+            <td>{{capitalize (t 'tomatoes')}}</td>
             <td>{{model.tomatoes}} <span class="to-tomato"></span></td>
           </tr>
         </tbody>
       </table>
 
       {{#if model.receivedOpenOffers}}
-        <h5>Received Offers</h5>
+        <h5>{{t 'receivedOffers'}}</h5>
         <ul class="list-group">
           {{#each model.receivedOpenOffers as |offer|}}
             <li class="list-group-item">  
@@ -69,15 +75,15 @@
 
               {{offer.tomatoes}} <span class="to-tomato"></span> for {{offer.price}} <span class="to-money"></span> 
               
-              <button  class="btn btn-success" {{action 'acceptOffer' offer}}>accept</button>
-              <button  class="btn btn-default" {{action 'declineOffer' offer}}>decline</button>
+              <button  class="btn btn-success" {{action 'acceptOffer' offer}}>{{t 'accept'}}</button>
+              <button  class="btn btn-default" {{action 'declineOffer' offer}}>{{t 'decline'}}</button>
             </li>
           {{/each}}
         </ul>
       {{/if}}
 
       {{#if model.sentOpenOffers}}
-        <h5>Sent offers</h5>
+        <h5>{{t 'sentOffers'}}</h5>
         <ul class="list-group">
           {{#each model.sentOpenOffers as |offer|}}
             <li class="list-group-item">
@@ -85,7 +91,7 @@
 
               {{offer.tomatoes}} <span class="to-tomato"></span> for {{offer.price}} <span class="to-money"></span> 
               
-              <button class="btn btn-default" {{action 'recallOffer' offer}}>Recall</button>
+              <button class="btn btn-default" {{action 'recallOffer' offer}}>{{t 'recall'}}</button>
             </li>
           {{/each}}
         </ul>
@@ -96,7 +102,7 @@
 
   <div class="row">
     <div class="col-sm-12">
-      <h3>Transaction history</h3>
+      <h3>{{t 'player.history'}}</h3>
       <ul class="list-group">
         {{#each model.historicOffers as |offer|}}
           <li class="list-group-item">[{{offer.state}}] <b>{{offer.senderName}}</b> --&gt; <b>{{offer.receiver.name}}</b>  {{moment-format offer.ts "HH:mm:ss"}} / {{moment-from-now offer.ts hideSuffix=true interval=1000}} T: {{offer.tomatoes}} M: {{offer.price}}</li>
