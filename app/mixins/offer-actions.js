@@ -10,13 +10,13 @@ export default Ember.Mixin.create({
       });
     },
 
-    sendOffer(game, sender, receiver) {
+    sendOffer(game, sender, receiver, tomatoes, price) {
       var isExternal = false;
       if (+sender === 0) { isExternal = true; }
 
       var newOffer = this.store.createRecord('offer', {
-        tomatoes: isExternal ? 50 : sender.get("_offerTomato"),
-        price: isExternal ? 50 : sender.get("_offerPrice"),
+        tomatoes: tomatoes,
+        price: price,
         isExternal: isExternal,
         ts: Date.now(),
         state: "open",

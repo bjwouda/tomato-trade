@@ -27,5 +27,10 @@ export default {
 		"history": "Transaction history",
 
 		"title": "Tomato trade",
-	}
+	},
+	
+	"masterScreen": "Master screen",
+	"goalTomatoes" : "Goal of tomatoes",
+	"currentTomatoes" : "Current tomatoes"
+	
 };

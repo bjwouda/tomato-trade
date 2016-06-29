@@ -9,6 +9,7 @@ export default Ember.Controller.extend(OfferActions, {
 
     // USER
     saveUser(user) { user.save(); },
+    deleteUser(user) { user.destroyRecord(); },
     rollbackUser(user) { user.rollbackAttributes(); },
 
     setActiveUser(user) {

@@ -18,7 +18,6 @@ export default {
 	"declineed": "gedaald",
 	"recalled": "herinnerde",
 
-
 	"player": {
 		"tradingMenu": "Trading Menu",
 		"resourceOverview": "Resource Overzicht",
@@ -26,4 +25,5 @@ export default {
 
 		"title": "Tomaat Handel",
 	}
+	
 };
