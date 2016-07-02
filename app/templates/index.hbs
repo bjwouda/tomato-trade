@@ -64,10 +64,28 @@
                 {{#link-to 'player' seller}}Activate{{/link-to}}
                 
                 <h5>Received offers</h5>
-                {{#each seller.receivedOpenOffers as |offer|}}
-                  <p><b>{{offer.senderName}}</b> T: {{offer.tomatoes}} M: {{offer.price}} 
-                  <button {{action 'recallOffer' offer}}>recall</button> </p>
-                {{/each}}
+                <ul class="list-group">
+                  {{#each seller.externalStuff.openOffers as |offer|}}
+                    <li class="list-group-item">
+                      --&gt; <b>{{offer.receiverName}}</b> <i>{{moment-format offer.ts "HH:mm:ss"}} / {{moment-from-now offer.ts hideSuffix=true interval=1000}}</i> <br>
+        
+                      {{offer.tomatoes}} <span class="to-tomato"></span> for {{offer.price}} <span class="to-money"></span> 
+                      
+                      <button class="btn btn-default" {{action 'recallOffer' offer}}>{{t 'recall'}}</button>
+                    </li>
+                  {{/each}}
+
+                  {{#each seller.externalStuff.sentOffers as |offer|}}
+                    <li class="list-group-item">  
+                      &lt;-- <b>{{offer.senderName}}</b> <i>{{moment-format offer.ts "HH:mm:ss"}} / {{moment-from-now offer.ts hideSuffix=true interval=1000}}</i> <br>
+                
+                      {{offer.tomatoes}} <span class="to-tomato"></span> for {{offer.price}} <span class="to-money"></span> 
+                      
+                      <button  class="btn btn-success" {{action 'acceptOffer' offer}}>{{t 'accept'}}</button>
+                      <button  class="btn btn-default" {{action 'declineOffer' offer}}>{{t 'decline'}}</button>
+                    </li>
+                  {{/each}}
+                </ul>
               </div>
             {{/each}}
         

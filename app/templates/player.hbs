@@ -1,3 +1,5 @@
+{{tom-clock}}
+
 <div class="container">
   <div class="row text-right">
     <a href="#" class="{{if (eq i18n.locale 'en') 'lead'}}" {{action "changeLang" 'en'}}>EN</a>
@@ -15,8 +17,12 @@
   <div class="row">
       
     {{#each-in model.groupedReceivedOpenOffers as |k obj|}}
-      <div class="col-sm-6">
-          <h4>Player {{obj.user.playerPosition}}: {{obj.user.name}}</h4>
+      <div class="col-sm-4">
+          {{#if (eq k 'External')}}
+            <h4>External</h4>
+          {{else}}
+            <h4>Player {{obj.user.playerPosition}}: {{obj.user.name}}</h4>
+          {{/if}}
           
           <ul class="list-group">
               <li class="list-group-item">
@@ -31,7 +37,11 @@
                     </div>
                     
                     <p>
-                      <button class="btn btn-default" {{action 'sendOffer' model.userGame model obj.user obj.user._offerTomato obj.user._offerPrice}}>{{t 'sendOfferTo'}} <b>{{obj.user.name}}</b></button>
+                      {{#if (eq k 'External')}}
+                        <button class="btn btn-default" {{action 'sendOffer' model.userGame model 0 obj.user._offerTomato obj.user._offerPrice}}>{{t 'sendOfferTo'}} <b>{{obj.user.name}}</b></button>
+                      {{else}}
+                        <button class="btn btn-default" {{action 'sendOffer' model.userGame model obj.user obj.user._offerTomato obj.user._offerPrice}}>{{t 'sendOfferTo'}} <b>{{obj.user.name}}</b></button>
+                      {{/if}}
                     </p>
                 </div>
               </li>
@@ -49,7 +59,7 @@
               
               {{#each (reverse obj.sentOffers) as |offer|}}
                 <li class="list-group-item">
-                  --&gt; <b>{{offer.receiver.name}}</b> <i>{{moment-format offer.ts "HH:mm:ss"}} / {{moment-from-now offer.ts hideSuffix=true interval=1000}}</i> <br>
+                  --&gt; <b>{{offer.receiverName}}</b> <i>{{moment-format offer.ts "HH:mm:ss"}} / {{moment-from-now offer.ts hideSuffix=true interval=1000}}</i> <br>
     
                   {{offer.tomatoes}} <span class="to-tomato"></span> for {{offer.price}} <span class="to-money"></span> 
                   
@@ -58,12 +68,12 @@
               {{/each}}
               
               {{#each (take 5 (reverse obj.history)) as |offer|}}
-                  <li class="list-group-item">[{{offer.state}}] <b>{{offer.senderName}}</b> --&gt; <b>{{offer.receiver.name}}</b>  {{moment-format offer.ts "HH:mm:ss"}} / {{moment-from-now offer.ts hideSuffix=true interval=1000}} T: {{offer.tomatoes}} M: {{offer.price}}</li>
+                  <li class="list-group-item">[{{offer.state}}] <b>{{offer.senderName}}</b> --&gt; <b>{{offer.receiverName}}</b>  {{moment-format offer.ts "HH:mm:ss"}} / {{moment-from-now offer.ts hideSuffix=true interval=1000}} T: {{offer.tomatoes}} M: {{offer.price}}</li>
               {{/each}}
           </ul>
       </div>
     {{/each-in}}
-      
+
   </div> 
   
   <div class="row">
@@ -115,7 +125,7 @@
         <ul class="list-group">
           {{#each model.sentOpenOffers as |offer|}}
             <li class="list-group-item">
-              --&gt; <b>{{offer.receiver.name}}</b> <i>{{moment-format offer.ts "HH:mm:ss"}} / {{moment-from-now offer.ts hideSuffix=true interval=1000}}</i> <br>
+              --&gt; <b>{{offer.receiverName}}</b> <i>{{moment-format offer.ts "HH:mm:ss"}} / {{moment-from-now offer.ts hideSuffix=true interval=1000}}</i> <br>
 
               {{offer.tomatoes}} <span class="to-tomato"></span> for {{offer.price}} <span class="to-money"></span> 
               
@@ -133,7 +143,7 @@
       <h3>{{t 'player.history'}}</h3>
       <ul class="list-group">
         {{#each model.historicOffers as |offer|}}
-          <li class="list-group-item">[{{offer.state}}] <b>{{offer.senderName}}</b> --&gt; <b>{{offer.receiver.name}}</b>  {{moment-format offer.ts "HH:mm:ss"}} / {{moment-from-now offer.ts hideSuffix=true interval=1000}} T: {{offer.tomatoes}} M: {{offer.price}}</li>
+          <li class="list-group-item">[{{offer.state}}] <b>{{offer.senderName}}</b> --&gt; <b>{{offer.receiverName}}</b>  {{moment-format offer.ts "HH:mm:ss"}} / {{moment-from-now offer.ts hideSuffix=true interval=1000}} T: {{offer.tomatoes}} M: {{offer.price}}</li>
         {{/each}}
       </ul>
     </div>

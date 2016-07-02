@@ -17,10 +17,19 @@ export default Model.extend({
   sender     : belongsTo('user'),
 
   senderName : Ember.computed('sender.name', 'isExternal', function() {
-  	if (this.get('isExternal')) {
-  		return "External";
-  	} else {
-  		return this.get('sender.name');
-  	}
+  	return (this.get('sender.id') === undefined) ? "External" : this.get('sender.name');
+  }),
+
+  receiverName : Ember.computed('sender.name', 'isExternal', function() {
+    return (this.get("receiver.id") === undefined) ? "External" : this.get('receiver.name');
+  }),
+
+  senderId : Ember.computed('sender.id', 'isExternal', function() {
+    return (this.get('sender.id') === undefined) ? "External" : this.get('sender.id');
+  }),
+
+  receiverId : Ember.computed('sender.id', 'isExternal', function() {
+    return (this.get("receiver.id") === undefined) ? "External" : this.get('receiver.id');
   })
+
 });

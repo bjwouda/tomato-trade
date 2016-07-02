@@ -12,7 +12,7 @@ export default Ember.Mixin.create({
 
     sendOffer(game, sender, receiver, tomatoes, price) {
       var isExternal = false;
-      if (+sender === 0) { isExternal = true; }
+      if (+sender === 0 || +receiver === 0) { isExternal = true; }
 
       var newOffer = this.store.createRecord('offer', {
         tomatoes: tomatoes,
@@ -24,19 +24,20 @@ export default Ember.Mixin.create({
       });
 
       game.get('offers').addObject(newOffer);
-      receiver.get('receivedOffers').addObject(newOffer);
-      receiver.set("hasDirtyAttributes", false);
 
-      if (isExternal !== true) {
+      if (+receiver !== 0) {
+        receiver.get('receivedOffers').addObject(newOffer);
+        receiver.set("hasDirtyAttributes", false);
+      }
+
+      if (+sender !== 0) {
         sender.get('sentOffers').addObject(newOffer);
         sender.set("hasDirtyAttributes", false);
       }
 
       newOffer.save().then(() => {
-        if (isExternal !== true) {
-          sender.save();
-        }
-        receiver.save();
+        if (+sender !== 0) { sender.save(); }
+        if (+receiver !== 0) { receiver.save(); }
         game.save();
         return true;
       });
@@ -47,13 +48,15 @@ export default Ember.Mixin.create({
       offer.set("notes", offer.get("notes") + `${moment().format()};accepted\n`);
 
       var sign = offer.get("receiver.content.isSeller") ? 1 : -1;
-      offer.set("receiver.content.money", +offer.get("receiver.content.money") + sign * offer.get("price"));
-      offer.set("receiver.content.tomatoes", +offer.get("receiver.content.tomatoes") - sign * offer.get("tomatoes"));
 
-      offer.set("receiver.content.hasDirtyAttributes", false);
-      offer.get("receiver.content").save();
+      if (offer.get("receiver.content") !== null) {
+        offer.set("receiver.content.money", +offer.get("receiver.content.money") + sign * offer.get("price"));
+        offer.set("receiver.content.tomatoes", +offer.get("receiver.content.tomatoes") - sign * offer.get("tomatoes"));
+        offer.set("receiver.content.hasDirtyAttributes", false);
+        offer.get("receiver.content").save();
+      }
 
-      if (!offer.get("isExternal")) {
+      if (offer.get("sender.content") !== null) {
         // SIGNS ARE REVERSED !!!
         sign *= -1;
         offer.set("sender.content.money", +offer.get("sender.content.money") + sign * offer.get("price"));

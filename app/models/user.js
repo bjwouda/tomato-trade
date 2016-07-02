@@ -32,26 +32,26 @@ export default Model.extend({
     }
   }),
 
-  groupedReceivedOpenOffers : Ember.computed("traders.@each.id", "receivedOffers.@each.state", "sentOpenOffers.@each.state", "historicOffers.@each.state", "sender.id", function () {
-    var self = this;
+  groupedReceivedOpenOffers : Ember.computed("traders.@each.id", "receivedOffers.@each.state", "sentOpenOffers.@each.state", "historicOffers.@each.state", function () {
+    var userIds = this.get("traders").map( (x) => { 
+      return {"id": x.get("id"), "ref": x};
+    } ); // [1, 2, 3]
+    var tmpReturnObj = _.indexBy(userIds, "id"); // {1: 1, 2: 2, 3: 3}
+    tmpReturnObj["External"] = {"id": "External", "ref": {'name': "External"}};
     
-    var userIds = this.get("traders").map( (x) => x.get("id") ); // [1, 2, 3]
-    var tmpReturnObj = _.indexBy(userIds); // {1: 1, 2: 2, 3: 3}
-    
-    var receivedOpenOffersLUT = _.groupBy(this.get("receivedOpenOffers"),  (x) => { return x.get("sender.id");} );
-    var sentOpenOffersLUT = _.groupBy(this.get("sentOpenOffers"),  (x) => { return x.get("receiver.id");} );
-    var historicOffersReceivedLUT = _.groupBy(this.get("historicOffers"),  (x) => { return x.get("receiver.id");} );
-    var historicOffersSentLUT = _.groupBy(this.get("historicOffers"),  (x) => { return x.get("sender.id");} );
+    var receivedOpenOffersLUT = _.groupBy(this.get("receivedOpenOffers"),  (x) => { return x.get("senderId");} );
+    var sentOpenOffersLUT = _.groupBy(this.get("sentOpenOffers"),  (x) => { return x.get("receiverId");} );
+    var historicOffersSentLUT = _.groupBy(this.get("historicOffers"),  (x) => { return x.get("senderId");} );
+    var historicOffersReceivedLUT = _.groupBy(this.get("historicOffers"),  (x) => { return x.get("receiverId");} );
 
-    
     var newReturnObj = _.mapValues(tmpReturnObj, function(v, k) { 
       var a = historicOffersReceivedLUT[k] ? historicOffersReceivedLUT[k] : [];
-      var b = historicOffersSentLUT[k] ? historicOffersSentLUT[k] : []
-      var allHistorcOffers = a.concat(b)
+      var b = historicOffersSentLUT[k] ? historicOffersSentLUT[k] : [];
+      var allHistorcOffers = a.concat(b);
       allHistorcOffers = _.sortBy(allHistorcOffers, function(o) { return o.get("ts"); });
       
       return {
-        user: self.get("userGame.userLUT." + k + ".0"), 
+        user: v.ref, 
         openOffers: receivedOpenOffersLUT[k] ? receivedOpenOffersLUT[k] : [],
         sentOffers: sentOpenOffersLUT[k] ? sentOpenOffersLUT[k] : [],
         history: allHistorcOffers,
@@ -64,6 +64,11 @@ export default Model.extend({
   }),
 
   // computed attributes
+
+  externalStuff: Ember.computed("groupedReceivedOpenOffers", function() {
+    return this.get("groupedReceivedOpenOffers.External");
+  }),
+
   receivedOpenOffers : Ember.computed.filter('receivedOffers.@each.state', 
                          (el) => {return el.get("state") === "open"; }),
   sentOpenOffers     : Ember.computed.filter('sentOffers.@each.state', 
