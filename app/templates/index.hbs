@@ -1,11 +1,3 @@
-<div class="container">
-  <div class="row text-right">
-    <a href="#" class="{{if (eq i18n.locale 'en') 'lead'}}" {{action "changeLang" 'en'}}>EN</a>
-    <a href="#" class="{{if (eq i18n.locale 'nl') 'lead'}}" class="lead" {{action "changeLang" 'nl'}}>NL</a>
-    <a href="#" class="{{if (eq i18n.locale 'zh') 'lead'}}" {{action "changeLang" 'zh'}}>ZH</a>
-  </div>
-</div>
-
 <div class="title-container">
     <span class="line-1">{{t 'masterScreen'}}</span>
 </div>
@@ -22,18 +14,105 @@
 
         {{#unless game.isDeleted}}
           <div class="row">
-            <button class="btn btn-danger" {{action 'removeGame' game}}>Delete game</button>
-            <button class="btn btn-default" {{action 'addUser' game 'seller'}}>Add seller</button>
-            <button class="btn btn-default" {{action 'addUser' game 'buyer'}}>Add buyer</button>
+            <h3>Game Settings</h3>
+            <p>
+              <button class="btn btn-danger" {{action 'removeGame' game}}>Delete game</button>
+              <button class="btn btn-default" {{action 'addUser' game 'seller'}}>Add seller</button>
+              <button class="btn btn-default" {{action 'addUser' game 'buyer'}}>Add buyer</button>
+            </p>
+          </div>
+
+          <div class="row">
+            <h3>Round Controlls</h3>
+              <p>
+                <button type="button" class="btn btn-success" {{action 'nextRound' game game.minutesPerRound}}>Next round</button>
+                <button type="button" class="btn btn-default" {{action 'letGameEndInXMinutes' game game.minutesPerRound 1}}>Restart game timer ({{game.minutesPerRound}}')</button>
+                <button type="button" class="btn btn-default" {{action 'letGameEndInXMinutes' game 5}}>End game in 5 minutes</button>
+                <button type="button" class="btn btn-default" {{action 'letGameEndInXMinutes' game 0.1}}>End game in 1 minute</button>
+                <button type="button" class="btn btn-default" {{action 'letGameEndInXMinutes' game 0}}>End game now</button>
+              </p>
+                              
+
+              <p>
+                {{#if isEditing}}
+                  <button type="button" class="btn btn-default" {{action (pipe (invoke "rollbackAttributes" game) (toggle "isEditing" this)) }}>Revert settings</button>
+                  <button type="button" class="btn btn-default" {{action (pipe (invoke "save" game) (toggle "isEditing" this)) }}>Save settings</button>
+                {{else}}
+                  <button type="button" class="btn btn-default" {{action (toggle "isEditing" this)}}>Edit game settings</button>
+                {{/if}}
+              </p>
+
+              <p>
+                <div class="form-group">
+                  <b>Setting for next round: </b>
+                  {{#radio-button
+                      value="weekly"
+                      disabled=(not isEditing)
+                      class="checkbox"
+                      groupValue=game.nextTradeType}}
+                      Week trade
+                  {{/radio-button}}
+
+                   
+                  {{#radio-button
+                      value="daily"
+                      disabled=(not isEditing)
+                      class="checkbox"
+                      groupValue=game.nextTradeType}}
+                      Day trade
+                  {{/radio-button}}
+                </div>
+              </p>
+              
+              <p>
+                <div class="form-group">
+                  <b>Setting for current round: </b>
+                  {{#radio-button
+                      value="weekly"
+                      disabled=(not isEditing)
+                      class="checkbox"
+                      groupValue=game.currentTradeType}}
+                      Week trade
+                  {{/radio-button}}
+
+                  {{#radio-button
+                      value="daily"
+                      disabled=(not isEditing)
+                      class="checkbox"
+                      groupValue=game.currentTradeType}}
+                      Day trade
+                  {{/radio-button}}
+                </div>
+              </p>
+
+              <p>
+                <span class="form-inline">
+                  <div class="form-group">
+                    <label>Minutes per round: </label> {{input disabled=(not isEditing) type="number" value=game.minutesPerRound class="form-control" }}
+                  </div>
+
+                  <div class="form-group">
+                    <label>Current week: </label> {{input disabled=(not isEditing) type="number" value=game.weekCnt class="form-control" }}
+                  </div>
+                </span>
+              </p>
+          </div>
+
+
+          <div class="row">
+            <h3>Trading Controlls</h3>
+
+            <h3 class="text-center game-title">{{liquid-bind game.currentTitle}}</h3>
+            <p>
+              {{tom-clock timeStartTs=game.timeStartTs timeEndTs=game.timeEndTs}}
+            </p>
           </div>
           
+
           <div class="row">
-             
-           
-           
             {{#each game.sellers as |seller|}}
               <div class="col-sm-3">
-                <h3>Seller {{seller.playerPosition}}</h3>
+                <h4>Seller {{seller.playerPosition}}</h4>
                 <div class="form-group">
                   <label>Name: </label> {{input value=seller.name class="form-control" }}
                 </div>
@@ -92,7 +171,7 @@
             
             {{#each game.buyers as |buyer|}}
               <div class="col-sm-3">
-                <h3>Buyer {{buyer.playerPosition}}</h3>
+                <h4>Buyer {{buyer.playerPosition}}</h4>
                 <div class="form-group">
                   <label>Name: </label> {{input value=buyer.name class="form-control" }}
                 </div>

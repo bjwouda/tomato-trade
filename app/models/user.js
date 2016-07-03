@@ -3,6 +3,7 @@ import Model from 'ember-data/model';
 import attr from 'ember-data/attr';
 import { belongsTo, hasMany } from 'ember-data/relationships';
 
+
 import _ from 'lodash/lodash';
 
 export default Model.extend({
@@ -83,7 +84,11 @@ export default Model.extend({
       return _.sortBy(combination, function(o) { return o.get('ts'); }).reverse();
   }),
 
-  traders            : Ember.computed('userGame.sellers.[]', 'userGame.buyers.[]', function(){
+  roleDescription    : Ember.computed('isSeller', function() {
+    return this.get('isSeller') ? 'seller' : 'buyer';
+  }),
+
+  traders            : Ember.computed('isSeller', 'userGame.sellers.[]', 'userGame.buyers.[]', function(){
   	if (this.get('isSeller')) {
   		return this.get('userGame.buyers');
   	} else {

@@ -18,6 +18,17 @@ export default {
 	"declineed": "gedaald",
 	"recalled": "herinnerde",
 
+	"buyer": "buyer",
+	"seller": "seller",
+	
+	"weekly": "weekly",
+	"daily": "daily",
+	"weekDescription": "We are having Week {{currentWeek}}, you're performing the <b>{{tradeType}} trade</b> for week {{tradeWeek}}",
+
+	"masterScreen": "Master screen",
+	"goalTomatoes" : "Goal of tomatoes",
+	"currentTomatoes" : "Current tomatoes",
+
 	"player": {
 		"tradingMenu": "Trading Menu",
 		"resourceOverview": "Resource Overzicht",

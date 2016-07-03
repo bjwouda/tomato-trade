@@ -1,27 +1,24 @@
-{{tom-clock}}
+
 
 <div class="container">
-  <div class="row text-right">
-    <a href="#" class="{{if (eq i18n.locale 'en') 'lead'}}" {{action "changeLang" 'en'}}>EN</a>
-    <a href="#" class="{{if (eq i18n.locale 'nl') 'lead'}}" class="lead" {{action "changeLang" 'nl'}}>NL</a>
-    <a href="#" class="{{if (eq i18n.locale 'zh') 'lead'}}" {{action "changeLang" 'zh'}}>ZH</a>
+  <div class="row">
+    <div class="title-container">
+      <div class="line-1">{{t 'player.title'}}</div>
+      <div class="line-2">{{capitalize (t model.roleDescription)}} #{{model.playerPosition}}</div>
+      <div class="line-2">{{model.name}}</div>
+    </div>
+    <h3 class="text-center game-title">{{liquid-bind model.userGame.currentTitle}}</h3> {{tom-clock timeStartTs=model.userGame.timeStartTs timeEndTs=model.userGame.timeEndTs}}
   </div>
-</div>
 
-<div class="title-container">
-    <span class="line-1">{{t 'player.title'}}</span>
-    <span class="line-2">#{{model.playerPosition}}.{{model.name}}</span>
-</div>
 
-<div class="container">
   <div class="row">
       
     {{#each-in model.groupedReceivedOpenOffers as |k obj|}}
       <div class="col-sm-4">
           {{#if (eq k 'External')}}
-            <h4>External</h4>
+            <h4>{{capitalize (t 'external')}}</h4>
           {{else}}
-            <h4>Player {{obj.user.playerPosition}}: {{obj.user.name}}</h4>
+            <h4>{{capitalize (t obj.user.roleDescription)}} {{obj.user.playerPosition}}: {{obj.user.name}}</h4>
           {{/if}}
           
           <ul class="list-group">

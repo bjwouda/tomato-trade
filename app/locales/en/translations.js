@@ -20,6 +20,17 @@ export default {
 	"declineed": "declined",
 	"recalled": "recalled",
 
+	"buyer": "buyer",
+	"seller": "seller",
+	"external": "external trader",
+
+	"weekly": "weekly",
+	"daily": "daily",
+	"weekDescription": "We are having week {{currentWeek}}, you're performing the <b>{{tradeType}} trade</b> for week {{tradeWeek}}",
+	
+	"masterScreen": "Master screen",
+	"goalTomatoes" : "Goal of tomatoes",
+	"currentTomatoes" : "Current tomatoes",
 
 	"player": {
 		"tradingMenu": "Trading Menu",
@@ -28,9 +39,4 @@ export default {
 
 		"title": "Tomato trade",
 	},
-	
-	"masterScreen": "Master screen",
-	"goalTomatoes" : "Goal of tomatoes",
-	"currentTomatoes" : "Current tomatoes"
-	
 };

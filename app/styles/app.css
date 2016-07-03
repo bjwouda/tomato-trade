@@ -6,7 +6,7 @@
   font-weight: 400;
   position: relative;
   margin: 20px auto;
-  width: 400px;
+  width: 100%;
   font-size: 30px;
   text-align: center;
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
@@ -15,6 +15,7 @@
 
 .line-1 {
   position: relative;
+  display: block;
 }
 .line-1:before, .line-1:after {
   content: "";
@@ -32,9 +33,10 @@
   font-family: "Changa One", sans-serif;
   font-weight: 400;
   text-transform: uppercase;
-  font-size: 90px;
+  font-size: 50px;
   letter-spacing: 15px;
   margin: 0 0;
+  padding-left: 20px;
 }
 
 
@@ -138,7 +140,7 @@ span.to-money:before{
   left: 0;
   right: 0;
   margin: 0 auto;
-  transition: all 1.0s linear;
+  transition: all 0.5s linear;
 }
 .clock .hour:before {
   position: absolute;
@@ -157,7 +159,7 @@ span.to-money:before{
   right: 0;
   margin: 0 auto;
   
-  transition: all 1.0s linear;
+  transition: all 0.5s linear;
 }
 .clock .minute:before {
   position: absolute;
@@ -175,7 +177,7 @@ span.to-money:before{
   left: 0;
   right: 0;
   margin: 0 auto;
-  transition: all 1.0s linear;
+  transition: all 0.5s linear;
 }
 .clock .second:before {
   position: absolute;
@@ -186,3 +188,21 @@ span.to-money:before{
   border-radius: 2px;
   top: 45px;
 }
+
+.note {
+  width: 210px;
+  border: 1px solid grey;
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 10px;
+  transition: all 0.5s linear;
+}
+
+.note.is-over {
+  border: 4px solid red;
+  transition: all 0.5s linear;
+}
+
+
+

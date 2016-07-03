@@ -1,7 +1,9 @@
 import Ember from 'ember';
 import OfferActions from '../mixins/offer-actions';
+import LangActions from '../mixins/lang-actions';
 
-export default Ember.Controller.extend(OfferActions, {
+
+export default Ember.Controller.extend(OfferActions, LangActions, {
 
   activeUser: null,
 
@@ -31,6 +33,36 @@ export default Ember.Controller.extend(OfferActions, {
 
 
     // GAME
+
+    letGameEndInXMinutes(game, xMinutes, shouldResetStart) {
+      game.set("timeEndTs", Date.now() + xMinutes * 60 * 1000);
+
+      if (shouldResetStart) { game.set("timeStartTs", Date.now()); }
+
+      game.save();
+    },
+
+    nextRound(game, minutesPerRound){
+      if (! minutesPerRound) {
+        alert("Minutes per round not correctly set...");
+        return;
+      }
+
+      game.set("timeStartTs", Date.now());
+      game.set("timeEndTs", Date.now() + minutesPerRound * 60 * 1000);
+
+      if (game.get("currentTradeType") === "weekly") { game.incrementProperty("weekCnt", 1); } 
+      game.set("currentTradeType", game.get("nextTradeType"));
+
+      if (game.get("currentTradeType") === "weekly") {
+        game.set("nextTradeType", "daily");
+      } else {
+        game.set("nextTradeType", "weekly");
+      }
+      
+      game.save();
+    },
+
     removeGame(item) {
       item.destroyRecord();
     },

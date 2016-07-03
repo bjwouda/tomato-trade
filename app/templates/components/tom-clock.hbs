@@ -1,0 +1,23 @@
+<div style="position: relative" class="tom-clock">
+	
+	<div class="clock">
+	  <div class="top"></div>
+	  <div class="right"></div>
+	  <div class="bottom"></div>
+	  <div class="left"></div>
+	  <div class="center"></div>
+	  <div class="shadow"></div>
+	  <div style="transform: rotate({{mDeg}}deg);" class="hour"></div>
+	  <div style="transform: rotate({{hDeg}}deg);" class="minute"></div>
+	</div>
+
+
+	<div class="note {{if isOver 'is-over'}}">
+		{{#if isOver}}
+			<b>Time is up</b>, please finish your trade.
+		{{else}}
+	    	You can trade till 5 o'clock. Following time remaining: <br> <b>{{moment-from-now timeEndTs interval=1000}}</b>
+		{{/if}}
+
+	</div>
+</div>

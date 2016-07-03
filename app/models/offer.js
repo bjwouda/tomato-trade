@@ -4,8 +4,8 @@ import attr from 'ember-data/attr';
 import { belongsTo } from 'ember-data/relationships';
 
 export default Model.extend({
-  tomatoes   : attr('number', {defaultValue: 0}),
-  price      : attr('number', {defaultValue: 0}),
+  tomatoes   : attr('number'),
+  price      : attr('number'),
   isExternal : attr('boolean'),
   state      : attr('string'), // {'open': <ts>, 'accepted' <ts>}
 
