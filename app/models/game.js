@@ -24,14 +24,14 @@ export default Model.extend({
 
   // using descending sort
   offerSortingDesc : ['ts:desc'],
-  sortedOffers     : Ember.computed.sort('offers', 'offerSortingDesc'),
+  sortedOffers: Ember.computed.sort('offers', 'offerSortingDesc'),
 
-  sellers          : Ember.computed.filter('users.@each.isSeller', 
+  sellers: Ember.computed.filter('users.@each.isSeller', 
   					   el => el.get("isSeller") === true),
-  buyers           : Ember.computed.filter('users.@each.isSeller', 
+  buyers: Ember.computed.filter('users.@each.isSeller', 
   	                   el => el.get("isSeller") === false),
   	                   
-  currentTitle    : Ember.computed("weekCnt", "currentTradeType", function() {
+  currentTitle: Ember.computed("weekCnt", "currentTradeType", function() {
     var tradeType = this.get("currentTradeType") || 'weekly';
     var tradingForWeek = +this.get("weekCnt") || 0;
 
@@ -48,11 +48,11 @@ export default Model.extend({
     return this.get('i18n').t("weekDescription", context);
   }),
 
-  allUsers        : Ember.computed.filter('users.[]', function() {
+  allUsers: Ember.computed.filter('users.[]', function() {
     return true;
   }),
   	                   
-  userLUT         : Ember.computed('allUsers.[]', function () {
+  userLUT: Ember.computed('allUsers.[]', function () {
     return _.groupBy(this.get("allUsers"),  (x) => { return x.get("id"); } );
   })
 

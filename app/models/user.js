@@ -25,7 +25,7 @@ export default Model.extend({
   _offerTomato       : 0,
   _offerPrice        : 0,
 
-  playerPosition     : Ember.computed("userGame.buyers", "userGame.sellers", "isSeller", "id", function () {
+  playerPosition: Ember.computed("userGame.buyers", "userGame.sellers", "isSeller", "id", function () {
     if (this.get("isSeller")) { // for the sellers
       return this.get("userGame.sellers").map((x) => { return x.get("id"); }).indexOf(this.get("id")) + 1;
     } else { // for the buyers
@@ -33,7 +33,7 @@ export default Model.extend({
     }
   }),
 
-  groupedReceivedOpenOffers : Ember.computed("traders.@each.id", "receivedOffers.@each.state", "sentOpenOffers.@each.state", "historicOffers.@each.state", function () {
+  groupedReceivedOpenOffers: Ember.computed("traders.@each.id", "receivedOffers.@each.state", "sentOpenOffers.@each.state", "historicOffers.@each.state", function () {
     var userIds = this.get("traders").map( (x) => { 
       return {"id": x.get("id"), "ref": x};
     } ); // [1, 2, 3]
@@ -70,12 +70,12 @@ export default Model.extend({
     return this.get("groupedReceivedOpenOffers.External");
   }),
 
-  receivedOpenOffers : Ember.computed.filter('receivedOffers.@each.state', 
+  receivedOpenOffers: Ember.computed.filter('receivedOffers.@each.state', 
                          (el) => {return el.get("state") === "open"; }),
-  sentOpenOffers     : Ember.computed.filter('sentOffers.@each.state', 
+  sentOpenOffers: Ember.computed.filter('sentOffers.@each.state', 
                          (el) => {return el.get("state") === "open"; }),
 
-  historicOffers     : Ember.computed('receivedOffers.@each.state', 'sentOffers.@each.state', 
+  historicOffers: Ember.computed('receivedOffers.@each.state', 'sentOffers.@each.state', 
     function() {
       var receivedOffers = this.get('receivedOffers').filter((el) => {return el.get("state") !== "open"; });
       var sentOffers = this.get('sentOffers').filter((el) => {return el.get("state") !== "open"; });
@@ -84,11 +84,11 @@ export default Model.extend({
       return _.sortBy(combination, function(o) { return o.get('ts'); }).reverse();
   }),
 
-  roleDescription    : Ember.computed('isSeller', function() {
+  roleDescription: Ember.computed('isSeller', function() {
     return this.get('isSeller') ? 'seller' : 'buyer';
   }),
 
-  traders            : Ember.computed('isSeller', 'userGame.sellers.[]', 'userGame.buyers.[]', function(){
+  traders: Ember.computed('isSeller', 'userGame.sellers.[]', 'userGame.buyers.[]', function(){
   	if (this.get('isSeller')) {
   		return this.get('userGame.buyers');
   	} else {
@@ -96,7 +96,7 @@ export default Model.extend({
   	}
   }),
 
-  hasValidOffer      : Ember.computed('_offerPrice', '_offerTomato', function() {
+  hasValidOffer: Ember.computed('_offerPrice', '_offerTomato', function() {
   	return +this.get('_offerTomato') > 0 && +this.get('_offerPrice') > 0;
   })
 

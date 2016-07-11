@@ -48,8 +48,8 @@ export default Ember.Controller.extend(OfferActions, LangActions, {
       game.save();
     },
 
-    nextRound(game, minutesPerRound){
-      if (! minutesPerRound) {
+    nextRound(game, minutesPerRound) {
+      if (!minutesPerRound) {
         alert("Minutes per round not correctly set...");
         return;
       }
@@ -57,7 +57,7 @@ export default Ember.Controller.extend(OfferActions, LangActions, {
       game.set("timeStartTs", Date.now());
       game.set("timeEndTs", Date.now() + minutesPerRound * 60 * 1000);
 
-      if (game.get("currentTradeType") === "weekly") { game.incrementProperty("weekCnt", 1); } 
+      if (game.get("currentTradeType") === "weekly") { game.incrementProperty("weekCnt", 1); }
       game.set("currentTradeType", game.get("nextTradeType"));
 
       if (game.get("currentTradeType") === "weekly") {
@@ -65,7 +65,7 @@ export default Ember.Controller.extend(OfferActions, LangActions, {
       } else {
         game.set("nextTradeType", "weekly");
       }
-      
+
       game.save();
     },
 
@@ -76,6 +76,22 @@ export default Ember.Controller.extend(OfferActions, LangActions, {
     createNewGame() {
       var newComment = this.store.createRecord('game', { "history": "foo" });
       newComment.save();
+    },
+
+    exportCSV(historyLogs) {
+      var data = [];
+      var titles = ["userSender", "userReceiver", "state", "offer", "tS"];
+
+      data.push(titles);
+      historyLogs.map((historyElement) => {
+        // historyElement => 1x historical element
+        // now go through each element in titles and get it from historyElement
+        var resolvedTitles = titles.map((titleElement) => {
+          return historyElement.get(titleElement);
+        });
+        data.push(resolvedTitles);
+      });
+      this.get('csv').export(data, 'test.csv');
     }
   }
 });

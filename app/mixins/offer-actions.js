@@ -48,12 +48,12 @@ export default Ember.Mixin.create({
       newOffer.save().then(() => {
         if (+sender !== 0) { sender.save(); }
         if (+receiver !== 0) { receiver.save(); }
-        game.save();
+        game.content.save();
         return true;
       });
 
       newHistoryObj.save().then(() => { 
-        game.save();
+        game.content.save();
         return true;
       });
     },
@@ -92,7 +92,7 @@ export default Ember.Mixin.create({
 
       game.get('historyLogs').addObject(newHistoryObj);
       newHistoryObj.save().then(() => { 
-        game.save();
+        game.content.save();
         return true;
       });
     },
@@ -114,7 +114,7 @@ export default Ember.Mixin.create({
       game.get('historyLogs').addObject(newHistoryObj);
 
       newHistoryObj.save().then(() => { 
-        game.save();
+        game.content.save();
         return true;
       });
 
@@ -137,7 +137,7 @@ export default Ember.Mixin.create({
       game.get('historyLogs').addObject(newHistoryObj);
 
       newHistoryObj.save().then(() => { 
-        game.save();
+        game.content.save();
         return true;
       });
     },
@@ -156,7 +156,7 @@ export default Ember.Mixin.create({
       game.get('historyLogs').addObject(newHistoryObj);
 
       newHistoryObj.save().then(() => { 
-        game.save();
+        game.content.save();
         return true;
       });
   }*/

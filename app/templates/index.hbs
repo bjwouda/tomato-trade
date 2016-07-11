@@ -219,6 +219,35 @@
   
           <hr>
 
+          <div class="right tomster">
+            <button type="button" class="btn btn-default" {{action 'exportCSV' game.historyLogs}}>Export CSV</button>
+          </div>
+
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Sender</th>
+                  <th>Receiver</th>
+                  <th>Status</th>
+                  <th>Offer</th>
+                  <th>Time Stamp</th>
+                </tr>
+              </thead>
+              <tbody>
+                {{#each game.historyLogs as |historicalOffer|}}
+                  <tr class="{{historicalOffer.cssStatus}}">
+                    <td>{{historicalOffer.userSender}}</td>
+                    <td>{{historicalOffer.userReceiver}}</td>
+                    <td>{{historicalOffer.state}}</td>
+                    <td>{{historicalOffer.offer}}</td>
+                    <td>{{moment-format historicalOffer.tS "HH:mm:ss"}}</td>
+                  </tr>
+                {{/each}}
+              </tbody>
+            </table>
+          </div>
+
         {{/unless}}
     {{/each}}
 
