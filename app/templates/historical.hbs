@@ -27,7 +27,7 @@
 						<td>{{historicalOffer.userReceiver}}</td>
 						<td>{{historicalOffer.state}}</td>
 						<td>{{historicalOffer.offer}}</td>
-						<td>{{historicalOffer.tS}}</td>
+						<td>{{moment-format historicalOffer.tS "HH:mm:ss"}}</td>
 					</tr>
 				{{/each}}
 			</tbody>

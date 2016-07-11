@@ -1,23 +1,20 @@
 import Ember from 'ember';
 
-export default Ember.Controller.extend({actions: {
+export default Ember.Controller.extend({
 
+  actions: {
     exportCSV() {
-      /*var data = this.store.findAll('history'.then(function(result){
-      	result.getEach('sender')}));*/
-      var data = this.store.findAll('history', 1);//.get('attributes');
-      //var oscar = data.objectAt[1];
-      var oscar = data.get('userSender', "Oscar");
-      /*var oscar = Ember.computed('data.@each', function (){
-      	return this.get('data');
-      })*/
+      var data = [];
+      var titles = ["userSender", "userReceiver", "state", "offer", "tS"];
 
-      //var oscar = data.get('data');
-      
-      //console.log(Ember.inspect(data[0]));
-      //console.log(data);
-      //console.log(oscar);
-      console.log(Ember.inspect(oscar));
+      data.push(titles);
+      this.get("model").map((historyElement) => {
+        // historyElement => 1x historical element
+        // now go through each element in titles and get it from historyElement
+        var resolvedTitles = titles.map((titleElement) => {
+          return historyElement.get(titleElement); });
+        data.push(resolvedTitles);
+      });
       this.get('csv').export(data, 'test.csv');
     }
   }
