@@ -32,6 +32,8 @@ export default {
 	"goalTomatoes" : "Goal of tomatoes",
 	"currentTomatoes" : "Current tomatoes",
 
+	"historicalScreen": "Historical Screen",
+
 	"player": {
 		"tradingMenu": "Trading Menu",
 		"resourceOverview": "Resource Overview",

@@ -49,8 +49,8 @@
             
                   {{offer.tomatoes}} <span class="to-tomato"></span> for {{offer.price}} <span class="to-money"></span> 
                   
-                  <button  class="btn btn-success" {{action 'acceptOffer' offer}}>{{t 'accept'}}</button>
-                  <button  class="btn btn-default" {{action 'declineOffer' offer}}>{{t 'decline'}}</button>
+                  <button  class="btn btn-success" {{action 'acceptOffer' model.userGame offer}}>{{t 'accept'}}</button>
+                  <button  class="btn btn-default" {{action 'declineOffer' model.userGame offer}}>{{t 'decline'}}</button>
                 </li>
               {{/each}}
               
@@ -60,7 +60,7 @@
     
                   {{offer.tomatoes}} <span class="to-tomato"></span> for {{offer.price}} <span class="to-money"></span> 
                   
-                  <button class="btn btn-default" {{action 'recallOffer' offer}}>{{t 'recall'}}</button>
+                  <button class="btn btn-default" {{action 'recallOffer' model.userGame offer}}>{{t 'recall'}}</button>
                 </li>
               {{/each}}
               
@@ -110,8 +110,8 @@
 
               {{offer.tomatoes}} <span class="to-tomato"></span> for {{offer.price}} <span class="to-money"></span> 
               
-              <button  class="btn btn-success" {{action 'acceptOffer' offer}}>{{t 'accept'}}</button>
-              <button  class="btn btn-default" {{action 'declineOffer' offer}}>{{t 'decline'}}</button>
+              <button  class="btn btn-success" {{action 'acceptOffer' model.userGame offer}}>{{t 'accept'}}</button>
+              <button  class="btn btn-default" {{action 'declineOffer' model.userGame offer}}>{{t 'decline'}}</button>
             </li>
           {{/each}}
         </ul>
@@ -126,7 +126,7 @@
 
               {{offer.tomatoes}} <span class="to-tomato"></span> for {{offer.price}} <span class="to-money"></span> 
               
-              <button class="btn btn-default" {{action 'recallOffer' offer}}>{{t 'recall'}}</button>
+              <button class="btn btn-default" {{action 'recallOffer' model.userGame offer}}>{{t 'recall'}}</button>
             </li>
           {{/each}}
         </ul>

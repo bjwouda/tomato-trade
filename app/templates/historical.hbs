@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="row">
+		<div class="title-container">
+		    <span class="line-1">{{t 'historicalScreen'}}</span>
+		</div>
+  </div>
+
+  <div class="right tomster">
+		<button type="button" class="btn btn-default" {{action 'exportCSV'}}>Export CSV</button>
+	</div>
+
+  <div class="table-responsive">
+		<table class="table table-striped">
+			<thead>
+		      <tr>
+		        <th>Sender</th>
+		        <th>Receiver</th>
+		        <th>Status</th>
+		        <th>Offer</th>
+		        <th>Time Stamp</th>
+		      </tr>
+		    </thead>
+			<tbody>	
+				{{#each model as |historicalOffer|}}
+					<tr class="{{historicalOffer.cssStatus}}">
+						<td>{{historicalOffer.userSender}}</td>
+						<td>{{historicalOffer.userReceiver}}</td>
+						<td>{{historicalOffer.state}}</td>
+						<td>{{historicalOffer.offer}}</td>
+						<td>{{historicalOffer.tS}}</td>
+					</tr>
+				{{/each}}
+			</tbody>
+		</table>
+	</div>
+
+
+</div>

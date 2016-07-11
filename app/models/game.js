@@ -10,6 +10,7 @@ export default Model.extend({
 
   users            : hasMany('user', { async: true }),
   offers           : hasMany('offer', { async: true }),
+  historyLogs      : hasMany('history', { async: true }),
   history          : attr('string'),
   
   minutesPerRound  : attr('number', { defaultValue: 5 }),

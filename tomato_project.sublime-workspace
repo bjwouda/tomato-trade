@@ -1,0 +1,331 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"created",
+				"createRecord"
+			],
+			[
+				"ar",
+				"article	<article>"
+			],
+			[
+				"fun",
+				"function"
+			],
+			[
+				"task",
+				"taskId"
+			],
+			[
+				"remove",
+				"remove	.remove()"
+			],
+			[
+				"user",
+				"username"
+			],
+			[
+				"Acco",
+				"Accounts.ui	Meteor: Accounts.ui.config(options)"
+			],
+			[
+				"Accoun",
+				"Accounts.config	Meteor: Accounts.config(options)"
+			],
+			[
+				"check",
+				"checked"
+			],
+			[
+				"hide",
+				"hideCompleted"
+			],
+			[
+				"che",
+				"checked"
+			],
+			[
+				"t",
+				"task.html"
+			],
+			[
+				"bu",
+				"button	Tag"
+			],
+			[
+				"create",
+				"createdAt"
+			],
+			[
+				"even",
+				"events	Meteor: Template.myTemplate.events(eventMap)"
+			],
+			[
+				"Mon",
+				"Mongo.Collection	new Mongo.Collection.ObjectID(hexString)"
+			],
+			[
+				"bo",
+				"body"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 82.0,
+		"last_filter": "pack",
+		"selected_items":
+		[
+			[
+				"pack",
+				"Package Control: Remove Package"
+			],
+			[
+				"in",
+				"Package Control: Install Package"
+			],
+			[
+				"git ",
+				"git: branch"
+			],
+			[
+				"git chec",
+				"git: checkout"
+			],
+			[
+				"git bran",
+				"git: branch"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: ",
+				"Package Control: Remove Package"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"packagereso",
+				"PackageResourceViewer: Open Resource"
+			],
+			[
+				"package control",
+				"Package Control: Enable Package"
+			],
+			[
+				"install p",
+				"SublimeCodeIntel: Disable Live Autocompletion"
+			],
+			[
+				"ins",
+				"Package Control: Install Package"
+			],
+			[
+				"folder",
+				"Project: Add Folder"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"intall",
+				"Package Control: Install Package"
+			],
+			[
+				"pac",
+				"Package Control: Install Package"
+			],
+			[
+				"package control in",
+				"Package Control: Install Package"
+			],
+			[
+				"alig",
+				"Package Control: Install Package"
+			],
+			[
+				"package control: ins",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 528.0
+	},
+	"console":
+	{
+		"height": 112.0,
+		"history":
+		[
+			"git branch",
+			"cd ~/Library/Application\\ Support/Sublime\\ Text\\ 3/Packages",
+			"sublime.packages_path()",
+			"sublime.log_input(False)",
+			"sublime.log_input(True)",
+			"import urllib.request,os,hashlib; h = '2915d1851351e5ee549c20394736b442' + '8bc59f460fa1548d1514676163dafc88'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by) "
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/home/ojarabo/Desktop/Innotholics/Ember/tudelft/tomato-trade"
+	],
+	"file_history":
+	[
+		"/home/ojarabo/.config/sublime-text-3/Packages/User/Preferences.sublime-settings"
+	],
+	"find":
+	{
+		"height": 21.0
+	},
+	"find_in_files":
+	{
+		"height": 78.0,
+		"where_history":
+		[
+			"<project>"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"addUser",
+			"application.hbs",
+			"procfile",
+			"require('fs')",
+			"fs",
+			"simple-todos",
+			"imports"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 21.0
+	},
+	"input":
+	{
+		"height": 29.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.CSS Extended Completions":
+	{
+		"height": 0.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "tomato_project",
+	"replace":
+	{
+		"height": 38.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 425.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 323.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 162.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

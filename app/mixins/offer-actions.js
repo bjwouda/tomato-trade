@@ -23,7 +23,17 @@ export default Ember.Mixin.create({
         notes: `${moment().format()};created\n`
       });
 
+      //Create history record
+      var newHistoryObj = this.store.createRecord('history', {
+        userSender   : (+sender === 0) ? "External" : sender.get('name'),
+        userReceiver : (+receiver === 0) ? "External" : receiver.get('name'),
+        state        : "Open",
+        cssStatus    : "active",
+        offer        : "tomatoes: " + tomatoes + ", price: " + price
+      });
+
       game.get('offers').addObject(newOffer);
+      game.get('historyLogs').addObject(newHistoryObj);
 
       if (+receiver !== 0) {
         receiver.get('receivedOffers').addObject(newOffer);
@@ -41,13 +51,26 @@ export default Ember.Mixin.create({
         game.save();
         return true;
       });
+
+      newHistoryObj.save().then(() => { 
+        game.save();
+        return true;
+      });
     },
 
-    acceptOffer(offer) {
+    acceptOffer(game, offer) {
       offer.set("state", "accepted");
       offer.set("notes", offer.get("notes") + `${moment().format()};accepted\n`);
 
       var sign = offer.get("receiver.content.isSeller") ? 1 : -1;
+      //Create history record
+      var newHistoryObj = this.store.createRecord('history', {
+        userSender   : (offer.get('sender.id') === undefined) ? "External"  : offer.get('sender.name'),
+        userReceiver : (offer.get('receiver.id') === undefined) ? "External"  : offer.get('receiver.name'),
+        state        : "Accepted",
+        cssStatus    : "success",
+        offer        : "tomatoes: " + offer.get('tomatoes') + ", price: " + offer.get('price')
+      });
 
       if (offer.get("receiver.content") !== null) {
         offer.set("receiver.content.money", +offer.get("receiver.content.money") + sign * offer.get("price"));
@@ -66,19 +89,75 @@ export default Ember.Mixin.create({
       }
 
       offer.save();
+
+      game.get('historyLogs').addObject(newHistoryObj);
+      newHistoryObj.save().then(() => { 
+        game.save();
+        return true;
+      });
     },
 
-    declineOffer(offer) {
+    declineOffer(game, offer) {
       offer.set("state", "declined");
       offer.set("notes", offer.get("notes") + `${moment().format()};declined\n`);
       offer.save();
+
+      //Store offer into historical record
+      var newHistoryObj = this.store.createRecord('history', {
+        userSender   : (offer.get('sender.id') === undefined) ? "External"  : offer.get('sender.name'),
+        userReceiver : (offer.get('receiver.id') === undefined) ? "External"  : offer.get('receiver.name'),
+        state        : "Declined",
+        cssStatus    : "danger",
+        offer        : "tomatoes: " + offer.get('tomatoes') + ", price: " + offer.get('price')
+      });
+
+      game.get('historyLogs').addObject(newHistoryObj);
+
+      newHistoryObj.save().then(() => { 
+        game.save();
+        return true;
+      });
+
     },
 
-    recallOffer(offer) {
+    recallOffer(game, offer) {
       offer.set("state", "recalled");
       offer.set("notes", offer.get("notes") + `${moment().format()};recalled\n`);
       offer.save();
+
+      //Store offer into historical record
+      var newHistoryObj = this.store.createRecord('history', {
+        userSender   : (offer.get('sender.id') === undefined) ? "External"  : offer.get('sender.name'),
+        userReceiver : (offer.get('receiver.id') === undefined) ? "External"  : offer.get('receiver.name'),
+        state        : "Recalled - Open",
+        cssStatus    : "active",
+        offer        : "tomatoes: " + offer.get('tomatoes') + ", price: " + offer.get('price')
+      });
+
+      game.get('historyLogs').addObject(newHistoryObj);
+
+      newHistoryObj.save().then(() => { 
+        game.save();
+        return true;
+      });
     },
 
   }
+
+  /*function recordOffer(offer){
+    //Create history record
+      var newHistoryObj = this.store.createRecord('history', {
+        userSender   : offer.get('sender.name'),
+        userReceiver : offer.get('receiver.name'),
+        state        : "Accepted",
+        offer        : "tomatoes: " + offer.get('tomatoes') + ", price: " + offer.get('price')
+      });
+
+      game.get('historyLogs').addObject(newHistoryObj);
+
+      newHistoryObj.save().then(() => { 
+        game.save();
+        return true;
+      });
+  }*/
 });

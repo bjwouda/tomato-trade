@@ -22,12 +22,18 @@ export default Ember.Controller.extend(OfferActions, LangActions, {
       var isSeller = false;
       if (userType === 'seller') { isSeller = true; }
       var newUser = this.store.createRecord('user', { isSeller: isSeller });
+      //var newHistoryObj = this.store.createRecord('history', {userSender: 'Seller_1', userReceiver: 'Buyer_1', status: 'Accepted', offer: 'Tomatoes 2, Dollars 3'});
 
       game.get('users').addObject(newUser);
+      //game.get('historyLogs').addObject(newHistoryObj);
 
       newUser.save().then(() => {
         return game.save();
       });
+
+      /*newHistoryObj.save().then(() => { 
+        return game.save();
+      });*/
 
     },
 
