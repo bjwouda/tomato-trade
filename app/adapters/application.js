@@ -1,4 +1,1 @@
-import FirebaseAdapter from 'emberfire/adapters/firebase';
-
-export default FirebaseAdapter.extend({
-});
+export { default } from 'emberfire/adapters/firebase';

@@ -7,7 +7,11 @@ export default Ember.Controller.extend(OfferActions, LangActions, {
 
   activeUser        : null,
   gameConfiguration : null,
-  isConfiguration   : null,
+  game: Ember.computed.alias("model"),
+
+  // isConfiguration   : Ember.computed("model.[]", function() {
+  //   return this.get("model.length") !== 0;
+  // }),
 
   actions: {
 
@@ -72,7 +76,6 @@ export default Ember.Controller.extend(OfferActions, LangActions, {
 
     removeGame(item) {
       item.destroyRecord();
-      this.set('isConfiguration', false);
     },
 
     createNewGame() {
@@ -91,7 +94,6 @@ export default Ember.Controller.extend(OfferActions, LangActions, {
         this.set('gameConfiguration', "");
 
       }
-      this.set('isConfiguration', true);
     },
 
     exportCSV(historyLogs) {

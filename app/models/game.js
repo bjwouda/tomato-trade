@@ -34,10 +34,16 @@ export default Model.extend({
   offerSortingDesc : ['ts:desc'],
   sortedOffers: Ember.computed.sort('offers', 'offerSortingDesc'),
 
-  sellers: Ember.computed.filter('users.@each.isSeller', 
-  					   el => el.get("isSeller") === true),
-  buyers: Ember.computed.filter('users.@each.isSeller', 
-  	                   el => el.get("isSeller") === false),
+  // usersObserver: Ember.observer("users", function() {
+  //   console.log("hello");
+  //   console.log(this.get("users"));
+  //   debugger;    
+  //   var sellers = this.get("users.content").filter(el => el.get("isSeller") === true);
+
+  //   // this.set("sellers", sellers);
+  //   // var buyers = this.get("users").filter('users.@each.isSeller', el => el.get("isSeller") === false);
+  //   // this.set("buyers", buyers);
+  // }),
   	                   
   currentTitle: Ember.computed("weekCnt", "currentTradeType", function() {
     var tradeType = this.get("currentTradeType") || 'weekly';

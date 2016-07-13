@@ -51,6 +51,12 @@ module.exports = function(environment) {
 
   }
 
+  ENV.horizon = {
+    host: 'localhost:8181', // where is horizon server found? 
+    authType: 'anonymous', // how do we authorize? 
+    realTime: ['game', 'history', 'offer', 'user'], // what collections should be real-time (boolean or array)? 
+  };
+
   ENV.i18n = {
     defaultLocale: 'en'
   };

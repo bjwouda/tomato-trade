@@ -1,0 +1,8 @@
+gameid {{game.id}}
+
+
+
+{{#each game.users as |seller|}}
+  <p>user {{seller.id}}</p>
+  <p>user {{seller.isSeller}}</p>
+{{/each}}
