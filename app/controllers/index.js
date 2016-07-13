@@ -5,13 +5,18 @@ import LangActions from '../mixins/lang-actions';
 
 export default Ember.Controller.extend(OfferActions, LangActions, {
 
-  activeUser: null,
+  activeUser        : null,
+  gameConfiguration : null,
+  isConfiguration   : null,
 
   actions: {
 
     // USER
     saveUser(user) { user.save(); },
-    deleteUser(user) { user.destroyRecord(); },
+    deleteUser(user) { 
+      user.destroyRecord(); 
+      gameConfiguration = null;
+    },
     rollbackUser(user) { user.rollbackAttributes(); },
 
     setActiveUser(user) {
@@ -22,18 +27,14 @@ export default Ember.Controller.extend(OfferActions, LangActions, {
       var isSeller = false;
       if (userType === 'seller') { isSeller = true; }
       var newUser = this.store.createRecord('user', { isSeller: isSeller });
-      //var newHistoryObj = this.store.createRecord('history', {userSender: 'Seller_1', userReceiver: 'Buyer_1', status: 'Accepted', offer: 'Tomatoes 2, Dollars 3'});
-
+      
       game.get('users').addObject(newUser);
-      //game.get('historyLogs').addObject(newHistoryObj);
-
+      
       newUser.save().then(() => {
         return game.save();
       });
 
-      /*newHistoryObj.save().then(() => { 
-        return game.save();
-      });*/
+      
 
     },
 
@@ -71,11 +72,26 @@ export default Ember.Controller.extend(OfferActions, LangActions, {
 
     removeGame(item) {
       item.destroyRecord();
+      this.set('isConfiguration', false);
     },
 
     createNewGame() {
-      var newComment = this.store.createRecord('game', { "history": "foo" });
+      var newComment = this.store.createRecord('game', { "history": "foo", "gameConfiguration" : this.gameConfiguration });
       newComment.save();
+      //this.sendAction('addUser', 'game', "seller");
+      //this.addUser(this.store.get('game'), "seller");
+
+      //set game configuration
+      while(this.get('gameConfiguration') !== ''){
+        var config = this.get('gameConfiguration');
+        var userConfig = config.substring(0, config.indexOf(","));
+        this.set('gameConfiguration', config.replace(userConfig + ',', '').trim());
+        
+        {{debugger}}
+        this.set('gameConfiguration', "");
+
+      }
+      this.set('isConfiguration', true);
     },
 
     exportCSV(historyLogs) {
@@ -92,6 +108,11 @@ export default Ember.Controller.extend(OfferActions, LangActions, {
         data.push(resolvedTitles);
       });
       this.get('csv').export(data, 'test.csv');
+    },
+
+    saveConfiguration(config) {
+      //check input format before creating game
+        this.set('gameConfiguration', config);
     }
   }
 });

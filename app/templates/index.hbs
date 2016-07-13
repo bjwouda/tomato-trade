@@ -1,257 +1,405 @@
-<div class="title-container">
-    <span class="line-1">{{t 'masterScreen'}}</span>
-</div>
+<div class="container-fluid">
+    <div class="row row-offcanvas row-offcanvas-left">
+        <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
+            <div class="sidebar-nav">
+                <ul class="nav">
+                    <li > <span class="title-container"><h4>Tomato Trade</h4></span></li>
+                    <li class="active" ><a href="" {{action 'createNewGame'}} >New game</a></li>
 
-<div class="container">
-  <div class="starter-template">
-    <div class="row">
-      <button type="button" class="btn btn-default" {{action 'createNewGame'}}>New game</button>
-      {{#link-to 'historical' class="btn btn-info" }}Historicals{{/link-to}}
-      
-    </div>
-    
-    <hr>
-  
-    {{#each model as |game|}}
+                    
+                      {{#each model as |game|}}
+                        {{#unless game.isDeleted}}
+                          <li class="list-group-item-danger" {{action 'removeGame' game}}><a href="" >Delete Game</a></li>
+                          <li class="active">{{#link-to 'historical'}}Historicals{{/link-to}}</li>
+                          
+                          <li class="nav-divider"></li>
+                          <li > <span class="title-container"><h4>Players</h4></span></li>
+                          <li class="active" {{action 'addUser' game 'seller'}}><a href="" >Add Seller</a></li>
+                          <li class="active" {{action 'addUser' game 'buyer'}}><a href="" >Add Buyer</a></li>
+                          
+                          <li class="nav-divider"></li>
+                          <li > <span class="title-container"><h4>Round Controlls</h4></span></li>
+                          <li class="active" {{action 'nextRound' game game.minutesPerRound}}><a href="" >Next Round</a></li>
+                          <li class="active" {{action 'letGameEndInXMinutes' game game.minutesPerRound 1}}><a href="" >Restart</a></li>
+                          <li class="active" {{action 'letGameEndInXMinutes' game 5}}><a href="" >End in 5 min</a></li>
+                          <li class="active" {{action 'letGameEndInXMinutes' game 0.1}}><a href="" >End in 1 min</a></li>
+                          <li class="active" {{action 'letGameEndInXMinutes' game 0}}><a href="" >End Now</a></li>
 
-        {{#unless game.isDeleted}}
-          <div class="row">
-            <h3>Game Settings</h3>
-            <p>
-              <button class="btn btn-danger" {{action 'removeGame' game}}>Delete game</button>
-              <button class="btn btn-default" {{action 'addUser' game 'seller'}}>Add seller</button>
-              <button class="btn btn-default" {{action 'addUser' game 'buyer'}}>Add buyer</button>
-            </p>
-          </div>
-
-          <div class="row">
-            <h3>Round Controlls</h3>
-              <p>
-                <button type="button" class="btn btn-success" {{action 'nextRound' game game.minutesPerRound}}>Next round</button>
-                <button type="button" class="btn btn-default" {{action 'letGameEndInXMinutes' game game.minutesPerRound 1}}>Restart game timer ({{game.minutesPerRound}}')</button>
-                <button type="button" class="btn btn-default" {{action 'letGameEndInXMinutes' game 5}}>End game in 5 minutes</button>
-                <button type="button" class="btn btn-default" {{action 'letGameEndInXMinutes' game 0.1}}>End game in 1 minute</button>
-                <button type="button" class="btn btn-default" {{action 'letGameEndInXMinutes' game 0}}>End game now</button>
-              </p>
-                              
-
-              <p>
-                {{#if isEditing}}
-                  <button type="button" class="btn btn-default" {{action (pipe (invoke "rollbackAttributes" game) (toggle "isEditing" this)) }}>Revert settings</button>
-                  <button type="button" class="btn btn-default" {{action (pipe (invoke "save" game) (toggle "isEditing" this)) }}>Save settings</button>
-                {{else}}
-                  <button type="button" class="btn btn-default" {{action (toggle "isEditing" this)}}>Edit game settings</button>
-                {{/if}}
-              </p>
-
-              <p>
-                <div class="form-group">
-                  <b>Setting for next round: </b>
-                  {{#radio-button
-                      value="weekly"
-                      disabled=(not isEditing)
-                      class="checkbox"
-                      groupValue=game.nextTradeType}}
-                      Week trade
-                  {{/radio-button}}
-
-                   
-                  {{#radio-button
-                      value="daily"
-                      disabled=(not isEditing)
-                      class="checkbox"
-                      groupValue=game.nextTradeType}}
-                      Day trade
-                  {{/radio-button}}
-                </div>
-              </p>
-              
-              <p>
-                <div class="form-group">
-                  <b>Setting for current round: </b>
-                  {{#radio-button
-                      value="weekly"
-                      disabled=(not isEditing)
-                      class="checkbox"
-                      groupValue=game.currentTradeType}}
-                      Week trade
-                  {{/radio-button}}
-
-                  {{#radio-button
-                      value="daily"
-                      disabled=(not isEditing)
-                      class="checkbox"
-                      groupValue=game.currentTradeType}}
-                      Day trade
-                  {{/radio-button}}
-                </div>
-              </p>
-
-              <p>
-                <span class="form-inline">
-                  <div class="form-group">
-                    <label>Minutes per round: </label> {{input disabled=(not isEditing) type="number" value=game.minutesPerRound class="form-control" }}
-                  </div>
-
-                  <div class="form-group">
-                    <label>Current week: </label> {{input disabled=(not isEditing) type="number" value=game.weekCnt class="form-control" }}
-                  </div>
-                </span>
-              </p>
-          </div>
-
-
-          <div class="row">
-            <h3>Trading Controlls</h3>
-
-            <h3 class="text-center game-title">{{liquid-bind game.currentTitle}}</h3>
-            <p>
-              {{tom-clock timeStartTs=game.timeStartTs timeEndTs=game.timeEndTs}}
-            </p>
-          </div>
-          
-
-          <div class="row">
-            {{#each game.sellers as |seller|}}
-              <div class="col-sm-3">
-                <h4>Seller {{seller.playerPosition}}</h4>
-                <div class="form-group">
-                  <label>Name: </label> {{input value=seller.name class="form-control" }}
-                </div>
-                <div class="form-group">
-                  <label>{{capitalize (t 'goalTomatoes')}}: </label> {{input value=seller.goalTomatoes class="form-control" }}
-                </div>
-                <div class="form-group">
-                  <label>{{capitalize (t 'currentTomatoes')}}: </label> {{input value=seller.tomatoes class="form-control" }}
-                </div>
-                
-                <hr>
-                
-                <div class="form-group">
-                  <label>{{capitalize (t 'tomatoes')}}: </label> {{input value=seller._offerTomato class="form-control" }}
-                </div>
-                <div class="form-group">
-                  <label>{{capitalize (t 'price')}}: </label> {{input value=seller._offerPrice class="form-control" }}
-                </div>
-                
-                {{!--Tomatoes: {{input value=seller.tomatoes}}--}}
-                {{!--Money: {{input value=seller.money}}--}}
-                {{#if seller.hasDirtyAttributes}}
-                  <button class="btn btn-primary btn-xs" {{action 'saveUser' seller}}>save</button>
-                  <button class="btn btn-primary btn-xs" {{action 'rollbackUser' seller}}>cancel</button>
-                {{/if}}
-                <button class="btn btn-primary btn-xs" {{action 'sendOffer' game 0 seller seller._offerTomato seller._offerPrice}}>send offer</button>
-                <button class="btn btn-danger btn-xs" {{action 'deleteUser' seller}}>delete</button>
-                {{#link-to 'player' seller}}Activate{{/link-to}}
-                
-                <h5>Received offers</h5>
-                <ul class="list-group">
-                  {{#each seller.externalStuff.openOffers as |offer|}}
-                    <li class="list-group-item">
-                      --&gt; <b>{{offer.receiverName}}</b> <i>{{moment-format offer.ts "HH:mm:ss"}} / {{moment-from-now offer.ts hideSuffix=true interval=1000}}</i> <br>
-        
-                      {{offer.tomatoes}} <span class="to-tomato"></span> for {{offer.price}} <span class="to-money"></span> 
-                      
-                      <button class="btn btn-default" {{action 'recallOffer' offer}}>{{t 'recall'}}</button>
-                    </li>
-                  {{/each}}
-
-                  {{#each seller.externalStuff.sentOffers as |offer|}}
-                    <li class="list-group-item">  
-                      &lt;-- <b>{{offer.senderName}}</b> <i>{{moment-format offer.ts "HH:mm:ss"}} / {{moment-from-now offer.ts hideSuffix=true interval=1000}}</i> <br>
-                
-                      {{offer.tomatoes}} <span class="to-tomato"></span> for {{offer.price}} <span class="to-money"></span> 
-                      
-                      <button  class="btn btn-success" {{action 'acceptOffer' offer}}>{{t 'accept'}}</button>
-                      <button  class="btn btn-default" {{action 'declineOffer' offer}}>{{t 'decline'}}</button>
-                    </li>
-                  {{/each}}
-                </ul>
-              </div>
-            {{/each}}
-        
+                          <li class="nav-divider"></li>
+                          {{#if isEditing}}
+                            <li class="active" {{action (pipe (invoke "rollbackAttributes" game) (toggle "isEditing" this)) }}><a href="" >Revert Settings</a></li>
+                            <li class="active" {{action (pipe (invoke "save" game) (toggle "isEditing" this)) }}><a href="" >Save Settings</a></li>
+                          {{else}}
+                            <li class="active" {{action (toggle "isEditing" this)}}><a href="" >Edit Settings</a></li>
+                          {{/if}}
             
-            {{#each game.buyers as |buyer|}}
-              <div class="col-sm-3">
-                <h4>Buyer {{buyer.playerPosition}}</h4>
-                <div class="form-group">
-                  <label>Name: </label> {{input value=buyer.name class="form-control" }}
-                </div>
-                <div class="form-group">
-                  <label>{{capitalize (t 'goalTomatoes')}}: </label> {{input value=buyer.goalTomatoes class="form-control" }}
-                </div>
-                <div class="form-group">
-                  <label>{{capitalize (t 'currentTomatoes')}}: </label> {{input value=buyer.tomatoes class="form-control" }}
-                </div> 
-                
-                <hr>
-                
-                <div class="form-group">
-                  <label>{{capitalize (t 'tomatoes')}}: </label> {{input value=buyer._offerTomato class="form-control" }}
-                </div>
-                <div class="form-group">
-                  <label>{{capitalize (t 'price')}}: </label> {{input value=buyer._offerPrice class="form-control" }}
-                </div>
-                
-                {{!--Tomatoes: {{input value=buyer.tomatoes}}--}}
-                {{!--Money: {{input value=buyer.money}}--}}
-                {{#if buyer.hasDirtyAttributes}}
-                  <button class="btn btn-primary btn-xs" {{action 'saveUser' buyer}}>save</button>
-                  <button class="btn btn-primary btn-xs" {{action 'rollbackUser' buyer}}>cancel</button>
-                {{/if}}
-                <button class="btn btn-primary btn-xs" {{action 'sendOffer' game 0 buyer  buyer._offerTomato buyer._offerPrice}}>send offer</button>
-                <button class="btn btn-danger btn-xs" {{action 'deleteUser' buyer}}>delete</button>
-                {{#link-to 'player' buyer}}Activate{{/link-to}}
-      
-                <h5>Received offers</h5>
-                {{#each buyer.receivedOpenOffers as |offer|}}
-                  <p><b>{{offer.senderName}}</b> T: {{offer.tomatoes}} M: {{offer.price}} 
-                  <button {{action 'recallOffer' offer}}>recall</button> </p>
-                {{/each}}
-              </div>
-            {{/each}}
-          </div>
-  
-          <h3>Offers</h3>
-          {{#each game.sortedOffers as |offer|}}
-            <p> [{{offer.state}}] <b>{{offer.senderName}}</b> --&gt; <b>{{offer.receiver.name}}</b>  {{moment-format offer.ts "HH:mm:ss"}} / {{moment-from-now offer.ts hideSuffix=true interval=1000}} T: {{offer.tomatoes}} M: {{offer.price}}</p>
-          {{/each}}
-  
-          <hr>
+                          <span class="form-group">
+                            <li ><span class="title-container"><h5>Next Round Settings</h5></span>  </li>
+                            <li class="list-group-item">
+                              {{#radio-button
+                                  value="weekly"
+                                  disabled=(not isEditing)
+                                  class="checkbox"
+                                  groupValue=game.nextTradeType}} 
+                                  Weekly
+                              {{/radio-button}}
+                              
+                              <br>
+                               
+                              {{#radio-button
+                                  value="daily"
+                                  disabled=(not isEditing)
+                                  class="checkbox"
+                                  groupValue=game.nextTradeType}}
+                                  Daily
+                              {{/radio-button}}
+                            </li>
+                          </span>
 
-          <div class="right tomster">
-            <button type="button" class="btn btn-default" {{action 'exportCSV' game.historyLogs}}>Export CSV</button>
-          </div>
+                          <span class="form-group">
+                            <li ><span class="title-container"><h5>Current Round Settings</h5></span> </li>
+                            <li class="list-group-item">
+                              {{#radio-button
+                                  value="weekly"
+                                  disabled=(not isEditing)
+                                  class="checkbox"
+                                  groupValue=game.currentTradeType}}
+                                  Week trade
+                              {{/radio-button}}
 
-          <div class="table-responsive">
-            <table class="table table-striped">
-              <thead>
-                <tr>
-                  <th>Sender</th>
-                  <th>Receiver</th>
-                  <th>Status</th>
-                  <th>Offer</th>
-                  <th>Time Stamp</th>
-                </tr>
-              </thead>
-              <tbody>
-                {{#each game.historyLogs as |historicalOffer|}}
-                  <tr class="{{historicalOffer.cssStatus}}">
-                    <td>{{historicalOffer.userSender}}</td>
-                    <td>{{historicalOffer.userReceiver}}</td>
-                    <td>{{historicalOffer.state}}</td>
-                    <td>{{historicalOffer.offer}}</td>
-                    <td>{{moment-format historicalOffer.tS "HH:mm:ss"}}</td>
-                  </tr>
-                {{/each}}
-              </tbody>
-            </table>
-          </div>
+                               <br>
 
+                              {{#radio-button
+                                  value="daily"
+                                  disabled=(not isEditing)
+                                  class="checkbox"
+                                  groupValue=game.currentTradeType}}
+                                  Day trade
+                              {{/radio-button}}
+                            </li>
+                          </span>
+
+                          <span>
+                            <div class="form-group">
+                              <span class="title-container"><h5>Minutes Round: </h5></span> {{input disabled=(not isEditing) type="number" value=game.minutesPerRound class="form-control" }}
+                            </div>
+
+                            <div class="form-group">
+                              <span class="title-container"><h5>Current week: </h5></span> {{input disabled=(not isEditing) type="number" value=game.weekCnt class="form-control" }}
+                            </div>
+                          </span>
+
+                        {{/unless}}
+
+                      {{/each}}
+                    
+                </ul>
+            </div>
+            
+        </div>
+
+        {{#unless isConfiguration}}
+
+          <div class="col-xs-12 col-sm-9">
+                <br>
+                <div class="jumbotron">
+                  <a href="#" class="visible-xs" data-toggle="offcanvas"><i class="fa fa-lg fa-reorder"></i></a>
+                  <div class="title-container">
+                    <span class="line-1">{{t 'masterScreen'}}</span>
+                  </div>
+
+                  <br>
+
+                  <div>
+                    <span class="title-container"><h4>Introduce Game Configuration</h4></span>  
+                  </div> 
+                  
+                  <div class="form-group">
+                    {{textarea value=gameConfiguration class="form-control" col="10" rows="10"}}
+                    
+                    <br>
+                    <span class="title-container">
+                      <button class="btn btn-info pull-right " {{action 'saveConfiguration' gameConfiguration}}>Save</button>
+                    </span>
+                  </div>
+
+                </div>
+
+          </div>          
         {{/unless}}
-    {{/each}}
 
-  </div>
-</div>
+            
+
+          {{#each model as |game|}}
+
+            {{#unless game.isDeleted}}
+              <div class="col-xs-12 col-sm-9">
+                <br>
+                <div class="jumbotron">
+                  <a href="#" class="visible-xs" data-toggle="offcanvas"><i class="fa fa-lg fa-reorder"></i></a>
+                  <div class="title-container">
+                    <span class="line-1">{{t 'masterScreen'}}</span>
+                  </div>
+
+
+                      <div class="row">
+
+                        <h4 class="text-center game-title">{{liquid-bind game.currentTitle}}</h4>
+                        <p>
+                          {{tom-clock timeStartTs=game.timeStartTs timeEndTs=game.timeEndTs}}
+                        </p>
+                      </div>
+                  
+                </div>
+
+                <div class="row">
+                  <div class="col-6 col-sm-6 col-lg-6">
+                      {{#each game.sellers as |seller|}}
+                          <div>
+                            <span class="title-container"><h4>
+                              Seller {{seller.playerPosition}} 
+                              {{#link-to 'player' seller class="btn btn-info btn-xs"}}Activate{{/link-to}}
+                              <button class="btn btn-danger btn-xs" {{action 'deleteUser' seller}}>Delete</button></h4></span>  
+                          </div>
+                           
+                          <div class="form-group">
+                            <label>Name: </label> {{input value=seller.name class="form-control" }}
+                          </div>
+
+                          <div class="table-responsive">
+                            <table class="table-borderless">
+                              <thead>
+                                <tr>
+                                  <th >{{capitalize (t 'goalTomatoes')}}:</th>
+                                  <th><span style="margin-left:4em"></span></th>
+                                  <th >{{capitalize (t 'currentTomatoes')}}:</th>
+                                </tr>
+                              </thead>
+                              <tbody> 
+                                
+                                  <tr>
+                                    <td>{{input value=seller.goalTomatoes class="form-control" size="20"}}</td>
+                                    <td> </td>
+                                    <td>{{input value=seller.tomatoes class="form-control" size="20"}}</td>
+                                  </tr>
+                                
+                              </tbody>
+                           </table>
+                         </div>    
+                          
+                          <hr>
+
+                          <span class="title-container"><h4>
+                              External Offer 
+                              <button class="btn btn-primary btn-xs" {{action 'sendOffer' game 0 seller seller._offerTomato seller._offerPrice}}>Send Offer</button></h4>
+                            </span>
+
+                          <div class="table-responsive">
+                            <table class="table-borderless">
+                              <thead>
+                                <tr>
+                                  <th >{{capitalize (t 'tomatoes')}}:</th>
+                                  <th><span style="margin-left:4em"></span></th>
+                                  <th >{{capitalize (t 'price')}}:</th>
+                                </tr>
+                              </thead>
+                              <tbody> 
+                                
+                                  <tr>
+                                    <td>{{input value=seller._offerTomato class="form-control" size="20"}}</td>
+                                    <td> </td>
+                                    <td>{{input value=seller._offerPrice class="form-control" size="20"}}</td>
+                                  </tr>
+                                
+                              </tbody>
+                           </table>
+                         </div>                     
+                          
+                          
+                          {{!--Tomatoes: {{input value=seller.tomatoes}}--}}
+                          {{!--Money: {{input value=seller.money}}--}}
+                          {{#if seller.hasDirtyAttributes}}
+                            <button class="btn btn-primary btn-xs" {{action 'saveUser' seller}}>save</button>
+                            <button class="btn btn-primary btn-xs" {{action 'rollbackUser' seller}}>cancel</button>
+                          {{/if}}
+                          
+                          
+                          
+                          <h5>Received offers</h5>
+                          <ul class="list-group">
+                            {{#each seller.externalStuff.openOffers as |offer|}}
+                              <li class="list-group-item">
+                                --&gt; <b>{{offer.receiverName}}</b> <i>{{moment-format offer.ts "HH:mm:ss"}} / {{moment-from-now offer.ts hideSuffix=true interval=1000}}</i> <br>
+                  
+                                {{offer.tomatoes}} <span class="to-tomato"></span> for {{offer.price}} <span class="to-money"></span> 
+                                
+                                <button class="btn btn-default" {{action 'recallOffer' offer}}>{{t 'recall'}}</button>
+                              </li>
+                            {{/each}}
+
+                            {{#each seller.externalStuff.sentOffers as |offer|}}
+                              <li class="list-group-item">  
+                                &lt;-- <b>{{offer.senderName}}</b> <i>{{moment-format offer.ts "HH:mm:ss"}} / {{moment-from-now offer.ts hideSuffix=true interval=1000}}</i> <br>
+                          
+                                {{offer.tomatoes}} <span class="to-tomato"></span> for {{offer.price}} <span class="to-money"></span> 
+                                
+                                <button  class="btn btn-success" {{action 'acceptOffer' offer}}>{{t 'accept'}}</button>
+                                <button  class="btn btn-default" {{action 'declineOffer' offer}}>{{t 'decline'}}</button>
+                              </li>
+                            {{/each}}
+                          </ul>
+                        
+                      {{/each}}
+                  </div>
+                  <!--/span-->
+                  <div class="col-6 col-sm-6 col-lg-6">
+                      {{#each game.buyers as |buyer|}}
+
+                          <div>
+                            <span class="title-container"><h4>
+                              Buyer {{buyer.playerPosition}} 
+                              {{#link-to 'player' buyer class="btn btn-info btn-xs"}}Activate{{/link-to}}
+
+                              <button class="btn btn-danger btn-xs" {{action 'deleteUser' buyer}}> Delete</button></h4>
+                            </span>     
+                          </div>
+
+                          <div class="form-group">
+                            <label>Name: </label> {{input value=buyer.name class="form-control" }}
+                          </div>
+                          
+                          <div class="table-responsive">
+                            <table class="table-borderless">
+                              <thead>
+                                <tr>
+                                  <th >{{capitalize (t 'goalTomatoes')}}:</th>
+                                  <th><span style="margin-left:4em"></span></th>
+                                  <th >{{capitalize (t 'currentTomatoes')}}:</th>
+                                </tr>
+                              </thead>
+                              <tbody> 
+                                
+                                  <tr>
+                                    <td>{{input value=buyer.goalTomatoes class="form-control" size="20"}}</td>
+                                    <td> </td>
+                                    <td>{{input value=buyer.tomatoes class="form-control" size="20"}}</td>
+                                  </tr>
+                                
+                              </tbody>
+                           </table>
+                         </div>      
+                          
+                          <hr>
+
+                          <span class="title-container"><h4>
+                              External Offer 
+                              <button class="btn btn-primary btn-xs" {{action 'sendOffer' game 0 seller seller._offerTomato seller._offerPrice}}>Send Offer</button></h4>
+                          </span>
+                          
+                          <div class="table-responsive">
+                            <table class="table-borderless">
+                              <thead>
+                                <tr>
+                                  <th >{{capitalize (t 'tomatoes')}}:</th>
+                                  <th><span style="margin-left:4em"></span></th>
+                                  <th >{{capitalize (t 'price')}}:</th>
+                                </tr>
+                              </thead>
+                              <tbody> 
+                                
+                                  <tr>
+                                    <td>{{input value=buyer._offerTomato class="form-control" size="20"}}</td>
+                                    <td> </td>
+                                    <td>{{input value=buyer._offerPrice class="form-control" size="20"}}</td>
+                                  </tr>
+                                
+                              </tbody>
+                           </table>
+                         </div>      
+                          
+                          {{!--Tomatoes: {{input value=buyer.tomatoes}}--}}
+                          {{!--Money: {{input value=buyer.money}}--}}
+                          {{#if buyer.hasDirtyAttributes}}
+                            <button class="btn btn-primary btn-xs" {{action 'saveUser' buyer}}>Save</button>
+                            <button class="btn btn-primary btn-xs" {{action 'rollbackUser' buyer}}>Cancel</button>
+                          {{/if}}
+                
+                          <h5>Received offers</h5>
+                          {{#each buyer.receivedOpenOffers as |offer|}}
+                            <p><b>{{offer.senderName}}</b> T: {{offer.tomatoes}} M: {{offer.price}} 
+                            <button {{action 'recallOffer' offer}}>recall</button> </p>
+                          {{/each}}
+                        
+                      {{/each}}
+                      <hr>
+                  </div>
+                  <!--/span-->
+                  
+                  
+                  
+                </div>
+              <!--/row-->
+              </div>
+
+            {{/unless}}
+
+          {{/each}}
+
+        
+        
+
+        <div class="container">
+          <div class="starter-template">
+                        
+              {{#each model as |game|}}
+
+                  {{#unless game.isDeleted}}
+
+                    <span class="title-container"><h3>Offers</h3></span>
+                              
+                    {{#each game.sortedOffers as |offer|}}
+                      <p> [{{offer.state}}] <b>{{offer.senderName}}</b> --&gt; <b>{{offer.receiver.name}}</b>  {{moment-format offer.ts "HH:mm:ss"}} / {{moment-from-now offer.ts hideSuffix=true interval=1000}} T: {{offer.tomatoes}} M: {{offer.price}}</p>
+                    {{/each}}
+            
+                    <hr>
+
+                    <span class="title-container"><h4>
+                      Historical Offers 
+                      <button type="button" class="btn btn-primary btn-xs" {{action 'exportCSV' game.historyLogs}}>Export CSV</button></h4>
+                    </span>
+
+                    <div class="table-responsive">
+                      <table class="table table-striped">
+                        <thead>
+                          <tr>
+                            <th>Sender</th>
+                            <th>Receiver</th>
+                            <th>Status</th>
+                            <th>Offer</th>
+                            <th>Time Stamp</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {{#each game.historyLogs as |historicalOffer|}}
+                            <tr class="{{historicalOffer.cssStatus}}">
+                              <td>{{historicalOffer.userSender}}</td>
+                              <td>{{historicalOffer.userReceiver}}</td>
+                              <td>{{historicalOffer.state}}</td>
+                              <td>{{historicalOffer.offer}}</td>
+                              <td>{{moment-format historicalOffer.tS "HH:mm:ss"}}</td>
+                            </tr>
+                          {{/each}}
+                        </tbody>
+                      </table>
+                    </div>
+
+                  {{/unless}}
+              {{/each}}
+
+                      
+          </div>
+        </div>
+    </div>
 <!-- /.container -->
+</div>
 {{outlet}}

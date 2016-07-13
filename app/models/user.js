@@ -15,6 +15,16 @@ export default Model.extend({
   tomatoes           : attr('number', {defaultValue: 0}),
   money              : attr('number', {defaultValue: 0}),
   isSeller           : attr('boolean'),
+  playerWeekStatus   : attr('object', {defaultValue: {0: {tomatoes: 0}, 
+                                                      1: {tomatoes: 0},
+                                                      2: {tomatoes: 0},
+                                                      3: {tomatoes: 0},
+                                                      4: {tomatoes: 0},
+                                                      5: {tomatoes: 0},
+                                                      6: {tomatoes: 0},
+                                                      7: {tomatoes: 0},
+                                                      8: {tomatoes: 0},
+                                                      9: {tomatoes: 0},}}),
 
   // relational attributes
   userGame           : belongsTo('game'),

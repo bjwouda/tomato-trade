@@ -25,9 +25,9 @@ export default {
 	"daily": "daily",
 	"weekDescription": "We are having Week {{currentWeek}}, you're performing the <b>{{tradeType}} trade</b> for week {{tradeWeek}}",
 
-	"masterScreen": "Master screen",
-	"goalTomatoes" : "Goal of tomatoes",
-	"currentTomatoes" : "Current tomatoes",
+	"masterScreen": "Master Screen",
+	"goalTomatoes" : "Tomato Goal",
+	"currentTomatoes" : "Current Tomatoes",
 
 	"historicalScreen": "Historical Screen",
 

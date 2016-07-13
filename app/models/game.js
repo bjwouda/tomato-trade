@@ -18,6 +18,14 @@ export default Model.extend({
   nextCnt          : attr('number', { defaultValue: 0 }),
   currentTradeType : attr('string',  { defaultValue: "weekly" }),
   nextTradeType    : attr('string',  { defaultValue: "weekly" }),
+
+  //Config Scenarios
+  gameConfiguration: attr('string'),
+  currentWeek      : attr('number', { defaultValue: 0}),
+
+  //nextRound ()
+  //loadGameConfig()
+
   
   timeStartTs      : attr('number'),
   timeEndTs        : attr('number'),
