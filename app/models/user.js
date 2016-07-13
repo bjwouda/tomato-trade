@@ -15,7 +15,7 @@ export default Model.extend({
   tomatoes           : attr('number', {defaultValue: 0}),
   money              : attr('number', {defaultValue: 0}),
   isSeller           : attr('boolean'),
-  playerWeekStatus   : attr('object', {defaultValue: {0: {tomatoes: 0}, 
+  playerWeekStatus   : attr({defaultValue: {0: {tomatoes: 0}, 
                                                       1: {tomatoes: 0},
                                                       2: {tomatoes: 0},
                                                       3: {tomatoes: 0},
