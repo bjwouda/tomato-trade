@@ -1,0 +1,24 @@
+<div class="jumbotron">
+  <a href="#" class="visible-xs" data-toggle="offcanvas"><i class="fa fa-lg fa-reorder"></i></a>
+  <div class="title-container">
+    {{yield}}
+  </div>
+  <div class="row">
+    {{#if game.gameIsRunning}}
+      <h4 class="text-center game-title">{{liquid-bind game.currentTitle}}</h4>
+      <p>
+        {{#if game.isPaused}}
+          <p>Game is paused</p>
+        {{else}}
+          {{tom-clock timeStartTs=game.timeStartTs timeEndTs=game.timeEndTs}}
+        {{/if}}
+      </p>
+    {{else}}
+      {{#if game.gameIsAboutToStart}}
+        <h4 class="text-center game-title">Game is about to start</h4>
+      {{else}}
+        <h4 class="text-center game-title">Game has ended</h4>
+      {{/if}}
+    {{/if}}
+  </div>
+</div>

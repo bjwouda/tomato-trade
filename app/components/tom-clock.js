@@ -7,13 +7,17 @@ export default Ember.Component.extend({
 	timeStartTs: null,
 	timeEndTs: null,
 
-	test: Ember.on("init", function() {
+	killTimer: Ember.on("willDestroyElement", function() {
+		clearInterval(this.get("timerHandle"));
+	}),
+
+	test: Ember.on("didInsertElement", function() {
 		var self = this;
 
 		// self.set("timeStartTs", Date.now());
 		// self.set("timeEndTs", Date.now() + 100 * 1000);
 
-		setInterval(function() {
+		let timerHandle = setInterval(function() {
 
 			if (!self.get("timeStartTs") && !self.get("timeEndTs")) {
 				return;
@@ -36,6 +40,8 @@ export default Ember.Component.extend({
 				
 
 		}, 1000);
+
+		this.set("timerHandle", timerHandle);
 	}),
 
 	hDeg: Ember.computed("h", "m", function() {

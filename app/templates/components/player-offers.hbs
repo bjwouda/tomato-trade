@@ -1,0 +1,31 @@
+ {{#each openOffers as |offer|}}
+    <li class="list-group-item">  
+      &lt;-- <b>{{offer.senderName}}</b> <i>{{moment-format offer.ts "HH:mm:ss"}} / {{moment-from-now offer.ts hideSuffix=true interval=1000}}</i> <br>
+
+      {{offer.tomatoes}} <span class="to-tomato"></span> for {{offer.price}} <span class="to-money"></span> 
+      
+      {{#if offer.isConfirmed}}
+        <button  class="btn btn-warning" {{action 'recallConfirmationOffer' game offer}}>{{t 'recallConfirm'}}</button>
+      {{else}}
+        <button  class="btn btn-success" {{action 'confirmOffer' game offer}}>{{t 'confirm'}}</button>
+      {{/if}}
+      <button  class="btn btn-default" {{action 'declineOffer' game offer}}>{{t 'decline'}}</button>
+    </li>
+  {{/each}}
+  
+  {{#each sentOffers as |offer|}}
+    <li class="list-group-item">
+      --&gt; <b>{{offer.receiverName}}</b> <i>{{moment-format offer.ts "HH:mm:ss"}} / {{moment-from-now offer.ts hideSuffix=true interval=1000}}</i> <br>
+
+      {{offer.tomatoes}} <span class="to-tomato"></span> for {{offer.price}} <span class="to-money"></span> 
+      
+      {{#if offer.isConfirmed}}
+        <button class="btn btn-default btn-success" {{action 'acceptOffer' game offer}}>{{t 'accept'}}</button>
+      {{else}}
+        <button class="btn btn-default" disabled>{{t 'waitingToConfirm'}}</button>
+      {{/if}}
+      <button class="btn btn-default" {{action 'recallOffer' game offer}}>{{t 'recall'}}</button>
+    </li>
+  {{/each}}
+
+{{yield}}

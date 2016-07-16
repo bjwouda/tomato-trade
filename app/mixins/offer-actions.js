@@ -58,6 +58,18 @@ export default Ember.Mixin.create({
       });
     },
 
+    confirmOffer(game, offer) {
+      offer.set("isConfirmed", true);
+      offer.set("notes", offer.get("notes") + `${moment().format()};confirmed\n`);
+      offer.save();
+    },
+
+    recallConfirmationOffer(game, offer) {
+      offer.set("isConfirmed", false);
+      offer.set("notes", offer.get("notes") + `${moment().format()};confirmed\n`);
+      offer.save();
+    },
+
     acceptOffer(game, offer) {
       offer.set("state", "accepted");
       offer.set("notes", offer.get("notes") + `${moment().format()};accepted\n`);
@@ -73,7 +85,7 @@ export default Ember.Mixin.create({
       });
 
       if (offer.get("receiver.content") !== null) {
-        offer.set("receiver.content.money", +offer.get("receiver.content.money") + sign * offer.get("price"));
+        offer.set("receiver.content.money", +offer.get("receiver.content.money") + sign * offer.get("price") * offer.get("tomatoes"));
         offer.set("receiver.content.tomatoes", +offer.get("receiver.content.tomatoes") - sign * offer.get("tomatoes"));
         offer.set("receiver.content.hasDirtyAttributes", false);
         offer.get("receiver.content").save();
@@ -82,7 +94,7 @@ export default Ember.Mixin.create({
       if (offer.get("sender.content") !== null) {
         // SIGNS ARE REVERSED !!!
         sign *= -1;
-        offer.set("sender.content.money", +offer.get("sender.content.money") + sign * offer.get("price"));
+        offer.set("sender.content.money", +offer.get("sender.content.money") + sign * offer.get("price") * offer.get("tomatoes"));
         offer.set("sender.content.tomatoes", +offer.get("sender.content.tomatoes") - sign * offer.get("tomatoes"));
         offer.set("sender.content.hasDirtyAttributes", false);
         offer.get("sender.content").save();

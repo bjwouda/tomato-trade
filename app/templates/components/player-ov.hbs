@@ -1,0 +1,66 @@
+<div>
+  <span class="title-container">
+    <h4>{{roleDescription}} {{player.playerPosition}} {{player.name}}</h4>
+  </span>
+  {{#link-to 'player' player class="btn btn-info btn-xs"}}Activate{{/link-to}}
+  <button class="btn btn-primary btn-xs" {{action 'saveUser' player}}>Save</button>
+</div>
+
+{{#if isEditing}}
+  <div class="form-group">
+    <label>Name: </label> {{input value=player.name class="form-control" }}
+  </div>
+{{/if}}
+
+<div class="table-responsive">
+  <table class="table-borderless">
+    <thead>
+      <tr>
+        <th>{{capitalize (t 'goalTomatoes')}}:</th>
+        <th><span style="margin-left:4em"></span></th>
+        <th>{{capitalize (t 'currentTomatoes')}}:</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{input value=player.goalTomatoes class="form-control" size="20"}}</td>
+        <td> </td>
+        <td>{{input value=player.tomatoes class="form-control" size="20"}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<hr>
+<span class="title-container"><h4>
+                  External Offer 
+                  <button class="btn btn-primary btn-xs" {{action 'sendOffer' game 0 player player._offerTomato player._offerPrice}}>Send Offer</button></h4>
+                </span>
+<div class="table-responsive">
+  <table class="table-borderless">
+    <thead>
+      <tr>
+        <th>{{capitalize (t 'tomatoes')}}:</th>
+        <th><span style="margin-left:4em"></span></th>
+        <th>{{capitalize (t 'price')}}:</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{input value=player._offerTomato class="form-control" size="20"}}</td>
+        <td> </td>
+        <td>{{input value=player._offerPrice class="form-control" size="20"}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+  <h5>Received offers</h5>
+  <ul class="list-group">
+	{{!-- attention, the relation ship of sent/received offers is swiched in this view
+		  as the external party is the counter-party for the player --}}
+	{{player-offers store=store game=game openOffers=player.externalOffers.sentOffers sentOffers=player.externalOffers.openOffers}}
+
+  </ul>
+
+{{yield}}

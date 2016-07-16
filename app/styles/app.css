@@ -1,8 +1,14 @@
 @charset "UTF-8";
 @import url(https://fonts.googleapis.com/css?family=PT+Sans:700|Pacifico|Changa+One);
 
+
+.game-config-textarea {
+  font-family: "Courier New";
+  font-weight: bold;
+}
+
 .title-container {
-  font-family: "Pacifico", cursive;
+  /*font-fam*/ily: "Pacifico", cursive;
   font-weight: 400;
   position: relative;
   margin: 20px auto;
@@ -30,7 +36,7 @@
 }
 
 .line-2 {
-  font-family: "Changa One", sans-serif;
+  /*font-family: "Changa One", sans-serif;*/
   font-weight: 400;
   text-transform: uppercase;
   font-size: 50px;
@@ -65,8 +71,8 @@ span.to-money:before{
 .clock {
   overflow: hidden;
   position: relative;
-  height: 200px;
-  width: 200px;
+  height: 100px;
+  width: 100px;
   background: white;
   box-sizing: border-box;
   border-radius: 100%;
@@ -125,8 +131,8 @@ span.to-money:before{
   border-radius: 100%;
 }
 .clock .shadow {
-  height: 200px;
-  width: 200px;
+  height: 100px;
+  width: 100px;
   position: absolute;
   left: -10px;
   top: -10px;
@@ -146,10 +152,10 @@ span.to-money:before{
   position: absolute;
   content: "";
   background: #262626;
-  height: 60px;
+  height: 30px;
   width: 3px;
   border-radius: 3px;
-  top: 30px;
+  top: 15px;
 }
 .clock .minute {
   width: 5px;
@@ -165,10 +171,10 @@ span.to-money:before{
   position: absolute;
   content: "";
   background: #262626;
-  height: 40px;
+  height: 20px;
   width: 5px;
   border-radius: 5px;
-  top: 50px;
+  top: 25px;
 }
 .clock .second {
   width: 2px;

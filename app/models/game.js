@@ -3,66 +3,73 @@ import Model from 'ember-data/model';
 import attr from 'ember-data/attr';
 import { hasMany } from 'ember-data/relationships';
 
+import GameConfigParser from '../mixins/game-config-parser';
+
+
 import _ from 'lodash/lodash';
 
-export default Model.extend({
+export default Model.extend(GameConfigParser, {
   i18n: Ember.inject.service(),
 
-  users            : hasMany('user', { async: true }),
-  offers           : hasMany('offer', { async: true }),
-  historyLogs      : hasMany('history', { async: true }),
-  history          : attr('string'),
-  
-  minutesPerRound  : attr('number', { defaultValue: 5 }),
-  weekCnt          : attr('number', { defaultValue: 0 }),
-  nextCnt          : attr('number', { defaultValue: 0 }),
-  currentTradeType : attr('string',  { defaultValue: "weekly" }),
-  nextTradeType    : attr('string',  { defaultValue: "weekly" }),
+  users: hasMany('user', { async: true }),
+  offers: hasMany('offer', { async: true }),
+  historyLogs: hasMany('history', { async: true }),
+  history: attr('string'),
+  minutesPerRound: attr('number', { defaultValue: 5 }),
+  roundCnt: attr('number', { defaultValue: 0 }),
 
   //Config Scenarios
-  gameConfiguration: attr('string'),
-  currentWeek      : attr('number', { defaultValue: 0}),
+  gameConfiguration: attr('string'), // CHECK THE MIXIN, quite some stuff attached there...
+  timeStartTs: attr('number'),
+  timeEndTs: attr('number'),
+  timePausedTs: attr('number'),
 
-  //nextRound ()
-  //loadGameConfig()
+  isPaused: Ember.computed("timePausedTs", function() { return this.get("timePausedTs") !== undefined && this.get("timePausedTs") !== null; }),
 
-  
-  timeStartTs      : attr('number'),
-  timeEndTs        : attr('number'),
+  weekCnt: Ember.computed("roundCnt", function() {
+    var roundCnt = this.get("roundCnt") - 1;
+    if (roundCnt < 0) {roundCnt = 0;}
+    return this.get(`gameMatrix.${roundCnt}.tradingFor`);
+  }),
+
+  gameIsAboutToStart: Ember.computed("roundCnt", "numberOfRounds", function() {
+    return +this.get("roundCnt") === 0;
+  }),
+
+  gameIsRunning: Ember.computed("roundCnt", "numberOfRounds", function() {
+    return +this.get("roundCnt") > 0 && this.get("roundCnt") <= this.get("numberOfRounds.total");
+  }),
+
+  isLastRound: Ember.computed("roundCnt", "numberOfRounds", function() {
+    return +this.get("roundCnt") === this.get("numberOfRounds.total");
+  }),
+
+  gameHasEnded: Ember.computed("roundCnt", "numberOfRounds", function() {
+    return +this.get("roundCnt") > this.get("numberOfRounds.total");
+  }),
+
 
   // using descending sort
-  offerSortingDesc : ['ts:desc'],
+  offerSortingDesc: ['ts:desc'],
   sortedOffers: Ember.computed.sort('offers', 'offerSortingDesc'),
 
-  sellers: Ember.computed.filter('users.@each.isSeller', 
-               el => el.get("isSeller") === true),
-  buyers: Ember.computed.filter('users.@each.isSeller', 
-                       el => el.get("isSeller") === false),
+  sellers: Ember.computed.filter('users.@each.isSeller',
+    el => el.get("isSeller") === true),
+  buyers: Ember.computed.filter('users.@each.isSeller',
+    el => el.get("isSeller") === false),
 
-  	                   
-  currentTitle: Ember.computed("weekCnt", "currentTradeType", function() {
-    var tradeType = this.get("currentTradeType") || 'weekly';
-    var tradingForWeek = +this.get("weekCnt") || 0;
 
-    if (tradeType === "weekly") {
-      tradingForWeek += 1;
-    }
-
-    var context = {
-      currentWeek: this.get("weekCnt"),
-      tradeType: tradeType,
-      tradeWeek: tradingForWeek
-    };
-
-    return this.get('i18n').t("weekDescription", context);
+  currentTitle: Ember.computed("roundCnt", function() {
+    return  this.get(`gameMatrix.${this.get("roundCnt") - 1}.roundTitle`);
   }),
 
-  allUsers: Ember.computed.filter('users.[]', function() {
+  allUsers: Ember.computed.filter('users', function() {
     return true;
   }),
-  	                   
-  userLUT: Ember.computed('allUsers.[]', function () {
-    return _.groupBy(this.get("allUsers"),  (x) => { return x.get("id"); } );
+
+  userLUT: Ember.computed('allUsers', function() {
+    return _.groupBy(this.get("allUsers"), (x) => {
+      return x.get("id"); });
   })
 
 });

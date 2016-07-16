@@ -6,25 +6,51 @@ import { belongsTo, hasMany } from 'ember-data/relationships';
 
 import _ from 'lodash/lodash';
 
+function storeWithWeek(key) {
+  return Ember.computed("userGame.weekCnt", "playerWeekStatus", {
+    get() {
+      let weekCnt = this.get("userGame.weekCnt");
+      let tmpKey = `playerWeekStatus.w${weekCnt}.${key}`;
+      return this.get(tmpKey) || 0;
+    },
+    set() {
+      let val = arguments[1];
+      let weekCnt = this.get("userGame.weekCnt");
+      var previousObj = this.get("playerWeekStatus");
+
+      if (!weekCnt) {return;}
+
+      if (! previousObj[`w${weekCnt}`]) { previousObj[`w${weekCnt}`] = {}; }
+      previousObj[`w${weekCnt}`][key] = val;
+
+      console.log(previousObj);
+
+      this.set("playerWeekStatus", previousObj);
+      // this.save();
+      return val;
+    }
+  });
+}
+
 export default Model.extend({
 
   // normal attribtues
   name               : attr('string'),
   
-  goalTomatoes       : attr('number', {defaultValue: 0}),
-  tomatoes           : attr('number', {defaultValue: 0}),
-  money              : attr('number', {defaultValue: 0}),
+  goalTomatoes       : storeWithWeek("goalTomatoes"),
+  tomatoes           : storeWithWeek("tomatoes"),
+  remainingTomatoes  : Ember.computed("tomatoes", "goalTomatoes", function() {
+    return this.get("goalTomatoes") - Math.abs(this.get("tomatoes"));
+  }),
+
+  money              : storeWithWeek("money"),
+  avgTomatoPrice     : Ember.computed("tomatoes", "money", function() {
+    if (this.get("money") === 0) {return 0;}
+    return Math.abs(this.get("tomatoes") / this.get("money"));
+  }),
+  
   isSeller           : attr('boolean'),
-  playerWeekStatus   : attr({defaultValue: {0: {tomatoes: 0}, 
-                                                      1: {tomatoes: 0},
-                                                      2: {tomatoes: 0},
-                                                      3: {tomatoes: 0},
-                                                      4: {tomatoes: 0},
-                                                      5: {tomatoes: 0},
-                                                      6: {tomatoes: 0},
-                                                      7: {tomatoes: 0},
-                                                      8: {tomatoes: 0},
-                                                      9: {tomatoes: 0},}}),
+  playerWeekStatus   : attr({defaultValue: {}}),
 
   // relational attributes
   userGame           : belongsTo('game'),
@@ -32,14 +58,22 @@ export default Model.extend({
   sentOffers         : hasMany('offer', { async: true, inverse: 'sender' }),
 
   // temporary attributes
-  _offerTomato       : 0,
-  _offerPrice        : 0,
+  _offerTomato       : undefined,
+  _offerPrice        : undefined,
+
+  playerIdInGame: Ember.computed("playerPosition", function() {
+    let prefix = this.get("isSeller") ? "s" : "b";
+    let pos = this.get("playerPosition");
+    return `${prefix}${pos}`;
+  }),
 
   playerPosition: Ember.computed("userGame.buyers", "userGame.sellers", "isSeller", "id", function () {
     if (this.get("isSeller")) { // for the sellers
       return this.get("userGame.sellers").map((x) => { return x.get("id"); }).indexOf(this.get("id")) + 1;
     } else { // for the buyers
-      return this.get("userGame.buyers").map((x) => { return x.get("id"); }).indexOf(this.get("id")) + 1;
+      if (this.get("userGame.buyers")) {
+        return this.get("userGame.buyers").map((x) => { return x.get("id"); }).indexOf(this.get("id")) + 1;
+      }
     }
   }),
 
@@ -76,7 +110,7 @@ export default Model.extend({
 
   // computed attributes
 
-  externalStuff: Ember.computed("groupedReceivedOpenOffers", function() {
+  externalOffers: Ember.computed("groupedReceivedOpenOffers", function() {
     return this.get("groupedReceivedOpenOffers.External");
   }),
 

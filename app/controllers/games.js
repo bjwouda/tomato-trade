@@ -2,6 +2,7 @@ import Ember from 'ember';
 import OfferActions from '../mixins/offer-actions';
 import LangActions from '../mixins/lang-actions';
 
+import _ from 'lodash/lodash';
 
 export default Ember.Controller.extend(OfferActions, LangActions, {
 
@@ -19,7 +20,6 @@ export default Ember.Controller.extend(OfferActions, LangActions, {
     saveUser(user) { user.save(); },
     deleteUser(user) { 
       user.destroyRecord(); 
-      gameConfiguration = null;
     },
     rollbackUser(user) { user.rollbackAttributes(); },
 
@@ -37,13 +37,29 @@ export default Ember.Controller.extend(OfferActions, LangActions, {
       newUser.save().then(() => {
         return game.save();
       });
-
-      
-
     },
 
 
     // GAME
+
+    pauseGame(game){
+      game.set("timePausedTs", Date.now());
+      game.save();
+    },
+
+    resumeGame(game){
+      try {
+        let pausedStartDelta = game.get("timePausedTs") - game.get("timeStartTs");
+        let previousDelta = game.get("timeEndTs") - game.get("timeStartTs");
+        game.set("timeStartTs", Date.now() - pausedStartDelta);
+        game.set("timeEndTs", game.get("timeStartTs") + previousDelta);
+      } catch(err) {
+        console.log("error when resuming...");  
+      }
+      game.set("timePausedTs", undefined);
+      game.save();
+      
+    },
 
     letGameEndInXMinutes(game, xMinutes, shouldResetStart) {
       game.set("timeEndTs", Date.now() + xMinutes * 60 * 1000);
@@ -62,39 +78,51 @@ export default Ember.Controller.extend(OfferActions, LangActions, {
       game.set("timeStartTs", Date.now());
       game.set("timeEndTs", Date.now() + minutesPerRound * 60 * 1000);
 
-      if (game.get("currentTradeType") === "weekly") { game.incrementProperty("weekCnt", 1); }
-      game.set("currentTradeType", game.get("nextTradeType"));
-
-      if (game.get("currentTradeType") === "weekly") {
-        game.set("nextTradeType", "daily");
-      } else {
-        game.set("nextTradeType", "weekly");
-      }
-
+      game.incrementProperty("roundCnt", 1);
       game.save();
+
+      game.get("allUsers").forEach((u) => {
+        u.set("goalTomatoes", game.getValueforUserCurrentRound(u.get("playerIdInGame")));
+        u.save();
+      });
     },
 
-    removeGame(item) {
-      item.destroyRecord();
+    saveSettings(game) {
+      game.save();
+      game.get("allUsers").forEach((u) => { u.save(); });
+      this.toggleProperty("isEditing");
     },
 
-    createNewGame() {
-      var newComment = this.store.createRecord('game', { "history": "foo", "gameConfiguration" : this.gameConfiguration });
-      newComment.save();
-      //this.sendAction('addUser', 'game', "seller");
-      //this.addUser(this.store.get('game'), "seller");
-
-      //set game configuration
-      while(this.get('gameConfiguration') !== ''){
-        var config = this.get('gameConfiguration');
-        var userConfig = config.substring(0, config.indexOf(","));
-        this.set('gameConfiguration', config.replace(userConfig + ',', '').trim());
-        
-        {{debugger}}
-        this.set('gameConfiguration', "");
-
-      }
+    revertGameConfig() {
+      this.set("game.gameConfigurationRO", this.get("game.gameConfiguration"));
     },
+
+    saveGameConfig() {
+      let self = this;
+
+      var promiseArr = self.get("game.users")
+        .filter( (x) => { return x && !x.get("isDeleted"); } )
+        .map( (x) => { return x.destroyRecord; } );
+
+      self.get("game.users").clear();
+
+      Promise.all(promiseArr).then(function() {
+        self.set("game.gameConfigurationSafe", self.get("game.gameConfigurationRO"));
+        self.set("game.roundCnt", 0);
+        self.get("game").save().then(function() {
+          _.range(self.get("game.numberOfPlayers.nrOfBuyers")).forEach(function() {
+            self.send("addUser", self.get("game"), "buyer");
+          });
+
+          _.range(self.get("game.numberOfPlayers.nrOfSellers")).forEach(function() {
+            self.send("addUser", self.get("game"), "seller");
+          });
+
+          self.set("isConfiguration", false);
+        });
+      });
+    },
+
 
     exportCSV(historyLogs) {
       var data = [];
@@ -112,9 +140,5 @@ export default Ember.Controller.extend(OfferActions, LangActions, {
       this.get('csv').export(data, 'test.csv');
     },
 
-    saveConfiguration(config) {
-      //check input format before creating game
-        this.set('gameConfiguration', config);
-    }
   }
 });

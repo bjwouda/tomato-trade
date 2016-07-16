@@ -1,3 +1,18 @@
-{{#each model as |game|}}
-  {{#link-to 'games' game}}Game ({{game.id}}){{/link-to}}
-{{/each}}
+<div class="container">
+  
+  <div class="row">
+    <button class="btn" {{action 'createNewGame'}}>New game</button>
+  </div>
+
+  <div class="row">
+    <ul class="list-group games">
+      {{#each model as |game|}}
+        <li class="list-group-item">
+          {{#link-to 'games' game}}Game ({{game.id}}){{/link-to}}
+          <button class="btn btn-xs btn-danger" {{action 'removeGame' game}}>RemoveGame</button>
+        </li>
+      {{/each}}
+    </ul>
+  </div>
+
+</div>

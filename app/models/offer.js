@@ -8,6 +8,7 @@ export default Model.extend({
   price      : attr('number'),
   isExternal : attr('boolean'),
   state      : attr('string'), // {'open': <ts>, 'accepted' <ts>}
+  isConfirmed: attr('boolean', {defaultValue: false}),// before offer is 'accepted' it needs to be confirmed by both sides
 
   notes      : attr('string'),
   ts         : attr('number', {defaultValue: Date.now()}),

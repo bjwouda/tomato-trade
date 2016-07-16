@@ -3,259 +3,177 @@
     <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
       <div class="sidebar-nav">
         <ul class="nav">
-          <li> <span class="title-container"><h4>Tomato Trade</h4></span></li>
-          <li class="active"><a href="" {{action 'createNewGame'}}>New game</a></li>
           {{#unless game.isDeleted}}
-            <li class="list-group-item-danger" {{action 'removeGame' game}}><a href="">Delete Game</a></li>
-            <li class="active">
-              {{#link-to 'historical'}}Historicals{{/link-to}}
-            </li>
-            <li class="nav-divider"></li>
-            <li> <span class="title-container"><h4>Players</h4></span></li>
-            <li class="active" {{action 'addUser' game 'seller'}}><a href="">Add Seller</a></li>
-            <li class="active" {{action 'addUser' game 'buyer'}}><a href="">Add Buyer</a></li>
-            <li class="nav-divider"></li>
             <li> <span class="title-container"><h4>Round Controlls</h4></span></li>
-            <li class="active" {{action 'nextRound' game game.minutesPerRound}}><a href="">Next Round</a></li>
-            <li class="active" {{action 'letGameEndInXMinutes' game game.minutesPerRound 1}}><a href="">Restart</a></li>
-            <li class="active" {{action 'letGameEndInXMinutes' game 5}}><a href="">End in 5 min</a></li>
-            <li class="active" {{action 'letGameEndInXMinutes' game 0.1}}><a href="">End in 1 min</a></li>
-            <li class="active" {{action 'letGameEndInXMinutes' game 0}}><a href="">End Now</a></li>
+
+
+            {{#if (and game.gameIsAboutToStart game.gameConfigurationValid)}}
+              <li class="active" {{action 'nextRound' game game.minutesPerRound}}><a href="">Start Game</a></li>
+              <li class="nav-divider"></li>
+            {{/if}}
+
+
+            {{#if game.gameIsRunning}}
+              {{#if game.isLastRound}}
+                <li class="active" {{action 'nextRound' game game.minutesPerRound}}><a href="">End Game</a></li>
+                <li class="nav-divider"></li>
+              {{else}}
+                <li class="active" {{action 'nextRound' game game.minutesPerRound}}><a href="">Next Round</a></li>
+                <li class="nav-divider"></li>
+              {{/if}}
+            {{/if}}
+
+            {{#if game.gameIsRunning}}            
+
+              {{#if game.isPaused}}
+                <li class="active" {{action 'resumeGame' game}}><a href="">Resume game</a></li>
+              {{else}}
+                <li class="active" {{action 'pauseGame' game}}><a href="">Pause</a></li>
+              {{/if}}
+              <li class="active" {{action 'letGameEndInXMinutes' game game.minutesPerRound 1}}><a href="">Restart</a></li>
+              <li class="active" {{action 'letGameEndInXMinutes' game 5}}><a href="">End in 5 min</a></li>
+              <li class="active" {{action 'letGameEndInXMinutes' game 0.1}}><a href="">End in 1 min</a></li>
+              <li class="active" {{action 'letGameEndInXMinutes' game 0}}><a href="">End Now</a></li>
+              <li class="nav-divider"></li>
+            {{/if}}
+
+            <li class="active" {{action (toggle "isConfiguration" this)}}><a href="">Game Config</a></li>
             <li class="nav-divider"></li>
+
             {{#if isEditing}}
               <li class="active" {{action (pipe (invoke "rollbackAttributes" game) (toggle "isEditing" this)) }}><a href="">Revert Settings</a></li>
-              <li class="active" {{action (pipe (invoke "save" game) (toggle "isEditing" this)) }}><a href="">Save Settings</a></li>
+              <li class="active" {{action 'saveSettings' game}}><a href="">Save Settings</a></li>
             {{else}}
-              <li class="active" {{action (toggle "isEditing" this)}}><a href="">Edit Settings</a></li>
+              <li class="active" {{action (toggle "isEditing" this)}}><a href="">Game Settings</a></li>
             {{/if}}
-            <span class="form-group">
-                            <li ><span class="title-container"><h5>Next Round Settings</h5></span> </li>
-            <li class="list-group-item">
-              {{#radio-button value="weekly" disabled=(not isEditing) class="checkbox" groupValue=game.nextTradeType}}
-                Weekly
-              {{/radio-button}}
-              <br>
-              {{#radio-button value="daily" disabled=(not isEditing) class="checkbox" groupValue=game.nextTradeType}}
-                Daily
-              {{/radio-button}}
-            </li>
-            </span>
-            <span class="form-group">
-                            <li ><span class="title-container"><h5>Current Round Settings</h5></span> </li>
-            <li class="list-group-item">
-              {{#radio-button value="weekly" disabled=(not isEditing) class="checkbox" groupValue=game.currentTradeType}}
-                Week trade
-              {{/radio-button}}
-              <br>
-              {{#radio-button value="daily" disabled=(not isEditing) class="checkbox" groupValue=game.currentTradeType}}
-                Day trade
-              {{/radio-button}}
-            </li>
-            </span><span>
-              <div class="form-group">
-                <span class="title-container"><h5>Minutes Round: </h5></span> {{input disabled=(not isEditing) type="number" value=game.minutesPerRound class="form-control" }}
-      </div>
-      <div class="form-group">
-        <span class="title-container"><h5>Current week: </h5></span> {{input disabled=(not isEditing) type="number" value=game.weekCnt class="form-control" }}
-      </div>
-      </span>
-      {{/unless}}
+
+            {{#if isEditing}}
+              <span>
+                <div class="form-group">
+                  <span class="title-container"><h5>Minutes Round: </h5></span> {{input disabled=(not isEditing) type="number" value=game.minutesPerRound class="form-control" }}
+                </div>
+                <div class="form-group">
+                  <span class="title-container"><h5>RoundCnt: </h5></span> {{input disabled=(not isEditing) type="number" value=game.roundCnt class="form-control" }}
+                </div>
+                <div class="form-group">
+                  <span class="title-container"><h5>WeekCnt: </h5></span> {{input disabled=1 type="number" value=game.weekCnt class="form-control" }}
+                </div>
+              </span>
+            {{/if}}
+            
+            <li class="nav-divider"></li>
+
+            {{#each game.gameMatrix as |item index|}}
+              <li>
+                {{#if (eq item.round game.roundCnt)}}
+                  <b>Round {{item.round}} {{item.tradeType}}</b>
+                {{else}}  
+                  Round {{item.round}} {{item.tradeType}}
+                {{/if}}
+              </li>
+            {{/each}}
+
+            {{else}}
+              <h4>GAME WAS DELETED, PLEASE CHECK</h4>
+            {{/unless}}
+
       </ul>
     </div>
   </div>
   <div class="col-xs-12 col-sm-9">
-    {{#unless isConfiguration}}
+
+    
+    {{#if isConfiguration}}
+
       <br>
       <div class="jumbotron">
         <a href="#" class="visible-xs" data-toggle="offcanvas"><i class="fa fa-lg fa-reorder"></i></a>
         <div class="title-container">
-          <span class="line-1">{{t 'masterScreen'}}</span>
+          <span class="line-1">Game Configuration</span>
         </div>
         <br>
-        <div>
-          <span class="title-container"><h4>Introduce Game Configuration</h4></span>
-        </div>
+        
         <div class="form-group">
-          {{textarea value=gameConfiguration class="form-control" col="10" rows="10"}}
+
+          {{textarea value=game.gameConfigurationRO class="form-control game-config-textarea" col="10" rows="10"}}
+
           <br>
+
           <span class="title-container">
-                      <button class="btn btn-info pull-right " {{action 'saveConfiguration' gameConfiguration}}>Save</button>
-                    </span>
+            <button class="btn btn-info pull-right " {{action "revertGameConfig"}}>Revert</button>
+            <button class="btn btn-info pull-right " {{action "saveGameConfig"}}>Save</button>
+          </span>
         </div>
+
+        {{#if game.gameConfigurationValid}}
+          
+          <p>Player IDS: {{game.numberOfPlayers.allPlayerIds}} </p>
+          <p>Number of Buyers: {{game.numberOfPlayers.nrOfBuyers}} </p>
+          <p>Number of Sellers: {{game.numberOfPlayers.nrOfSellers}} </p>
+          <p>Number of Rounds: {{game.numberOfRounds.total}} </p>
+
+          <h3>Following rounds will be played:</h3>
+          {{#each game.gameMatrix as |round|}}
+            <p>{{round.roundTitle}}</p>
+            <p>{{round.playerSettings}}</p>
+          {{/each}}
+
+        {{/if}}
+
+
+
       </div>
-    {{/unless}}
+
+    {{/if}}
+
+
     {{#unless game.isDeleted}}
+
       <br>
-      <div class="jumbotron">
-        <a href="#" class="visible-xs" data-toggle="offcanvas"><i class="fa fa-lg fa-reorder"></i></a>
-        <div class="title-container">
-          <span class="line-1">{{t 'masterScreen'}}</span>
-        </div>
-        <div class="row">
-          <h4 class="text-center game-title">{{liquid-bind game.currentTitle}}</h4>
-          <p>
-            {{tom-clock timeStartTs=game.timeStartTs timeEndTs=game.timeEndTs}}
-          </p>
-        </div>
-      </div>
+  
+      
+      {{#timer-jumbotron game=game}}
+        <span class="line-1">{{t 'masterScreen'}}</span>
+      {{/timer-jumbotron}}
+
+
+
+
+
       <div class="row">
         <div class="col-6 col-sm-6 col-lg-6">
+
           {{#each game.sellers as |seller|}}
-            <div>
-              <span class="title-container"><h4>
-                              Seller {{seller.playerPosition}} 
-                              {{#link-to 'player' seller class="btn btn-info btn-xs"}}Activate{{/link-to}}
-                              <button class="btn btn-danger btn-xs" {{action 'deleteUser' seller}}>Delete</button></h4></span>
-            </div>
-            <div class="form-group">
-              <label>Name: </label> {{input value=seller.name class="form-control" }}
-            </div>
-            <div class="table-responsive">
-              <table class="table-borderless">
-                <thead>
-                  <tr>
-                    <th>{{capitalize (t 'goalTomatoes')}}:</th>
-                    <th><span style="margin-left:4em"></span></th>
-                    <th>{{capitalize (t 'currentTomatoes')}}:</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>{{input value=seller.goalTomatoes class="form-control" size="20"}}</td>
-                    <td> </td>
-                    <td>{{input value=seller.tomatoes class="form-control" size="20"}}</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <hr>
-            <span class="title-container"><h4>
-                              External Offer 
-                              <button class="btn btn-primary btn-xs" {{action 'sendOffer' game 0 seller seller._offerTomato seller._offerPrice}}>Send Offer</button></h4>
-                            </span>
-            <div class="table-responsive">
-              <table class="table-borderless">
-                <thead>
-                  <tr>
-                    <th>{{capitalize (t 'tomatoes')}}:</th>
-                    <th><span style="margin-left:4em"></span></th>
-                    <th>{{capitalize (t 'price')}}:</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>{{input value=seller._offerTomato class="form-control" size="20"}}</td>
-                    <td> </td>
-                    <td>{{input value=seller._offerPrice class="form-control" size="20"}}</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            {{!--Tomatoes: {{input value=seller.tomatoes}}
-            --}} {{!--Money: {{input value=seller.money}}--}}
-              {{#if seller.hasDirtyAttributes}}
-                <button class="btn btn-primary btn-xs" {{action 'saveUser' seller}}>save</button>
-                <button class="btn btn-primary btn-xs" {{action 'rollbackUser' seller}}>cancel</button>
-              {{/if}}
-              <h5>Received offers</h5>
-              <ul class="list-group">
-                {{#each seller.externalStuff.openOffers as |offer|}}
-                  <li class="list-group-item">
-                    --&gt; <b>{{offer.receiverName}}</b> <i>{{moment-format offer.ts "HH:mm:ss"}} / {{moment-from-now offer.ts hideSuffix=true interval=1000}}</i>
-                    <br> {{offer.tomatoes}} <span class="to-tomato"></span> for {{offer.price}} <span class="to-money"></span>
-                    <button class="btn btn-default" {{action 'recallOffer' game offer}}>{{t 'recall'}}</button>
-                  </li>
-                {{/each}}
-                {{#each seller.externalStuff.sentOffers as |offer|}}
-                  <li class="list-group-item">
-                    &lt;-- <b>{{offer.senderName}}</b> <i>{{moment-format offer.ts "HH:mm:ss"}} / {{moment-from-now offer.ts hideSuffix=true interval=1000}}</i>
-                    <br> {{offer.tomatoes}} <span class="to-tomato"></span> for {{offer.price}} <span class="to-money"></span>
-                    <button class="btn btn-success" {{action 'acceptOffer' offer}}>{{t 'accept'}}</button>
-                    <button class="btn btn-default" {{action 'declineOffer' offer}}>{{t 'decline'}}</button>
-                  </li>
-                {{/each}}
-              </ul>
+            {{player-ov isEditing=isEditing store=store player=seller game=game roleDescription=(t 'seller')}}
           {{/each}}
+
         </div>
         <!--/span-->
         <div class="col-6 col-sm-6 col-lg-6">
-          {{#each game.buyers as |buyer|}}
-            <div>
-              <span class="title-container"><h4>
-                              Buyer {{buyer.playerPosition}} 
-                              {{#link-to 'player' buyer class="btn btn-info btn-xs"}}Activate{{/link-to}}
 
-                              <button class="btn btn-danger btn-xs" {{action 'deleteUser' buyer}}> Delete</button></h4>
-                            </span>
-            </div>
-            <div class="form-group">
-              <label>Name: </label> {{input value=buyer.name class="form-control" }}
-            </div>
-            <div class="table-responsive">
-              <table class="table-borderless">
-                <thead>
-                  <tr>
-                    <th>{{capitalize (t 'goalTomatoes')}}:</th>
-                    <th><span style="margin-left:4em"></span></th>
-                    <th>{{capitalize (t 'currentTomatoes')}}:</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>{{input value=buyer.goalTomatoes class="form-control" size="20"}}</td>
-                    <td> </td>
-                    <td>{{input value=buyer.tomatoes class="form-control" size="20"}}</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <hr>
-            <span class="title-container"><h4>
-                              External Offer 
-                              <button class="btn btn-primary btn-xs" {{action 'sendOffer' game 0 buyer seller._offerTomato seller._offerPrice}}>Send Offer</button></h4>
-                          </span>
-            <div class="table-responsive">
-              <table class="table-borderless">
-                <thead>
-                  <tr>
-                    <th>{{capitalize (t 'tomatoes')}}:</th>
-                    <th><span style="margin-left:4em"></span></th>
-                    <th>{{capitalize (t 'price')}}:</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>{{input value=buyer._offerTomato class="form-control" size="20"}}</td>
-                    <td> </td>
-                    <td>{{input value=buyer._offerPrice class="form-control" size="20"}}</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            {{!--Tomatoes: {{input value=buyer.tomatoes}}
-            --}} {{!--Money: {{input value=buyer.money}}--}}
-              {{#if buyer.hasDirtyAttributes}}
-                <button class="btn btn-primary btn-xs" {{action 'saveUser' buyer}}>Save</button>
-                <button class="btn btn-primary btn-xs" {{action 'rollbackUser' buyer}}>Cancel</button>
-              {{/if}}
-              <h5>Received offers</h5>
-              {{#each buyer.receivedOpenOffers as |offer|}}
-                <p><b>{{offer.senderName}}</b> T: {{offer.tomatoes}} M: {{offer.price}}
-                  <button {{action 'recallOffer' game offer}}>recall</button>
-                </p>
-              {{/each}}
+          {{#each game.buyers as |buyer|}}
+              {{player-ov isEditing=isEditing store=store player=buyer game=game roleDescription=(t 'buyer')}}
           {{/each}}
+
           <hr>
         </div>
         <!--/span-->
       </div>
       <!--/row-->
+
     {{/unless}}
+
+
     {{#unless game.isDeleted}}
+
       <span class="title-container"><h3>Offers</h3></span>
+
       {{#each game.sortedOffers as |offer|}}
+
         <p> [{{offer.state}}] <b>{{offer.senderName}}</b> --&gt; <b>{{offer.receiver.name}}</b> {{moment-format offer.ts "HH:mm:ss"}} / {{moment-from-now offer.ts hideSuffix=true interval=1000}} T: {{offer.tomatoes}} M: {{offer.price}}</p>
+
       {{/each}}
+
       <hr>
       <span class="title-container"><h4>
                       Historical Offers 
@@ -273,7 +191,9 @@
             </tr>
           </thead>
           <tbody>
+
             {{#each game.historyLogs as |historicalOffer|}}
+
               <tr class="{{historicalOffer.cssStatus}}">
                 <td>{{historicalOffer.userSender}}</td>
                 <td>{{historicalOffer.userReceiver}}</td>
@@ -281,13 +201,19 @@
                 <td>{{historicalOffer.offer}}</td>
                 <td>{{moment-format historicalOffer.tS "HH:mm:ss"}}</td>
               </tr>
+
             {{/each}}
+
           </tbody>
         </table>
       </div>
+
     {{/unless}}
+
   </div>
 </div>
 <!-- /.container -->
 </div>
+
 {{outlet}}
+
