@@ -33,6 +33,7 @@ function storeWithWeek(key) {
 }
 
 export default Model.extend({
+  rev         : attr('string'),
 
   // normal attribtues
   name               : attr('string'),

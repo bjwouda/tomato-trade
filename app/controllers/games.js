@@ -30,9 +30,9 @@ export default Ember.Controller.extend(OfferActions, LangActions, {
     addUser(game, userType) {
       var isSeller = false;
       if (userType === 'seller') { isSeller = true; }
-      var newUser = this.store.createRecord('user', { isSeller: isSeller });
+      var newUser = this.store.createRecord('user', { isSeller });
       
-      game.get('users').addObject(newUser);
+      game.get('users').pushObject(newUser);
       
       newUser.save().then(() => {
         return game.save();

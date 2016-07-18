@@ -9,6 +9,9 @@
     "numeral": "^1.5.3",
     "bootstrap": "~3.3.5",
     "file-saver": "^1.3.2",
-    "js-xlsx": "~0.8.0"
+    "js-xlsx": "~0.8.0",
+    "pouchdb": "^3.5.0",
+    "relational-pouch": "^1.3.2",
+    "blob-polyfill": "^1.0.20150320"
   }
 }

@@ -9,6 +9,7 @@ import GameConfigParser from '../mixins/game-config-parser';
 import _ from 'lodash/lodash';
 
 export default Model.extend(GameConfigParser, {
+  rev         : attr('string'),
   i18n: Ember.inject.service(),
 
   users: hasMany('user', { async: true }),

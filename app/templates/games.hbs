@@ -6,7 +6,6 @@
           {{#unless game.isDeleted}}
             <li> <span class="title-container"><h4>Round Controlls</h4></span></li>
 
-
             {{#if (and game.gameIsAboutToStart game.gameConfigurationValid)}}
               <li class="active" {{action 'nextRound' game game.minutesPerRound}}><a href="">Start Game</a></li>
               <li class="nav-divider"></li>
