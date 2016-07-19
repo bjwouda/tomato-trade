@@ -6,9 +6,11 @@ import _ from 'lodash/lodash';
 
 export default Ember.Controller.extend(OfferActions, LangActions, {
 
-  activeUser        : null,
-  gameConfiguration : null,
+  activeUser: null,
+  gameConfiguration: null,
   game: Ember.computed.alias("model"),
+
+  isEditing : true,
 
   // isConfiguration   : Ember.computed("model.[]", function() {
   //   return this.get("model.length") !== 0;
@@ -18,8 +20,8 @@ export default Ember.Controller.extend(OfferActions, LangActions, {
 
     // USER
     saveUser(user) { user.save(); },
-    deleteUser(user) { 
-      user.destroyRecord(); 
+    deleteUser(user) {
+      user.destroyRecord();
     },
     rollbackUser(user) { user.rollbackAttributes(); },
 
@@ -31,9 +33,9 @@ export default Ember.Controller.extend(OfferActions, LangActions, {
       var isSeller = false;
       if (userType === 'seller') { isSeller = true; }
       var newUser = this.store.createRecord('user', { isSeller });
-      
+
       game.get('users').pushObject(newUser);
-      
+
       newUser.save().then(() => {
         return game.save();
       });
@@ -42,23 +44,23 @@ export default Ember.Controller.extend(OfferActions, LangActions, {
 
     // GAME
 
-    pauseGame(game){
+    pauseGame(game) {
       game.set("timePausedTs", Date.now());
       game.save();
     },
 
-    resumeGame(game){
+    resumeGame(game) {
       try {
         let pausedStartDelta = game.get("timePausedTs") - game.get("timeStartTs");
         let previousDelta = game.get("timeEndTs") - game.get("timeStartTs");
         game.set("timeStartTs", Date.now() - pausedStartDelta);
         game.set("timeEndTs", game.get("timeStartTs") + previousDelta);
-      } catch(err) {
-        console.log("error when resuming...");  
+      } catch (err) {
+        console.log("error when resuming...");
       }
       game.set("timePausedTs", undefined);
       game.save();
-      
+
     },
 
     letGameEndInXMinutes(game, xMinutes, shouldResetStart) {
@@ -101,8 +103,10 @@ export default Ember.Controller.extend(OfferActions, LangActions, {
       let self = this;
 
       var promiseArr = self.get("game.users")
-        .filter( (x) => { return x && !x.get("isDeleted"); } )
-        .map( (x) => { return x.destroyRecord; } );
+        .filter((x) => {
+          return x && !x.get("isDeleted"); })
+        .map((x) => {
+          return x.destroyRecord(); });
 
       self.get("game.users").clear();
 

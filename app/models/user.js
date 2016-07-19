@@ -16,7 +16,7 @@ function storeWithWeek(key) {
     set() {
       let val = arguments[1];
       let weekCnt = this.get("userGame.weekCnt");
-      var previousObj = this.get("playerWeekStatus");
+      var previousObj = this.get("playerWeekStatus") || {};
 
       if (!weekCnt) {return;}
 
@@ -33,22 +33,12 @@ function storeWithWeek(key) {
 }
 
 export default Model.extend({
-  rev         : attr('string'),
-
   // normal attribtues
   name               : attr('string'),
   
   goalTomatoes       : storeWithWeek("goalTomatoes"),
   tomatoes           : storeWithWeek("tomatoes"),
-  remainingTomatoes  : Ember.computed("tomatoes", "goalTomatoes", function() {
-    return this.get("goalTomatoes") - Math.abs(this.get("tomatoes"));
-  }),
-
   money              : storeWithWeek("money"),
-  avgTomatoPrice     : Ember.computed("tomatoes", "money", function() {
-    if (this.get("money") === 0) {return 0;}
-    return Math.abs(this.get("tomatoes") / this.get("money"));
-  }),
   
   isSeller           : attr('boolean'),
   playerWeekStatus   : attr({defaultValue: {}}),
@@ -58,9 +48,28 @@ export default Model.extend({
   receivedOffers     : hasMany('offer', { async: true, inverse: 'receiver' }),
   sentOffers         : hasMany('offer', { async: true, inverse: 'sender' }),
 
-  // temporary attributes
-  _offerTomato       : undefined,
-  _offerPrice        : undefined,
+
+
+  remainingTomatoes  : Ember.computed("tomatoes", "goalTomatoes", function() {
+    return this.get("goalTomatoes") - Math.abs(this.get("tomatoes"));
+  }),
+
+  avgTomatoPrice     : Ember.computed("tomatoes", "money", function() {
+    if (this.get("money") === 0) {return 0;}
+    return Math.abs(this.get("money") / this.get("tomatoes"));
+  }),
+
+  sellerKPI : Ember.computed("tomatoes", "money", function() {
+    return this.get("money") / this.get("goalTomatoes");
+  }),
+
+  buyerKPI: Ember.computed("userGame.fine", "userGame.fixedCost", "userGame.retailPrice", "money", "goalTomatoes", function() {
+    let costBuying      = Math.abs(this.get("money"));
+    let totalFixedCosts = Math.abs(this.get("goalTomatoes") * this.get("userGame.fixedCost"));
+    let totalFine       = Math.abs(this.get("remainingTomatoes") * this.get("userGame.fine"));
+    let revenue             = Math.abs(this.get("tomatoes") * this.get("userGame.retailPrice"));
+    return (revenue - costBuying - totalFixedCosts - totalFine) / this.get("goalTomatoes");
+  }),
 
   playerIdInGame: Ember.computed("playerPosition", function() {
     let prefix = this.get("isSeller") ? "s" : "b";
@@ -141,8 +150,5 @@ export default Model.extend({
   	}
   }),
 
-  hasValidOffer: Ember.computed('_offerPrice', '_offerTomato', function() {
-  	return +this.get('_offerTomato') > 0 && +this.get('_offerPrice') > 0;
-  })
 
 });

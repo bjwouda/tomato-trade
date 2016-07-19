@@ -57,6 +57,15 @@
                 <div class="form-group">
                   <span class="title-container"><h5>WeekCnt: </h5></span> {{input disabled=1 type="number" value=game.weekCnt class="form-control" }}
                 </div>
+                <div class="form-group">
+                  <span class="title-container"><h5>Seller Fine: </h5></span> {{input disabled=0 type="number" value=game.fine class="form-control" }}
+                </div>
+                <div class="form-group">
+                  <span class="title-container"><h5>Seller FixedCost: </h5></span> {{input disabled=0 type="number" value=game.fixedCost class="form-control" }}
+                </div>
+                <div class="form-group">
+                  <span class="title-container"><h5>Seller RetailPrice: </h5></span> {{input disabled=0 type="number" value=game.retailPrice class="form-control" }}
+                </div>
               </span>
             {{/if}}
             
@@ -165,7 +174,7 @@
 
     {{#unless game.isDeleted}}
 
-      <span class="title-container"><h3>Offers</h3></span>
+{{!--       <span class="title-container"><h3>Offers</h3></span>
 
       {{#each game.sortedOffers as |offer|}}
 
@@ -173,7 +182,7 @@
 
       {{/each}}
 
-      <hr>
+      <hr> --}}
       <span class="title-container"><h4>
                       Historical Offers 
                       <button type="button" class="btn btn-primary btn-xs" {{action 'exportCSV' game.historyLogs}}>Export CSV</button></h4>
@@ -198,7 +207,7 @@
                 <td>{{historicalOffer.userReceiver}}</td>
                 <td>{{historicalOffer.state}}</td>
                 <td>{{historicalOffer.offer}}</td>
-                <td>{{moment-format historicalOffer.tS "HH:mm:ss"}}</td>
+                <td>{{moment-format historicalOffer.ts "HH:mm:ss"}}</td>
               </tr>
 
             {{/each}}

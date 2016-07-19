@@ -71,6 +71,7 @@ export default Ember.Mixin.create({
     },
 
     acceptOffer(game, offer) {
+      offer.set("isAccepted", true);
       offer.set("state", "accepted");
       offer.set("notes", offer.get("notes") + `${moment().format()};accepted\n`);
 

@@ -16,7 +16,12 @@ export default Model.extend(GameConfigParser, {
   offers: hasMany('offer', { async: true }),
   historyLogs: hasMany('history', { async: true }),
   history: attr('string'),
+  
   minutesPerRound: attr('number', { defaultValue: 5 }),
+  fine: attr('number', { defaultValue: 0.2 }),
+  fixedCost: attr('number', { defaultValue: 0.05 }),
+  retailPrice: attr('number', { defaultValue: 1.20 }),
+  
   roundCnt: attr('number', { defaultValue: 0 }),
 
   //Config Scenarios
