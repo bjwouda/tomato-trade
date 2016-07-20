@@ -1,6 +1,11 @@
 <div>
   <span class="title-container">
-    <h4>{{roleDescription}} {{player.playerPosition}} {{player.name}}</h4>
+    <h4>{{#if player.name}}
+          {{player.descriptivePlayerIdInGame}}: {{player.name}}
+        {{else}}
+          {{player.descriptivePlayerIdInGame}}
+        {{/if}}
+    </h4>
   </span>
   {{#link-to 'player' player class="btn btn-info btn-xs"}}Activate{{/link-to}}
   <button class="btn btn-primary btn-xs" {{action 'saveUser' player}}>Save</button>

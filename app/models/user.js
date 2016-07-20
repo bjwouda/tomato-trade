@@ -71,8 +71,16 @@ export default Model.extend({
     return (revenue - costBuying - totalFixedCosts - totalFine) / this.get("goalTomatoes");
   }),
 
+  //Result s1, s2, b1, b2...
   playerIdInGame: Ember.computed("playerPosition", function() {
     let prefix = this.get("isSeller") ? "s" : "b";
+    let pos = this.get("playerPosition");
+    return `${prefix}${pos}`;
+  }),
+
+  //Result Seller1, Seller2, Buyer1, Buyer2
+  descriptivePlayerIdInGame: Ember.computed("playerPosition", function() {
+    let prefix = this.get("isSeller") ? "Seller" : "Buyer";
     let pos = this.get("playerPosition");
     return `${prefix}${pos}`;
   }),

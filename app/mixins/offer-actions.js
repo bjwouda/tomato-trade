@@ -23,10 +23,13 @@ export default Ember.Mixin.create({
         notes: `${moment().format()};created\n`
       });
 
+      {{debugger}}
+
       //Create history record
       var newHistoryObj = this.store.createRecord('history', {
-        userSender   : (+sender === 0) ? "External" : sender.get('name'),
-        userReceiver : (+receiver === 0) ? "External" : receiver.get('name'),
+        offerId      : newOffer.id,
+        userSender   : (+sender === 0) ? "External" : ((sender.get('name')) ? sender.get('name') : sender.get('descriptivePlayerIdInGame')),
+        userReceiver : (+receiver === 0) ? "External" : ((receiver.get('name')) ? receiver.get('name') : receiver.get('descriptivePlayerIdInGame')),
         state        : "Open",
         cssStatus    : "active",
         offer        : "tomatoes: " + tomatoes + ", price: " + price
@@ -76,10 +79,12 @@ export default Ember.Mixin.create({
       offer.set("notes", offer.get("notes") + `${moment().format()};accepted\n`);
 
       var sign = offer.get("receiver.content.isSeller") ? 1 : -1;
+
       //Create history record
       var newHistoryObj = this.store.createRecord('history', {
-        userSender   : (offer.get('sender.id') === undefined) ? "External"  : offer.get('sender.name'),
-        userReceiver : (offer.get('receiver.id') === undefined) ? "External"  : offer.get('receiver.name'),
+        offerId      : offer.id,
+        userSender   : (offer.get('sender.id') === undefined) ? "External"  : ((offer.get('sender.name')) ? offer.get('sender.name') : offer.get('sender.descriptivePlayerIdInGame')),//offer.get('sender.name'),
+        userReceiver : (offer.get('receiver.id') === undefined) ? "External"  : ((offer.get('receiver.name')) ? offer.get('receiver.name') : offer.get('receiver.descriptivePlayerIdInGame')),//offer.get('receiver.name'),
         state        : "Accepted",
         cssStatus    : "success",
         offer        : "tomatoes: " + offer.get('tomatoes') + ", price: " + offer.get('price')
@@ -117,8 +122,9 @@ export default Ember.Mixin.create({
 
       //Store offer into historical record
       var newHistoryObj = this.store.createRecord('history', {
-        userSender   : (offer.get('sender.id') === undefined) ? "External"  : offer.get('sender.name'),
-        userReceiver : (offer.get('receiver.id') === undefined) ? "External"  : offer.get('receiver.name'),
+        offerId      : offer.id,
+        userSender   : (offer.get('sender.id') === undefined) ? "External"  : ((offer.get('sender.name')) ? offer.get('sender.name') : offer.get('sender.descriptivePlayerIdInGame')),
+        userReceiver : (offer.get('receiver.id') === undefined) ? "External"  : ((offer.get('receiver.name')) ? offer.get('receiver.name') : offer.get('receiver.descriptivePlayerIdInGame')),
         state        : "Declined",
         cssStatus    : "danger",
         offer        : "tomatoes: " + offer.get('tomatoes') + ", price: " + offer.get('price')
@@ -140,8 +146,9 @@ export default Ember.Mixin.create({
 
       //Store offer into historical record
       var newHistoryObj = this.store.createRecord('history', {
-        userSender   : (offer.get('sender.id') === undefined) ? "External"  : offer.get('sender.name'),
-        userReceiver : (offer.get('receiver.id') === undefined) ? "External"  : offer.get('receiver.name'),
+        offerId      : offer.id,
+        userSender   : (offer.get('sender.id') === undefined) ? "External"  : ((offer.get('sender.name')) ? offer.get('sender.name') : offer.get('sender.descriptivePlayerIdInGame')),
+        userReceiver : (offer.get('receiver.id') === undefined) ? "External"  : ((offer.get('receiver.name')) ? offer.get('receiver.name') : offer.get('receiver.descriptivePlayerIdInGame')),
         state        : "Recalled - Open",
         cssStatus    : "active",
         offer        : "tomatoes: " + offer.get('tomatoes') + ", price: " + offer.get('price')
@@ -157,20 +164,4 @@ export default Ember.Mixin.create({
 
   }
 
-  /*function recordOffer(offer){
-    //Create history record
-      var newHistoryObj = this.store.createRecord('history', {
-        userSender   : offer.get('sender.name'),
-        userReceiver : offer.get('receiver.name'),
-        state        : "Accepted",
-        offer        : "tomatoes: " + offer.get('tomatoes') + ", price: " + offer.get('price')
-      });
-
-      game.get('historyLogs').addObject(newHistoryObj);
-
-      newHistoryObj.save().then(() => { 
-        game.save();
-        return true;
-      });
-  }*/
 });

@@ -183,6 +183,8 @@
       {{/each}}
 
       <hr> --}}
+
+
       <span class="title-container"><h4>
                       Historical Offers 
                       <button type="button" class="btn btn-primary btn-xs" {{action 'exportCSV' game.historyLogs}}>Export CSV</button></h4>
@@ -191,6 +193,7 @@
         <table class="table table-striped">
           <thead>
             <tr>
+              <th>OfferId</th>
               <th>Sender</th>
               <th>Receiver</th>
               <th>Status</th>
@@ -200,9 +203,10 @@
           </thead>
           <tbody>
 
-            {{#each game.historyLogs as |historicalOffer|}}
+            {{#each game.sortedHistoryLogsById as |historicalOffer|}}
 
               <tr class="{{historicalOffer.cssStatus}}">
+                <td>{{historicalOffer.offerId}}</td>
                 <td>{{historicalOffer.userSender}}</td>
                 <td>{{historicalOffer.userReceiver}}</td>
                 <td>{{historicalOffer.state}}</td>
