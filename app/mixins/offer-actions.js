@@ -23,7 +23,6 @@ export default Ember.Mixin.create({
         notes: `${moment().format()};created\n`
       });
 
-      {{debugger}}
 
       //Create history record
       var newHistoryObj = this.store.createRecord('history', {
@@ -32,7 +31,8 @@ export default Ember.Mixin.create({
         userReceiver : (+receiver === 0) ? "External" : ((receiver.get('name')) ? receiver.get('name') : receiver.get('descriptivePlayerIdInGame')),
         state        : "Open",
         cssStatus    : "active",
-        offer        : "tomatoes: " + tomatoes + ", price: " + price
+        offer        : "tomatoes: " + tomatoes + ", price: " + price,
+        round        : "Round " + game.get("roundCnt")
       });
 
       game.get('offers').addObject(newOffer);
@@ -87,7 +87,8 @@ export default Ember.Mixin.create({
         userReceiver : (offer.get('receiver.id') === undefined) ? "External"  : ((offer.get('receiver.name')) ? offer.get('receiver.name') : offer.get('receiver.descriptivePlayerIdInGame')),//offer.get('receiver.name'),
         state        : "Accepted",
         cssStatus    : "success",
-        offer        : "tomatoes: " + offer.get('tomatoes') + ", price: " + offer.get('price')
+        offer        : "tomatoes: " + offer.get('tomatoes') + ", price: " + offer.get('price'),
+        round        : "Round " + game.get("roundCnt")
       });
 
       if (offer.get("receiver.content") !== null) {
@@ -127,7 +128,8 @@ export default Ember.Mixin.create({
         userReceiver : (offer.get('receiver.id') === undefined) ? "External"  : ((offer.get('receiver.name')) ? offer.get('receiver.name') : offer.get('receiver.descriptivePlayerIdInGame')),
         state        : "Declined",
         cssStatus    : "danger",
-        offer        : "tomatoes: " + offer.get('tomatoes') + ", price: " + offer.get('price')
+        offer        : "tomatoes: " + offer.get('tomatoes') + ", price: " + offer.get('price'),
+        round        : "Round " + game.get("roundCnt") 
       });
 
       game.get('historyLogs').addObject(newHistoryObj);
@@ -151,7 +153,8 @@ export default Ember.Mixin.create({
         userReceiver : (offer.get('receiver.id') === undefined) ? "External"  : ((offer.get('receiver.name')) ? offer.get('receiver.name') : offer.get('receiver.descriptivePlayerIdInGame')),
         state        : "Recalled - Open",
         cssStatus    : "active",
-        offer        : "tomatoes: " + offer.get('tomatoes') + ", price: " + offer.get('price')
+        offer        : "tomatoes: " + offer.get('tomatoes') + ", price: " + offer.get('price'),
+        round        : "Round " + game.get("roundCnt")
       });
 
       game.get('historyLogs').addObject(newHistoryObj);
