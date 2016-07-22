@@ -80,7 +80,7 @@ export default Ember.Controller.extend(OfferActions, LangActions, {
       //Using same properties to log moving to the next round
       var newOffer = this.store.createRecord('offer', {
         ts: new Date().getTime(),
-        state: "New Round:",
+        state: "Round " + (game.get("roundCnt") + 1),
         notes: "Moving from round " + game.get("roundCnt")  + " to round" + (game.get("roundCnt") + 1) + "\n"
       });
 

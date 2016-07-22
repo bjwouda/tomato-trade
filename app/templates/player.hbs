@@ -42,12 +42,18 @@
                 </div>
               </li>
           </ul>
+
+          <h4>Round  {{game.roundCnt}} Logs: </h4>
+
           <ul class="list-group">
               
               {{player-offers store=store game=game openOffers=(reverse obj.openOffers) sentOffers=(reverse obj.sentOffers)}}
               
-              {{#each (take 5 (reverse obj.history)) as |offer|}}
-                  <li class="list-group-item">[{{offer.state}}] <b>{{offer.senderName}}</b> --&gt; <b>{{offer.receiverName}}</b>  {{moment-format offer.ts "HH:mm:ss"}} / {{moment-from-now offer.ts hideSuffix=true interval=1000}} T: {{offer.tomatoes}} M: {{offer.price}}</li>
+                {{#each (take 5 (reverse obj.history)) as |offer|}}   
+                  {{#if offer.belongsCurrentRound}}
+                     <li class="list-group-item">[{{offer.state}}] <b>{{offer.senderName}}</b> --&gt; <b>{{offer.receiverName}}</b>  {{moment-format offer.ts "HH:mm:ss"}} / {{moment-from-now offer.ts hideSuffix=true interval=1000}} T: {{offer.tomatoes}} M: {{offer.price}}</li>
+                  {{/if}}
+                                  
               {{/each}}
           </ul>
       </div>

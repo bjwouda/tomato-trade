@@ -45,6 +45,9 @@ export default Model.extend({
 
   receiverId : Ember.computed('sender.id', 'isExternal', function() {
     return (this.get("receiver.id") === undefined) ? "External" : this.get('receiver.id');
-  })
+  }),
 
+  belongsCurrentRound : Ember.computed('game.roundCnt', 'weekNumber', function() { 
+    return (this.get("weekNumber") === this.get("game.roundCnt")) ? true : false; 
+  }),
 });

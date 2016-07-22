@@ -128,6 +128,8 @@ export default Model.extend({
     return newReturnObj;
   }),
 
+
+
   // computed attributes
 
   externalOffers: Ember.computed("groupedReceivedOpenOffers", function() {

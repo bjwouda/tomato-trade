@@ -16,10 +16,8 @@ export default Model.extend({
 		defaultValue(){ return new Date().getTime(); }
 	}), //timeStamp
 	
-	historyGame  : belongsTo('game')
+	historyGame  : belongsTo('game'),
 
-	//using descending sort
-	//offerSortingDescById	: ['offerId:desc'],
-	//sortedOffersById: Ember.computed.sort('offers', 'offerSortingDesc'),
+
 
 });

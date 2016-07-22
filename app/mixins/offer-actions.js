@@ -20,7 +20,8 @@ export default Ember.Mixin.create({
         isExternal: isExternal,
         ts: Date.now(),
         state: "open",
-        notes: `${moment().format()};created\n`
+        notes: `${moment().format()};created\n`,
+        weekNumber: game.get("roundCnt")
       });
 
 
