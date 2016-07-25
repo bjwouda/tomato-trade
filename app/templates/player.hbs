@@ -11,7 +11,7 @@
   <div class="row">
       
     {{#each-in model.groupedReceivedOpenOffers as |k obj|}}
-      <div class="col-sm-4">
+      <div class="col-sm-4 ">
           {{#if (eq k 'External')}}
             <h4>{{capitalize (t 'external')}}</h4>
           {{else}}

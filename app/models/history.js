@@ -11,6 +11,7 @@ export default Model.extend({
 	state		 			: attr('string'), //Open, Accepted, Declined could also be represented by color (Yellow: offer sent, Red: offer rejected, etc)
 	cssStatus	 			: attr('string'), //active, success, danger 
 	offer        			: attr('string'), // number of tomatos, price
+	round					: attr('string'),
 	ts           			: attr('number', { 
 		defaultValue(){ return new Date().getTime(); }
 	}), //timeStamp

@@ -77,6 +77,51 @@ export default Ember.Controller.extend(OfferActions, LangActions, {
         return;
       }
 
+      //Using same properties to log moving to the next round
+      var newOffer = this.store.createRecord('offer', {
+        ts: new Date().getTime(),
+        state: "New Round:",
+        notes: "Moving from round " + game.get("roundCnt")  + " to round" + (game.get("roundCnt") + 1) + "\n"
+      });
+
+      //Create history record to record moving to the next round
+      if (game.get("roundCnt") !== 0){
+        var newHistoryObj = this.store.createRecord('history', {
+          offerId      : newOffer.id,
+          userSender   : "Round " + (game.get("roundCnt") + 1),
+          userReceiver : "Round " + (game.get("roundCnt") + 2),
+          state        : "New Round",
+          cssStatus    : "info",
+          offer        : "Minutes on this round " +  minutesPerRound, //We could also include tomato goal for each user
+          round        : "Round " + (game.get("roundCnt") + 1)
+        });
+        
+      } else {
+        var newHistoryObj = this.store.createRecord('history', {
+          offerId      : newOffer.id,
+          userSender   : "Game starting",
+          userReceiver : "Setting up:",
+          state        : "First Round",
+          cssStatus    : "info",
+          offer        : "Minutes on this round " +  minutesPerRound, //We could also include tomato goal for each user
+          round        : "Round " + game.get("roundCnt")
+        });     
+      }
+      
+
+      game.get('offers').addObject(newOffer);
+      game.get('historyLogs').addObject(newHistoryObj);
+
+      newOffer.save().then(() => {
+        game.save();
+        return true;
+      });
+
+      newHistoryObj.save().then(() => { 
+        game.save();
+        return true;
+      });
+
       game.set("timeStartTs", Date.now());
       game.set("timeEndTs", Date.now() + minutesPerRound * 60 * 1000);
 
@@ -130,7 +175,7 @@ export default Ember.Controller.extend(OfferActions, LangActions, {
 
     exportCSV(historyLogs) {
       var data = [];
-      var titles = ["userSender", "userReceiver", "state", "offer", "tS"];
+      var titles = ["round", "offerId", "userSender", "userReceiver", "state", "offer", "ts"];
 
       data.push(titles);
       historyLogs.map((historyElement) => {

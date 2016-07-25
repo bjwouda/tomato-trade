@@ -193,6 +193,7 @@
         <table class="table table-striped">
           <thead>
             <tr>
+              <th>Round</th>
               <th>OfferId</th>
               <th>Sender</th>
               <th>Receiver</th>
@@ -206,6 +207,7 @@
             {{#each game.sortedHistoryLogsById as |historicalOffer|}}
 
               <tr class="{{historicalOffer.cssStatus}}">
+                <td>{{historicalOffer.round}}</td>
                 <td>{{historicalOffer.offerId}}</td>
                 <td>{{historicalOffer.userSender}}</td>
                 <td>{{historicalOffer.userReceiver}}</td>

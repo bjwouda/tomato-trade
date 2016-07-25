@@ -79,12 +79,13 @@ export default Model.extend({
   }),
 
   //Result Seller1, Seller2, Buyer1, Buyer2
-  descriptivePlayerIdInGame: Ember.computed("playerPosition", function() {
-    let prefix = this.get("isSeller") ? "Seller" : "Buyer";
+  descriptivePlayerIdInGame: Ember.computed("playerPosition", "name", function() {
+    let prefix = this.get("isSeller") ? "Seller " : "Buyer ";
     let pos = this.get("playerPosition");
-    let postfix = this.get("name") ? `- ${this.get("name")}` : '';
+    let postfix = this.get("name") ? ` - ${this.get("name")}` : '';
     return `${prefix}${pos}${postfix}`;
   }),
+  
 
   playerPosition: Ember.computed("userGame.buyers", "userGame.sellers", "isSeller", "id", function () {
     if (this.get("isSeller")) { // for the sellers
