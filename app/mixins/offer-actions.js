@@ -28,8 +28,8 @@ export default Ember.Mixin.create({
       //Create history record
       var newHistoryObj = this.store.createRecord('history', {
         offerId      : newOffer.id,
-        userSender   : (+sender === 0) ? "External" : ((sender.get('name')) ? sender.get('name') : sender.get('descriptivePlayerIdInGame')),
-        userReceiver : (+receiver === 0) ? "External" : ((receiver.get('name')) ? receiver.get('name') : receiver.get('descriptivePlayerIdInGame')),
+        userSender   : (+sender === 0) ? "External" : `${sender.get('descriptivePlayerIdInGame')} ${sender.get("name")}`,
+        userReceiver : (+receiver === 0) ? "External" : `${receiver.get('descriptivePlayerIdInGame')} ${receiver.get("name")}`,
         state        : "Open",
         cssStatus    : "active",
         offer        : "tomatoes: " + tomatoes + ", price: " + price,
