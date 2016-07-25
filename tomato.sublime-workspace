@@ -4,8 +4,12 @@
 		"selected_items":
 		[
 			[
-				"time",
-				"timeKeys"
+				"arc",
+				"archiveYear"
+			],
+			[
+				"def",
+				"defaultValue"
 			],
 			[
 				"archi",
@@ -299,17 +303,53 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 392.0,
-		"last_filter": "",
+		"height": 187.0,
+		"last_filter": "reves",
 		"selected_items":
 		[
 			[
-				"",
-				"AlignTab: Live Preview Mode"
+				"reves",
+				"Permute Lines: Reverse"
 			],
 			[
-				"alig",
-				"AlignTab: Live Preview Mode"
+				"rev",
+				"Permute Lines: Reverse"
+			],
+			[
+				"lowe",
+				"Convert Case: Lower Case"
+			],
+			[
+				"sort",
+				"Sort Lines"
+			],
+			[
+				"rever",
+				"Permute Lines: Reverse"
+			],
+			[
+				"uni",
+				"Permute Lines: Unique"
+			],
+			[
+				"lower",
+				"Convert Case: Lower Case"
+			],
+			[
+				"reverse",
+				"Permute Lines: Reverse"
+			],
+			[
+				"uniqu",
+				"Permute Lines: Unique"
+			],
+			[
+				"spaces",
+				"Indentation: Convert to Spaces"
+			],
+			[
+				"html",
+				"Set Syntax: HTML"
 			],
 			[
 				"align",
@@ -318,14 +358,6 @@
 			[
 				"if",
 				"Snippet: {{#if }} {{else}} {{/if}}"
-			],
-			[
-				"spaces",
-				"Indentation: Convert to Spaces"
-			],
-			[
-				"sort",
-				"Sort Lines"
 			],
 			[
 				"comment",
@@ -338,10 +370,6 @@
 			[
 				"install",
 				"Package Control: Install Package"
-			],
-			[
-				"html",
-				"Set Syntax: HTML"
 			],
 			[
 				"snippetdat",
@@ -362,10 +390,6 @@
 			[
 				"dash",
 				"Convert Case: dash-case"
-			],
-			[
-				"lower",
-				"Convert Case: Lower Case"
 			],
 			[
 				"for",
@@ -500,7 +524,7 @@
 				"Git: Status"
 			]
 		],
-		"width": 467.0
+		"width": 485.0
 	},
 	"console":
 	{
@@ -521,22 +545,37 @@
 		"side_bar_visible": false,
 		"status_bar_visible": false
 	},
-	"expanded_folders":
-	[
-		"/Users/kkohn/Documents/tomato"
-	],
 	"file_history":
 	[
-		"/Users/kkohn/Documents/prazza/app/templates/index.hbs",
-		"/Users/kkohn/Documents/prazza/app/routes/index.js",
-		"/Users/kkohn/Documents/prazza/app/controllers/index.js",
-		"/Users/kkohn/Documents/tomato/app/models/offer.js",
-		"/Users/kkohn/Documents/tomato/app/models/game.js",
-		"/Users/kkohn/Documents/tomato/app/models/user.js",
-		"/Users/kkohn/Documents/kom/app/controllers/index.js",
-		"/Users/kkohn/Documents/kom/ember-cli-build.js",
-		"/Users/kkohn/Documents/kom/app/templates/index.hbs",
-		"/Users/kkohn/Documents/kom/bower.json",
+		"/Users/kkohn/Dropbox/VanBerlo/2015_Prazza/1_Development/Firebase Prazza/prazza_devel/offline_sync.py",
+		"/Users/kkohn/Documents/xavier-ember/_utils/main.py",
+		"/Users/kkohn/Documents/xavier-django/forecast/views.py",
+		"/Users/kkohn/Documents/xavier-django/ben/models.py",
+		"/Users/kkohn/Documents/xavier-ember/app/templates/prospect-entry.embl",
+		"/Users/kkohn/Documents/xavier-ember/_utils/click_deploy_button.py",
+		"/Users/kkohn/Documents/xavier-django/sia/excel_generator.py",
+		"/Users/kkohn/Documents/xavier-django/sia/excel_generator_user.py",
+		"/Users/kkohn/Documents/xavier-ember/app/helpers/show-nice-file-link.coffee",
+		"/Users/kkohn/Documents/xavier-django/ben/admin.py",
+		"/Users/kkohn/Documents/xavier-sia-devel/app/templates/sia/index.hbs",
+		"/Users/kkohn/Documents/xavier-sia-devel/app/templates/sia/detail.hbs",
+		"/Users/kkohn/Documents/xavier-sia-devel/app/controllers/sia.coffee",
+		"/Users/kkohn/Documents/xavier-sia-devel/app/templates/sia/staff/index.hbs",
+		"/Users/kkohn/Documents/xavier-django/sia/models.py",
+		"/Users/kkohn/Downloads/KimonoData_bc2yz9os.csv",
+		"/Users/kkohn/Downloads/KimonoData_7ip1ig4q.csv",
+		"/Users/kkohn/Downloads/KimonoData_7ip1ig4q.json",
+		"/Users/kkohn/Downloads/eval_xperts.py",
+		"/Users/kkohn/Documents/xavier-ember/app/controllers/oneplace.coffee",
+		"/Users/kkohn/Documents/xavier-ember/config/environment.js",
+		"/Users/kkohn/Documents/xavier-django/_utils/generate_jwt_token.py",
+		"/Users/kkohn/Documents/xavier-ember/_utils/google_smtp.py",
+		"/Users/kkohn/Documents/xavier-sia-devel/app/templates/sia.hbs",
+		"/Users/kkohn/Documents/xavier-sia-devel/app/styles/staff.styl",
+		"/Users/kkohn/Documents/xavier-sia-devel/app/models/goal.coffee",
+		"/Users/kkohn/Documents/xavier-django/xavier/settings.py",
+		"/Users/kkohn/Documents/xavier-django/ben/send_email_prospect.py",
+		"/Users/kkohn/Documents/xavier-django/sia/send_email.py",
 		"/Users/kkohn/Documents/xavier-django/xavier/jwt_authentication_middleware.py",
 		"/Users/kkohn/Documents/xavier-sia-devel/app/templates/sia/staff/archive.hbs",
 		"/Users/kkohn/Documents/xavier-sia-devel/app/templates/sia/staff/staff.hbs",
@@ -545,27 +584,19 @@
 		"/Users/kkohn/Documents/xavier-ember/app/models/prospect.coffee",
 		"/Users/kkohn/Documents/xavier-ember/app/controllers/prospects.coffee",
 		"/Users/kkohn/Documents/xavier-sia-devel/app/helpers/simple-sort.coffee",
-		"/Users/kkohn/Documents/xavier-ember/_utils/click_deploy_button.py",
-		"/Users/kkohn/Documents/xavier-django/sia/models.py",
-		"/Users/kkohn/Documents/xavier-django/_utils/generate_jwt_token.py",
 		"/Users/kkohn/Documents/xavier-django/frontend/templates/index.html",
 		"/Users/kkohn/Documents/xavier-sia-devel/app/index.html",
 		"/Users/kkohn/Documents/xavier-sia-devel/deploy.sh",
 		"/Users/kkohn/Documents/xavier-django/frontend/templates/sia.html",
 		"/Users/kkohn/Documents/xavier-ember/app/index.html",
 		"/Users/kkohn/Documents/xavier-ember/_utils/deploy-test.sh",
-		"/Users/kkohn/Documents/xavier-ember/app/controllers/oneplace.coffee",
 		"/Users/kkohn/Documents/xavier-ember/_utils/deploy.sh",
 		"/Users/kkohn/Documents/xavier-sia-devel/app/models/user.js",
 		"/Users/kkohn/Documents/xavier-django/sia/views.py",
-		"/Users/kkohn/Documents/xavier-sia-devel/app/templates/sia/staff/index.hbs",
 		"/Users/kkohn/Documents/xavier-sia-devel/app/templates/sia/staff.hbs",
 		"/Users/kkohn/Documents/xavier-sia-devel/app/routes/sia/index.coffee",
 		"/Users/kkohn/Documents/xavier-sia-devel/app/controllers/sia/index.coffee",
 		"/Users/kkohn/Documents/xavier-sia-devel/app/controllers/sia/detail.coffee",
-		"/Users/kkohn/Documents/xavier-sia-devel/app/templates/sia/index.hbs",
-		"/Users/kkohn/Documents/xavier-sia-devel/app/templates/sia/detail.hbs",
-		"/Users/kkohn/Documents/xavier-sia-devel/app/controllers/sia.coffee",
 		"/Users/kkohn/Documents/xavier-ember/app/controllers/index.coffee",
 		"/Users/kkohn/Documents/xavier-sia-devel/app/controllers/sia/staff/index.coffee",
 		"/Users/kkohn/Documents/xavier-sia-devel/app/routes/sia/staff/archive.coffee",
@@ -592,7 +623,6 @@
 		"/Users/kkohn/Documents/xavier-ember/app/helpers/list-show-year.coffee",
 		"/Users/kkohn/Documents/xavier-ember/app/helpers/prospect-article-nuance-lut.coffee",
 		"/Users/kkohn/Documents/xavier-ember/app/helpers/render-special-chars.coffee",
-		"/Users/kkohn/Documents/xavier-ember/app/helpers/show-nice-file-link.coffee",
 		"/Users/kkohn/Documents/xavier-ember/app/helpers/render-newline.coffee",
 		"/Users/kkohn/Documents/xavier-ember/app/helpers/prospect-highlight-status.coffee",
 		"/Users/kkohn/Documents/xavier-ember/app/helpers/moment-timeago.coffee",
@@ -605,7 +635,6 @@
 		"/Users/kkohn/Documents/xavier-ember/package.json",
 		"/Users/kkohn/Documents/xavier-sia-devel/app/templates/index.hbs",
 		"/Users/kkohn/Documents/Misago/README.md",
-		"/Users/kkohn/Documents/xavier-sia-devel/app/models/goal.coffee",
 		"/Users/kkohn/Documents/xavier-ember/app/controllers/custom-table.coffee",
 		"/Users/kkohn/Documents/xavier-ember/app/controllers/oneplace/files.coffee",
 		"/Users/kkohn/Documents/xavier-ember/app/components/oneplace-tabs.coffee",
@@ -618,31 +647,23 @@
 		"/Users/kkohn/Documents/xavier-ember/app/models/line.coffee",
 		"/Users/kkohn/Documents/xavier-django/_utils/test_image_compression.py",
 		"/Users/kkohn/Desktop/nordic_landscape-wallpaper-1920x1200.jpg",
-		"/Users/kkohn/Documents/xavier-django/sia/excel_generator_user.py",
 		"/Users/kkohn/Documents/xavier-django/_utils/siauser_template.xlsx",
 		"/Users/kkohn/Documents/xavier-sia-devel/app/templates/components/sia-date-input.hbs",
 		"/Users/kkohn/Documents/xavier-sia-devel/app/components/sia-date-input.coffee",
 		"/Users/kkohn/Documents/xavier-sia-devel/tests/acceptance/access-test.coffee",
 		"/Users/kkohn/Documents/xavier-sia-devel/tests/integration/components/sia-date-input-test.coffee",
-		"/Users/kkohn/Documents/xavier-django/sia/send_email.py",
 		"/Users/kkohn/Documents/xavier-django/main.py",
 		"/Users/kkohn/Documents/xavier-ember/deploy.sh",
-		"/Users/kkohn/Documents/xavier-ember/_utils/google_smtp.py",
 		"/Users/kkohn/Documents/xavier-django/xavier/urls.py",
-		"/Users/kkohn/Documents/xavier-django/ben/send_email_prospect.py",
-		"/Users/kkohn/Documents/xavier-sia-devel/app/templates/sia.hbs",
 		"/Users/kkohn/Documents/xavier-sia-devel/app/mixins/sia-permissions.coffee",
-		"/Users/kkohn/Documents/xavier-django/sia/excel_generator.py",
 		"/Users/kkohn/Documents/xavier-sia-devel/app/styles/sia_detail.styl",
 		"/Users/kkohn/Documents/xavier-sia-devel/app/routes/sia/history.coffee",
 		"/Users/kkohn/Documents/xavier-django/ben/excel_generator.py",
-		"/Users/kkohn/Documents/xavier-django/ben/admin.py",
 		"/Users/kkohn/Documents/xavier-django/forecast/admin.py",
 		"/Users/kkohn/Documents/xavier-django/requirements.txt",
 		"/Users/kkohn/Documents/xavier-django/sia/WorksheetCopy.py",
 		"/Users/kkohn/Documents/xavier-django/ben/excel_generator_single.py",
 		"/Users/kkohn/Documents/xavier-django/ben/views.py",
-		"/Users/kkohn/Documents/xavier-django/xavier/settings.py",
 		"/Users/kkohn/.virtualenvs/xavier/lib/python2.7/site-packages/openpyxl/writer/excel.py",
 		"/Users/kkohn/.virtualenvs/xavier/lib/python2.7/site-packages/openpyxl/.constants.json",
 		"/Users/kkohn/.virtualenvs/xavier/lib/python2.7/site-packages/openpyxl/drawing/spreadsheet_drawing.py",
@@ -653,8 +674,7 @@
 		"/Users/kkohn/Documents/xavier-sia-devel/app/templates/sia/history.hbs",
 		"/Users/kkohn/Documents/xavier-sia-devel/app/templates/404.hbs",
 		"/Users/kkohn/Documents/xavier-sia-devel/app/routes/404.coffee",
-		"/Users/kkohn/Documents/xavier-sia-devel/app/routes/index.coffee",
-		"/Users/kkohn/Documents/xavier-django/sia/permissions.py"
+		"/Users/kkohn/Documents/xavier-sia-devel/app/routes/index.coffee"
 	],
 	"find":
 	{
@@ -665,6 +685,13 @@
 		"height": 93.0,
 		"where_history":
 		[
+			"*.py",
+			"*.js",
+			"*.py",
+			"*.hbs",
+			"*",
+			"*.hbs",
+			"*.py",
 			"*",
 			"*.coffee",
 			"*.js",
@@ -785,14 +812,7 @@
 			"*.py",
 			"*.embl",
 			"*.coffee",
-			"*",
-			"*.coffe",
-			"*.embl",
-			"*.coffee",
-			"*.py",
-			"*.coffee",
-			"*.embl",
-			"*.coffee"
+			"*"
 		]
 	},
 	"find_state":
@@ -800,11 +820,60 @@
 		"case_sensitive": false,
 		"find_history":
 		[
-			"moment",
-			"self",
-			"resp",
-			" ]",
-			"change",
+			"/home/ext/ext-kai/bin/hcs_",
+			"Market",
+			"code",
+			"\\w+",
+			"^\\w+$",
+			"unquestionnably",
+			"\\w+",
+			"tingle",
+			"\\w+",
+			"^\\d+\\t\\d+\\t\\d+\\t",
+			"\\w+",
+			"gen_image_from_base64",
+			"grit",
+			"slugify",
+			"os",
+			"\"",
+			"update",
+			"new goal",
+			"title",
+			"models.CharField(max_length=2000",
+			"200",
+			"rating",
+			"€",
+			"\\d+	",
+			"steuerberaterin",
+			"data[\"results\"][\"collection1\"][0]",
+			"data[\"results\"][\"collection1\"]",
+			"\\(|\\)",
+			"\\(\\d+\\)",
+			"Frage ab",
+			"\\(|\\)",
+			"\\(\\d+\\)",
+			"collection1",
+			"collection2",
+			"page",
+			"https://www.yourxpert.de/xperts",
+			"\"",
+			"href",
+			"ASSEET_URL",
+			"https://alteo.aigloo.com/djs/assets/oneplace",
+			"gmail",
+			"2016",
+			"archive",
+			"admin",
+			"archive",
+			"weighScore",
+			".ember-content-editable:empty",
+			"weight",
+			"objective",
+			"objec",
+			"objective",
+			"receiver",
+			"receivers",
+			"REX_EXCEL_YEAR",
 			"sales team",
 			"region",
 			"wanna",
@@ -878,56 +947,7 @@
 			"jquery.poshytip.js",
 			"datesToBeShownSelect",
 			"dataFilters",
-			"extendedFilter",
-			"ext",
-			"(.*makeBoundHelper)",
-			".*makeBoundHelper",
-			"makeBoundHelper",
-			"Ember.HTMLBars.makeBoundHelper",
-			".@each\"",
-			"@each\"",
-			"@each",
-			"and",
-			"override-down",
-			"sum",
-			"forecast",
-			"total",
-			"defaultValue",
-			"base64_string",
-			"200",
-			"base64_string",
-			"str",
-			"email",
-			"image",
-			"self.img",
-			"buffer",
-			"150",
-			"cStringIO",
-			"imag",
-			"currency",
-			"200px",
-			"format",
-			"current_user.date_of_birth",
-			"upate",
-			"some upate on SIA",
-			"\"http://local.gracipe.com:8000",
-			"env",
-			"attach",
-			"granted_uids",
-			"DoesNotExist",
-			"SiaUser.get",
-			"env",
-			"ARIALUNI",
-			"strftime(\"%Y-%m-%d\") el",
-			"strftime(\"%Y-%m-%d\") ",
-			"strftime",
-			"sender",
-			"dj/sia",
-			"gmail",
-			"request",
-			" = ",
-			"ajax",
-			"feedbackTxt"
+			"extendedFilter"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -990,7 +1010,7 @@
 	"menu_visible": true,
 	"output.exec":
 	{
-		"height": 257.0
+		"height": 588.0
 	},
 	"output.find_results":
 	{
@@ -1000,7 +1020,7 @@
 	{
 		"height": 88.0
 	},
-	"pinned_build_system": "Packages/User/Python (xavier).sublime-build",
+	"pinned_build_system": "Packages/User/Anaconda Python.sublime-build",
 	"project": "tomato.sublime-project",
 	"replace":
 	{
@@ -1014,12 +1034,40 @@
 		"selected_items":
 		[
 			[
-				"index.hbs",
-				"app/templates/index.hbs"
+				"genj",
+				"xavier-django/_utils/generate_jwt_token.py"
 			],
 			[
 				"jwt",
 				"xavier-django/xavier/jwt_authentication_middleware.py"
+			],
+			[
+				"ben/models.py",
+				"xavier-django/ben/models.py"
+			],
+			[
+				"cli",
+				"xavier-ember/_utils/click_deploy_button.py"
+			],
+			[
+				"show-nice-file-link",
+				"xavier-ember/app/helpers/show-nice-file-link.coffee"
+			],
+			[
+				"gen",
+				"xavier-django/_utils/generate_jwt_token.py"
+			],
+			[
+				"sia.coffee",
+				"xavier-sia-devel/app/controllers/sia.coffee"
+			],
+			[
+				"sia.hbs",
+				"xavier-sia-devel/app/templates/sia.hbs"
+			],
+			[
+				"index.hbs",
+				"xavier-sia-devel/app/templates/sia/index.hbs"
 			],
 			[
 				"click",
@@ -1032,10 +1080,6 @@
 			[
 				"prospec",
 				"xavier-ember/app/controllers/prospects.coffee"
-			],
-			[
-				"gen",
-				"xavier-django/_utils/generate_jwt_token.py"
 			],
 			[
 				"models",
@@ -1166,10 +1210,6 @@
 				"xavier-sia-devel/app/controllers/sia.coffee"
 			],
 			[
-				"sia.hbs",
-				"xavier-sia-devel/app/templates/sia.hbs"
-			],
-			[
 				"view.",
 				"xavier-django/sia/views.py"
 			],
@@ -1268,10 +1308,6 @@
 			[
 				"djl",
 				"xavier-django/_test_deploy/dj_log"
-			],
-			[
-				"genj",
-				"xavier-django/_utils/generate_jwt_token.py"
 			],
 			[
 				"conindex",
@@ -1508,22 +1544,6 @@
 			[
 				"ben/serializers.py",
 				"xavier-django/ben/serializers.py"
-			],
-			[
-				"prospect.emb",
-				"xavier-ember/app/templates/prospects.embl"
-			],
-			[
-				"index.eml",
-				"xavier-ember/app/templates/index.embl"
-			],
-			[
-				"index.thml",
-				"xavier-ember/app/index.html"
-			],
-			[
-				"style",
-				"xavier-ember/app/styles/app.styl"
 			]
 		],
 		"width": 0.0
