@@ -9,7 +9,8 @@ import GameConfigParser from '../mixins/game-config-parser';
 import _ from 'lodash/lodash';
 
 export default Model.extend(GameConfigParser, {
-  rev         : attr('string'),
+  ts         : attr('number', { defaultValue(){ return new Date().getTime(); } }), //timeStamp
+  
   i18n: Ember.inject.service(),
 
   users: hasMany('user', { async: true }),

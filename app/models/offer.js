@@ -14,9 +14,7 @@ export default Model.extend({
   isAccepted  : attr('boolean', {defaultValue: false}),// before offer is 'accepted' it needs to be confirmed by both sides
 
   notes      : attr('string'),
-  ts         : attr('number', { 
-    defaultValue(){ return new Date().getTime(); }
-  }), //timeStamp
+  ts         : attr('number', { defaultValue(){ return new Date().getTime(); } }), //timeStamp
   
   weekNumber : attr('number'),
   game       : belongsTo('game'),
