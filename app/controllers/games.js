@@ -14,7 +14,6 @@ export default Ember.Controller.extend(OfferActions, LangActions, LogFunctions, 
   isEditing : true,
 
   historyCompletelyLoaded: Ember.observer("model.historyLogs.[]", "model.historyLogs.@each.isLoaded", function() {
-    let retVal = this.get("model.historyLogs").every((x)=>{ return x.get("isLoaded"); }); 
     this.set("showFilterTable", false);
   }),
 

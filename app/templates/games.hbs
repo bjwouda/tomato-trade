@@ -217,11 +217,11 @@
             </thead>
             <tbody>
 
-              {{#each game.sortedHistoryLogsById as |historicalOffer|}}
+              {{#each (take 20 game.sortedHistoryLogsById) as |historicalOffer|}}
 
                 <tr class="{{historicalOffer.cssStatus}}">
                   <td>{{historicalOffer.round}}</td>
-                  <td>{{historicalOffer.offerId}}</td>
+                  <td>{{historicalOffer.idxOfOfferInGame}}</td>
                   <td>{{historicalOffer.userSender}}</td>
                   <td>{{historicalOffer.userReceiver}}</td>
                   <td>{{historicalOffer.state}}</td>
