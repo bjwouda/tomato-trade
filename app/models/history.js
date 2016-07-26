@@ -1,3 +1,4 @@
+import Ember from 'ember';
 import Model from 'ember-data/model';
 import attr from 'ember-data/attr';
 import { belongsTo } from 'ember-data/relationships';
@@ -18,6 +19,14 @@ export default Model.extend({
     }), //timeStamp
     
     historyGame  : belongsTo('game'),
+
+    idxOfOfferInGame : Ember.computed("historyGame.offers.[]", function() {
+        let gameOffers = this.get("historyGame.offers");
+
+        if (gameOffers === undefined || gameOffers.map === undefined) { return 0; }
+
+        return gameOffers.map((x)=>{ return x.get("id"); }).indexOf(this.get("offerId"));
+    }),
 
     tsDesc     : Ember.computed('ts', function() {
         return moment(this.get("ts")).format("HH:mm:ss");
