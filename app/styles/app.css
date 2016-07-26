@@ -1,6 +1,9 @@
 @charset "UTF-8";
-@import url(https://fonts.googleapis.com/css?family=PT+Sans:700|Pacifico|Changa+One);
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700);
 
+* {
+  font-family: 'Open Sans', sans-serif;
+}
 
 .game-config-textarea {
   font-family: "Courier New";
@@ -8,8 +11,7 @@
 }
 
 .title-container {
-  font-family: "Pacifico", cursive;
-  font-weight: 400;
+  font-weight: 700;
   position: relative;
   margin: 20px auto;
   width: 100%;
