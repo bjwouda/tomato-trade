@@ -13,6 +13,10 @@ export default Ember.Controller.extend(OfferActions, LangActions, LogFunctions, 
 
   isEditing : true,
 
+  historyCompletelyLoaded: Ember.computed("model.historyLogs.@each.isLoaded", function() {
+    return this.get("model.historyLogs").every((x)=>{return x.get("isLoaded")});
+  }),
+
   columns: [
     {
       "propertyName": "round",

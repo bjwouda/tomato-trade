@@ -63,9 +63,6 @@ function getRetailpriceForRound(round) {
 }
 
 let rawConfigString = `
-# fooo asbdflk asdfö lkjas, , , , , , 
-# fooo asbdflk asdfö lkjas, , , , , , 
-# fooo asbdflk asdfö lkjas, , , , , , 
 game        , w1  , w2   , d1  , w3  , d2  ,   w4,    d3,   d4  # 4 weeks, 10 trades
 retailPrice  , 1.0 , 1.0  , 1.0 ,  1.0, 1.0 , 1.0 , 1.0  x,  1.0  # 4 weeks, 10 trades
 b1          , 1000, 12000, 1000, 1000, 1000, 1000, 12000, 1000

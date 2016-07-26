@@ -17,6 +17,7 @@ export default Ember.Controller.extend({
     },
 
     removeGame(game) {
+    	
       game.destroyRecord();
     },
   }
