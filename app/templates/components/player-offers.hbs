@@ -28,4 +28,8 @@
     </li>
   {{/each}}
 
+{{#if (and (not openOffers) (not sentOffers))}}
+  <li class="list-group-item"><i>N/A</i></li>
+{{/if}}
+
 {{yield}}

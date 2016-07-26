@@ -2,11 +2,57 @@
 
 <div class="container">
   
-  {{#timer-jumbotron game=game}}
-      <div class="line-1">{{t 'player.title'}}</div>
-      <div class="line-2">{{capitalize (t model.roleDescription)}} #{{model.playerPosition}}</div>
-      <div class="line-2">{{model.name}}</div>
-  {{/timer-jumbotron}}
+
+
+  <div class="row">
+      <div class="col-sm-5">
+        
+        {{#timer-jumbotron game=game}}
+            <div class="line-1">{{capitalize (t model.roleDescription)}} #{{model.playerPosition}} {{model.name}}</div>
+        {{/timer-jumbotron}}
+
+      </div>
+      <div class="col-sm-7">
+        <div class="" style="background-color: #eeeeee;padding: 22px 10px;border-radius: 5px; min-height: 200px; font-size: 14pt;">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>{{capitalize (t 'goalTomatoes')}}</th>
+                <th>{{capitalize (t 'tomatoes')}}</th>
+                <th>{{capitalize (t 'remainingTomatoes')}}</th>
+                <th>{{capitalize (t 'avgTomatoPrice')}}</th>
+                {{#if model.isSeller}}
+                  <th>{{capitalize (t 'sellerKPI')}}</th>
+                {{else}}
+                  <th>{{capitalize (t 'fine')}}</th>
+                  <th>{{capitalize (t 'fixedCost')}}</th>
+                  <th>{{capitalize (t 'retailPrice')}}</th>
+                  <th>{{capitalize (t 'buyerKPI')}}</th>
+                {{/if}}
+              </tr>
+              
+            </thead>
+            <tbody>
+              <tr>
+                <td>{{model.goalTomatoes}}  <span class="to-tomato"></span></td>
+                <td>{{model.tomatoes}} <span class="to-tomato"></span></td>
+                <td>{{model.remainingTomatoes}} <span class="to-tomato"></span></td>
+                <td>{{digit-format model.avgTomatoPrice}} <span class="to-price"></span></td>
+                {{#if model.isSeller}}
+                  <td>{{digit-format model.sellerKPI}}</td>
+                {{else}}
+                  <td>{{digit-format model.userGame.fine}}</td>
+                  <td>{{digit-format model.userGame.fixedCost}}</td>
+                  <td>{{digit-format model.userGame.retailPrice}}</td>
+                  <td>{{digit-format model.buyerKPI}}</td>
+                {{/if}}
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+  </div>
 
   <div class="row">
       
@@ -28,84 +74,66 @@
                     <div class="form-group">
                       <label for="offerPrice">{{t 'price'}} <span class="to-money"></span></label>
                       {{input value=obj.user._offerPrice type="number" class="form-control" placeholder="price per kg"}}
+                      {{#if (and (gt obj.user._offerTomato 0) (gt obj.user._offerPrice 0))}}
+                        {{#if (eq k 'External')}}
+                            <button class="btn btn-info" {{action 'sendOffer' game model 0 obj.user._offerTomato obj.user._offerPrice}}>{{t 'send'}}</button>
+                        {{else}}
+                          <button class="btn btn-info" {{action 'sendOffer' game model obj.user obj.user._offerTomato obj.user._offerPrice}}>{{t 'send'}}</button>
+                        {{/if}}
+                      {{else}}
+                        {{#if (eq k 'External')}}
+                            <button disabled class="btn btn-default" {{action 'sendOffer' game model 0 obj.user._offerTomato obj.user._offerPrice}}>{{t 'send'}}</button>
+                        {{else}}
+                          <button disabled class="btn btn-default" {{action 'sendOffer' game model obj.user obj.user._offerTomato obj.user._offerPrice}}>{{t 'send'}}</button>
+                        {{/if}}
+                      {{/if}}
                     </div>
                     
                     <p>
-                      {{#if (and (gt obj.user._offerTomato 0) (gt obj.user._offerPrice 0))}}
-                        {{#if (eq k 'External')}}
-                            <button class="btn btn-default" {{action 'sendOffer' game model 0 obj.user._offerTomato obj.user._offerPrice}}>{{t 'sendOfferTo'}} <b>{{obj.user.name}}</b></button>
-                        {{else}}
-                          <button class="btn btn-default" {{action 'sendOffer' game model obj.user obj.user._offerTomato obj.user._offerPrice}}>{{t 'sendOfferTo'}} <b>{{obj.user.name}}</b></button>
-                        {{/if}}
-                      {{/if}}
                     </p>
                 </div>
               </li>
           </ul>
+
           <ul class="list-group">
-              
-              {{player-offers store=store game=game openOffers=(reverse obj.openOffers) sentOffers=(reverse obj.sentOffers)}}
-              
+              <li class="list-group-item">
+                <strong>{{t "currentTransaction"}}</strong>
+              </li>
+              {{player-offers 
+                store=store 
+                game=game 
+                openOffers=(reverse obj.openOffers) 
+                sentOffers=(reverse obj.sentOffers)}}
+          </ul>
+          
+          <ul class="list-group">
+              <li class="list-group-item">
+                <strong>{{t 'last5Transactions'}}</strong>
+              </li>
+
               {{#each (take 5 (reverse obj.history)) as |offer|}}
                   <li class="list-group-item">[{{offer.state}}] <b>{{offer.senderName}}</b> --&gt; <b>{{offer.receiverName}}</b>  {{moment-format offer.ts "HH:mm:ss"}} / {{moment-from-now offer.ts hideSuffix=true interval=1000}} T: {{offer.tomatoes}} M: {{offer.price}}</li>
+              {{else}}
+                  <li class="list-group-item"><i>{{t "na"}}</i></li>
+              {{/each}}
+
+          </ul>
+
+          <ul class="list-group">
+              <li class="list-group-item">
+                <strong>{{t "previousAcceptedOffers"}}</strong>
+              </li>
+              {{#each (filter-by "state" "accepted" (reverse obj.history))  as |offer|}}
+                  <li class="list-group-item">[{{offer.state}}] <b>{{offer.senderName}}</b> --&gt; <b>{{offer.receiverName}}</b>  {{moment-format offer.ts "HH:mm:ss"}} / {{moment-from-now offer.ts hideSuffix=true interval=1000}} T: {{offer.tomatoes}} M: {{offer.price}}</li>
+              {{else}}
+                <li class="list-group-item"><i>{{t "na"}}</i></li>
               {{/each}}
           </ul>
+
       </div>
     {{/each-in}}
 
   </div> 
-  
-  <div class="row">
-
-    <div class="col-sm-6">
-      <h3>{{t 'player.resourceOverview'}}</h3>
-
-      <table class="table table-bordered table-hover">
-        <thead>
-          <tr>
-            <th>{{t "type"}}</th>
-            <th>{{t "amount"}}</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-          {{!--<tr>--}}
-          {{!--  <td>{{capitalize (t 'money')}}</td>--}}
-          {{!--  <td>{{model.money}}  <span class="to-money"></span></td>--}}
-          {{!--</tr>--}}
-            <td>{{capitalize (t 'goalTomatoes')}}</td>
-            <td>{{model.goalTomatoes}}  <span class="to-tomato"></span></td>
-          </tr>
-          <tr>
-            <td>{{capitalize (t 'tomatoes')}}</td>
-            <td>{{model.tomatoes}} <span class="to-tomato"></span></td>
-          </tr>
-          <tr>
-            <td>{{capitalize (t 'remainingTomatoes')}}</td>
-            <td>{{model.remainingTomatoes}} <span class="to-tomato"></span></td>
-          </tr>
-          <tr>
-            <td>{{capitalize (t 'avgTomatoPrice')}}</td>
-            <td>{{digit-format model.avgTomatoPrice}} <span class="to-price"></span></td>
-          </tr>
-        </tbody>
-      </table>
-
-    </div>  {{!-- end col-sm-6 --}}
-
-  </div>  {{!-- <div class="row"> --}}
-
-  <div class="row">
-    <div class="col-sm-12">
-      <h3>{{t 'player.history'}}</h3>
-      <ul class="list-group">
-        {{#each model.historicOffers as |offer|}}
-          <li class="list-group-item">[{{offer.state}}] <b>{{offer.senderName}}</b> --&gt; <b>{{offer.receiverName}}</b>  {{moment-format offer.ts "HH:mm:ss"}} / {{moment-from-now offer.ts hideSuffix=true interval=1000}} T: {{offer.tomatoes}} M: {{offer.price}}</li>
-        {{/each}}
-      </ul>
-    </div>
-  </div>
-
 
   {{outlet}}
 

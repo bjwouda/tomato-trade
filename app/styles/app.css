@@ -19,6 +19,10 @@
   opacity: 0.8;
 }
 
+.jumbotron {
+  padding: 5px;
+}
+
 .line-1 {
   position: relative;
   display: block;
@@ -48,7 +52,7 @@
 
 span.to-tomato {
     color: #D20009;
-    font-size: 18pt;
+    /*font-size: 18pt;*/
 }
 
 span.to-tomato:before{
@@ -59,7 +63,7 @@ span.to-tomato:before{
 
 span.to-money {
     color: #8C9566;
-    font-size: 18pt;
+    /*font-size: 18pt;*/
 }
 
 span.to-money:before{

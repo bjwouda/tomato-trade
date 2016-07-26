@@ -23,8 +23,14 @@ export default Ember.Component.extend({
 				return;
 			}
 
+			let nowMoment = moment();
+			let endMoment = moment(self.get("timeEndTs"));
+			self.set("timeMissingMin", endMoment.diff(nowMoment, 'minutes'));
+			self.set("timeMissingSec", endMoment.diff(nowMoment, 'seconds'));
+
 			var currDiff = Date.now() - self.get("timeStartTs");
 			var totalDiff = (self.get("timeEndTs") - self.get("timeStartTs")); // turn ms into min
+
 			var ratio = (currDiff / totalDiff);
 			ratio = Math.min(ratio, 1.0);
 
@@ -43,6 +49,11 @@ export default Ember.Component.extend({
 
 		this.set("timerHandle", timerHandle);
 	}),
+
+	timeMissingAlert: Ember.computed("timeMissingSec", function() {
+		return +this.get("timeMissingSec") < 60;
+	}),
+
 
 	hDeg: Ember.computed("h", "m", function() {
 		return 360.0 * this.get("h") * (1.0 / 12.0);

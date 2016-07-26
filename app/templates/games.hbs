@@ -70,7 +70,6 @@
             {{/if}}
             
             <li class="nav-divider"></li>
-            {{game.roundCnt}}
 
             {{#each game.gameMatrix as |item index|}}
               <li>
@@ -97,6 +96,8 @@
 
       <br>
       <div class="jumbotron">
+        <button class="close" {{action (toggle "isConfiguration" this)}}>X</button>
+
         <a href="#" class="visible-xs" data-toggle="offcanvas"><i class="fa fa-lg fa-reorder"></i></a>
         <div class="title-container">
           <span class="line-1">Game Configuration</span>
@@ -121,12 +122,6 @@
           <p>Number of Buyers: {{game.numberOfPlayers.nrOfBuyers}} </p>
           <p>Number of Sellers: {{game.numberOfPlayers.nrOfSellers}} </p>
           <p>Number of Rounds: {{game.numberOfRounds.total}} </p>
-
-          <h3>Following rounds will be played:</h3>
-          {{#each game.gameMatrix as |round|}}
-            <p>{{round.roundTitle}}</p>
-            <p>{{round.playerSettings}}</p>
-          {{/each}}
 
         {{/if}}
 
@@ -191,7 +186,13 @@
                       Historical Offers 
                       <button type="button" class="btn btn-primary btn-xs" {{action 'exportCSV' game.historyLogs}}>Export CSV</button></h4>
                     </span>
-      <div class="table-responsive">
+      
+{{!--       {{models-table
+            data=game.sortedHistoryLogsById
+            columns=columns}}
+       --}}
+
+   {{!--    <div class="table-responsive">
         <table class="table table-striped">
           <thead>
             <tr>
@@ -222,7 +223,7 @@
 
           </tbody>
         </table>
-      </div>
+      </div> --}}
 
     {{/unless}}
 

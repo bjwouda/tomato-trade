@@ -12,6 +12,38 @@ export default Ember.Controller.extend(OfferActions, LangActions, {
 
   isEditing : true,
 
+  columns: [
+    {
+      "propertyName": "round",
+      "title": "Round"
+    },
+    {
+      "propertyName": "offerId",
+      "title": "Offerid"
+    },
+    {
+      "propertyName": "userSender",
+      "title": "Usersender"
+    },
+    {
+      "propertyName": "userReceiver",
+      "title": "Userreceiver"
+    },
+    {
+      "propertyName": "state",
+      "title": "State"
+    },
+    {
+      "propertyName": "offer",
+      "title": "Offer"
+    },
+    {
+      "propertyName": "ts",
+      "title": "Ts"
+    },
+
+  ],
+
   // isConfiguration   : Ember.computed("model.[]", function() {
   //   return this.get("model.length") !== 0;
   // }),
@@ -195,6 +227,7 @@ export default Ember.Controller.extend(OfferActions, LangActions, {
         // historyElement => 1x historical element
         // now go through each element in titles and get it from historyElement
         var resolvedTitles = titles.map((titleElement) => {
+          if (true) {}
           return historyElement.get(titleElement);
         });
         data.push(resolvedTitles);

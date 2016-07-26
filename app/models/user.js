@@ -71,7 +71,7 @@ export default Model.extend({
     let costBuying      = Math.abs(this.get("money"));
     let totalFixedCosts = Math.abs(this.get("goalTomatoes") * this.get("userGame.fixedCost"));
     let totalFine       = Math.abs(this.get("remainingTomatoes") * this.get("userGame.fine"));
-    let revenue             = Math.abs(this.get("tomatoes") * this.get("userGame.retailPrice"));
+    let revenue         = Math.abs(this.get("tomatoes") * this.get("userGame.retailPrice"));
     return (revenue - costBuying - totalFixedCosts - totalFine) / this.get("goalTomatoes");
   }),
 
@@ -82,7 +82,7 @@ export default Model.extend({
     return `${prefix}${pos}`;
   }),
 
-  //Result Seller1, Seller2, Buyer1, Buyer2
+  //Result Seller 1 - Bob
   descriptivePlayerIdInGame: Ember.computed("playerPosition", "name", function() {
     let prefix = this.get("isSeller") ? "Seller " : "Buyer ";
     let pos = this.get("playerPosition");

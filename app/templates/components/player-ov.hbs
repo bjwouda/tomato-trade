@@ -16,7 +16,6 @@
   <div class="form-group">
     <label>Name: </label> {{input value=player.name class="form-control" }}
   </div>
-{{/if}}
 
 <div class="table-responsive">
   <table class="table-borderless">
@@ -37,44 +36,79 @@
   </table>
 </div>
 <hr>
-<span class="title-container"><h4>
-                  External Offer 
-                  <button class="btn btn-primary btn-xs" {{action 'sendOffer' game 0 player player._offerTomato player._offerPrice}}>Send Offer</button></h4>
-                </span>
-<div class="table-responsive">
-  <table class="table-borderless">
-    <thead>
-      <tr>
-        <th>{{capitalize (t 'tomatoes')}}:</th>
-        <th><span style="margin-left:4em"></span></th>
-        <th>{{capitalize (t 'price')}}:</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>{{input value=player._offerTomato class="form-control" size="20"}}</td>
-        <td> </td>
-        <td>{{input value=player._offerPrice class="form-control" size="20"}}</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
 
+{{/if}}
 
-  <h5>Received offers</h5>
   <ul class="list-group">
+
+    <li class="list-group-item">
+      <div class="table-responsive">
+        <table class="table-borderless">
+          <thead>
+            <tr>
+              <th>{{capitalize (t 'tomatoes')}}:</th>
+              <th><span style="margin-left:2em"></span></th>
+              <th>{{capitalize (t 'price')}}:</th>
+              <th><span style="margin-left:2em"></span></th>
+              <th><span style="margin-left:0em"></span></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{{input value=player._offerTomato class="form-control" size="20"}}</td>
+              <td> </td>
+              <td>{{input value=player._offerPrice class="form-control" size="20"}}</td>
+              <td> </td>
+              <td> <button class="btn btn-primary btn-xs" {{action 'sendOffer' game 0 player player._offerTomato player._offerPrice}}>Send Offer</button> </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </li>
+  
+    <li class="list-group-item">
+      <strong>Received offers</strong>
+    </li>
+
 	{{!-- attention, the relation ship of sent/received offers is swiched in this view
 		  as the external party is the counter-party for the player --}}
 	{{player-offers store=store game=game openOffers=player.externalOffers.sentOffers sentOffers=player.externalOffers.openOffers}}
-  {{player-offers store=store game=game openOffers=player.externalOffers.openOffers sentOffers=player.externalOffers.sentOffers}}
 
-  <p>goalTomatoes: {{player.goalTomatoes}}</p>
-  <p>tomatoes: {{player.tomatoes}}</p>
-  <p>money: {{player.money}}</p>
-  <p>avgTomatoPrice: {{player.avgTomatoPrice}}</p>
-  <p>sellerKPI: {{player.sellerKPI}}</p>
-  <p>buyerKPI: {{player.buyerKPI}}</p>
+{{!--   {{player-offers store=store game=game openOffers=player.externalOffers.openOffers sentOffers=player.externalOffers.sentOffers}} --}}
 
+  </ul>
+
+  <ul class="list-group">
+    <li class="list-group-item" style="padding: 0">
+      <table class="table">
+        <tbody>
+          <tr>
+            <td>{{t "goalTomatoes"}}</td>
+            <td>{{player.goalTomatoes}}</td>
+          </tr>
+          <tr>
+            <td>{{t "tomatoes"}}</td>
+            <td>{{player.tomatoes}}</td>
+          </tr>
+          <tr>
+            <td>{{t "money"}}</td>
+            <td>{{player.money}}</td>
+          </tr>
+          <tr>
+            <td>{{t "avgTomatoPrice"}}</td>
+            <td>{{digit-format player.avgTomatoPrice}}</td>
+          </tr>
+          <tr>
+            <td>{{t "sellerKPI"}}</td>
+            <td>{{digit-format player.sellerKPI}}</td>
+          </tr>
+          <tr>
+            <td>{{t "buyerKPI"}}</td>
+            <td>{{digit-format player.buyerKPI}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </li>
   </ul>
 
 {{yield}}

@@ -11,6 +11,7 @@ export default {
 	"receivedOffers": "Received offers",
 	"sentOffers": "Sent offers",
 	"offerNotValid": "Please place a valid offer where both values are greater 0",
+	"timeUp": "Time is up! Please finish your trade.",
 
 	"accept": "accept",
 	"decline": "decline",
@@ -19,6 +20,8 @@ export default {
 	"accepted": "accepted",
 	"declineed": "declined",
 	"recalled": "recalled",
+
+	"remainingTomatoes": "!!!Remaining tomatoes",
 
 	"buyer": "buyer",
 	"seller": "seller",
