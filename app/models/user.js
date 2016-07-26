@@ -3,46 +3,20 @@ import Model from 'ember-data/model';
 import attr from 'ember-data/attr';
 import { belongsTo, hasMany } from 'ember-data/relationships';
 
-
+import storeWithWeek from '../utils/store-with-week';
 import _ from 'lodash/lodash';
 
-function storeWithWeek(key) {
-  return Ember.computed("userGame.weekCnt", "playerWeekStatus", {
-    get() {
-      let weekCnt = this.get("userGame.weekCnt");
-      let tmpKey = `playerWeekStatus.w${weekCnt}.${key}`;
-      return this.get(tmpKey) || 0;
-    },
-    set() {
-      if (! this.get("playerWeekStatus")) { this.set("playerWeekStatus", {}); }
-      
-      let val = arguments[1];
-      let weekCnt = this.get("userGame.weekCnt");
-      var previousObj = this.get("playerWeekStatus");
 
-
-      console.debug(previousObj);
-
-      if (!weekCnt) {return;}
-
-      if (! previousObj[`w${weekCnt}`]) { previousObj[`w${weekCnt}`] = {}; }
-      previousObj[`w${weekCnt}`][key] = val;
-      console.debug(previousObj);
-
-
-      this.set("playerWeekStatus", previousObj);
-      return val;
-    }
-  });
-}
 
 export default Model.extend({
   // normal attribtues
   name               : attr('string'),
   
-  goalTomatoes       : storeWithWeek("goalTomatoes"),
-  tomatoes           : storeWithWeek("tomatoes"),
-  money              : storeWithWeek("money"),
+  goalTomatoes       : storeWithWeek("userGame.weekCnt", "goalTomatoes"),
+  tomatoes           : storeWithWeek("userGame.weekCnt", "tomatoes"),
+  money              : storeWithWeek("userGame.weekCnt", "money"),
+  extOfferTomato     : storeWithWeek("userGame.weekCnt", "extOfferTomato"),
+  extOfferPrice      : storeWithWeek("userGame.weekCnt", "extOfferPrice"),
   
   isSeller           : attr('boolean'),
   playerWeekStatus   : attr('json'),

@@ -16,7 +16,8 @@ export default Ember.Controller.extend(OfferActions, LangActions, LogFunctions, 
   columns: [
     {
       "propertyName": "round",
-      "title": "Round"
+      "title": "Round",
+      "filterWithSelect": true
     },
     {
       "propertyName": "offerId",
@@ -163,11 +164,14 @@ export default Ember.Controller.extend(OfferActions, LangActions, LogFunctions, 
 
       game.incrementProperty("roundCnt", 1);
       game.save().then(() => {
-
+        let newRetailPrice = game.getRetailpriceForRound(game.get("roundCnt"));
+        game.set("retailPrice", newRetailPrice);
       });
 
       game.get("allUsers").forEach((u) => {
         u.set("goalTomatoes", game.getValueforUserCurrentRound(u.get("playerIdInGame")));
+        u.set("extOfferTomato", game.getValueforUserCurrentRound(u.get("playerIdInGame"), '_extTomato'));
+        u.set("extOfferPrice", game.getValueforUserCurrentRound(u.get("playerIdInGame"), '_extPrice'));
         u.save();
       });
 

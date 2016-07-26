@@ -4,32 +4,38 @@ import attr from 'ember-data/attr';
 import { hasMany } from 'ember-data/relationships';
 
 import GameConfigParser from '../mixins/game-config-parser';
+import storeWithWeek from '../utils/store-with-week';
 
 
 import _ from 'lodash/lodash';
 
 export default Model.extend(GameConfigParser, {
-  ts         : attr('number', { defaultValue(){ return new Date().getTime(); } }), //timeStamp
-  
   i18n: Ember.inject.service(),
-
-  users: hasMany('user', { async: true }),
-  offers: hasMany('offer', { async: true }),
-  historyLogs: hasMany('history', { async: true }),
-  history: attr('string'),
-  
-  minutesPerRound: attr('number', { defaultValue: 5 }),
-  fine: attr('number', { defaultValue: 0.2 }),
-  fixedCost: attr('number', { defaultValue: 0.05 }),
-  retailPrice: attr('number', { defaultValue: 1.20 }),
-  
-  roundCnt: attr('number', { defaultValue: 0 }),
-
-  //Config Scenarios
+  ts:                attr('number', { defaultValue(){ return new Date().getTime(); } }), //timeStamp
+  history:           attr('string'),
   gameConfiguration: attr('string'), // CHECK THE MIXIN, quite some stuff attached there...
-  timeStartTs: attr('number'),
-  timeEndTs: attr('number'),
-  timePausedTs: attr('number'),
+  
+  roundCnt:          attr('number', { defaultValue: 0 }),
+  minutesPerRound:   attr('number', { defaultValue: 5 }),
+  fine:              attr('number', { defaultValue: 0.2 }),
+  fixedCost:         attr('number', { defaultValue: 0.05 }),
+  timeStartTs:       attr('number'),
+  timeEndTs:         attr('number'),
+  timePausedTs:      attr('number'),
+  
+  retailPrice:       storeWithWeek("roundCnt", "retailPrice"),
+  playerWeekStatus:  attr('json', { defaultValue: {} }),
+
+  users:             hasMany('user', { async: true }),
+  offers:            hasMany('offer', { async: true }),
+  historyLogs:       hasMany('history', { async: true }),
+
+  //                                     __           __
+  //   _________  ____ ___  ____  __  __/ /____  ____/ /
+  //  / ___/ __ \/ __ `__ \/ __ \/ / / / __/ _ \/ __  /
+  // / /__/ /_/ / / / / / / /_/ / /_/ / /_/  __/ /_/ /
+  // \___/\____/_/ /_/ /_/ .___/\__,_/\__/\___/\__,_/
+  //                    /_/
 
   isPaused: Ember.computed("timePausedTs", function() { return this.get("timePausedTs") !== undefined && this.get("timePausedTs") !== null; }),
 

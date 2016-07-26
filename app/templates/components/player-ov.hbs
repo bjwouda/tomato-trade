@@ -55,11 +55,11 @@
           </thead>
           <tbody>
             <tr>
-              <td>{{input value=player._offerTomato class="form-control" size="20"}}</td>
+              <td>{{input value=player.extOfferTomato class="form-control" size="20"}}</td>
               <td> </td>
-              <td>{{input value=player._offerPrice class="form-control" size="20"}}</td>
+              <td>{{input value=player.extOfferPrice class="form-control" size="20"}}</td>
               <td> </td>
-              <td> <button class="btn btn-primary btn-xs" {{action 'sendOffer' game 0 player player._offerTomato player._offerPrice}}>Send Offer</button> </td>
+              <td> <button class="btn btn-primary btn-xs" {{action 'sendOffer' game 0 player player.extOfferTomato player.extOfferPrice}}>Send Offer</button> </td>
             </tr>
           </tbody>
         </table>

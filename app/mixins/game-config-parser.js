@@ -53,11 +53,11 @@ export default Ember.Mixin.create({
   numberOfPlayers: Ember.computed("cleanLines", function() {
   	let cleanLines = this.get("cleanLines");
     let buyers = cleanLines
-    	.filter((x) => { return /^b\d+/.test(x); })
+    	.filter((x) => { return /^b\d+\b/.test(x); })
     	.map((x) => { return x.split(",")[0]; })
     ;
     let sellers = cleanLines
-    	.filter((x) => { return /^s\d+/.test(x); })
+    	.filter((x) => { return /^s\d+\b/.test(x); })
     	.map((x) => { return x.split(",")[0]; })
     ;
     let allPlayerIds = [].concat(buyers, sellers);
@@ -76,10 +76,10 @@ export default Ember.Mixin.create({
         let tradeType = x.startsWith("w") ? "Weekly trade" : "Daily trade";
         let tradingFor = /\d+/.exec(x)[0];
         let currentWeek = +tradingFor + (x.startsWith("w") ? -1 : 0);
-        let roundTitle = `#${round} Week: ${currentWeek}: ${tradeType} for Week ${tradingFor}`
-        let playerSettings = allPlayerIds.map( (x)=> { return this.getValueForUserAndRound(cleanLines, x, round) } );
+        let roundTitle = `#${round} Week: ${currentWeek}: ${tradeType} for Week ${tradingFor}`;
+        let playerSettings = allPlayerIds.map( (x)=> { return this.getValueForUserAndRound(cleanLines, x, round); } );
         return { round, roundTitle, playerSettings, tradingFor, tradeType};
-      })
+      });
 
       console.log(gameMatrix[0]);
       console.log(gameMatrix);
@@ -98,7 +98,7 @@ export default Ember.Mixin.create({
 
     let gameLine = this.getGameLine(cleanLines);
     var gameSegments = gameLine.split(",");
-    gameSegments.shift() // remove first element
+    gameSegments.shift(); // remove first element
     console.log(gameSegments);
     let total = gameSegments.length;
     let weeks = gameSegments.filter((x) => {
@@ -113,28 +113,32 @@ export default Ember.Mixin.create({
     return cleanLines.filter((x) => { return /^game/.test(x); })[0];
   },
 
-  getValueforUserCurrentRound(user) {
+  getValueforUserCurrentRound(user, postFix = '') {
     let cleanLines = this.get("cleanLines");
     let roundCnt = this.get("roundCnt");
-    return this.getValueForUserAndRound(cleanLines, user, roundCnt);
+    return this.getValueForUserAndRound(cleanLines, user, roundCnt, postFix);
   },
 
-  getValueForUserAndRound(cleanLines, user, round) {  
+  getValueForUserAndRound(cleanLines, user, round, postFix = '') {  
     if (!user) {
       throw "user must exist";
     }
     if (round <= 0) {
       throw "round must be greater 0"; }
 
-    let userLine = cleanLines.filter((x) => {
-      return x.startsWith(user); })[0];
+    let userLine = cleanLines.filter((x) => { return x.startsWith(`${user}${postFix}`); })[0];
     return userLine.split(",")[round];
   },
 
+  getRetailpriceForRound(round) {
+    let cleanLines = this.get("cleanLines");
+    let retailPrice = cleanLines.filter( (x) => { return x.startsWith("retailPrice"); } )[0];
+    return retailPrice.split(",")[round];
+  },
 
   sanityCheck(rawConfigString) {
     let cleanLines = rawConfigString.split("\n")
-      .filter((x) => { return /^(game|b\d+|s\d+)/.test(x); })
+      .filter( (x) => {return /^(game|b\d+|s\d+|retailPrice)/.test(x);} )
       .map((x) => { return x.replace(/#.*$/, "").replace(/\s+/g, ""); });
 
     let gameLinePresent = cleanLines
@@ -143,13 +147,15 @@ export default Ember.Mixin.create({
       throw "Please check how to create a game config, game line not found"; }
 
     let checkNumbers = cleanLines.map((x) => { return x.split(",").length - 1; });
-    let sameCommas = checkNumbers.every((x) => { return x == checkNumbers[0]; });
+    let sameCommas = checkNumbers.every((x) => { return x === checkNumbers[0]; });
     if (!sameCommas) {
       throw "The game config has not the same amount of colums in every row, plase cound <,> in the config again"; }
 
     let uniqueUsers = cleanLines
-      .filter((x) => { return /^(b|s)\d+/.test(x); })
-      .map((x) => { return x.split(",")[0]; });
+      .filter( (x) => { return /^(b|s)\d+\b/.test(x); } )
+      .map((x) => { return x.split(",")[0]; })
+    ;
+
     if (_.uniq(uniqueUsers).length !== uniqueUsers.length) {
       throw "Every user must be unique in the config, two times b1 causes errors"; }
 
