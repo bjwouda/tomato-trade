@@ -61,7 +61,7 @@ export default Model.extend(GameConfigParser, {
   sortedOffers: Ember.computed.sort('offers', 'offerSortingDesc'),
 
   //Descending sort to historyLogs
-  historyLogsSortingDescById  : ['round:asc', 'offerId:asc', 'ts:asc'],
+  historyLogsSortingDescById  : ['ts:asc'],
   sortedHistoryLogsById: Ember.computed.sort('historyLogs', 'historyLogsSortingDescById'),
 
   sellers: Ember.computed.filter('users.@each.isSeller',

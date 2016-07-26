@@ -70,11 +70,13 @@
             {{/if}}
             
             <li class="nav-divider"></li>
+            {{game.roundCnt}}
 
             {{#each game.gameMatrix as |item index|}}
               <li>
-                {{#if (eq item.round game.roundCnt)}}
-                  <b>Round {{item.round}} {{item.tradeType}}</b>
+                {{#if (eqNum item.round game.roundCnt)}}
+                  <strong>Round {{item.round}} {{item.tradeType}}</strong>
+                  
                 {{else}}  
                   Round {{item.round}} {{item.tradeType}}
                 {{/if}}

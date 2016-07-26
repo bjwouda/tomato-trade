@@ -4,7 +4,15 @@ import _ from 'lodash/lodash';
 
 export default Ember.Mixin.create({
 
-  gameConfigurationRO: Ember.computed.oneWay("gameConfiguration"),
+  gameConfigurationRO: Ember.computed("gameConfiguration", {
+    get() {
+      return this.get("gameConfiguration");
+    },
+    set() {
+      let val = arguments[1];
+      return val.replace(/\t/g, ",");
+    }
+  }),
 
   gameConfigurationValid: Ember.computed("gameConfiguration", function() {
     try {

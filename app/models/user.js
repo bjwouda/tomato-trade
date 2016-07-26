@@ -14,19 +14,23 @@ function storeWithWeek(key) {
       return this.get(tmpKey) || 0;
     },
     set() {
+      if (! this.get("playerWeekStatus")) { this.set("playerWeekStatus", {}); }
+      
       let val = arguments[1];
       let weekCnt = this.get("userGame.weekCnt");
-      var previousObj = this.get("playerWeekStatus") || {};
+      var previousObj = this.get("playerWeekStatus");
+
+
+      console.debug(previousObj);
 
       if (!weekCnt) {return;}
 
       if (! previousObj[`w${weekCnt}`]) { previousObj[`w${weekCnt}`] = {}; }
       previousObj[`w${weekCnt}`][key] = val;
+      console.debug(previousObj);
 
-      console.log(previousObj);
 
       this.set("playerWeekStatus", previousObj);
-      // this.save();
       return val;
     }
   });
@@ -41,7 +45,7 @@ export default Model.extend({
   money              : storeWithWeek("money"),
   
   isSeller           : attr('boolean'),
-  playerWeekStatus   : attr({defaultValue: {}}),
+  playerWeekStatus   : attr('json'),
 
   // relational attributes
   userGame           : belongsTo('game'),

@@ -77,17 +77,10 @@ export default Ember.Controller.extend(OfferActions, LangActions, {
         return;
       }
 
-      //Using same properties to log moving to the next round
-      var newOffer = this.store.createRecord('offer', {
-        ts: new Date().getTime(),
-        state: "New Round:",
-        notes: "Moving from round " + game.get("roundCnt")  + " to round" + (game.get("roundCnt") + 1) + "\n"
-      });
-
       //Create history record to record moving to the next round
       if (game.get("roundCnt") !== 0){
         var newHistoryObj = this.store.createRecord('history', {
-          offerId      : newOffer.id,
+          offerId      : undefined,
           userSender   : "Round " + (game.get("roundCnt") + 1),
           userReceiver : "Round " + (game.get("roundCnt") + 2),
           state        : "New Round",
@@ -98,7 +91,7 @@ export default Ember.Controller.extend(OfferActions, LangActions, {
         
       } else {
         var newHistoryObj = this.store.createRecord('history', {
-          offerId      : newOffer.id,
+          offerId      : undefined,
           userSender   : "Game starting",
           userReceiver : "Setting up:",
           state        : "First Round",
@@ -108,14 +101,24 @@ export default Ember.Controller.extend(OfferActions, LangActions, {
         });     
       }
       
-
-      game.get('offers').addObject(newOffer);
-      game.get('historyLogs').addObject(newHistoryObj);
-
-      newOffer.save().then(() => {
-        game.save();
-        return true;
+      game.get("users").map((u) => {
+        let userHistory = this.store.createRecord('history', {
+          offerId      : undefined,
+          userSender   : `Stats for ${u.get("descriptivePlayerIdInGame")}`,
+          userReceiver : "",
+          state        : "",
+          cssStatus    : "info",
+          offer        : "",
+          round        : "Round " + game.get("roundCnt")
+        });     
+        game.get('historyLogs').addObject(userHistory);
+        userHistory.save().then(() => { 
+          game.save();
+          return true;
+        });
       });
+
+      game.get('historyLogs').addObject(newHistoryObj);
 
       newHistoryObj.save().then(() => { 
         game.save();
@@ -126,12 +129,15 @@ export default Ember.Controller.extend(OfferActions, LangActions, {
       game.set("timeEndTs", Date.now() + minutesPerRound * 60 * 1000);
 
       game.incrementProperty("roundCnt", 1);
-      game.save();
+      game.save().then(() => {
+
+      });
 
       game.get("allUsers").forEach((u) => {
         u.set("goalTomatoes", game.getValueforUserCurrentRound(u.get("playerIdInGame")));
         u.save();
       });
+
     },
 
     saveSettings(game) {
@@ -154,6 +160,7 @@ export default Ember.Controller.extend(OfferActions, LangActions, {
           return x.destroyRecord(); });
 
       self.get("game.users").clear();
+      self.get("game.historyLogs").clear();
 
       Promise.all(promiseArr).then(function() {
         self.set("game.gameConfigurationSafe", self.get("game.gameConfigurationRO"));
@@ -168,10 +175,16 @@ export default Ember.Controller.extend(OfferActions, LangActions, {
           });
 
           self.set("isConfiguration", false);
+          // self.send("nextRound", self.get("game"), 5);
+          self.send("clearHistoryLogs");
         });
       });
     },
 
+    clearHistoryLogs() {
+      this.get("game.historyLogs").clear();
+      this.get("game").save();
+    },
 
     exportCSV(historyLogs) {
       var data = [];
