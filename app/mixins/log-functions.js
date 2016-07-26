@@ -31,6 +31,8 @@ export default Ember.Mixin.create({
         state        : state,
         cssStatus    : stateCssLUT[state],
         offer        : "tomatoes: " + tomatoes + ", price: " + price,
+        tomatoesOffer: tomatoes,
+        priceOffer 	 : price,
         round        : "Round " + game.get("roundCnt")
       });
 

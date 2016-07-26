@@ -35,9 +35,14 @@ export default Ember.Controller.extend(OfferActions, LangActions, LogFunctions, 
       "propertyName": "state",
       "title": "State"
     },
+   
     {
-      "propertyName": "offer",
-      "title": "Offer"
+      "propertyName": "tomatoesOffer",
+      "title": "tomatoes"
+    },
+    {
+      "propertyName": "priceOffer",
+      "title": "price"
     },
     {
       "propertyName": "tsDesc",
@@ -225,7 +230,7 @@ export default Ember.Controller.extend(OfferActions, LangActions, LogFunctions, 
 
     exportCSV(historyLogs) {
       var data = [];
-      var titles = ["round", "offerId", "userSender", "userReceiver", "state", "offer", "tsDesc"];
+      var titles = ["round", "offerId", "userSender", "userReceiver", "state", "tomatoesOffer", "priceOffer", "tsDesc"];
 
       data.push(titles);
       historyLogs.map((historyElement) => {
