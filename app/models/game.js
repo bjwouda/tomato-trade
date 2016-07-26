@@ -14,6 +14,7 @@ export default Model.extend(GameConfigParser, {
   ts:                attr('number', { defaultValue(){ return new Date().getTime(); } }), //timeStamp
   history:           attr('string'),
   gameConfiguration: attr('string'), // CHECK THE MIXIN, quite some stuff attached there...
+  gameName:          attr('string'),
   
   roundCnt:          attr('number', { defaultValue: 0 }),
   minutesPerRound:   attr('number', { defaultValue: 5 }),
