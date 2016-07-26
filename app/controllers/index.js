@@ -4,7 +4,15 @@ export default Ember.Controller.extend({
 
   actions: {
     createNewGame() {
-      var newGame = this.store.createRecord('game');
+      var gameName;
+      do {
+        gameName = prompt("How do you want to call the new game?");
+
+        if (gameName === null) { return; }
+      }
+      while (! gameName);
+
+      var newGame = this.store.createRecord('game', { gameName });
       newGame.save();
     },
 

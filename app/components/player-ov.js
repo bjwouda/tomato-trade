@@ -12,6 +12,8 @@ export default Ember.Component.extend(OfferActions, {
       var prc;
       do {
         prc = prompt("How many % do you wanna alter the prognosis?");
+
+        if (prc === null) { return; }
       }
       while (! /^\s*-?[0-9]{1,10}\s*$/.test(prc));
 

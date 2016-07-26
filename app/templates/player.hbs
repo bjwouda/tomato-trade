@@ -1,6 +1,6 @@
 
 
-<div class="container">
+<div class="container-fluid">
   
 
 
@@ -8,7 +8,7 @@
       <div class="col-sm-5">
         
         {{#timer-jumbotron game=game}}
-            <div class="line-1">{{capitalize (t model.roleDescription)}} #{{model.playerPosition}} {{model.name}}</div>
+            <div class="line-1">{{capitalize (t model.roleDescription)}} {{model.playerPosition}} {{model.name}}</div>
         {{/timer-jumbotron}}
 
       </div>
@@ -112,7 +112,7 @@
               </li>
 
               {{#each (take 5 (reverse obj.history)) as |offer|}}
-                  <li class="list-group-item">[{{offer.state}}] <b>{{offer.senderName}}</b> --&gt; <b>{{offer.receiverName}}</b>  {{moment-format offer.ts "HH:mm:ss"}} / {{moment-from-now offer.ts hideSuffix=true interval=1000}} T: {{offer.tomatoes}} M: {{offer.price}}</li>
+                  <li class="list-group-item">[{{offer.state}}] <b>{{offer.senderName}}</b> --&gt; <b>{{offer.receiverName}}</b>  {{moment-format offer.ts "HH:mm:ss"}} / {{moment-from-now offer.ts hideSuffix=true interval=1000}} <span class="to-tomato"></span> {{offer.tomatoes}} <span class="to-money"></span> {{offer.price}}</li>
               {{else}}
                   <li class="list-group-item"><i>{{t "na"}}</i></li>
               {{/each}}
@@ -124,7 +124,7 @@
                 <strong>{{t "previousAcceptedOffers"}}</strong>
               </li>
               {{#each (filter-by "state" "accepted" (reverse obj.history))  as |offer|}}
-                  <li class="list-group-item">[{{offer.state}}] <b>{{offer.senderName}}</b> --&gt; <b>{{offer.receiverName}}</b>  {{moment-format offer.ts "HH:mm:ss"}} / {{moment-from-now offer.ts hideSuffix=true interval=1000}} T: {{offer.tomatoes}} M: {{offer.price}}</li>
+                  <li class="list-group-item">[{{offer.state}}] <b>{{offer.senderName}}</b> --&gt; <b>{{offer.receiverName}}</b>  {{moment-format offer.ts "HH:mm:ss"}} / {{moment-from-now offer.ts hideSuffix=true interval=1000}} <span class="to-tomato"></span> {{offer.tomatoes}} <span class="to-money"></span> {{offer.price}}</li>
               {{else}}
                 <li class="list-group-item"><i>{{t "na"}}</i></li>
               {{/each}}

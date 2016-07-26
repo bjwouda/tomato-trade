@@ -21,7 +21,7 @@ export default {
 	"declineed": "declined",
 	"recalled": "recalled",
 
-	"remainingTomatoes": "!!!Remaining tomatoes",
+	"remainingTomatoes": 'Remaining tomatoes',
 
 	"buyer": "buyer",
 	"seller": "seller",

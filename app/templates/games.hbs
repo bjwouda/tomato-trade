@@ -49,6 +49,9 @@
             {{#if isEditing}}
               <span>
                 <div class="form-group">
+                  <span class="title-container"><h5>Game Name: </h5></span> {{input disabled=(not isEditing) type="text" value=game.gameName class="form-control" }}
+                </div>
+                <div class="form-group">
                   <span class="title-container"><h5>Minutes Round: </h5></span> {{input disabled=(not isEditing) type="number" value=game.minutesPerRound class="form-control" }}
                 </div>
                 <div class="form-group">
