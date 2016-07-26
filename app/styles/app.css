@@ -55,20 +55,10 @@ span.to-tomato {
     /*font-size: 18pt;*/
 }
 
-span.to-tomato:before{
-   top: 6px;
-   position: relative;  
-}
-
 
 span.to-money {
     color: #8C9566;
     /*font-size: 18pt;*/
-}
-
-span.to-money:before{
-   top: 6px;
-   position: relative;  
 }
 
 

@@ -187,10 +187,11 @@
                       <button type="button" class="btn btn-primary btn-xs" {{action 'exportCSV' game.historyLogs}}>Export CSV</button></h4>
                     </span>
       
-{{!--       {{models-table
+      {{models-table
             data=game.sortedHistoryLogsById
-            columns=columns}}
-       --}}
+            columns=columns
+            showTableFooter=false}}
+      
 
    {{!--    <div class="table-responsive">
         <table class="table table-striped">

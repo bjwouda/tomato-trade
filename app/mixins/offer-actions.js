@@ -1,7 +1,8 @@
 import Ember from 'ember';
 
+import LogFunctions from '../mixins/log-functions';
 
-export default Ember.Mixin.create({
+export default Ember.Mixin.create(LogFunctions, {
   actions: {
     // OFFERS
     sendOfferAll(game, sender) {
@@ -23,20 +24,9 @@ export default Ember.Mixin.create({
         notes: `${moment().format()};created\n`
       });
 
-
-      //Create history record
-      var newHistoryObj = this.store.createRecord('history', {
-        offerId      : newOffer.id,
-        userSender   : (+sender === 0) ? "External" : `${sender.get('descriptivePlayerIdInGame')} ${sender.get("name")}`,
-        userReceiver : (+receiver === 0) ? "External" : `${receiver.get('descriptivePlayerIdInGame')} ${receiver.get("name")}`,
-        state        : "Open",
-        cssStatus    : "active",
-        offer        : "tomatoes: " + tomatoes + ", price: " + price,
-        round        : "Round " + game.get("roundCnt")
-      });
+      this.logPlayerOffer(this.store, game, sender, receiver, tomatoes, price, "open", newOffer.get("id"));
 
       game.get('offers').addObject(newOffer);
-      game.get('historyLogs').addObject(newHistoryObj);
 
       if (+receiver !== 0) {
         receiver.get('receivedOffers').addObject(newOffer);
@@ -55,22 +45,23 @@ export default Ember.Mixin.create({
         return true;
       });
 
-      newHistoryObj.save().then(() => { 
-        game.save();
-        return true;
-      });
+
     },
 
     confirmOffer(game, offer) {
       offer.set("isConfirmed", true);
       offer.set("notes", offer.get("notes") + `${moment().format()};confirmed\n`);
       offer.save();
+
+      this.logPlayerOfferWithObj(this.store, game, offer, "confirmed");
     },
 
     recallConfirmationOffer(game, offer) {
       offer.set("isConfirmed", false);
       offer.set("notes", offer.get("notes") + `${moment().format()};confirmed\n`);
       offer.save();
+
+      this.logPlayerOfferWithObj(this.store, game, offer, "recalled - confirmed");
     },
 
     acceptOffer(game, offer) {
@@ -79,17 +70,6 @@ export default Ember.Mixin.create({
       offer.set("notes", offer.get("notes") + `${moment().format()};accepted\n`);
 
       var sign = offer.get("receiver.content.isSeller") ? 1 : -1;
-
-      //Create history record
-      var newHistoryObj = this.store.createRecord('history', {
-        offerId      : offer.id,
-        userSender   : (offer.get('sender.id') === undefined) ? "External"  : ((offer.get('sender.name')) ? offer.get('sender.name') : offer.get('sender.descriptivePlayerIdInGame')),//offer.get('sender.name'),
-        userReceiver : (offer.get('receiver.id') === undefined) ? "External"  : ((offer.get('receiver.name')) ? offer.get('receiver.name') : offer.get('receiver.descriptivePlayerIdInGame')),//offer.get('receiver.name'),
-        state        : "Accepted",
-        cssStatus    : "success",
-        offer        : "tomatoes: " + offer.get('tomatoes') + ", price: " + offer.get('price'),
-        round        : "Round " + game.get("roundCnt")
-      });
 
       if (offer.get("receiver.content") !== null) {
         offer.set("receiver.content.money", +offer.get("receiver.content.money") + sign * offer.get("price") * offer.get("tomatoes"));
@@ -109,11 +89,7 @@ export default Ember.Mixin.create({
 
       offer.save();
 
-      game.get('historyLogs').addObject(newHistoryObj);
-      newHistoryObj.save().then(() => { 
-        game.save();
-        return true;
-      });
+      this.logPlayerOfferWithObj(this.store, game, offer, "accepted");
     },
 
     declineOffer(game, offer) {
@@ -121,23 +97,7 @@ export default Ember.Mixin.create({
       offer.set("notes", offer.get("notes") + `${moment().format()};declined\n`);
       offer.save();
 
-      //Store offer into historical record
-      var newHistoryObj = this.store.createRecord('history', {
-        offerId      : offer.id,
-        userSender   : (offer.get('sender.id') === undefined) ? "External"  : ((offer.get('sender.name')) ? offer.get('sender.name') : offer.get('sender.descriptivePlayerIdInGame')),
-        userReceiver : (offer.get('receiver.id') === undefined) ? "External"  : ((offer.get('receiver.name')) ? offer.get('receiver.name') : offer.get('receiver.descriptivePlayerIdInGame')),
-        state        : "Declined",
-        cssStatus    : "danger",
-        offer        : "tomatoes: " + offer.get('tomatoes') + ", price: " + offer.get('price'),
-        round        : "Round " + game.get("roundCnt") 
-      });
-
-      game.get('historyLogs').addObject(newHistoryObj);
-
-      newHistoryObj.save().then(() => { 
-        game.save();
-        return true;
-      });
+      this.logPlayerOfferWithObj(this.store, game, offer, "declined");
 
     },
 
@@ -146,23 +106,7 @@ export default Ember.Mixin.create({
       offer.set("notes", offer.get("notes") + `${moment().format()};recalled\n`);
       offer.save();
 
-      //Store offer into historical record
-      var newHistoryObj = this.store.createRecord('history', {
-        offerId      : offer.id,
-        userSender   : (offer.get('sender.id') === undefined) ? "External"  : ((offer.get('sender.name')) ? offer.get('sender.name') : offer.get('sender.descriptivePlayerIdInGame')),
-        userReceiver : (offer.get('receiver.id') === undefined) ? "External"  : ((offer.get('receiver.name')) ? offer.get('receiver.name') : offer.get('receiver.descriptivePlayerIdInGame')),
-        state        : "Recalled - Open",
-        cssStatus    : "active",
-        offer        : "tomatoes: " + offer.get('tomatoes') + ", price: " + offer.get('price'),
-        round        : "Round " + game.get("roundCnt")
-      });
-
-      game.get('historyLogs').addObject(newHistoryObj);
-
-      newHistoryObj.save().then(() => { 
-        game.save();
-        return true;
-      });
+      this.logPlayerOfferWithObj(this.store, game, offer, "recalled - open");
     },
 
   }

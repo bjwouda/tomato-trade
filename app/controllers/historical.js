@@ -5,7 +5,7 @@ export default Ember.Controller.extend({
   actions: {
     exportCSV() {
       var data = [];
-      var titles = ["userSender", "userReceiver", "state", "offer", "tS"];
+      var titles = ["userSender", "userReceiver", "state", "offer", "tsDesc"];
 
       data.push(titles);
       this.get("model").map((historyElement) => {

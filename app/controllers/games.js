@@ -1,10 +1,11 @@
 import Ember from 'ember';
 import OfferActions from '../mixins/offer-actions';
 import LangActions from '../mixins/lang-actions';
+import LogFunctions from '../mixins/log-functions';
 
 import _ from 'lodash/lodash';
 
-export default Ember.Controller.extend(OfferActions, LangActions, {
+export default Ember.Controller.extend(OfferActions, LangActions, LogFunctions, {
 
   activeUser: null,
   gameConfiguration: null,
@@ -38,8 +39,8 @@ export default Ember.Controller.extend(OfferActions, LangActions, {
       "title": "Offer"
     },
     {
-      "propertyName": "ts",
-      "title": "Ts"
+      "propertyName": "tsDesc",
+      "title": "Time"
     },
 
   ],
@@ -220,7 +221,7 @@ export default Ember.Controller.extend(OfferActions, LangActions, {
 
     exportCSV(historyLogs) {
       var data = [];
-      var titles = ["round", "offerId", "userSender", "userReceiver", "state", "offer", "ts"];
+      var titles = ["round", "offerId", "userSender", "userReceiver", "state", "offer", "tsDesc"];
 
       data.push(titles);
       historyLogs.map((historyElement) => {

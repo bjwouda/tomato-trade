@@ -15,7 +15,7 @@ export default Model.extend({
 
   notes      : attr('string'),
   ts         : attr('number', { defaultValue(){ return new Date().getTime(); } }), //timeStamp
-  
+
   weekNumber : attr('number'),
   game       : belongsTo('game'),
   receiver   : belongsTo('user'),
