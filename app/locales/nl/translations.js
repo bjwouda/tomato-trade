@@ -1,42 +1,43 @@
 export default {
-	"tomato": "tomaat",
-	"tomatoes": "tomaten",
-	"price": "prijs",
-	"money": "geld",
-
-	"sendOfferTo": "Stuur individueel aanbod aan",
-	"sendOfferToEveryone": "Stuur aanbod voor iedereen",
-	"receivedOffers": "ontvangen aanbiedingen",
-	"sentOffers": "Sent aanbiedingen",
-	"offerNotValid": "Neem plaats een geldige aanbieding waarbij beide waarden hoger 0",
-
-	"accept": "accepteren",
-	"decline": "afwijzen",
-	"recall": "terugroepen",
-
-	"accepted": "aanvaard",
-	"declineed": "gedaald",
-	"recalled": "herinnerde",
-
-	"buyer": "buyer",
-	"seller": "seller",
-	
-	"weekly": "weekly",
-	"daily": "daily",
-	"weekDescription": "We are having Week {{currentWeek}}, you're performing the <b>{{tradeType}} trade</b> for week {{tradeWeek}}",
-
-	"masterScreen": "Master Screen",
-	"goalTomatoes" : "Tomato Goal",
-	"currentTomatoes" : "Current Tomatoes",
-
-	"historicalScreen": "Historical Screen",
-
-	"player": {
-		"tradingMenu": "Trading Menu",
-		"resourceOverview": "Resource Overzicht",
-		"history": "Transactie Geschiedenis",
-
-		"title": "Tomaat Handel",
-	}
-	
-};
+    "accept": "Accepteren",
+    "accepted": "Aanvaard",
+    "avgTomatoPrice": "Gemiddeld Tomato Prijs",
+    "buyer": "Koper",
+    "buyerKPI": "koper KPI",
+    "currentTomatoes": "huidige Tomaten",
+    "currentTransaction": "huidige Transacties",
+    "daily": "Dagelijks",
+    "decline": "Afwijzen",
+    "declineed": "Afgewezen",
+    "external": "externe Trader",
+    "goalTomatoes": "tomaat Goal",
+    "historicalScreen": "historische Screen",
+    "last5Transactions": "Laatste 5 transacties",
+    "masterScreen": "Master Screen",
+    "money": "Geld",
+    "na": "N / A",
+    "offerNotValid": "Neem plaats een geldige aanbieding waarbij beide waarden hoger 0",
+    "previousAcceptedOffers": "Vorige aanvaard aanbiedingen",
+    "price": "Prijs",
+    "recall": "Terugroepen",
+    "recalled": "herinnerde",
+    "receivedOffers": "ontvangen Aanbiedingen",
+    "remainingTomatoes": "resterende Tomaten",
+    "seller": "Verkoper",
+    "sellerKPI": "verkoper KPI",
+    "send": "sturen",
+    "sendOfferTo": "Stuur individueel aanbod aan",
+    "sendOfferToEveryone": "Stuur aanbod voor iedereen",
+    "sentOffers": "Sent Aanbiedingen",
+    "timeUp": "De tijd is op! U af van uw handel.",
+    "tomato": "Tomaat",
+    "tomatoes": "tomaten",
+    "weekDescription": "We zijn met week {{currentWeek}}, je bent het uitvoeren van de <b> {{}} tradeType handel </ b> week {{tradeWeek}}",
+    "weekly": "wekelijks",
+    "player": {
+        "tradingMenu": "Trading Menu",
+        "resourceOverview": "resource Overzicht",
+        "history": "Transactie Geschiedenis",
+        "title": "tomaat handel"
+    }
+}
