@@ -20,12 +20,14 @@ export default Model.extend({
     
     historyGame  : belongsTo('game'),
 
-    idxOfOfferInGame : Ember.computed("historyGame.offers.[]", function() {
-        let gameOffers = this.get("historyGame.offers");
+    idxOfOfferInGame: Ember.computed("offerId", "historyGame.offers.[]", function() {
+        if (!this.get("offerId")) { return ""; }
 
-        if (gameOffers === undefined || gameOffers.map === undefined) { return 0; }
+        let gameOffers = this.get("historyGame.offers");
+        if (gameOffers === undefined || gameOffers.map === undefined) { return ""; }
 
         return gameOffers.map((x)=>{ return x.get("id"); }).indexOf(this.get("offerId"));
+        
     }),
 
     tsDesc     : Ember.computed('ts', function() {

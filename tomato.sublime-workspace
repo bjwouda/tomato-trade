@@ -4,270 +4,6 @@
 		"selected_items":
 		[
 			[
-				"defaul",
-				"defaultTime"
-			],
-			[
-				"if",
-				"if	if"
-			],
-			[
-				"packin",
-				"packingLine"
-			],
-			[
-				"log",
-				"log	console"
-			],
-			[
-				"Material",
-				"MaterialSerializer"
-			],
-			[
-				"update",
-				"update_comment"
-			],
-			[
-				"no",
-				"nowrap"
-			],
-			[
-				"wh",
-				"white-space"
-			],
-			[
-				"bgc",
-				"background-color"
-			],
-			[
-				"bg",
-				"background-color"
-			],
-			[
-				"for",
-				"for	for (…) {…} (Improved Native For-Loop)"
-			],
-			[
-				"_eav",
-				"_eval_single_cond"
-			],
-			[
-				"i",
-				"if	if"
-			],
-			[
-				"materqto",
-				"materialQcTotalErrorDesc"
-			],
-			[
-				"bl",
-				"belongsTo"
-			],
-			[
-				"link",
-				"linkto	{{#link-to}} {{/link-to}}"
-			],
-			[
-				"fpx",
-				"fpXStringLC"
-			],
-			[
-				"create",
-				"createRecord"
-			],
-			[
-				"type",
-				"typeLUT"
-			],
-			[
-				"new",
-				"newWidth"
-			],
-			[
-				"dar",
-				"darkGrey"
-			],
-			[
-				"grindinpla",
-				"grindingPlannedEndTs"
-			],
-			[
-				"grindingpl",
-				"grindingPlannedStartTs"
-			],
-			[
-				"min",
-				"minorNumber"
-			],
-			[
-				"_new",
-				"_newStartTs"
-			],
-			[
-				"machin",
-				"machineType"
-			],
-			[
-				"linkto",
-				"linkto	{{link-to }}"
-			],
-			[
-				"order",
-				"order2"
-			],
-			[
-				"mater",
-				"material2"
-			],
-			[
-				"material",
-				"materials"
-			],
-			[
-				"p",
-				"padding"
-			],
-			[
-				"f",
-				"f	Anonymous Function"
-			],
-			[
-				"packi",
-				"packingLine"
-			],
-			[
-				"grindin",
-				"grindingLine"
-			],
-			[
-				"pack",
-				"packingLine"
-			],
-			[
-				"fl",
-				"flobinEndTs"
-			],
-			[
-				"grind",
-				"grindingLine"
-			],
-			[
-				"key",
-				"keyMissing"
-			],
-			[
-				"each",
-				"each	{{#each }} {{/each}}"
-			],
-			[
-				"fo",
-				"for	for (…) {…} (Improved Native For-Loop)"
-			],
-			[
-				"mat",
-				"material3"
-			],
-			[
-				"de",
-				"deleteRecord"
-			],
-			[
-				"reserved",
-				"reservedMachines"
-			],
-			[
-				"data",
-				"datesRaw"
-			],
-			[
-				"da",
-				"datesRaw"
-			],
-			[
-				"render",
-				"renderD3"
-			],
-			[
-				"start",
-				"startTs"
-			],
-			[
-				"sele",
-				"selection"
-			],
-			[
-				"isFi",
-				"isFirst"
-			],
-			[
-				"select",
-				"selectAll"
-			],
-			[
-				"move",
-				"moveBrush"
-			],
-			[
-				"back",
-				"background-color"
-			],
-			[
-				"ov",
-				"overflow"
-			],
-			[
-				"resize",
-				"resizeHandler"
-			],
-			[
-				"dates",
-				"datesRaw"
-			],
-			[
-				"day",
-				"daysOffset"
-			],
-			[
-				"days",
-				"daysOffset"
-			],
-			[
-				"curr",
-				"currFontSize"
-			],
-			[
-				"rect",
-				"rectGroups"
-			],
-			[
-				"di",
-				"d-if	display: inline-flex;"
-			],
-			[
-				"diff",
-				"diffDays"
-			],
-			[
-				"round",
-				"roundX"
-			],
-			[
-				"game",
-				"gameOffers"
-			],
-			[
-				"histo",
-				"historyCompletelyLoadedFirstTime"
-			],
-			[
-				"offer",
-				"offerId"
-			],
-			[
-				"td",
-				"td-n	text-decoration: none;"
-			],
-			[
 				"arc",
 				"archiveYear"
 			],
@@ -288,6 +24,10 @@
 				"last4Years"
 			],
 			[
+				"f",
+				"f	Anonymous Function"
+			],
+			[
 				"isHar",
 				"is_hard"
 			],
@@ -301,6 +41,10 @@
 			],
 			[
 				"curren",
+				"current_user"
+			],
+			[
+				"curr",
 				"current_user"
 			],
 			[
@@ -322,6 +66,10 @@
 			[
 				"el",
 				"elif	Else if"
+			],
+			[
+				"if",
+				"if	{{#if }} {{/if}}"
 			],
 			[
 				"attachment",
@@ -356,6 +104,10 @@
 				"breadCrumbs"
 			],
 			[
+				"for",
+				"for	for (…) {…}"
+			],
+			[
 				"bread",
 				"breadCrumb"
 			],
@@ -382,6 +134,10 @@
 			[
 				"text",
 				"text-align"
+			],
+			[
+				"back",
+				"background"
 			],
 			[
 				"tgt",
@@ -547,89 +303,13 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 392.0,
-		"last_filter": "uni",
+		"height": 247.0,
+		"last_filter": "spaces",
 		"selected_items":
 		[
 			[
-				"uni",
-				"Permute Lines: Unique"
-			],
-			[
-				"title",
-				"Convert Case: Title Case"
-			],
-			[
-				"word",
-				"Word Wrap: Toggle"
-			],
-			[
-				"styl",
-				"Set Syntax: Stylus"
-			],
-			[
 				"spaces",
 				"Indentation: Convert to Spaces"
-			],
-			[
-				"snkae",
-				"Convert Case: snake_case"
-			],
-			[
-				"convertcase",
-				"Convert Case: dash-case"
-			],
-			[
-				"snake",
-				"Convert Case: snake_case"
-			],
-			[
-				"lower",
-				"Convert Case: Lower Case"
-			],
-			[
-				"upp",
-				"Convert Case: Upper Case"
-			],
-			[
-				"html",
-				"Set Syntax: HTML"
-			],
-			[
-				"up",
-				"Convert Case: Upper Case"
-			],
-			[
-				"alig",
-				"AlignTab: Live Preview Mode"
-			],
-			[
-				"asc",
-				"ASCII Decorator: Default Font"
-			],
-			[
-				"asci",
-				"ASCII Decorator: Default Font"
-			],
-			[
-				"ascii",
-				"ASCII Decorator: Default Font"
-			],
-			[
-				"ali",
-				"AlignTab: Live Preview Mode"
-			],
-			[
-				"align",
-				"AlignTab: Live Preview Mode"
-			],
-			[
-				"titl",
-				"Convert Case: Title Case"
-			],
-			[
-				"upper",
-				"Convert Case: Upper Case"
 			],
 			[
 				"reves",
@@ -652,12 +332,28 @@
 				"Permute Lines: Reverse"
 			],
 			[
+				"uni",
+				"Permute Lines: Unique"
+			],
+			[
+				"lower",
+				"Convert Case: Lower Case"
+			],
+			[
 				"reverse",
 				"Permute Lines: Reverse"
 			],
 			[
 				"uniqu",
 				"Permute Lines: Unique"
+			],
+			[
+				"html",
+				"Set Syntax: HTML"
+			],
+			[
+				"align",
+				"AlignTab: Live Preview Mode"
 			],
 			[
 				"if",
@@ -682,6 +378,10 @@
 			[
 				"snipptt",
 				"Snippet: textfield"
+			],
+			[
+				"snake",
+				"Convert Case: snake_case"
 			],
 			[
 				"convert",
@@ -760,6 +460,10 @@
 				"Set Syntax: Java"
 			],
 			[
+				"styl",
+				"Set Syntax: Stylus"
+			],
+			[
 				"commit",
 				"Git: Amend Commit"
 			],
@@ -820,20 +524,13 @@
 				"Git: Status"
 			]
 		],
-		"width": 485.0
+		"width": 467.0
 	},
 	"console":
 	{
 		"height": 126.0,
 		"history":
 		[
-			"view.run_command(\"to_snake_case\")",
-			"view.run_command(\"example\")",
-			"view.run_command",
-			"view.run",
-			"view.runCommand",
-			"view",
-			"view.runCommand(\"example\")",
 			"X_train_p",
 			"pdb",
 			"import urllib.request,os,hashlib; h = '2915d1851351e5ee549c20394736b442' + '8bc59f460fa1548d1514676163dafc88'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
@@ -850,134 +547,134 @@
 	},
 	"file_history":
 	[
-		"/Users/kkohn/Documents/xavier-sg/app/models/order.js",
-		"/Users/kkohn/Downloads/acodeit/index.html",
-		"/Users/kkohn/Documents/xavier-sg/app/helpers/upper-case.js",
-		"/Users/kkohn/Documents/xavier-sg/app/styles/basic.styl",
-		"/Users/kkohn/Documents/xavier-sg/app/templates/components/order-part.hbs",
-		"/Users/kkohn/Documents/xavier-sg/app/templates/orders/index.hbs",
-		"/Users/kkohn/Documents/xavier-sg/app/components/order-part.js",
-		"/Users/kkohn/Documents/xavier-django/sg/views.py",
-		"/Users/kkohn/Documents/xavier-django/sg/models.py",
-		"/Users/kkohn/Documents/xavier-sg/app/routes/not-found.js",
-		"/Users/kkohn/Documents/xavier-sg/app/mixins/timeline-actions.js",
-		"/Users/kkohn/Documents/xavier-sg/app/router.js",
-		"/Users/kkohn/Documents/xavier-sg/app/routes/application.js",
-		"/Users/kkohn/Documents/xavier-sg/app/templates/components/order-progress-bar.hbs",
-		"/Users/kkohn/Documents/xavier-django/sg/serializers.py",
-		"/Users/kkohn/Documents/xavier-sg/app/styles/app.styl",
-		"/Users/kkohn/Documents/xavier-sg/app/controllers/orders/element.js",
-		"/Users/kkohn/Documents/xavier-sg/app/models/material.js",
-		"/Users/kkohn/Documents/xavier-sg/app/models/recipe.js",
-		"/Users/kkohn/Documents/xavier-sg/app/components/sg-timeline.js",
-		"/Users/kkohn/Documents/xavier-sg/app/templates/components/sg-timeline.hbs",
-		"/Users/kkohn/Documents/xavier-sg/app/templates/orders/element.hbs",
-		"/Users/kkohn/Documents/xavier-django/_utils/sg_initdata.py",
-		"/Users/kkohn/Documents/xavier-django/_utils/excel_test_ben.py",
-		"/Users/kkohn/Documents/xavier-django/xavier/settings.py",
-		"/Users/kkohn/Documents/xavier-sg/config/environment.js",
-		"/Users/kkohn/Documents/xavier-sg/app/transforms/sg-json.js",
-		"/Users/kkohn/Documents/xavier-sg/app/models/material-qc-guideline.js",
-		"/Users/kkohn/Documents/xavier-sg/app/controllers/orders/index.js",
-		"/Users/kkohn/Documents/xavier-sg/app/templates/index.hbs",
-		"/Users/kkohn/Documents/xavier-sg/app/templates/components/raw-table-body.hbs",
-		"/Users/kkohn/Documents/xavier-sg/package.json",
-		"/Users/kkohn/Documents/xavier-sg/app/components/order-progress-bar.js",
-		"/Users/kkohn/Documents/xavier-sg/_utils/configParser.js",
-		"/Users/kkohn/Documents/xavier-sg/app/transforms/sg-date.js",
-		"/Users/kkohn/Documents/xavier-sg/app/templates/shortcut-inventory.hbs",
-		"/Users/kkohn/Documents/xavier-sg/app/routes/setting-recipe.js",
-		"/Users/kkohn/Documents/xavier-sg/app/routes/index.js",
-		"/Users/kkohn/Documents/xavier-sg/app/routes/orders.js",
-		"/Users/kkohn/Documents/xavier-sg/app/routes/orders/element.js",
-		"/Users/kkohn/Documents/xavier-sg/app/routes/shortcut-inventory.js",
-		"/Users/kkohn/Documents/xavier-sg/app/templates/application.hbs",
-		"/Users/kkohn/Documents/xavier-sg/app/routes/orders/index.js",
-		"/Users/kkohn/Documents/xavier-sg/app/controllers/application.js",
-		"/Users/kkohn/Documents/xavier-sg/app/templates/components/inventory-table-body.hbs",
-		"/Users/kkohn/Documents/xavier-django/sg/signals.py",
-		"/Users/kkohn/Documents/xavier-sg/app/models/raw-material.js",
-		"/Users/kkohn/Documents/xavier-sg/app/controllers/shortcut-inventory.js",
-		"/Users/kkohn/Documents/xavier-sg/app/templates/setting-recipe.hbs",
-		"/Users/kkohn/Documents/xavier-sg/app/styles/qc.styl",
-		"/Users/kkohn/Documents/xavier-sg/app/templates/components/qc-group-table.hbs",
-		"/Users/kkohn/Documents/xavier-sg/app/components/raw-table-body.js",
-		"/Users/kkohn/Documents/xavier-sg/_utils/combineDicts.js",
-		"/Users/kkohn/Documents/xavier-django/sg/__init__.py",
-		"/Users/kkohn/Documents/xavier-sg/app/components/qc-group-table.js",
-		"/Users/kkohn/Documents/xavier-sg/app/routes/setting-quality.js",
-		"/Users/kkohn/Documents/xavier-sg/app/templates/components/material-display.hbs",
-		"/Users/kkohn/Documents/xavier-django/sg/admin.py",
-		"/Users/kkohn/Documents/xavier-django/xavier/urls.py",
-		"/Users/kkohn/Documents/xavier-sg/app/templates/setting-quality.hbs",
-		"/Users/kkohn/Library/Application Support/Sublime Text 3/Packages/User/ToSnakeCase.py",
-		"/Users/kkohn/Library/Application Support/Sublime Text 3/Packages/User/Default (OSX).sublime-keymap",
-		"/Users/kkohn/Library/Application Support/Sublime Text 3/Packages/User/Example.py",
-		"/Users/kkohn/Documents/xavier-sg/app/index.html",
-		"/Users/kkohn/Documents/xavier-sg/app/styles/sidebar.styl",
-		"/Users/kkohn/Documents/xavier-django/xavier/global_utils.py",
-		"/Users/kkohn/Documents/xavier-sg/app/templates/orders.hbs",
-		"/Users/kkohn/Documents/xavier-sg/app/components/inventory-table-body.js",
-		"/Users/kkohn/Documents/xavier-sg/app/components/sg-time-picker.js",
-		"/Users/kkohn/Documents/xavier-sg/app/controllers/index.js",
-		"/Users/kkohn/Documents/xavier-sg/app/styles/timeline.styl",
-		"/Users/kkohn/Documents/xavier-sg/app/templates/components/sg-time-picker.hbs",
+		"/Users/kkohn/Documents/xavier-sia-devel/app/router.js",
+		"/Users/kkohn/Documents/xavier-ember/_utils/click_deploy_button.py",
 		"/Users/kkohn/Documents/xavier-django/sia/models.py",
-		"/Users/kkohn/Documents/xavier-sg/app/helpers/in-list.js",
-		"/Users/kkohn/Documents/xavier-sg/app/templates/order.hbs",
-		"/Users/kkohn/Documents/xavier-sg/app/routes/order.js",
-		"/Users/kkohn/Documents/xavier-sg/app/templates/shortcut-machine.hbs",
-		"/Users/kkohn/Documents/xavier-sg/app/models/machine.js",
-		"/Users/kkohn/Documents/xavier-sg/app/controllers/order.js",
-		"/Users/kkohn/Documents/xavier-sg/app/app.js",
-		"/Users/kkohn/Documents/xavier-sg/mirage/scenarios/default.js",
-		"/Users/kkohn/Documents/xavier-sg/mirage/factories/material.js",
-		"/Users/kkohn/Documents/xavier-sg/mirage/models/material.js",
-		"/Users/kkohn/Documents/xavier-sg/mirage/models/order.js",
-		"/Users/kkohn/Documents/xavier-sg/mirage/models/recipe.js",
-		"/Users/kkohn/Documents/xavier-sg/mirage/models/machine.js",
-		"/Users/kkohn/Documents/xavier-sg/mirage/models/material-qc-guideline.js",
-		"/Users/kkohn/Documents/xavier-sg/app/styles/mixins.styl",
-		"/Users/kkohn/Documents/xavier-sg/.jshintrc",
-		"/Users/kkohn/Documents/xavier-sg/app/helpers/first-letter.js",
-		"/Users/kkohn/Documents/xavier-sg/app/helpers/math-negative.js",
-		"/Users/kkohn/Documents/xavier-sg/app/models/reserved-machine.js",
-		"/Users/kkohn/Documents/xavier-sg/mirage/config.js",
-		"/Users/kkohn/Documents/xavier-sg/mirage/factories/material-qc-guideline.js",
-		"/Users/kkohn/Documents/xavier-sg/tests/integration/components/sg-timeline-test.js",
-		"/Users/kkohn/Documents/xavier-sg/app/components/material-display.js",
-		"/Users/kkohn/Documents/xavier-sg/app/routes/test.js",
-		"/Users/kkohn/Documents/xavier-sg/app/templates/test.hbs",
-		"/Users/kkohn/Documents/xavier-sg/mirage/models/material-qc.js",
-		"/Users/kkohn/Documents/xavier-sg/app/models/material-qc.js",
-		"/Users/kkohn/Documents/xavier-sg/mirage/factories/raw-material.js",
-		"/Users/kkohn/Documents/xavier-sg/mirage/factories/order.js",
-		"/Users/kkohn/Documents/xavier-sg/mirage/models/raw-material.js",
-		"/Users/kkohn/Documents/xavier-sg/app/controllers/setting-recipe.js",
-		"/Users/kkohn/Documents/xavier-sg/ember-cli-build.js",
-		"/Users/kkohn/Documents/xavier-sg/app/routes/shortcut-machine.js",
-		"/Users/kkohn/Documents/xavier-sg/app/templates/shortcut-flobin.hbs",
-		"/Users/kkohn/Documents/xavier-sg/app/models/reserved-consumable.js",
-		"/Users/kkohn/Documents/xavier-sg/app/styles/bread-bar.styl",
-		"/Users/kkohn/Documents/xavier-sg/app/mixins/user-available.js",
-		"/Users/kkohn/Documents/xavier-sg/app/mixins/user-available.coffee",
-		"/Users/kkohn/Documents/xavier-sg/app/styles/app.scss",
-		"/Users/kkohn/Documents/xavier-sg/bower.json",
-		"/Users/kkohn/Documents/xavier-sg/xavier_sg.sublime-project",
-		"/Users/kkohn/Documents/experiments/timeline/ember-cli-build.js",
-		"/Users/kkohn/Documents/experiments/timeline/package.json",
-		"/Users/kkohn/Documents/experiments/timeline/app/templates/application.hbs",
-		"/Users/kkohn/Documents/experiments/timeline/bower_components/lodash/lodash.js",
-		"/Users/kkohn/Documents/experiments/timeline/app/components/bower_components/moment/moment.js",
-		"/Users/kkohn/Documents/experiments/timeline/bower_components/d3/d3.js",
-		"/Users/kkohn/Documents/tomato/app/models/game.js",
-		"/Users/kkohn/Documents/tomato/app/models/history.js",
-		"/Users/kkohn/Documents/tomato/app/controllers/games.js",
-		"/Users/kkohn/Documents/tomato/app/templates/custom/colored-rows.hbs",
-		"/Users/kkohn/Documents/tomato/app/templates/games.hbs",
-		"/Users/kkohn/Documents/tomato/app/components/player-ov.js",
-		"/Users/kkohn/Documents/tomato/app/locales/en/translations.js",
-		"/Users/kkohn/Documents/tomato/app/templates/player.hbs"
+		"/Users/kkohn/Documents/xavier-django/forecast/models.py",
+		"/Users/kkohn/Documents/xavier-django/_utils/run_once.py",
+		"/Users/kkohn/Documents/xavier-django/forecast/excel_generator.py",
+		"/Users/kkohn/Documents/xavier-django/_utils/excel_template_empty_withB.xlsx",
+		"/Users/kkohn/Documents/xavier-django/sia/excel_generator_user.py",
+		"/Users/kkohn/Documents/xavier-django/_utils/siauser_template.xlsx",
+		"/Users/kkohn/Documents/xavier-sia-devel/app/styles/staff.styl",
+		"/Users/kkohn/Documents/xavier-sia-devel/app/templates/sia/staff/index.hbs",
+		"/Users/kkohn/Documents/xavier-sia-devel/app/templates/custom/myrow.hbs",
+		"/Users/kkohn/Documents/xavier-sia-devel/app/styles/progress-bar.styl",
+		"/Users/kkohn/Documents/xavier-sia-devel/app/models/user.js",
+		"/Users/kkohn/Documents/xavier-django/xavier/jwt_authentication_middleware.py",
+		"/Users/kkohn/Documents/xavier-django/xavier/passwordless_auth_backend.py",
+		"/Users/kkohn/Documents/xavier-sia-devel/app/routes/application.coffee",
+		"/Users/kkohn/Documents/xavier-sia-devel/package.json",
+		"/Users/kkohn/Documents/xavier-ember/bower_components/jquery-cookie/jquery.cookie.js",
+		"/Users/kkohn/Documents/xavier-sia-devel/xavier-sia.sublime-project",
+		"/Users/kkohn/Documents/xavier-ember/app/controllers/oneplace.coffee",
+		"/Users/kkohn/Documents/xavier-django/_utils/generate_jwt_token.py",
+		"/Users/kkohn/Documents/xavier-ember/_utils/deploy.sh",
+		"/Users/kkohn/Documents/xavier-ember/_utils/main.py",
+		"/Users/kkohn/Documents/xavier-django/forecast/views.py",
+		"/Users/kkohn/Documents/xavier-django/ben/models.py",
+		"/Users/kkohn/Documents/xavier-ember/app/templates/prospect-entry.embl",
+		"/Users/kkohn/Documents/xavier-django/sia/excel_generator.py",
+		"/Users/kkohn/Documents/xavier-ember/app/helpers/show-nice-file-link.coffee",
+		"/Users/kkohn/Documents/xavier-django/ben/admin.py",
+		"/Users/kkohn/Documents/xavier-sia-devel/app/templates/sia/index.hbs",
+		"/Users/kkohn/Documents/xavier-sia-devel/app/templates/sia/detail.hbs",
+		"/Users/kkohn/Documents/xavier-sia-devel/app/controllers/sia.coffee",
+		"/Users/kkohn/Downloads/KimonoData_bc2yz9os.csv",
+		"/Users/kkohn/Downloads/KimonoData_7ip1ig4q.csv",
+		"/Users/kkohn/Downloads/KimonoData_7ip1ig4q.json",
+		"/Users/kkohn/Downloads/eval_xperts.py",
+		"/Users/kkohn/Documents/xavier-ember/config/environment.js",
+		"/Users/kkohn/Documents/xavier-ember/_utils/google_smtp.py",
+		"/Users/kkohn/Documents/xavier-sia-devel/app/templates/sia.hbs",
+		"/Users/kkohn/Documents/xavier-sia-devel/app/models/goal.coffee",
+		"/Users/kkohn/Documents/xavier-django/xavier/settings.py",
+		"/Users/kkohn/Documents/xavier-django/ben/send_email_prospect.py",
+		"/Users/kkohn/Documents/xavier-django/sia/send_email.py",
+		"/Users/kkohn/Documents/xavier-sia-devel/app/templates/sia/staff/archive.hbs",
+		"/Users/kkohn/Documents/xavier-sia-devel/app/templates/sia/staff/staff.hbs",
+		"/Users/kkohn/Documents/xavier-sia-devel/app/controllers/index.coffee",
+		"/Users/kkohn/Documents/xavier-sia-devel/app/templates/application.hbs",
+		"/Users/kkohn/Documents/xavier-ember/app/models/prospect.coffee",
+		"/Users/kkohn/Documents/xavier-ember/app/controllers/prospects.coffee",
+		"/Users/kkohn/Documents/xavier-sia-devel/app/helpers/simple-sort.coffee",
+		"/Users/kkohn/Documents/xavier-django/frontend/templates/index.html",
+		"/Users/kkohn/Documents/xavier-sia-devel/app/index.html",
+		"/Users/kkohn/Documents/xavier-sia-devel/deploy.sh",
+		"/Users/kkohn/Documents/xavier-django/frontend/templates/sia.html",
+		"/Users/kkohn/Documents/xavier-ember/app/index.html",
+		"/Users/kkohn/Documents/xavier-ember/_utils/deploy-test.sh",
+		"/Users/kkohn/Documents/xavier-django/sia/views.py",
+		"/Users/kkohn/Documents/xavier-sia-devel/app/templates/sia/staff.hbs",
+		"/Users/kkohn/Documents/xavier-sia-devel/app/routes/sia/index.coffee",
+		"/Users/kkohn/Documents/xavier-sia-devel/app/controllers/sia/index.coffee",
+		"/Users/kkohn/Documents/xavier-sia-devel/app/controllers/sia/detail.coffee",
+		"/Users/kkohn/Documents/xavier-ember/app/controllers/index.coffee",
+		"/Users/kkohn/Documents/xavier-sia-devel/app/controllers/sia/staff/index.coffee",
+		"/Users/kkohn/Documents/xavier-sia-devel/app/routes/sia/staff/archive.coffee",
+		"/Users/kkohn/Documents/xavier-django/sia/admin.py",
+		"/Users/kkohn/Documents/xavier-sia-devel/app/transitions.js",
+		"/Users/kkohn/Documents/xavier-sia-devel/app/models/archived-user.js",
+		"/Users/kkohn/Documents/xavier-sia-devel/app/routes/sia/staff.coffee",
+		"/Users/kkohn/Documents/xavier-django/_utils/test_migration_grit_size.py",
+		"/Users/kkohn/Documents/xavier-sia-devel/app/routes/sia/staff/index.coffee",
+		"/Users/kkohn/Documents/xavier-sia-devel/app/controllers/sia/staff.coffee",
+		"/Users/kkohn/Documents/xavier-django/sia/serializers.py",
+		"/Users/kkohn/Documents/xavier-ember/app/templates/prospects.embl",
+		"/Users/kkohn/Documents/xavier-ember/app/templates/index.embl",
+		"/Users/kkohn/Documents/xavier-ember/app/styles/table.styl",
+		"/Users/kkohn/Documents/xavier-ember/app/views/index.coffee",
+		"/Users/kkohn/Documents/xavier-ember/app/styles/app.styl",
+		"/Users/kkohn/Documents/xavier-ember/app/helpers/moment-date.coffee",
+		"/Users/kkohn/Documents/xavier-ember/app/helpers/moment-date-time.coffee",
+		"/Users/kkohn/Documents/xavier-ember/ember-cli-build.js",
+		"/Users/kkohn/Documents/xavier-ember/app/helpers/concat-array.coffee",
+		"/Users/kkohn/Documents/xavier-ember/app/helpers/last-8-years.coffee",
+		"/Users/kkohn/Documents/xavier-ember/app/helpers/linkify-text.coffee",
+		"/Users/kkohn/Documents/xavier-ember/app/helpers/list-show-year.coffee",
+		"/Users/kkohn/Documents/xavier-ember/app/helpers/prospect-article-nuance-lut.coffee",
+		"/Users/kkohn/Documents/xavier-ember/app/helpers/render-special-chars.coffee",
+		"/Users/kkohn/Documents/xavier-ember/app/helpers/render-newline.coffee",
+		"/Users/kkohn/Documents/xavier-ember/app/helpers/prospect-highlight-status.coffee",
+		"/Users/kkohn/Documents/xavier-ember/app/helpers/moment-timeago.coffee",
+		"/Users/kkohn/Documents/xavier-ember/app/helpers/list-show-title.coffee",
+		"/Users/kkohn/Documents/xavier-ember/app/helpers/limit-chars.coffee",
+		"/Users/kkohn/Documents/xavier-ember/app/helpers/last-4-years.coffee",
+		"/Users/kkohn/Documents/xavier-ember/app/helpers/identicon-helper.coffee",
+		"/Users/kkohn/Documents/xavier-ember/bower_components/Jdenticon/dist/jdenticon.js",
+		"/Users/kkohn/Documents/xavier-ember/package.json",
+		"/Users/kkohn/Documents/xavier-sia-devel/app/templates/index.hbs",
+		"/Users/kkohn/Documents/Misago/README.md",
+		"/Users/kkohn/Documents/xavier-ember/app/controllers/custom-table.coffee",
+		"/Users/kkohn/Documents/xavier-ember/app/controllers/oneplace/files.coffee",
+		"/Users/kkohn/Documents/xavier-ember/app/components/oneplace-tabs.coffee",
+		"/Users/kkohn/Documents/xavier-ember/app/components/modal-download.coffee",
+		"/Users/kkohn/Documents/xavier-ember/app/components/email-select.coffee",
+		"/Users/kkohn/Documents/xavier-ember/app/controllers/oneplace/discussion.coffee",
+		"/Users/kkohn/Documents/xavier-ember/app/controllers/prospect-entry.coffee",
+		"/Users/kkohn/Documents/xavier-ember/app/templates/components/rex-global-group.embl",
+		"/Users/kkohn/Documents/xavier-ember/app/styles/basic.styl",
+		"/Users/kkohn/Documents/xavier-ember/app/models/line.coffee",
+		"/Users/kkohn/Documents/xavier-django/_utils/test_image_compression.py",
+		"/Users/kkohn/Desktop/nordic_landscape-wallpaper-1920x1200.jpg",
+		"/Users/kkohn/Documents/xavier-sia-devel/app/templates/components/sia-date-input.hbs",
+		"/Users/kkohn/Documents/xavier-sia-devel/app/components/sia-date-input.coffee",
+		"/Users/kkohn/Documents/xavier-sia-devel/tests/acceptance/access-test.coffee",
+		"/Users/kkohn/Documents/xavier-sia-devel/tests/integration/components/sia-date-input-test.coffee",
+		"/Users/kkohn/Documents/xavier-django/main.py",
+		"/Users/kkohn/Documents/xavier-ember/deploy.sh",
+		"/Users/kkohn/Documents/xavier-django/xavier/urls.py",
+		"/Users/kkohn/Documents/xavier-sia-devel/app/mixins/sia-permissions.coffee",
+		"/Users/kkohn/Documents/xavier-sia-devel/app/styles/sia_detail.styl",
+		"/Users/kkohn/Documents/xavier-sia-devel/app/routes/sia/history.coffee",
+		"/Users/kkohn/Documents/xavier-django/ben/excel_generator.py",
+		"/Users/kkohn/Documents/xavier-django/forecast/admin.py",
+		"/Users/kkohn/Documents/xavier-django/requirements.txt",
+		"/Users/kkohn/Documents/xavier-django/sia/WorksheetCopy.py",
+		"/Users/kkohn/Documents/xavier-django/ben/excel_generator_single.py",
+		"/Users/kkohn/Documents/xavier-django/ben/views.py",
+		"/Users/kkohn/.virtualenvs/xavier/lib/python2.7/site-packages/openpyxl/writer/excel.py",
+		"/Users/kkohn/.virtualenvs/xavier/lib/python2.7/site-packages/openpyxl/.constants.json"
 	],
 	"find":
 	{
@@ -988,90 +685,16 @@
 		"height": 93.0,
 		"where_history":
 		[
-			"*.hbs",
-			"*.py",
-			"*.js",
-			"*.styl",
-			"*.hbs",
 			"*.js",
 			"*.hbs",
-			"*.styl",
-			"*.js",
-			"*.styl",
-			"*.hbs",
-			"*.js",
-			"*",
-			"*.styl",
+			"*.coffee",
 			"*.js",
 			"*.py",
-			"*.js",
-			"*.hbs",
 			"*.styl",
-			"*.hbs",
-			"*.js",
-			"*.j",
-			"*.hbs",
-			"*.js",
-			"*.hbs",
-			"*.js",
+			"*.html",
 			"*.py",
-			"*.hbs",
-			"*.styl",
-			"*.hbs",
 			"*",
 			"*.js",
-			"*.py",
-			"*.js",
-			"*.styl",
-			"*.js",
-			"*.hbs",
-			"*.js",
-			"*.styl",
-			"*.js",
-			"*.hbs",
-			"*.js",
-			"*.hbs",
-			"*.js",
-			"*",
-			"*.hbs",
-			"*.js",
-			"*.styl",
-			"*.js",
-			"*.styl",
-			"*.hbs",
-			"*.js",
-			"*.hbs",
-			"*.js",
-			"*.styl",
-			"*.js",
-			"*.hbs",
-			"*.js",
-			"*.hbs",
-			"*.js",
-			"*.styl",
-			"*.hbs",
-			"*.styl",
-			"*.js",
-			"*.hbs",
-			"*.js",
-			"*.hbs",
-			"*.js",
-			"*.hbs",
-			"*.js",
-			"*.jbs",
-			"*.hbs",
-			"*.styl",
-			"*.js",
-			"*",
-			"*.hbs",
-			"*.js",
-			"*.hbs",
-			"*.js",
-			"*.hbs",
-			"*.js",
-			"*.hbs",
-			"*.js",
-			"*.sass",
 			"*.py",
 			"*.js",
 			"*.py",
@@ -1115,7 +738,81 @@
 			".py",
 			"*",
 			"*.coffee",
-			"*.py"
+			"*.py",
+			"*.coffee",
+			"*.py",
+			"*",
+			"*.coffee",
+			"*",
+			"*.styl",
+			"*.coffee",
+			"*.hbs",
+			"*.coffee",
+			"*",
+			"*.hbs",
+			"*",
+			"*.coffee",
+			"*.styl",
+			"*.hbs",
+			"*.coffee",
+			"*.js",
+			"*.py",
+			"*.coffee",
+			"*.js",
+			"*.coffee",
+			"*.styl",
+			"*.coffee",
+			"*.py",
+			"*",
+			"*.",
+			"*.coffee",
+			"*.styl",
+			"*",
+			"*.styl",
+			"*.coffee",
+			"*",
+			"*.coffee",
+			"*.styl",
+			"*.hbs",
+			"*.embl",
+			"*.styl",
+			"*.hbs",
+			"*.styl",
+			"*.hbs",
+			"*.embl",
+			"*.styl",
+			".styl",
+			"*.js",
+			"*.styl",
+			"*",
+			"*.coffee",
+			"*.coffe",
+			"*.styl",
+			"*.embl",
+			"*.py",
+			"*.embl",
+			"*.coffee",
+			"*.embl",
+			"*.coffee",
+			"*.py",
+			"*.coffee",
+			"*.py",
+			"*.styl",
+			"*.embl",
+			"*.coffee",
+			"*.embl",
+			"*.coffee",
+			"*.py",
+			"*.embl",
+			"*.coffee",
+			"*.py",
+			"*.embl",
+			"*.py",
+			"*.coffee",
+			"*.styl",
+			"*.coffee",
+			"*.styl",
+			"*"
 		]
 	},
 	"find_state":
@@ -1123,134 +820,134 @@
 		"case_sensitive": false,
 		"find_history":
 		[
-			"LOCALE",
-			"materialType",
-			"completed",
-			"state",
-			"stte          {{}}",
-			"span",
-			"moment",
-			"update_order_state",
-			"toggleProperty",
-			"removeOrder",
-			", ",
-			"createMaterial",
-			"allocat",
-			"_processOrderMainIdx",
-			"type",
-			"progress-step",
-			"grinding",
-			"create",
-			"_grindingFinished",
-			"__qcWait",
-			"create",
-			"fpuMaterial__no",
-			"grindingPlanned",
-			"Grinding",
-			"! {{defaultTime}}",
-			"click",
-			": \"",
-			", ",
-			"sg-timeline",
-			"recipe",
-			"type",
-			"timeDay",
-			"=== undefined",
-			"newStartEnd",
-			"send",
-			"MaterialQcGuideline",
-			"material_qc_limits",
-			"instance",
-			"MaterialQcGuideline",
-			"create",
-			"new_state",
-			"_descr",
 			"api",
-			"updateOrderState",
-			"update_comment",
-			"sg",
-			"fpu must pass",
-			"\">",
-			">",
-			"filter",
-			"daysOffset",
-			"setCurrentFilter",
-			"</button>",
-			"setTimelineRange",
-			"order-row",
-			"sia-btn",
-			"sia-b",
-			"ember-tether",
-			"main-status",
-			"tether",
-			"order-state",
-			"state-cell",
-			"Expanded",
-			"expanded",
-			"order-progress",
-			"val",
-			"fpu",
-			"diffH",
-			"this",
-			"ratio",
-			"progress-step",
+			"host",
+			"apihost",
+			"crumb",
+			"breadCrumb",
+			"crumb",
+			"previous_precentage_cell_idx",
+			"write_out",
+			"get_exce",
+			"      print first + previous_years + flat_excel_lines\n",
+			"      print first + previous_years + flat_excel_lines\n      print first + previous_years + flat_excel_lines\nget_excel_line",
+			"      print first + previous_years + flat_excel_lines\nget_excel_line",
+			"get_excel_line",
+			"get_ratio_to_previous_year",
+			"n/a",
+			"generate_excel_file",
+			"previous_precentage_cell_idx",
+			"title_nothing_or_formula",
+			"get_excel_line",
+			"row_data",
+			"exce",
+			"col-td-30",
+			"colspan=\"2\"",
+			"my-table",
+			"myrow",
+			"global",
+			"passw",
+			"glass",
+			"sercur",
+			"jquery",
+			"userName",
+			"ember-new-computed",
+			"bread",
+			"jeet",
+			"sia",
+			"max_str",
+			"75",
+			"data",
+			"title",
+			"2000",
+			"/home/ext/ext-kai/bin/hcs_",
+			"Market",
+			"code",
+			"\\w+",
+			"^\\w+$",
+			"unquestionnably",
+			"\\w+",
+			"tingle",
+			"\\w+",
+			"^\\d+\\t\\d+\\t\\d+\\t",
+			"\\w+",
+			"gen_image_from_base64",
+			"grit",
+			"slugify",
+			"os",
+			"\"",
+			"update",
+			"new goal",
+			"title",
+			"models.CharField(max_length=2000",
+			"200",
+			"rating",
+			"€",
+			"\\d+	",
+			"steuerberaterin",
+			"data[\"results\"][\"collection1\"][0]",
+			"data[\"results\"][\"collection1\"]",
+			"\\(|\\)",
+			"\\(\\d+\\)",
+			"Frage ab",
+			"\\(|\\)",
+			"\\(\\d+\\)",
+			"collection1",
+			"collection2",
+			"page",
+			"https://www.yourxpert.de/xperts",
+			"\"",
+			"href",
+			"ASSEET_URL",
+			"https://alteo.aigloo.com/djs/assets/oneplace",
+			"gmail",
+			"2016",
+			"archive",
+			"admin",
+			"archive",
+			"weighScore",
+			".ember-content-editable:empty",
+			"weight",
+			"objective",
+			"objec",
+			"objective",
+			"receiver",
+			"receivers",
+			"REX_EXCEL_YEAR",
+			"sales team",
+			"region",
+			"wanna",
+			"wann",
+			"concat",
+			"Concat",
+			"joined",
+			"artic",
+			"assets/assets",
+			"archivedUserInfos",
+			"number",
+			"int",
+			"archive",
+			"p",
+			"archive",
+			"admin",
+			"exportLink",
+			"comment",
+			"exportLink",
+			"export",
+			"feedback",
 			"progress",
-			"hDiff",
-			"this",
-			"m =",
-			"dummy",
-			"this.get",
-			"m",
-			"order-progress-bar",
-			"progress",
-			"peekAll",
-			"findAll",
-			"material.related_order",
-			"lotNumber",
-			"grinding",
-			"orders",
-			"item",
-			"material",
-			"rawmater",
-			"showSortingModalDialog",
-			"<span class=\"order-state {{if material.materialQcTotalError \"error\" \"ok\"}}\"></span>{{if material.materialQcTotalError \"error\" \"ok\"}}",
-			"materialQcTotalErrorDesc",
-			"=",
-			"        <td>{{material.materialQcTotalError}}</td>",
-			"on-hold",
-			"Material.objects",
-			"material",
-			"raw",
-			"material",
-			"raw",
-			"saveorder",
-			"saveor",
-			"save",
-			"detail",
-			"raw",
-			"material.",
-			"material",
-			"Recipe",
-			"fpuQcGuideline",
-			"qcGuideline",
-			"_super",
-			"super",
-			"QcGuideline",
-			"qcGuideline",
-			"power",
-			"error",
-			"space",
-			"notify",
-			"this",
-			"item",
-			"▼",
-			"input value",
-			"material",
-			"input value",
-			"createNewRawMaterial",
-			"ModelWithLotMixin",
-			"self",
-			"Question"
+			"releaseFeedbacks",
+			"feedback",
+			".",
+			"count",
+			"SiaUser",
+			"2018",
+			"unless",
+			"transition",
+			"create_archived_copy_user",
+			"ArchivedSiaUser",
+			"archive",
+			"unlsee"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1313,7 +1010,7 @@
 	"menu_visible": true,
 	"output.exec":
 	{
-		"height": 190.0
+		"height": 257.0
 	},
 	"output.find_results":
 	{
@@ -1337,516 +1034,516 @@
 		"selected_items":
 		[
 			[
-				"orderjs",
-				"xavier-sg/app/models/order.js"
+				"envt",
+				"xavier-ember/config/environment.js"
 			],
 			[
-				"basic",
-				"xavier-sg/app/styles/basic.styl"
+				"rout",
+				"xavier-sia-devel/app/router.js"
 			],
 			[
-				"orderhbs",
-				"xavier-sg/app/templates/components/order-part.hbs"
+				"route",
+				"xavier-sia-devel/app/router.js"
+			],
+			[
+				"click",
+				"xavier-ember/_utils/click_deploy_button.py"
+			],
+			[
+				"withb",
+				"xavier-django/_utils/excel_template_empty_withB.xlsx"
+			],
+			[
+				"excel_template_empty_withb",
+				"xavier-django/_utils/excel_template_empty_withB.xlsx"
 			],
 			[
 				"model",
-				"xavier-django/sg/models.py"
+				"xavier-django/forecast/models.py"
 			],
 			[
-				"progra",
-				"xavier-sg/app/templates/components/order-progress-bar.hbs"
+				"siauser_template",
+				"xavier-django/_utils/siauser_template.xlsx"
 			],
 			[
-				"application",
-				"xavier-sg/app/routes/application.js"
+				"myrow",
+				"xavier-sia-devel/app/templates/custom/myrow.hbs"
 			],
 			[
-				"router",
-				"xavier-sg/app/router.js"
+				"user",
+				"xavier-sia-devel/app/models/user.js"
 			],
 			[
-				"serial",
-				"xavier-django/sg/serializers.py"
+				"jquery.cookie",
+				"xavier-ember/bower_components/jquery-cookie/jquery.cookie.js"
 			],
 			[
-				"element",
-				"xavier-sg/app/controllers/orders/element.js"
+				"genj",
+				"xavier-django/_utils/generate_jwt_token.py"
 			],
 			[
-				"prohbs",
-				"xavier-sg/app/templates/components/order-progress-bar.hbs"
+				"jwt",
+				"xavier-django/xavier/jwt_authentication_middleware.py"
 			],
 			[
-				"progreshb",
-				"xavier-sg/app/templates/components/order-progress-bar.hbs"
+				"ben/models.py",
+				"xavier-django/ben/models.py"
 			],
 			[
-				"materi",
-				"xavier-sg/app/models/material.js"
+				"cli",
+				"xavier-ember/_utils/click_deploy_button.py"
 			],
 			[
-				"material",
-				"xavier-sg/app/models/material.js"
+				"show-nice-file-link",
+				"xavier-ember/app/helpers/show-nice-file-link.coffee"
 			],
 			[
-				"seria",
-				"xavier-django/sg/serializers.py"
+				"gen",
+				"xavier-django/_utils/generate_jwt_token.py"
 			],
 			[
-				"sgtimeline",
-				"xavier-sg/app/templates/components/sg-timeline.hbs"
+				"sia.coffee",
+				"xavier-sia-devel/app/controllers/sia.coffee"
 			],
 			[
-				"recipe",
-				"xavier-sg/app/models/recipe.js"
+				"sia.hbs",
+				"xavier-sia-devel/app/templates/sia.hbs"
 			],
 			[
-				"init",
-				"xavier-django/_utils/sg_initdata.py"
+				"index.hbs",
+				"xavier-sia-devel/app/templates/sia/index.hbs"
+			],
+			[
+				"simple",
+				"xavier-sia-devel/app/helpers/simple-sort.coffee"
+			],
+			[
+				"prospec",
+				"xavier-ember/app/controllers/prospects.coffee"
 			],
 			[
 				"models",
-				"xavier-django/sg/models.py"
+				"xavier-django/sia/models.py"
 			],
 			[
-				"guid",
-				"xavier-sg/app/models/material-qc-guideline.js"
+				"index.html",
+				"xavier-sia-devel/app/index.html"
 			],
 			[
-				"sg-jso",
-				"xavier-sg/app/transforms/sg-json.js"
+				"oneplace",
+				"xavier-ember/app/controllers/oneplace.coffee"
 			],
 			[
-				"seriali",
-				"xavier-django/sg/serializers.py"
+				"staffindex",
+				"xavier-sia-devel/app/templates/sia/staff/index.hbs"
 			],
 			[
-				"view",
-				"xavier-django/sg/views.py"
+				"staff.hbs",
+				"xavier-sia-devel/app/templates/sia/staff.hbs"
 			],
 			[
-				"xaviersett",
-				"xavier-django/xavier/settings.py"
+				"detail.",
+				"xavier-sia-devel/app/controllers/sia/detail.coffee"
 			],
 			[
-				"modelp",
-				"xavier-django/sg/models.py"
+				"detail.coffee",
+				"xavier-sia-devel/app/controllers/sia/detail.coffee"
 			],
 			[
-				"modelorder",
-				"xavier-sg/app/models/order.js"
+				"index.coffee",
+				"xavier-sia-devel/app/controllers/index.coffee"
+			],
+			[
+				"detail.hbs",
+				"xavier-sia-devel/app/templates/sia/detail.hbs"
+			],
+			[
+				"siaadmin",
+				"xavier-django/sia/admin.py"
+			],
+			[
+				"siaviews",
+				"xavier-django/sia/views.py"
+			],
+			[
+				"views",
+				"xavier-django/sia/views.py"
+			],
+			[
+				"prosp",
+				"xavier-ember/app/controllers/prospects.coffee"
+			],
+			[
+				"embercli",
+				"xavier-ember/ember-cli-build.js"
+			],
+			[
+				"index.embl",
+				"xavier-ember/app/templates/index.embl"
+			],
+			[
+				"last8",
+				"xavier-ember/app/helpers/last-8-years.coffee"
+			],
+			[
+				"rexgloab",
+				"xavier-ember/app/templates/components/rex-global-group.embl"
+			],
+			[
+				"goal",
+				"xavier-sia-devel/app/models/goal.coffee"
+			],
+			[
+				"image",
+				"xavier-django/_utils/test_image_compression.py"
 			],
 			[
 				"contindex",
-				"xavier-sg/app/controllers/orders/index.js"
+				"xavier-sia-devel/app/controllers/index.coffee"
 			],
 			[
-				"orderind",
-				"xavier-sg/app/templates/orders/index.hbs"
+				"siauser_template.xlsx",
+				"xavier-django/_utils/siauser_template.xlsx"
 			],
 			[
-				"indexhbs",
-				"xavier-sg/app/templates/index.hbs"
+				"sia-date",
+				"xavier-sia-devel/app/templates/components/sia-date-input.hbs"
 			],
 			[
-				"modleorder",
-				"xavier-sg/app/models/order.js"
+				"sia-datinput",
+				"xavier-sia-devel/tests/integration/components/sia-date-input-test.coffee"
 			],
 			[
-				"orderpart",
-				"xavier-sg/app/components/order-part.js"
+				"staff.coffee",
+				"xavier-sia-devel/app/controllers/sia/staff.coffee"
 			],
 			[
-				"styl",
-				"xavier-sg/app/styles/app.styl"
+				"gent",
+				"xavier-django/_utils/generate_jwt_token.py"
 			],
 			[
-				"packa",
-				"xavier-sg/package.json"
+				"deplo",
+				"xavier-ember/_utils/deploy.sh"
 			],
 			[
-				"progesshb",
-				"xavier-sg/app/templates/components/order-progress-bar.hbs"
-			],
-			[
-				"rawhbs",
-				"xavier-sg/app/templates/components/raw-table-body.hbs"
-			],
-			[
-				"mater",
-				"xavier-sg/app/models/material.js"
-			],
-			[
-				"sgdate",
-				"xavier-sg/app/transforms/sg-date.js"
-			],
-			[
-				"orderprogr",
-				"xavier-sg/app/components/order-progress-bar.js"
-			],
-			[
-				"applihb",
-				"xavier-sg/app/templates/application.hbs"
-			],
-			[
-				"apli",
-				"xavier-sg/app/controllers/application.js"
-			],
-			[
-				"ordersjs",
-				"xavier-sg/app/routes/orders.js"
-			],
-			[
-				"inventory-table-bodyhbs",
-				"xavier-sg/app/templates/components/inventory-table-body.hbs"
-			],
-			[
-				"orderelhb",
-				"xavier-sg/app/templates/orders/element.hbs"
-			],
-			[
-				"rawma",
-				"xavier-sg/app/models/raw-material.js"
-			],
-			[
-				"bodyhbs",
-				"xavier-sg/app/templates/components/inventory-table-body.hbs"
-			],
-			[
-				"table",
-				"xavier-sg/app/templates/components/raw-table-body.hbs"
-			],
-			[
-				"settingrec",
-				"xavier-sg/app/routes/setting-recipe.js"
-			],
-			[
-				"recip",
-				"xavier-sg/app/models/recipe.js"
-			],
-			[
-				"recipehb",
-				"xavier-sg/app/templates/setting-recipe.hbs"
-			],
-			[
-				"qc-group-table",
-				"xavier-sg/app/templates/components/qc-group-table.hbs"
-			],
-			[
-				"qctr",
-				"xavier-sg/app/templates/components/qc-group-table.hbs"
-			],
-			[
-				"rawme",
-				"xavier-sg/app/models/raw-material.js"
-			],
-			[
-				"rawm",
-				"xavier-sg/app/models/raw-material.js"
-			],
-			[
-				"shoctu",
-				"xavier-sg/app/routes/shortcut-inventory.js"
-			],
-			[
-				"shotcutinven",
-				"xavier-sg/app/controllers/shortcut-inventory.js"
-			],
-			[
-				"raw-table-body",
-				"xavier-sg/app/templates/components/raw-table-body.hbs"
-			],
-			[
-				"inventor",
-				"xavier-sg/app/templates/shortcut-inventory.hbs"
-			],
-			[
-				"sgjson",
-				"xavier-sg/app/transforms/sg-json.js"
-			],
-			[
-				"qualit",
-				"xavier-sg/app/routes/setting-quality.js"
-			],
-			[
-				"mo",
-				"xavier-django/sg/models.py"
-			],
-			[
-				"tablebod",
-				"xavier-sg/app/templates/components/inventory-table-body.hbs"
-			],
-			[
-				"goruptable",
-				"xavier-sg/app/components/qc-group-table.js"
-			],
-			[
-				"cqgpu",
-				"xavier-sg/app/templates/components/qc-group-table.hbs"
-			],
-			[
-				"body",
-				"xavier-sg/app/templates/components/inventory-table-body.hbs"
-			],
-			[
-				"shotcutinventory",
-				"xavier-sg/app/routes/shortcut-inventory.js"
-			],
-			[
-				"inventhb",
-				"xavier-sg/app/templates/shortcut-inventory.hbs"
-			],
-			[
-				"rawmater",
-				"xavier-sg/app/models/raw-material.js"
-			],
-			[
-				"urlpy",
+				"urls",
 				"xavier-django/xavier/urls.py"
 			],
 			[
+				"excel_generator_user",
+				"xavier-django/sia/excel_generator_user.py"
+			],
+			[
+				"siacoffee",
+				"xavier-sia-devel/app/controllers/sia.coffee"
+			],
+			[
+				"view.",
+				"xavier-django/sia/views.py"
+			],
+			[
+				"email",
+				"xavier-django/ben/send_email_prospect.py"
+			],
+			[
+				"excel",
+				"xavier-django/sia/excel_generator.py"
+			],
+			[
+				"exceluser",
+				"xavier-django/sia/excel_generator_user.py"
+			],
+			[
+				"view",
+				"xavier-django/sia/views.py"
+			],
+			[
+				"staff.hb",
+				"xavier-sia-devel/app/templates/sia/staff.hbs"
+			],
+			[
+				"detai",
+				"xavier-sia-devel/app/controllers/sia/detail.coffee"
+			],
+			[
+				"indexhbs",
+				"xavier-sia-devel/app/templates/sia/index.hbs"
+			],
+			[
+				"siaindex.coffee",
+				"xavier-sia-devel/app/controllers/sia/index.coffee"
+			],
+			[
+				"detail",
+				"xavier-sia-devel/app/controllers/sia/detail.coffee"
+			],
+			[
 				"admin",
-				"xavier-django/sg/admin.py"
+				"xavier-django/forecast/admin.py"
 			],
 			[
-				"seri",
-				"xavier-django/sg/serializers.py"
+				"require",
+				"xavier-django/requirements.txt"
 			],
 			[
-				"qual",
-				"xavier-sg/app/templates/setting-quality.hbs"
+				"settings",
+				"xavier-django/xavier/settings.py"
 			],
 			[
-				"materialhb",
-				"xavier-sg/app/templates/components/material-display.hbs"
+				"staff",
+				"xavier-sia-devel/app/controllers/sia/staff.coffee"
 			],
 			[
-				"qgui",
-				"xavier-sg/app/models/material-qc-guideline.js"
+				"excelgen",
+				"xavier-django/sia/excel_generator.py"
 			],
 			[
-				"inventabl",
-				"xavier-sg/app/templates/components/inventory-table-body.hbs"
-			],
-			[
-				"invento",
-				"xavier-sg/app/templates/shortcut-inventory.hbs"
-			],
-			[
-				"quhbs",
-				"xavier-sg/app/templates/setting-quality.hbs"
-			],
-			[
-				"recihbs",
-				"xavier-sg/app/templates/setting-recipe.hbs"
+				"history",
+				"xavier-sia-devel/app/templates/sia/history.hbs"
 			],
 			[
 				"index",
-				"xavier-sg/app/index.html"
+				"xavier-sia-devel/app/controllers/index.coffee"
 			],
 			[
-				"inventoryhbs",
-				"xavier-sg/app/templates/shortcut-inventory.hbs"
+				"etail",
+				"xavier-sia-devel/app/templates/sia/detail.hbs"
 			],
 			[
-				"qcgui",
-				"xavier-sg/app/models/material-qc-guideline.js"
+				"siaview",
+				"xavier-django/sia/views.py"
 			],
 			[
-				"settinghbs",
-				"xavier-sg/app/templates/setting-quality.hbs"
+				"permis",
+				"xavier-django/sia/permissions.py"
 			],
 			[
-				"qu",
-				"xavier-sg/app/models/material-qc-guideline.js"
-			],
-			[
-				"sgj",
-				"xavier-sg/app/transforms/sg-json.js"
-			],
-			[
-				"serializ",
-				"xavier-django/sg/serializers.py"
-			],
-			[
-				"materialq",
-				"xavier-sg/app/models/material-qc-guideline.js"
-			],
-			[
-				"settingqu",
-				"xavier-sg/app/routes/setting-quality.js"
-			],
-			[
-				"ap",
-				"xavier-sg/app/templates/application.hbs"
-			],
-			[
-				"modmater",
-				"xavier-sg/app/models/material.js"
-			],
-			[
-				"invent",
-				"xavier-sg/app/templates/shortcut-inventory.hbs"
-			],
-			[
-				"inventorbod",
-				"xavier-sg/app/templates/components/inventory-table-body.hbs"
-			],
-			[
-				"tablbod",
-				"xavier-sg/app/components/inventory-table-body.js"
-			],
-			[
-				"inventory-table-body",
-				"xavier-sg/app/templates/components/inventory-table-body.hbs"
-			],
-			[
-				"inventtable",
-				"xavier-sg/app/templates/components/inventory-table-body.hbs"
-			],
-			[
-				"inventory",
-				"xavier-sg/app/components/inventory-table-body.js"
-			],
-			[
-				"order",
-				"xavier-sg/app/templates/orders/index.hbs"
-			],
-			[
-				"indexjs",
-				"xavier-sg/app/controllers/index.js"
-			],
-			[
-				"sg-time-picker",
-				"xavier-sg/app/components/sg-time-picker.js"
-			],
-			[
-				"part",
-				"xavier-sg/app/templates/components/order-part.hbs"
-			],
-			[
-				"timelineactions",
-				"xavier-sg/app/mixins/timeline-actions.js"
-			],
-			[
-				"orderel",
-				"xavier-sg/app/templates/orders/element.hbs"
-			],
-			[
-				"time",
-				"xavier-sg/app/mixins/timeline-actions.js"
-			],
-			[
-				"sgtimepic",
-				"xavier-sg/app/components/sg-time-picker.js"
-			],
-			[
-				"sgtime",
-				"xavier-sg/app/templates/components/sg-time-picker.hbs"
-			],
-			[
-				"elment",
-				"xavier-sg/app/controllers/orders/element.js"
-			],
-			[
-				"sgtimepi",
-				"xavier-sg/app/components/sg-time-picker.js"
-			],
-			[
-				"elemnt",
-				"xavier-sg/app/controllers/orders/element.js"
-			],
-			[
-				"ordersin",
-				"xavier-sg/app/templates/orders/index.hbs"
-			],
-			[
-				"elem",
-				"xavier-sg/app/templates/orders/element.hbs"
-			],
-			[
-				"routeorders",
-				"xavier-sg/app/routes/orders.js"
-			],
-			[
-				"routeorder",
-				"xavier-sg/app/routes/orders.js"
-			],
-			[
-				"inde",
-				"xavier-sg/app/templates/index.hbs"
-			],
-			[
-				"applic",
-				"xavier-sg/app/templates/application.hbs"
-			],
-			[
-				"inlist",
-				"xavier-sg/app/helpers/in-list.js"
-			],
-			[
-				"guide",
-				"app/models/material-qc-guideline.js"
-			],
-			[
-				"short",
-				"app/templates/shortcut-inventory.hbs"
-			],
-			[
-				"recipehbs",
-				"app/templates/setting-recipe.hbs"
+				"contrindex",
+				"xavier-sia-devel/app/controllers/index.coffee"
 			],
 			[
 				"appli",
+				"xavier-sia-devel/app/templates/application.hbs"
+			],
+			[
+				"sia",
+				"xavier-sia-devel/app/templates/sia.hbs"
+			],
+			[
+				"log",
+				"xavier-django/_test_deploy/django/env/dj_log"
+			],
+			[
+				"djl",
+				"xavier-django/_test_deploy/dj_log"
+			],
+			[
+				"conindex",
+				"xavier-sia-devel/app/controllers/index.coffee"
+			],
+			[
+				"toek",
+				"xavier-django/_utils/generate_jwt_token.py"
+			],
+			[
+				"application",
+				"xavier-sia-devel/app/controllers/application.coffee"
+			],
+			[
+				"permiss",
+				"xavier-django/forecast/permissions.py"
+			],
+			[
+				"detailhbs",
+				"xavier-sia-devel/app/templates/sia/detail.hbs"
+			],
+			[
+				"applic",
+				"xavier-sia-devel/app/controllers/application.coffee"
+			],
+			[
+				"utils",
+				"xavier-ember/app/utils/utils.coffee"
+			],
+			[
+				"userv",
+				"xavier-sia-devel/app/mixins/userAvailable.coffee"
+			],
+			[
+				"sia.coffe",
+				"xavier-sia-devel/app/controllers/sia.coffee"
+			],
+			[
+				"siaseri",
+				"xavier-django/sia/serializers.py"
+			],
+			[
+				"contstaff",
+				"xavier-sia-devel/app/controllers/sia/staff.coffee"
+			],
+			[
+				"routdetail",
+				"xavier-sia-devel/app/routes/sia/detail.coffee"
+			],
+			[
+				"confi",
+				"xavier-sia-devel/app/mirage/config.js"
+			],
+			[
+				"roue",
+				"xavier-sia-devel/app/router.js"
+			],
+			[
+				"rou",
+				"xavier-sia-devel/app/router.js"
+			],
+			[
+				"application.hbs",
+				"xavier-sia-devel/app/templates/application.hbs"
+			],
+			[
+				"contsia",
+				"xavier-sia-devel/app/controllers/sia.coffee"
+			],
+			[
+				"routeindex",
+				"xavier-sia-devel/app/routes/index.coffee"
+			],
+			[
+				"user.js",
+				"xavier-sia-devel/app/models/user.js"
+			],
+			[
+				"middle",
+				"xavier-django/xavier/jwt_authentication_middleware.py"
+			],
+			[
+				"jw",
+				"xavier-django/xavier/jwt_authentication_middleware.py"
+			],
+			[
+				"basic.",
+				"xavier-sia-devel/app/styles/basic.styl"
+			],
+			[
+				"app.st",
+				"xavier-sia-devel/app/styles/app.styl"
+			],
+			[
+				"router",
+				"xavier-sia-devel/app/router.js"
+			],
+			[
+				"serial",
+				"xavier-django/sia/serializers.py"
+			],
+			[
+				"serializer",
+				"xavier-django/forecast/serializers.py"
+			],
+			[
+				"details",
+				"xavier-sia-devel/app/styles/sia_detail.styl"
+			],
+			[
+				"siamodel",
+				"xavier-django/sia/models.py"
+			],
+			[
+				"seria",
+				"xavier-django/ben/serializers.py"
+			],
+			[
+				"siamodels",
+				"xavier-django/sia/models.py"
+			],
+			[
+				"environment",
+				"xavier-ember/config/environment.js"
+			],
+			[
+				"staff.",
+				"app/controllers/sia/staff.coffee"
+			],
+			[
+				"modal",
+				"xavier-sia-devel/app/styles/modal.styl"
+			],
+			[
+				"mix",
+				"xavier-sia-devel/app/styles/mixins.styl"
+			],
+			[
+				"index.hb",
+				"xavier-sia-devel/app/templates/sia/index.hbs"
+			],
+			[
+				"ap",
+				"xavier-sia-devel/app/styles/app.styl"
+			],
+			[
+				"app.styl",
+				"xavier-sia-devel/app/styles/app.styl"
+			],
+			[
+				"staff.h",
+				"xavier-sia-devel/app/templates/sia/staff.hbs"
+			],
+			[
+				"contoldeta",
+				"xavier-sia-devel/app/controllers/sia/detail.coffee"
+			],
+			[
+				"controllerindex",
+				"xavier-sia-devel/app/controllers/sia/index.coffee"
+			],
+			[
+				"siahbs",
+				"app/templates/sia.hbs"
+			],
+			[
+				"detal",
+				"xavier-sia-devel/app/templates/sia/detail.hbs"
+			],
+			[
+				"goals",
+				"xavier-sia-devel/app/styles/goals.styl"
+			],
+			[
+				"contdetail",
+				"xavier-sia-devel/app/controllers/sia/detail.coffee"
+			],
+			[
+				"controllerdetails",
+				"xavier-sia-devel/tests/unit/controllers/sia/detail-test.coffee"
+			],
+			[
+				"index.co",
+				"app/controllers/sia/index.coffee"
+			],
+			[
+				"index.cof",
+				"app/controllers/sia/index.coffee"
+			],
+			[
+				"application.hb",
 				"app/templates/application.hbs"
 			],
 			[
-				"machine",
-				"app/templates/shortcut-machine.hbs"
+				"",
+				".bowerrc"
 			],
 			[
-				"timelin",
-				"app/components/sg-timeline.js"
+				"styl",
+				"app/styles/sia_detail.styl"
 			],
 			[
-				"machin",
-				"app/models/machine.js"
+				"modal-down",
+				"xavier-ember/app/components/modal-download.coffee"
 			],
 			[
-				"orderpro",
-				"app/templates/components/order-progress-bar.hbs"
-			],
-			[
-				"sty",
-				"app/styles/app.styl"
-			],
-			[
-				"orders",
-				"app/models/order.js"
-			],
-			[
-				"appst",
-				"app/styles/app.styl"
-			],
-			[
-				"odr",
-				"app/models/order.js"
-			],
-			[
-				"indexhb",
-				"app/templates/index.hbs"
-			],
-			[
-				"order.hbs",
-				"app/templates/order.hbs"
-			],
-			[
-				"setting",
-				"app/templates/setting-recipe.hbs"
-			],
-			[
-				"routerecipe",
-				"app/routes/setting-recipe.js"
+				"selectvaluesavailable",
+				"xavier-ember/app/mixins/selectValuesAvailable.coffee"
 			]
 		],
 		"width": 0.0
@@ -1862,20 +1559,12 @@
 	},
 	"select_symbol":
 	{
-		"height": 392.0,
+		"height": 0.0,
 		"last_filter": "",
 		"selected_items":
 		[
-			[
-				"saveo",
-				"saveOrder"
-			],
-			[
-				"group",
-				"btn-group"
-			]
 		],
-		"width": 467.0
+		"width": 0.0
 	},
 	"selected_group": 0,
 	"settings":
