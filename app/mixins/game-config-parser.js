@@ -1,6 +1,14 @@
 import Ember from 'ember';
 import _ from 'lodash/lodash';
 
+let fn = function(self, tag) {
+  return function(round) {
+    let cleanLines = self.get("cleanLines");
+    let retailPrice = cleanLines.filter( (x) => { return x.startsWith(tag); } )[0];
+    return retailPrice.split(",")[round];
+    
+  }
+}
 
 export default Ember.Mixin.create({
 
@@ -130,15 +138,15 @@ export default Ember.Mixin.create({
     return userLine.split(",")[round];
   },
 
-  getRetailpriceForRound(round) {
-    let cleanLines = this.get("cleanLines");
-    let retailPrice = cleanLines.filter( (x) => { return x.startsWith("retailPrice"); } )[0];
-    return retailPrice.split(",")[round];
-  },
+
+  getRetailpriceForRound(round) { return fn(this, "retailPrice")(round); },
+  getSellerFineForRound(round) { return fn(this, "fine")(round); },
+  getSellerFixedCostForRound(round) { return fn(this, "fixedCost")(round); },
+  getMinutesPerRoundForRound(round) { return fn(this, "minutesPerRound")(round); },
 
   sanityCheck(rawConfigString) {
     let cleanLines = rawConfigString.split("\n")
-      .filter( (x) => {return /^(game|b\d+|s\d+|retailPrice)/.test(x);} )
+      .filter( (x) => {return /^(game|b\d+|s\d+|retailPrice|fine|fixedCost|minutesPerRound)/.test(x);} )
       .map((x) => { return x.replace(/#.*$/, "").replace(/\s+/g, ""); });
 
     let gameLinePresent = cleanLines

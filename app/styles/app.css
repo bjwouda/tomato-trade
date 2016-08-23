@@ -69,5 +69,7 @@ span.to-money {
   transition: all 0.5s linear;
 }
 
-
+li.list-group-item.accepted { background-color: rgba(0, 255, 0, 0.3); }
+li.list-group-item.recalled { background-color: rgba(120, 120, 120, 0.3); }
+li.list-group-item.declined { background-color: rgba(255, 0, 0, 0.3); }
 

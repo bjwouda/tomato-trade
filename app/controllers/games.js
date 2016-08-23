@@ -115,6 +115,9 @@ export default Ember.Controller.extend(OfferActions, LangActions, LogFunctions, 
     },
 
     nextRound(game, minutesPerRound) {
+
+      minutesPerRound = game.getMinutesPerRoundForRound(1 + game.get("roundCnt"));
+
       if (!minutesPerRound) {
         alert("Minutes per round not correctly set...");
         return;
@@ -173,8 +176,20 @@ export default Ember.Controller.extend(OfferActions, LangActions, LogFunctions, 
 
       game.incrementProperty("roundCnt", 1);
       game.save().then(() => {
-        let newRetailPrice = game.getRetailpriceForRound(game.get("roundCnt"));
-        game.set("retailPrice", newRetailPrice);
+        let lut = [
+          ["getRetailpriceForRound", "retailPrice"],
+          ["getMinutesPerRoundForRound", "minutesPerRound"],
+          ["getSellerFineForRound", "fine"],
+          ["getSellerFixedCostForRound", "fixedCost"],
+        ];
+
+        for (let [fnName, attrName] of lut) {
+          console.log(fnName);
+          console.log(attrName);
+          let newVal = game[fnName](game.get("roundCnt"));
+          game.set(attrName, newVal);
+        }
+
       });
 
       game.get("allUsers").forEach((u) => {
@@ -234,19 +249,19 @@ export default Ember.Controller.extend(OfferActions, LangActions, LogFunctions, 
 
     exportCSV(historyLogs) {
       var data = [];
-      var titles = ["round", "idxOfOfferInGame", "userSender", "userReceiver", "state", "offer", "tsDesc"];
+      var titles = ["round", "idxOfOfferInGame", "userSender", "userReceiver", "state", "offer", "tomatoesOffer", "priceOffer", "tsDesc"];
 
       data.push(titles);
       historyLogs.map((historyElement) => {
         // historyElement => 1x historical element
         // now go through each element in titles and get it from historyElement
         var resolvedTitles = titles.map((titleElement) => {
-          if (true) {}
           return historyElement.get(titleElement);
         });
         data.push(resolvedTitles);
       });
-      this.get('csv').export(data, 'test.csv');
+      // this.get('csv').export(data, 'test.csv');
+      this.get('excel').export(data, 'sheet1', 'test.xlsx');
     },
 
   }

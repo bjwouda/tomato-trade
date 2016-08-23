@@ -10,21 +10,22 @@ import _ from 'lodash/lodash';
 
 export default Model.extend({
   // normal attribtues
-  name               : attr('string'),
+  name                  : attr('string'),
   
-  goalTomatoes       : storeWithWeek("userGame.weekCnt", "goalTomatoes"),
-  tomatoes           : storeWithWeek("userGame.weekCnt", "tomatoes"),
-  money              : storeWithWeek("userGame.weekCnt", "money"),
-  extOfferTomato     : storeWithWeek("userGame.weekCnt", "extOfferTomato"),
-  extOfferPrice      : storeWithWeek("userGame.weekCnt", "extOfferPrice"),
+  goalTomatoes          : storeWithWeek("userGame.weekCnt", "goalTomatoes"),
+  tomatoes              : storeWithWeek("userGame.weekCnt", "tomatoes"),
+  money                 : storeWithWeek("userGame.weekCnt", "money"),
+  extOfferTomato        : storeWithWeek("userGame.weekCnt", "extOfferTomato"),
+  extOfferPrice         : storeWithWeek("userGame.weekCnt", "extOfferPrice"),
   
-  isSeller           : attr('boolean'),
-  playerWeekStatus   : attr('json'),
+  enableExternalTrading : attr('boolean', {default: false}),
+  isSeller              : attr('boolean'),
+  playerWeekStatus      : attr('json'),
 
   // relational attributes
-  userGame           : belongsTo('game'),
-  receivedOffers     : hasMany('offer', { async: true, inverse: 'receiver' }),
-  sentOffers         : hasMany('offer', { async: true, inverse: 'sender' }),
+  userGame              : belongsTo('game'),
+  receivedOffers        : hasMany('offer', { async: true, inverse: 'receiver' }),
+  sentOffers            : hasMany('offer', { async: true, inverse: 'sender' }),
 
 
 

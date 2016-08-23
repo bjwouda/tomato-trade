@@ -43,6 +43,9 @@
 
     <li class="list-group-item">
       <div class="table-responsive">
+        <button class="btn {{if player.enableExternalTrading "btn-success" "btn-danger"}} btn-xs" {{action (pipe (toggle "enableExternalTrading" player) (invoke "save" player))}}>
+          {{if player.enableExternalTrading "enabled" "disabled"}}
+        </button>
         <table class="table-borderless">
           <thead>
             <tr>

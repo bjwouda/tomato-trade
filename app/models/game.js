@@ -7,14 +7,17 @@ import GameConfigParser from '../mixins/game-config-parser';
 import storeWithWeek from '../utils/store-with-week';
 
 let rawConfigString = `
-game        , w1  , w2   , d1  , w3  , d2  ,   w4,    d3,   d4  # 4 weeks, 10 trades
-retailPrice  , 1.0 , 1.0  , 1.0 ,  1.0, 1.0 , 1.0 , 1.0  x,  1.0  # 4 weeks, 10 trades
-b1          , 1000, 12000, 1000, 1000, 1000, 1000, 12000, 1000
-b1_extPrice , 9999, 12000, 1000, 1000, 1000, 1000, 12000, 1000
-b1_extTomato, 1, 12000, 1000, 1000, 1000, 1000, 12000, 1000
-s1          , 1000, 12000, 1000, 1000, 1000, 1000, 12000, 1000
-s1_extPrice , 9999, 12000, 1000, 1000, 1000, 1000, 12000, 1000
-s1_extTomato, 1, 12000, 1000, 1000, 1000, 1000, 12000, 1000
+game            , w1   , w2    , d1   , w3   , d2   , w4   , d3    , d4  # 4 weeks  , 10 trades
+retailPrice     , 1.0  , 1.0   , 1.0  , 1.0  , 1.0  , 1.0  , 1.0   , 1.0  # 4 weeks , 10 trades
+fine            , 3.0  , 1.0   , 1.0  , 1.0  , 1.0  , 1.0  , 1.0   , 1.0  # 4 weeks , 10 trades
+fixedCost       , 2.0  , 1.0   , 1.0  , 1.0  , 1.0  , 1.0  , 1.0   , 1.0  # 4 weeks , 10 trades
+minutesPerRound , 2.0  , 1.0   , 1.0  , 1.0  , 1.0  , 1.0  , 1.0   , 1.0  # 4 weeks , 10 trades
+b1              , 1000 , 12000 , 1000 , 1000 , 1000 , 1000 , 12000 , 1000
+b1_extPrice     , 9999 , 12000 , 1000 , 1000 , 1000 , 1000 , 12000 , 1000
+b1_extTomato    , 1    , 12000 , 1000 , 1000 , 1000 , 1000 , 12000 , 1000
+s1              , 1000 , 12000 , 1000 , 1000 , 1000 , 1000 , 12000 , 1000
+s1_extPrice     , 9999 , 12000 , 1000 , 1000 , 1000 , 1000 , 12000 , 1000
+s1_extTomato    , 1    , 12000 , 1000 , 1000 , 1000 , 1000 , 12000 , 1000
 `;
 
 import _ from 'lodash/lodash';

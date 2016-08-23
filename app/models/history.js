@@ -21,7 +21,7 @@ export default Model.extend({
     historyGame  : belongsTo('game'),
 
     idxOfOfferInGame: Ember.computed("offerId", "historyGame.offers.[]", function() {
-        if (!this.get("offerId")) { return ""; }
+        if (!this.get("offerId")) { return "status"; }
 
         let gameOffers = this.get("historyGame.offers");
         if (gameOffers === undefined || gameOffers.map === undefined) { return ""; }

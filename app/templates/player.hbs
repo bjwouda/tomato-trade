@@ -64,71 +64,132 @@
             <h4>{{capitalize (t obj.user.roleDescription)}} {{obj.user.playerPosition}}: {{obj.user.name}}</h4>
           {{/if}}
           
-          <ul class="list-group">
-              <li class="list-group-item">
-                <div class="form-inline">
-                    <div class="form-group">
-                      <label for="offerTomato">{{t 'tomatoes'}} <span class="to-tomato"></span></label>
-                      {{input value=obj.user._offerTomato type="number" class="form-control" placeholder=(t "kgOfTomatoes")}}
-                    </div>
-                    <div class="form-group">
-                      <label for="offerPrice">{{t 'price'}} <span class="to-money"></span></label>
-                      {{input value=obj.user._offerPrice type="number" class="form-control" placeholder=(t "pricePerKg")}}
-                      {{#if (and (gt obj.user._offerTomato 0) (gt obj.user._offerPrice 0))}}
-                        {{#if (eq k 'External')}}
-                            <button class="btn btn-info" {{action 'sendOffer' game model 0 obj.user._offerTomato obj.user._offerPrice}}>{{t 'send'}}</button>
-                        {{else}}
-                          <button class="btn btn-info" {{action 'sendOffer' game model obj.user obj.user._offerTomato obj.user._offerPrice}}>{{t 'send'}}</button>
-                        {{/if}}
-                      {{else}}
-                        {{#if (eq k 'External')}}
-                            <button disabled class="btn btn-default" {{action 'sendOffer' game model 0 obj.user._offerTomato obj.user._offerPrice}}>{{t 'send'}}</button>
-                        {{else}}
-                          <button disabled class="btn btn-default" {{action 'sendOffer' game model obj.user obj.user._offerTomato obj.user._offerPrice}}>{{t 'send'}}</button>
-                        {{/if}}
-                      {{/if}}
-                    </div>
-                    
-                    <p>
-                    </p>
-                </div>
-              </li>
-          </ul>
+          {{#if (or model.enableExternalTrading (not (eq k 'External')))}}
 
-          <ul class="list-group">
-              <li class="list-group-item">
-                <strong>{{t "currentTransaction"}}</strong>
-              </li>
-              {{player-offers 
-                store=store 
-                game=game 
-                openOffers=(reverse obj.openOffers) 
-                sentOffers=(reverse obj.sentOffers)}}
-          </ul>
-          
-          <ul class="list-group">
-              <li class="list-group-item">
-                <strong>{{t 'last5Transactions'}}</strong>
-              </li>
+            <ul class="list-group">
+                <li class="list-group-item">
+                  <div class="form-inline">
+                    {{#if (eq k 'External')}}
+                         <div class="form-group">
+                            <label for="offerTomato">{{t 'tomatoes'}}<span class="to-tomato"></span>(max. {{model.extOfferTomato}})</label>
 
-              {{#each (take 5 (reverse obj.history)) as |offer|}}
-                  <li class="list-group-item">[{{offer.state}}] <b>{{offer.senderName}}</b> --&gt; <b>{{offer.receiverName}}</b>  {{moment-format offer.ts "HH:mm:ss"}} / {{moment-from-now offer.ts hideSuffix=true interval=1000}} <span class="to-tomato"></span> {{offer.tomatoes}} <span class="to-money"></span> {{offer.price}}</li>
-              {{else}}
+                            {{input
+                              placeholder=(t "kgOfTomatoes")
+                              value=obj.user._offerTomato 
+                              type="number"
+                              class="form-control" 
+                            }}
+
+                          </div>
+                          <div class="form-group">
+                            
+                            <label for="offerPrice">{{t 'price'}} <span class="to-money"></span></label>
+                            {{input-money
+                              prefix='€ ' 
+                              number=model.extOfferPrice 
+                              class="form-control" 
+                              placeholder=(t "pricePerKg")
+                              disabled=1
+                            }}
+
+                            {{#if (and (gt obj.user._offerTomato 0) (lte obj.user._offerTomato model.extOfferTomato))}}
+                              {{#if (eq k 'External')}}
+                                  <button class="btn btn-info" {{action 'sendOffer' game model 0 obj.user._offerTomato model.extOfferPrice}}>{{t 'send'}}</button>
+                              {{else}}
+                                <button class="btn btn-info" {{action 'sendOffer' game model obj.user obj.user._offerTomato model.extOfferPrice}}>{{t 'send'}}</button>
+                              {{/if}}
+                            {{else}}
+                              {{#if (eq k 'External')}}
+                                  <button disabled class="btn btn-default" {{action 'sendOffer' game model 0 obj.user._offerTomato model.extOfferPrice}}>{{t 'send'}}</button>
+                              {{else}}
+                                <button disabled class="btn btn-default" {{action 'sendOffer' game model obj.user obj.user._offerTomato model.extOfferPrice}}>{{t 'send'}}</button>
+                              {{/if}}
+                            {{/if}}
+                          </div>
+                    {{else}}
+                      <div class="form-group">
+
+                          <label for="offerTomato">{{t 'tomatoes'}} <span class="to-tomato"></span></label>
+                          {{input
+                            value=obj.user._offerTomato 
+                            type="number"
+                            class="form-control" 
+                            placeholder=(t "kgOfTomatoes")
+                          }}
+                      </div>
+                      <div class="form-group">
+                        
+                        <label for="offerPrice">{{t 'price'}} <span class="to-money"></span></label>
+                        {{input-money
+                          prefix='€ ' 
+                          number=obj.user._offerPrice 
+                          class="form-control" 
+                          placeholder=(t "pricePerKg")
+                        }}
+
+                        {{#if (and (gt obj.user._offerTomato 0) (gt obj.user._offerPrice 0))}}
+                          {{#if (eq k 'External')}}
+                              <button class="btn btn-info" {{action 'sendOffer' game model 0 obj.user._offerTomato obj.user._offerPrice}}>{{t 'send'}}</button>
+                          {{else}}
+                            <button class="btn btn-info" {{action 'sendOffer' game model obj.user obj.user._offerTomato obj.user._offerPrice}}>{{t 'send'}}</button>
+                          {{/if}}
+                        {{else}}
+                          {{#if (eq k 'External')}}
+                              <button disabled class="btn btn-default" {{action 'sendOffer' game model 0 obj.user._offerTomato obj.user._offerPrice}}>{{t 'send'}}</button>
+                          {{else}}
+                            <button disabled class="btn btn-default" {{action 'sendOffer' game model obj.user obj.user._offerTomato obj.user._offerPrice}}>{{t 'send'}}</button>
+                          {{/if}}
+                        {{/if}}
+                      </div>
+                    {{/if}}  
+                  </div>
+                </li>
+            </ul>
+
+            <ul class="list-group">
+                <li class="list-group-item">
+                  <strong>{{t "currentTransaction"}}</strong>
+                </li>
+                {{player-offers 
+                  store=store 
+                  game=game 
+                  openOffers=(reverse obj.openOffers) 
+                  sentOffers=(reverse obj.sentOffers)}}
+            </ul>
+            
+            <ul class="list-group">
+                <li class="list-group-item">
+                  <strong>{{t 'last5Transactions'}}</strong>
+                </li>
+
+                {{#each (take 5 (reverse obj.history)) as |offer|}}
+                    <li class="list-group-item {{offer.state}}">
+                      [{{offer.state}}] 
+                      <b>{{offer.senderName}}</b> --&gt; <b>{{offer.receiverName}}</b>  
+                      {{moment-format offer.ts "HH:mm:ss"}} / {{moment-from-now offer.ts hideSuffix=true interval=1000}} 
+                      <span class="to-tomato"></span> {{offer.tomatoes}} <span class="to-money"></span> {{digit-format offer.price}}
+                    </li>
+                {{else}}
+                    <li class="list-group-item"><i>{{t "na"}}</i></li>
+                {{/each}}
+
+            </ul>
+
+            <ul class="list-group">
+                <li class="list-group-item">
+                  <strong>{{t "previousAcceptedOffers"}}</strong>
+                </li>
+                {{#each (filter-by "state" "accepted" (reverse obj.history))  as |offer|}}
+                    <li class="list-group-item {{offer.state}}">[{{offer.state}}] <b>{{offer.senderName}}</b> --&gt; <b>{{offer.receiverName}}</b>  {{moment-format offer.ts "HH:mm:ss"}} / {{moment-from-now offer.ts hideSuffix=true interval=1000}} <span class="to-tomato"></span> {{offer.tomatoes}} <span class="to-money"></span> {{digit-format offer.price}}</li>
+                {{else}}
                   <li class="list-group-item"><i>{{t "na"}}</i></li>
-              {{/each}}
+                {{/each}}
+            </ul>
 
-          </ul>
 
-          <ul class="list-group">
-              <li class="list-group-item">
-                <strong>{{t "previousAcceptedOffers"}}</strong>
-              </li>
-              {{#each (filter-by "state" "accepted" (reverse obj.history))  as |offer|}}
-                  <li class="list-group-item">[{{offer.state}}] <b>{{offer.senderName}}</b> --&gt; <b>{{offer.receiverName}}</b>  {{moment-format offer.ts "HH:mm:ss"}} / {{moment-from-now offer.ts hideSuffix=true interval=1000}} <span class="to-tomato"></span> {{offer.tomatoes}} <span class="to-money"></span> {{offer.price}}</li>
-              {{else}}
-                <li class="list-group-item"><i>{{t "na"}}</i></li>
-              {{/each}}
-          </ul>
+            {{else}}
+              <p>{{t "externalTradingNotAvailable"}}</p>
+            {{/if}}
 
       </div>
     {{/each-in}}

@@ -2,7 +2,7 @@
     <li class="list-group-item">  
       &lt;-- <b>{{offer.senderName}}</b> <i>{{moment-format offer.ts "HH:mm:ss"}} / {{moment-from-now offer.ts hideSuffix=true interval=1000}}</i> <br>
 
-      {{offer.tomatoes}} <span class="to-tomato"></span> for {{offer.price}} <span class="to-money"></span> 
+      {{offer.tomatoes}} <span class="to-tomato"></span> for € {{digit-format offer.price}} <span class="to-money"></span> 
       
       {{#if offer.isConfirmed}}
         <button  class="btn btn-warning" {{action 'recallConfirmationOffer' game offer}}>{{t 'recallConfirm'}}</button>
@@ -17,7 +17,7 @@
     <li class="list-group-item">
       --&gt; <b>{{offer.receiverName}}</b> <i>{{moment-format offer.ts "HH:mm:ss"}} / {{moment-from-now offer.ts hideSuffix=true interval=1000}}</i> <br>
 
-      {{offer.tomatoes}} <span class="to-tomato"></span> for {{offer.price}} <span class="to-money"></span> 
+      {{offer.tomatoes}} <span class="to-tomato"></span> for € {{digit-format offer.price}} <span class="to-money"></span> 
       
       {{#if offer.isConfirmed}}
         <button class="btn btn-default btn-success" {{action 'acceptOffer' game offer}}>{{t 'accept'}}</button>
