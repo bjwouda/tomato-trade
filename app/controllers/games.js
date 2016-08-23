@@ -234,7 +234,7 @@ export default Ember.Controller.extend(OfferActions, LangActions, LogFunctions, 
 
     exportCSV(historyLogs) {
       var data = [];
-      var titles = ["round", "offerId", "userSender", "userReceiver", "state", "tomatoesOffer", "priceOffer", "tsDesc"];
+      var titles = ["round", "idxOfOfferInGame", "userSender", "userReceiver", "state", "offer", "tsDesc"];
 
       data.push(titles);
       historyLogs.map((historyElement) => {

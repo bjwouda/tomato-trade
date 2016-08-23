@@ -69,11 +69,11 @@
                 <div class="form-inline">
                     <div class="form-group">
                       <label for="offerTomato">{{t 'tomatoes'}} <span class="to-tomato"></span></label>
-                      {{input value=obj.user._offerTomato type="number" class="form-control" placeholder="kg of tomatoes"}}
+                      {{input value=obj.user._offerTomato type="number" class="form-control" placeholder=(t "kgOfTomatoes")}}
                     </div>
                     <div class="form-group">
                       <label for="offerPrice">{{t 'price'}} <span class="to-money"></span></label>
-                      {{input value=obj.user._offerPrice type="number" class="form-control" placeholder="price per kg"}}
+                      {{input value=obj.user._offerPrice type="number" class="form-control" placeholder=(t "pricePerKg")}}
                       {{#if (and (gt obj.user._offerTomato 0) (gt obj.user._offerPrice 0))}}
                         {{#if (eq k 'External')}}
                             <button class="btn btn-info" {{action 'sendOffer' game model 0 obj.user._offerTomato obj.user._offerPrice}}>{{t 'send'}}</button>
