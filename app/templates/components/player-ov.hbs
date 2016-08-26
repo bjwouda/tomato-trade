@@ -28,9 +28,31 @@
     </thead>
     <tbody>
       <tr>
-        <td>{{input value=player.goalTomatoes class="form-control" size="20"}}</td>
+        <td>
+          {{number-input 
+            class="form-control" 
+            placeholder=(t "kgOfTomatoes")
+            unmaskedValue=player.goalTomatoes  
+            group=true 
+            groupSize=3 
+            separator="," 
+            decimal=false 
+            radix="."
+          }}
+        </td>
         <td> </td>
-        <td>{{input value=player.tomatoes class="form-control" size="20"}}</td>
+        <td>
+          {{number-input 
+            class="form-control" 
+            placeholder=(t "kgOfTomatoes")
+            unmaskedValue=player.tomatoes  
+            group=true 
+            groupSize=3 
+            separator="," 
+            decimal=false 
+            radix="."
+          }}
+        </td>
       </tr>
     </tbody>
   </table>
@@ -58,9 +80,27 @@
           </thead>
           <tbody>
             <tr>
-              <td>{{input value=player.extOfferTomato class="form-control" size="20"}}</td>
+              <td>
+                {{number-input 
+                  class="form-control" 
+                  placeholder=(t "kgOfTomatoes")
+                  unmaskedValue=player.extOfferTomato  
+                  group=true 
+                  groupSize=3 
+                  separator="," 
+                  decimal=false 
+                  radix="."
+                }}
+              </td>
               <td> </td>
-              <td>{{input value=player.extOfferPrice class="form-control" size="20"}}</td>
+              <td>
+                  {{input-money
+                    prefix='€ ' 
+                    number=player.extOfferPrice 
+                    class="form-control" 
+                    placeholder=(t "pricePerKg")
+                  }}
+              </td>
               <td> </td>
               <td> <button class="btn btn-primary btn-xs" {{action 'sendOffer' game 0 player player.extOfferTomato player.extOfferPrice}}>Send Offer</button> </td>
             </tr>

@@ -119,8 +119,7 @@ export default Ember.Controller.extend(OfferActions, LangActions, LogFunctions, 
       minutesPerRound = game.getMinutesPerRoundForRound(1 + game.get("roundCnt"));
 
       if (!minutesPerRound) {
-        alert("Minutes per round not correctly set...");
-        return;
+        minutesPerRound = 5;
       }
 
       //Create history record to record moving to the next round
@@ -162,6 +161,9 @@ export default Ember.Controller.extend(OfferActions, LangActions, LogFunctions, 
           game.save();
           return true;
         });
+
+        u.set("enableExternalTrading", false);
+
       });
 
       game.get('historyLogs').addObject(newHistoryObj);
@@ -211,8 +213,20 @@ export default Ember.Controller.extend(OfferActions, LangActions, LogFunctions, 
       this.set("game.gameConfigurationRO", this.get("game.gameConfiguration"));
     },
 
+    updateGameConfig(){
+        this.set("game.gameConfigurationSafe", this.get("game.gameConfigurationRO"));
+        this.get("game").save();
+    },
+
     saveGameConfig() {
       let self = this;
+
+      if (! self.get("game.isNew")) {
+        var r = confirm("Are you sure to override the new config? Everything will start from scratch.");
+        if (!r) { return; } 
+      }
+
+      self.set("game.isNew", false);
 
       var promiseArr = self.get("game.users")
         .filter((x) => {

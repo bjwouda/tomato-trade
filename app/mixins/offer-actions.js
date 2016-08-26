@@ -19,6 +19,8 @@ export default Ember.Mixin.create(LogFunctions, {
         tomatoes: tomatoes,
         price: price,
         isExternal: isExternal,
+        roundNumber: game.get("roundNumber"),
+        weekNumber: game.get("weekNumber"),
         ts: Date.now(),
         state: "open",
         notes: `${moment().format()};created\n`

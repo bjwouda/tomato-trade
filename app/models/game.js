@@ -30,12 +30,13 @@ export default Model.extend(GameConfigParser, {
   gameName:          attr('string'),
   
   roundCnt:          attr('number', { defaultValue: 0 }),
-  minutesPerRound:   attr('number', { defaultValue: 5 }),
-  fine:              attr('number', { defaultValue: 0.2 }),
-  fixedCost:         attr('number', { defaultValue: 0.05 }),
+  minutesPerRound:   storeWithWeek("roundCnt", "minutesPerRound"),
+  fine:              storeWithWeek("roundCnt", "fine"),
+  fixedCost:         storeWithWeek("roundCnt", "fixedCost"),
   timeStartTs:       attr('number'),
   timeEndTs:         attr('number'),
   timePausedTs:      attr('number'),
+  isNew:             attr('boolean', { defaultValue: true }),
   
   retailPrice:       storeWithWeek("roundCnt", "retailPrice"),
   playerWeekStatus:  attr('json', { defaultValue: {} }),
@@ -53,6 +54,8 @@ export default Model.extend(GameConfigParser, {
 
   isPaused: Ember.computed("timePausedTs", function() { return this.get("timePausedTs") !== undefined && this.get("timePausedTs") !== null; }),
 
+  roundNumber: Ember.computed.alias("roundCnt"),
+  weekNumber: Ember.computed.alias("weekCnt"),
   weekCnt: Ember.computed("roundCnt", function() {
     var roundCnt = this.get("roundCnt") - 1;
     if (roundCnt < 0) {roundCnt = 0;}

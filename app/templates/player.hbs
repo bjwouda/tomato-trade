@@ -73,12 +73,24 @@
                          <div class="form-group">
                             <label for="offerTomato">{{t 'tomatoes'}}<span class="to-tomato"></span>(max. {{model.extOfferTomato}})</label>
 
-                            {{input
+                            {{number-input 
+                              class="form-control" 
+                              placeholder=(t "kgOfTomatoes")
+                              unmaskedValue=obj.user._offerTomato  
+                              group=true 
+                              groupSize=3 
+                              separator="," 
+                              decimal=false 
+                              radix="."
+                            }}
+
+
+{{!--                             {{input
                               placeholder=(t "kgOfTomatoes")
                               value=obj.user._offerTomato 
                               type="number"
                               class="form-control" 
-                            }}
+                            }} --}}
 
                           </div>
                           <div class="form-group">
@@ -110,12 +122,24 @@
                       <div class="form-group">
 
                           <label for="offerTomato">{{t 'tomatoes'}} <span class="to-tomato"></span></label>
-                          {{input
+                          
+                          {{number-input 
+                            class="form-control" 
+                            placeholder=(t "kgOfTomatoes")
+                            unmaskedValue=obj.user._offerTomato  
+                            group=true 
+                            groupSize=3 
+                            separator="," 
+                            decimal=false 
+                            radix="."
+                          }}
+
+{{!--                           {{input
                             value=obj.user._offerTomato 
                             type="number"
                             class="form-control" 
                             placeholder=(t "kgOfTomatoes")
-                          }}
+                          }} --}}
                       </div>
                       <div class="form-group">
                         
@@ -163,12 +187,7 @@
                 </li>
 
                 {{#each (take 5 (reverse obj.history)) as |offer|}}
-                    <li class="list-group-item {{offer.state}}">
-                      [{{offer.state}}] 
-                      <b>{{offer.senderName}}</b> --&gt; <b>{{offer.receiverName}}</b>  
-                      {{moment-format offer.ts "HH:mm:ss"}} / {{moment-from-now offer.ts hideSuffix=true interval=1000}} 
-                      <span class="to-tomato"></span> {{offer.tomatoes}} <span class="to-money"></span> {{digit-format offer.price}}
-                    </li>
+                    {{player-offer-display offer=offer}}
                 {{else}}
                     <li class="list-group-item"><i>{{t "na"}}</i></li>
                 {{/each}}
@@ -180,7 +199,7 @@
                   <strong>{{t "previousAcceptedOffers"}}</strong>
                 </li>
                 {{#each (filter-by "state" "accepted" (reverse obj.history))  as |offer|}}
-                    <li class="list-group-item {{offer.state}}">[{{offer.state}}] <b>{{offer.senderName}}</b> --&gt; <b>{{offer.receiverName}}</b>  {{moment-format offer.ts "HH:mm:ss"}} / {{moment-from-now offer.ts hideSuffix=true interval=1000}} <span class="to-tomato"></span> {{offer.tomatoes}} <span class="to-money"></span> {{digit-format offer.price}}</li>
+                  {{player-offer-display offer=offer}}
                 {{else}}
                   <li class="list-group-item"><i>{{t "na"}}</i></li>
                 {{/each}}

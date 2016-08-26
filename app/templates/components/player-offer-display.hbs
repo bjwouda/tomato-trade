@@ -1,0 +1,9 @@
+  <li class="list-group-item {{offer.state}}">
+    Round: {{offer.roundNumber}} Offer: {{offer.idxOfOfferInGame}} [{{offer.state}}] 
+    <b>{{offer.receiverName}}</b>  
+    {{moment-format offer.ts "HH:mm:ss"}} / {{moment-from-now offer.ts hideSuffix=true interval=1000}} 
+    <br>
+    <b>{{offer.senderName}}</b> --&gt;
+    <span class="to-tomato"></span> {{digit-group-format offer.tomatoes}} 
+    <span class="to-money"></span> {{digit-format offer.price}}
+  </li>
