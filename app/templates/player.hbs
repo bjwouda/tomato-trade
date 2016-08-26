@@ -71,26 +71,18 @@
                   <div class="form-inline">
                     {{#if (eq k 'External')}}
                          <div class="form-group">
-                            <label for="offerTomato">{{t 'tomatoes'}}<span class="to-tomato"></span>(max. {{model.extOfferTomato}})</label>
+                            <label for="offerTomato">{{t 'tomatoes'}}<span class="to-tomato"></span>(max. {{model.extOfferTomato}} / {{_ext_offerTomato}})</label>
 
                             {{number-input 
                               class="form-control" 
                               placeholder=(t "kgOfTomatoes")
-                              unmaskedValue=obj.user._offerTomato  
+                              unmaskedValue=_ext_offerTomato  
                               group=true 
                               groupSize=3 
                               separator="," 
                               decimal=false 
                               radix="."
                             }}
-
-
-{{!--                             {{input
-                              placeholder=(t "kgOfTomatoes")
-                              value=obj.user._offerTomato 
-                              type="number"
-                              class="form-control" 
-                            }} --}}
 
                           </div>
                           <div class="form-group">
@@ -104,18 +96,10 @@
                               disabled=1
                             }}
 
-                            {{#if (and (gt obj.user._offerTomato 0) (lte obj.user._offerTomato model.extOfferTomato))}}
-                              {{#if (eq k 'External')}}
-                                  <button class="btn btn-info" {{action 'sendOffer' game model 0 obj.user._offerTomato model.extOfferPrice}}>{{t 'send'}}</button>
-                              {{else}}
-                                <button class="btn btn-info" {{action 'sendOffer' game model obj.user obj.user._offerTomato model.extOfferPrice}}>{{t 'send'}}</button>
-                              {{/if}}
+                            {{#if (and (gt _ext_offerTomato 0) (my-lte _ext_offerTomato model.extOfferTomato))}}
+                                  <button class="btn btn-info" {{action 'sendOffer' game model 0 _ext_offerTomato model.extOfferPrice}}>{{t 'send'}}</button>
                             {{else}}
-                              {{#if (eq k 'External')}}
-                                  <button disabled class="btn btn-default" {{action 'sendOffer' game model 0 obj.user._offerTomato model.extOfferPrice}}>{{t 'send'}}</button>
-                              {{else}}
-                                <button disabled class="btn btn-default" {{action 'sendOffer' game model obj.user obj.user._offerTomato model.extOfferPrice}}>{{t 'send'}}</button>
-                              {{/if}}
+                                  <button disabled class="btn btn-default" {{action 'sendOffer' game model 0 _ext_offerTomato model.extOfferPrice}}>{{t 'send'}}</button>
                             {{/if}}
                           </div>
                     {{else}}
@@ -134,12 +118,6 @@
                             radix="."
                           }}
 
-{{!--                           {{input
-                            value=obj.user._offerTomato 
-                            type="number"
-                            class="form-control" 
-                            placeholder=(t "kgOfTomatoes")
-                          }} --}}
                       </div>
                       <div class="form-group">
                         
