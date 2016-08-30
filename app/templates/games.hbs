@@ -41,7 +41,7 @@
 
             {{#if isEditing}}
               <li class="active" {{action (pipe (invoke "rollbackAttributes" game) (toggle "isEditing" this)) }}><a href="">Revert Settings</a></li>
-              <li class="active" {{action 'saveSettings' game}}><a href="">Save Settings</a></li>
+              <li class="active" {{action 'saveSettings' game}}><a href="">Apply Settings</a></li>
             {{else}}
               <li class="active" {{action (toggle "isEditing" this)}}><a href="">Game Settings</a></li>
             {{/if}}
