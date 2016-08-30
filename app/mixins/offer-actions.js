@@ -71,9 +71,8 @@ export default Ember.Mixin.create(LogFunctions, {
       offer.set("state", "accepted");
       offer.set("notes", offer.get("notes") + `${moment().format()};accepted\n`);
 
-      var sign = offer.get("receiver.content.isSeller") ? 1 : -1;
-
       if (offer.get("receiver.content") !== null) {
+        var sign = offer.get("receiver.content.isSeller") ? 1 : -1;
         offer.set("receiver.content.money", +offer.get("receiver.content.money") + sign * offer.get("price") * offer.get("tomatoes"));
         offer.set("receiver.content.tomatoes", +offer.get("receiver.content.tomatoes") - sign * offer.get("tomatoes"));
         offer.set("receiver.content.hasDirtyAttributes", false);
@@ -81,8 +80,7 @@ export default Ember.Mixin.create(LogFunctions, {
       }
 
       if (offer.get("sender.content") !== null) {
-        // SIGNS ARE REVERSED !!!
-        sign *= -1;
+        var sign = offer.get("sender.content.isSeller") ? 1 : -1;
         offer.set("sender.content.money", +offer.get("sender.content.money") + sign * offer.get("price") * offer.get("tomatoes"));
         offer.set("sender.content.tomatoes", +offer.get("sender.content.tomatoes") - sign * offer.get("tomatoes"));
         offer.set("sender.content.hasDirtyAttributes", false);
