@@ -1,6 +1,6 @@
  {{#each openOffers as |offer|}}
     <li class="list-group-item">  
-      &lt;-- <b>{{offer.senderName}}</b> <i>{{moment-format offer.ts "HH:mm:ss"}} / {{moment-from-now offer.ts hideSuffix=true interval=1000}}</i> <br>
+      &lt;-- <b>{{offer.senderName}}</b> <i>{{moment-format offer.ts "HH:mm:ss"}}</i> <br>
 
       {{digit-group-format offer.tomatoes}} <span class="to-tomato"></span> for € {{digit-format offer.price}} <span class="to-money"></span> 
       
@@ -15,7 +15,7 @@
   
   {{#each sentOffers as |offer|}}
     <li class="list-group-item">
-      --&gt; <b>{{offer.receiverName}}</b> <i>{{moment-format offer.ts "HH:mm:ss"}} / {{moment-from-now offer.ts hideSuffix=true interval=1000}}</i> <br>
+      --&gt; <b>{{offer.receiverName}}</b> <i>{{moment-format offer.ts "HH:mm:ss"}}</i> <br>
 
       {{digit-group-format offer.tomatoes}} <span class="to-tomato"></span> for € {{digit-format offer.price}} <span class="to-money"></span> 
       

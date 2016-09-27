@@ -181,7 +181,7 @@
 
       {{#each game.sortedOffers as |offer|}}
 
-        <p> [{{offer.state}}] <b>{{offer.senderName}}</b> --&gt; <b>{{offer.receiver.name}}</b> {{moment-format offer.ts "HH:mm:ss"}} / {{moment-from-now offer.ts hideSuffix=true interval=1000}} T: {{offer.tomatoes}} M: {{offer.price}}</p>
+        <p> [{{offer.state}}] <b>{{offer.senderName}}</b> --&gt; <b>{{offer.receiver.name}}</b> {{moment-format offer.ts "HH:mm:ss"}} T: {{offer.tomatoes}} M: {{offer.price}}</p>
 
       {{/each}}
 
