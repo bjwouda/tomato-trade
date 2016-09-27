@@ -4,16 +4,40 @@
 		"selected_items":
 		[
 			[
+				"subt",
+				"subTitleTag"
+			],
+			[
+				"web",
+				"webUrl"
+			],
+			[
+				"des",
+				"descriptionLookup"
+			],
+			[
+				"thro",
+				"throttle"
+			],
+			[
 				"if",
-				"if	{{#if }} {{/if}}"
+				"if	if"
+			],
+			[
+				"order",
+				"orderPromise"
+			],
+			[
+				"fpp",
+				"fppMaterial"
+			],
+			[
+				"f",
+				"f	Anonymous Function"
 			],
 			[
 				"linkto",
 				"linkto	{{#link-to}} {{/link-to}}"
-			],
-			[
-				"f",
-				"fun	Function"
 			],
 			[
 				"ordera",
@@ -26,10 +50,6 @@
 			[
 				"Shipm",
 				"Shipment"
-			],
-			[
-				"order",
-				"order_id"
 			],
 			[
 				"breadc",
@@ -494,26 +514,6 @@
 			[
 				"try",
 				"try	Try/Except"
-			],
-			[
-				"art",
-				"article_nuance_lut"
-			],
-			[
-				"arr",
-				"arrRaw"
-			],
-			[
-				"pro",
-				"prospectEntryCtrl"
-			],
-			[
-				"pref",
-				"prefetch_related"
-			],
-			[
-				"quer",
-				"queryset"
 			]
 		]
 	},
@@ -571,10 +571,18 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 367.0,
-		"last_filter": "alig",
+		"height": 167.0,
+		"last_filter": "lower",
 		"selected_items":
 		[
+			[
+				"lower",
+				"Convert Case: Lower Case"
+			],
+			[
+				"ali",
+				"AlignTab: Live Preview Mode"
+			],
 			[
 				"alig",
 				"AlignTab: Live Preview Mode"
@@ -598,10 +606,6 @@
 			[
 				"lint",
 				"SublimeLinter: Lint This View"
-			],
-			[
-				"lower",
-				"Convert Case: Lower Case"
 			],
 			[
 				"spaces",
@@ -690,10 +694,6 @@
 			[
 				"ascii",
 				"ASCII Decorator: Default Font"
-			],
-			[
-				"ali",
-				"AlignTab: Live Preview Mode"
 			],
 			[
 				"titl",
@@ -872,7 +872,7 @@
 				"Git: Status"
 			]
 		],
-		"width": 467.0
+		"width": 485.0
 	},
 	"console":
 	{
@@ -902,45 +902,82 @@
 	},
 	"file_history":
 	[
-		"/Users/kkohn/Documents/xavier-django/sg/models.py",
-		"/Users/kkohn/Documents/xavier-django/sg/endpoint_shipment.py",
-		"/Users/kkohn/Documents/xavier-sg/app/controllers/shipments.js",
-		"/Users/kkohn/Documents/xavier-django/sg/endpoint_customer.py",
-		"/Users/kkohn/Documents/xavier-sg/app/models/customer.js",
-		"/Users/kkohn/Documents/xavier-sg/app/models/shipment.js",
-		"/Users/kkohn/Documents/xavier-sg/app/routes/shipments.js",
-		"/Users/kkohn/Documents/xavier-sg/app/templates/shipments.hbs",
-		"/Users/kkohn/Documents/xavier-sg/app/templates/setting-recipe.hbs",
-		"/Users/kkohn/Documents/xavier-sg/app/helpers/export-csv-action.js",
-		"/Users/kkohn/Documents/xavier-sg/app/models/order.js",
+		"/Users/kkohn/Documents/berni-sach/utils/cheeriojs_test.js",
+		"/Users/kkohn/Documents/berni-sach/app/routes/application.js",
+		"/Users/kkohn/Documents/berni-sach/app/styles/app.scss",
+		"/Users/kkohn/Documents/berni-sach/utils/node_runner.js",
+		"/Users/kkohn/Documents/berni-sach/app/templates/application.hbs",
+		"/Users/kkohn/Documents/berni-sach/package.json",
+		"/Users/kkohn/Documents/berni-sach/utils/purplecarrot.txt",
+		"/Users/kkohn/Documents/Huawei-IOV/demos/DraggableWidgetsUI/js/communicationMenu.jsx",
+		"/Users/kkohn/Documents/Huawei-IOV/demos/DraggableWidgetsUI/js/main.jsx",
+		"/Users/kkohn/Documents/Huawei-IOV/demos/DraggableWidgetsUI/js/communicationPage.jsx",
+		"/Users/kkohn/Documents/Huawei-IOV/demos/DraggableWidgetsUI/bundle.js",
+		"/Users/kkohn/Documents/xavier-sg/app/templates/components/raw-table-body.hbs",
+		"/Users/kkohn/Documents/xavier-sg/app/models/material.js",
 		"/Users/kkohn/Documents/xavier-sg/app/templates/setting-quality.hbs",
-		"/Users/kkohn/Documents/xavier-sg/app/styles/orders.styl",
-		"/Users/kkohn/Documents/xavier-sg/app/routes/setting-quality.js",
+		"/Users/kkohn/Documents/xavier-sg/app/templates/setting-recipe.hbs",
+		"/Users/kkohn/Documents/xavier-sg/app/utils/order-process.js",
+		"/Users/kkohn/Documents/xavier-ember/_utils/click_deploy_button.py",
+		"/Users/kkohn/Documents/xavier-ember/_utils/deploy-test.sh",
 		"/Users/kkohn/Documents/xavier-sg/app/templates/components/order-part.hbs",
+		"/Users/kkohn/Documents/xavier-sg/app/templates/components/inventory-table-body.hbs",
+		"/Users/kkohn/Documents/xavier-sg/app/templates/shortcut-consumable.hbs",
+		"/Users/kkohn/Documents/xavier-sg/app/templates/shortcut-inventory.hbs",
+		"/Users/kkohn/Documents/xavier-sg/app/components/sg-timeline-composition.js",
+		"/Users/kkohn/Documents/xavier-sg/app/models/machine.js",
+		"/Users/kkohn/Documents/xavier-sg/app/locales/en/translations.js",
+		"/Users/kkohn/Documents/xavier-sg/app/routes/orders/element.js",
+		"/Users/kkohn/Documents/xavier-sg/app/templates/orders/element.hbs",
+		"/Users/kkohn/Documents/xavier-sg/app/mixins/order-actions.js",
+		"/Users/kkohn/Documents/xavier-sg/app/styles/app.styl",
+		"/Users/kkohn/Documents/xavier-django/sg/signals.py",
+		"/Users/kkohn/Documents/xavier-sg/app/controllers/orders/element.js",
+		"/Users/kkohn/Documents/xavier-django/sg/models.py",
+		"/Users/kkohn/Documents/xavier-sg/app/templates/components/material-display.hbs",
+		"/Users/kkohn/Documents/xavier-sg/app/models/order.js",
+		"/Users/kkohn/Documents/xavier-sg/app/styles/mixins.styl",
+		"/Users/kkohn/Documents/xavier-sg/app/styles/sidebar.styl",
+		"/Users/kkohn/Documents/xavier-sg/app/templates/application.hbs",
+		"/Users/kkohn/Documents/xavier-sg/app/components/sg-timeline.js",
+		"/Users/kkohn/Documents/xavier-sg/app/components/order-part.js",
+		"/Users/kkohn/Documents/xavier-sg/app/components/raw-table-body.js",
+		"/Users/kkohn/Documents/xavier-sg/app/models/raw-material.js",
+		"/Users/kkohn/Documents/xavier-django/frontend/static/oneplace/assets/vendor-3e07f716bc19e539796eb9cce4eac577.js",
+		"/Users/kkohn/Documents/xavier-sg/app/controllers/shortcut-inventory.js",
+		"/Users/kkohn/Documents/xavier-sg/app/controllers/shortcut-consumable.js",
+		"/Users/kkohn/Documents/xavier-sg/app/styles/orders.styl",
+		"/Users/kkohn/Documents/xavier-sg/app/helpers/toggle-sortable.js",
+		"/Users/kkohn/Documents/xavier-sg/app/utils/handle-resterror.js",
+		"/Users/kkohn/Documents/xavier-sg/app/models/recipe.js",
+		"/Users/kkohn/Documents/xavier-sg/app/styles/notify.styl",
+		"/Users/kkohn/Library/Application Support/Sublime Text 3/Packages/Default/Default (OSX).sublime-keymap",
+		"/Users/kkohn/Library/Application Support/Sublime Text 3/Packages/User/Default (OSX).sublime-keymap",
+		"/Users/kkohn/Documents/xavier-sg/app/routes/orders.js",
+		"/Users/kkohn/Documents/xavier-sg/app/controllers/application.js",
+		"/Users/kkohn/Documents/xavier-sg/app/templates/orders/index.hbs",
+		"/Users/kkohn/Documents/xavier-sg/app/controllers/shipments.js",
+		"/Users/kkohn/Documents/xavier-sg/app/templates/shipments.hbs",
+		"/Users/kkohn/Documents/xavier-sg/app/models/shipment.js",
+		"/Users/kkohn/Documents/xavier-django/sg/endpoint_shipment.py",
+		"/Users/kkohn/Documents/xavier-django/sg/endpoint_customer.py",
+		"/Users/kkohn/Documents/xavier-sg/app/routes/shipments.js",
+		"/Users/kkohn/Documents/xavier-sg/app/models/customer.js",
+		"/Users/kkohn/Documents/xavier-sg/app/helpers/export-csv-action.js",
+		"/Users/kkohn/Documents/xavier-sg/app/routes/setting-quality.js",
 		"/Users/kkohn/Documents/xavier-sg/app/templates/components/sg-flatpickr.hbs",
 		"/Users/kkohn/Documents/xavier-sg/app/templates/components/sg-time-picker.hbs",
 		"/Users/kkohn/Dropbox/VanBerlo/2015_Prazza/1_Development/UART scripts/UARTSerial.py",
 		"/Users/kkohn/Dropbox/VanBerlo/NewPrazza/Cartfile",
 		"/Users/kkohn/Downloads/project-6754346305882338354-export.json",
-		"/Users/kkohn/Documents/xavier-sg/app/mixins/order-actions.js",
-		"/Users/kkohn/Documents/xavier-sg/app/controllers/shortcut-inventory.js",
-		"/Users/kkohn/Documents/xavier-sg/app/models/material.js",
 		"/Users/kkohn/Documents/xavier-sg/app/components/inventory-table-body.js",
-		"/Users/kkohn/Documents/xavier-sg/app/templates/shortcut-inventory.hbs",
 		"/Users/kkohn/Documents/xavier-django/sg/views.py",
-		"/Users/kkohn/Documents/xavier-sg/app/templates/components/inventory-table-body.hbs",
 		"/Users/kkohn/Documents/xavier-django/sg/serializers.py",
-		"/Users/kkohn/Documents/xavier-sg/app/components/raw-table-body.js",
-		"/Users/kkohn/Documents/xavier-sg/app/components/order-part.js",
 		"/Users/kkohn/Documents/xavier-sg/app/controllers/orders/index.js",
 		"/Users/kkohn/Documents/xavier-sg/app/controllers/index.js",
-		"/Users/kkohn/Documents/xavier-sg/app/controllers/orders/element.js",
 		"/Users/kkohn/Documents/xavier-sg/app/mixins/timeline-actions.js",
-		"/Users/kkohn/Documents/xavier-sg/app/templates/application.hbs",
 		"/Users/kkohn/Documents/xavier-sg/app/router.js",
-		"/Users/kkohn/Documents/xavier-sg/app/templates/shortcut-consumable.hbs",
 		"/Users/kkohn/Documents/xavier-sg/app/routes/shortcut-consumable.js",
-		"/Users/kkohn/Documents/xavier-sg/app/controllers/shortcut-consumable.js",
 		"/Users/kkohn/Documents/xavier-sg/app/models/consumable.js",
 		"/Users/kkohn/Documents/xavier-django/sg/common.py",
 		"/Users/kkohn/Documents/xavier-django/xavier/global_utils.py",
@@ -952,46 +989,32 @@
 		"/Users/kkohn/Documents/xavier-django/xavier/urls.py",
 		"/Users/kkohn/Documents/xavier-django/sg/customer_endpoint.py",
 		"/Users/kkohn/Documents/xavier-sg/app/templates/shortcut-shipping.hbs",
-		"/Users/kkohn/Documents/xavier-ember/_utils/click_deploy_button.py",
 		"/Users/kkohn/Documents/xavier-sg/config/environment.js",
 		"/Users/kkohn/Documents/xavier-sg/app/styles/bread-bar.styl",
-		"/Users/kkohn/Documents/xavier-sg/app/styles/sidebar.styl",
 		"/Users/kkohn/Documents/xavier-sg/app/templates/shortcut-machine.hbs",
 		"/Users/kkohn/Documents/xavier-sg/app/templates/components/sg-timeline-composition.hbs",
-		"/Users/kkohn/Documents/xavier-sg/app/styles/app.styl",
 		"/Users/kkohn/Documents/xavier-sg/app/controllers/setting-recipe.js",
 		"/Users/kkohn/Documents/xavier-sg/app/locales/zh/translations.js",
-		"/Users/kkohn/Documents/xavier-sg/app/locales/en/translations.js",
-		"/Users/kkohn/Documents/xavier-sg/app/utils/order-process.js",
-		"/Users/kkohn/Documents/xavier-sg/app/templates/components/raw-table-body.hbs",
-		"/Users/kkohn/Documents/xavier-sg/app/templates/orders/element.hbs",
-		"/Users/kkohn/Documents/xavier-sg/app/templates/orders/index.hbs",
 		"/private/tmp/foo.json",
 		"/Users/kkohn/Documents/xavier-sg/app/styles/recipe.styl",
-		"/Users/kkohn/Documents/xavier-sg/app/models/recipe.js",
 		"/Users/kkohn/Documents/xavier-sg/app/styles/print-override.styl",
 		"/Users/kkohn/Documents/xavier-sg/deploy.sh",
 		"/Users/kkohn/.bash_profile",
-		"/Users/kkohn/Documents/xavier-sg/app/models/raw-material.js",
 		"/Users/kkohn/Documents/xavier-sg/app/templates/index.hbs",
 		"/Users/kkohn/Documents/xavier-sg/app/instance-initializers/i18n.js",
 		"/Users/kkohn/Documents/xavier-sg/app/helpers/print-action.js",
 		"/Users/kkohn/Documents/xavier-sg/app/templates/components/order-progress-bar.hbs",
 		"/Users/kkohn/Documents/xavier-sg/app/transforms/sg-date.js",
 		"/Users/kkohn/Documents/xavier-sg/_utils/configParser.js",
-		"/Users/kkohn/Documents/xavier-sg/app/controllers/application.js",
 		"/Users/kkohn/Documents/xavier-sg/node_modules/ember-crumbly/app/initializers/crumbly.js",
 		"/Users/kkohn/Documents/xavier-sg/node_modules/ember-crumbly/addon/components/bread-crumbs.js",
 		"/Users/kkohn/Documents/xavier-sg/app/mixins/route-breadcrumb-i18n.js",
 		"/Users/kkohn/Documents/xavier-sg/app/styles/basic.styl",
 		"/Users/kkohn/Documents/xavier-sg/_utils/get_hbs_content.py",
-		"/Users/kkohn/Documents/xavier-sg/app/templates/components/material-display.hbs",
-		"/Users/kkohn/Documents/xavier-sg/app/routes/orders/element.js",
 		"/Users/kkohn/Documents/xavier-sg/app/templates/components/qc-group-table.hbs",
 		"/Users/kkohn/Documents/xavier-sg/app/routes/shortcut-machine.js",
 		"/Users/kkohn/Documents/xavier-sg/app/routes/setting-recipe.js",
 		"/Users/kkohn/Documents/xavier-sg/app/routes/shortcut-inventory.js",
-		"/Users/kkohn/Documents/xavier-sg/app/routes/orders.js",
 		"/Users/kkohn/Documents/xavier-sg/app/routes/application.js",
 		"/Users/kkohn/Documents/xavier-sg/app/mixins/lang-actions.js",
 		"/Users/kkohn/Documents/xavier-sg/app/utils/i18n/missing-message.js",
@@ -1000,36 +1023,13 @@
 		"/Users/kkohn/Documents/xavier-django/sg/migrations/0005_auto_20160819_0643.py",
 		"/Users/kkohn/Documents/xavier-sg/app/helpers/moment-is-valid.js",
 		"/Users/kkohn/Documents/xavier-django/sg/migrations/0004_auto_20160819_0542.py",
-		"/Users/kkohn/Documents/xavier-django/sg/signals.py",
 		"/Users/kkohn/Documents/xavier-django/frontend/signals.py",
-		"/Users/kkohn/Documents/xavier-sg/app/styles/notify.styl",
 		"/Users/kkohn/Documents/xavier-sg/app/helpers/set-zero.js",
 		"/Users/kkohn/Documents/xavier-sg/app/styles/qc.styl",
 		"/Users/kkohn/Documents/xavier-sg/app/helpers/set-zero-action.js",
-		"/Users/kkohn/Documents/xavier-sg/app/components/sg-timeline-composition.js",
-		"/Users/kkohn/Documents/xavier-sg/app/components/sg-timeline.js",
 		"/Users/kkohn/Documents/xavier-sg/app/components/sg-time-picker.js",
 		"/Users/kkohn/Documents/xavier-sg/app/controllers/shortcut-machine.js",
-		"/Users/kkohn/Documents/xavier-sg/app/helpers/moment-add.js",
-		"/Users/kkohn/Documents/xavier-sg/app/styles/timeline.styl",
-		"/Users/kkohn/Documents/xavier-sg/app/models/machine.js",
-		"/Users/kkohn/Downloads/acodeit/index.html",
-		"/Users/kkohn/Documents/xavier-sg/app/helpers/upper-case.js",
-		"/Users/kkohn/Documents/xavier-sg/app/routes/not-found.js",
-		"/Users/kkohn/Documents/xavier-sg/app/templates/components/sg-timeline.hbs",
-		"/Users/kkohn/Documents/xavier-django/_utils/sg_initdata.py",
-		"/Users/kkohn/Documents/xavier-django/_utils/excel_test_ben.py",
-		"/Users/kkohn/Documents/xavier-sg/app/transforms/sg-json.js",
-		"/Users/kkohn/Documents/xavier-sg/app/models/material-qc-guideline.js",
-		"/Users/kkohn/Documents/xavier-sg/package.json",
-		"/Users/kkohn/Documents/xavier-sg/app/components/order-progress-bar.js",
-		"/Users/kkohn/Documents/xavier-sg/app/routes/index.js",
-		"/Users/kkohn/Documents/xavier-sg/app/routes/orders/index.js",
-		"/Users/kkohn/Documents/xavier-sg/_utils/combineDicts.js",
-		"/Users/kkohn/Documents/xavier-sg/app/components/qc-group-table.js",
-		"/Users/kkohn/Library/Application Support/Sublime Text 3/Packages/User/ToSnakeCase.py",
-		"/Users/kkohn/Library/Application Support/Sublime Text 3/Packages/User/Default (OSX).sublime-keymap",
-		"/Users/kkohn/Library/Application Support/Sublime Text 3/Packages/User/Example.py"
+		"/Users/kkohn/Documents/xavier-sg/app/helpers/moment-add.js"
 	],
 	"find":
 	{
@@ -1040,6 +1040,28 @@
 		"height": 93.0,
 		"where_history":
 		[
+			"*.jsx",
+			"*.js",
+			"*.hbs",
+			"*.js",
+			"*.hbs",
+			"*.js",
+			"*.styl",
+			"*.hbs",
+			"*.styl",
+			"*.style",
+			"*.js",
+			"*.styl",
+			"*.hbs",
+			"*.js",
+			"*.styl",
+			"*.hbs",
+			"*.js",
+			"*.hbs",
+			"*.styl",
+			"*.js",
+			"*.styl",
+			"*.js",
 			"*.hbs",
 			"*.js",
 			"*.styl",
@@ -1145,29 +1167,7 @@
 			"*.js",
 			"*.j",
 			"*.hbs",
-			"*.js",
-			"*.hbs",
-			"*.js",
-			"*.py",
-			"*.hbs",
-			"*.styl",
-			"*.hbs",
-			"*",
-			"*.js",
-			"*.py",
-			"*.js",
-			"*.styl",
-			"*.js",
-			"*.hbs",
-			"*.js",
-			"*.styl",
-			"*.js",
-			"*.hbs",
-			"*.js",
-			"*.hbs",
-			"*.js",
-			"*",
-			"*.hbs"
+			"*.js"
 		]
 	},
 	"find_state":
@@ -1175,134 +1175,134 @@
 		"case_sensitive": false,
 		"find_history":
 		[
-			"text",
-			"=",
-			"power",
-			"notify",
-			"grey-cell",
-			"info-row",
-			"item",
-			"_isEdit",
-			"</td>",
-			"input",
-			"<tr>",
-			"tr>",
-			"cell",
-			"on-hold",
-			"state",
-			"status",
-			"notify",
-			"save",
-			"_isEdit",
-			"material",
-			"sg-flat",
-			"destroy",
-			"edit",
-			"status",
-			"exp",
-			"link-to",
-			"linkto",
-			"moment",
-			"table",
-			"set_interval500",
-			"tx_set_interval500",
-			"=",
-			"%",
-			"raw",
-			"export",
-			"inventory-table-body",
-			"inventor",
-			"type",
-			"fpu",
-			"API_ROOT",
-			"post",
-			"get",
-			"timeline-action",
-			"fpp",
-			"shortcut-shipping",
-			"asdf",
-			"_newC",
-			"createNewConsumable",
-			"raise",
-			"^raise",
-			"relate",
-			"relate#",
-			"import",
-			"Shipment",
-			"customer_endpoint",
-			"Customer",
-			", ",
-			"Recipe",
-			"Machine",
-			"machine",
-			"Machine",
-			"Customer",
-			"AAA",
-			"Machine",
-			"Consumable",
-			"Serializer",
-			"Order",
-			"fore",
-			"foreign",
-			"home",
-			"<button",
-			"<button ",
-			"button",
-			"Today",
-			"today",
-			"darkColor",
-			"bread",
-			"cancel",
-			"Done",
-			"Packing Planned",
-			"Planned",
-			"packign planned",
-			"addKeyVal",
-			"materialQcLimits",
-			"saveRecipe",
-			".",
-			"Open",
-			"planned",
-			"Grinding Planned",
-			"Done",
-			"Save",
-			"Raw Material",
-			"n>{{material.materialQcState",
-			"{{material.materialQcSta",
-			"{{material.",
-			"notify",
-			"save",
-			"createNewQC",
-			"addConsumableToRecipe",
-			"white",
-			"table",
-			"<td></td>",
-			"<tr>",
-			"toggle",
-			"i18n",
-			"success",
-			"sia",
+			"img",
+			"title",
+			"= $(",
+			"title",
+			"= $(\"",
+			"text()",
+			"title",
+			"image",
+			",",
+			"= $(",
+			"$(",
+			"title",
+			"$(\"",
+			"h3",
+			"href",
+			"image",
+			"= $(\"",
+			"ima",
+			"= $(",
+			"$(",
+			"href",
+			"link",
+			"image",
+			"console.log",
+			"let tmp = ",
+			"recipe",
+			"img",
+			"image",
+			"reci",
+			"sockeUpdate",
+			"throttle",
+			"descriptionLookup",
+			"Leap",
+			"leap",
+			"activa",
+			"activ",
+			"temp",
+			"startTemp",
+			"value",
+			"tem",
+			"temper",
+			"updateTouchState",
+			"d3render",
+			"contact name",
+			"name",
+			"leapRunLoop",
+			"log",
+			"heeee",
+			"currentattr",
+			"leap",
+			"active",
+			"activa",
+			"activ",
+			"speed",
+			"speed update",
+			"activateMenu",
+			"throttle",
+			"transform",
+			"trans",
+			"render",
+			"drag",
+			"image",
+			"json",
+			"socket",
+			"updatebox",
+			"update",
 			"print",
-			"cond: [",
-			"_eval_single_cond",
-			"cond",
-			"state_change_history",
-			"material._edit",
-			"material.qcSendTs",
-			"na",
-			"export",
-			"sg-export",
-			"ranslation LOCALE: en KEY: ",
-			"material.related_order.lotNumber",
-			"consumables",
-			"translation LOCALE: en KEY: ",
-			"Missing translation LOCALE: en KEY: ",
-			"export",
+			"qty",
+			"qc",
+			"format=\"0.0\"",
+			"0.0",
+			"{{material.qty}}",
+			"qty",
+			"order.recipe.rawQty",
+			"rawQty",
+			"qty",
+			"item.qty",
+			"qty",
+			"wty",
+			"format",
+			"machineType",
+			"orderId",
+			"flobin",
+			"isnew",
+			"isNew",
+			"edit",
+			"success",
+			"edit",
+			"power",
+			"toggle",
+			"save",
+			"material-display",
+			"shipment",
+			"button-holder",
+			"save",
+			"packing",
+			"packingM",
+			"qty",
+			"rawma",
+			"packingInputMaterial",
+			"qty",
+			"quty",
+			"info",
+			"btn-group-lvl1",
+			"btncolorhovermxn",
+			"yHeight",
+			"showSortingModalDialog",
+			"notifyPro",
+			"save",
+			"recipe._edit",
+			"item",
+			"menu",
+			"recipe._edit",
+			"_isEdit",
+			"toggle",
+			"{{input",
+			"cursor",
+			"order-header",
+			"sort",
+			"order",
 			"this",
-			"i18n",
-			"notify",
 			"createNewConsumable",
-			"."
+			"materialQcState",
+			"state",
+			"nuance",
+			"destroy",
+			"notify.*error",
+			"this"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1310,6 +1310,7 @@
 		"regex": true,
 		"replace_history":
 		[
+			"format=\"0,0\"",
 			"\"\\1\": \"🍺\"",
 			"placeholder=(t \"\\1\")",
 			"placeholder=(t \"(.*)\")",
@@ -1378,7 +1379,7 @@
 	{
 		"height": 88.0
 	},
-	"pinned_build_system": "Packages/User/Anaconda Python.sublime-build",
+	"pinned_build_system": "Packages/User/Node.sublime-build",
 	"project": "tomato.sublime-project",
 	"replace":
 	{
@@ -1391,6 +1392,234 @@
 		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"applic",
+				"app/templates/application.hbs"
+			],
+			[
+				"rawhb",
+				"xavier-sg/app/templates/components/raw-table-body.hbs"
+			],
+			[
+				"orderhbs",
+				"xavier-sg/app/templates/components/order-part.hbs"
+			],
+			[
+				"elemthbs",
+				"xavier-sg/app/templates/orders/element.hbs"
+			],
+			[
+				"element",
+				"xavier-sg/app/routes/orders/element.js"
+			],
+			[
+				"elee",
+				"xavier-sg/app/controllers/orders/element.js"
+			],
+			[
+				"signal",
+				"xavier-django/sg/signals.py"
+			],
+			[
+				"bodyhbs",
+				"xavier-sg/app/templates/components/inventory-table-body.hbs"
+			],
+			[
+				"materialdisplay",
+				"~/Documents/xavier-sg/app/templates/components/material-display.hbs"
+			],
+			[
+				"materialhbs",
+				"xavier-sg/app/templates/components/material-display.hbs"
+			],
+			[
+				"material",
+				"xavier-sg/app/models/material.js"
+			],
+			[
+				"material.hbs",
+				"xavier-sg/app/templates/components/material-display.hbs"
+			],
+			[
+				"order",
+				"xavier-sg/app/models/order.js"
+			],
+			[
+				"recipehbs",
+				"xavier-sg/app/templates/setting-recipe.hbs"
+			],
+			[
+				"apphbs",
+				"xavier-sg/app/templates/application.hbs"
+			],
+			[
+				"sideb",
+				"xavier-sg/app/styles/sidebar.styl"
+			],
+			[
+				"sgtime",
+				"xavier-sg/app/components/sg-timeline.js"
+			],
+			[
+				"elemnthbs",
+				"xavier-sg/app/templates/orders/element.hbs"
+			],
+			[
+				"mater",
+				"xavier-sg/app/models/material.js"
+			],
+			[
+				"rawtable",
+				"xavier-sg/app/components/raw-table-body.js"
+			],
+			[
+				"rahbs",
+				"xavier-sg/app/templates/components/raw-table-body.hbs"
+			],
+			[
+				"inventhbs",
+				"xavier-sg/app/templates/shortcut-inventory.hbs"
+			],
+			[
+				"materhbs",
+				"xavier-sg/app/templates/components/material-display.hbs"
+			],
+			[
+				"qua",
+				"xavier-sg/app/templates/setting-quality.hbs"
+			],
+			[
+				"recihbs",
+				"xavier-sg/app/templates/setting-recipe.hbs"
+			],
+			[
+				"qualit",
+				"xavier-sg/app/templates/setting-quality.hbs"
+			],
+			[
+				"togg",
+				"xavier-sg/app/helpers/toggle-sortable.js"
+			],
+			[
+				"short",
+				"xavier-sg/app/controllers/shortcut-consumable.js"
+			],
+			[
+				"consumbhbs",
+				"xavier-sg/app/templates/shortcut-consumable.hbs"
+			],
+			[
+				"tranl",
+				"xavier-sg/app/locales/en/translations.js"
+			],
+			[
+				"reciphbs",
+				"xavier-sg/app/templates/setting-recipe.hbs"
+			],
+			[
+				"recipe",
+				"xavier-sg/app/models/recipe.js"
+			],
+			[
+				"tablehbs",
+				"xavier-sg/app/templates/components/inventory-table-body.hbs"
+			],
+			[
+				"mathbs",
+				"xavier-sg/app/templates/components/material-display.hbs"
+			],
+			[
+				"rawhbs",
+				"xavier-sg/app/templates/components/raw-table-body.hbs"
+			],
+			[
+				"invenhbs",
+				"xavier-sg/app/templates/shortcut-inventory.hbs"
+			],
+			[
+				"invhbs",
+				"xavier-sg/app/templates/components/inventory-table-body.hbs"
+			],
+			[
+				"invenhb",
+				"xavier-sg/app/templates/shortcut-inventory.hbs"
+			],
+			[
+				"not",
+				"xavier-sg/app/styles/notify.styl"
+			],
+			[
+				"tran",
+				"xavier-sg/app/locales/en/translations.js"
+			],
+			[
+				"signals",
+				"xavier-django/sg/signals.py"
+			],
+			[
+				"model",
+				"xavier-django/sg/models.py"
+			],
+			[
+				"inventor",
+				"xavier-sg/app/templates/components/inventory-table-body.hbs"
+			],
+			[
+				"routorder",
+				"xavier-sg/app/routes/orders/element.js"
+			],
+			[
+				"trans",
+				"xavier-sg/app/locales/en/translations.js"
+			],
+			[
+				"materi",
+				"xavier-sg/app/models/material.js"
+			],
+			[
+				"raw",
+				"xavier-sg/app/models/raw-material.js"
+			],
+			[
+				"recip",
+				"xavier-sg/app/models/recipe.js"
+			],
+			[
+				"orderpart",
+				"xavier-sg/app/templates/components/order-part.hbs"
+			],
+			[
+				"elemtnhbs",
+				"xavier-sg/app/templates/orders/element.hbs"
+			],
+			[
+				"ship",
+				"xavier-sg/app/controllers/shipments.js"
+			],
+			[
+				"endship",
+				"xavier-django/sg/endpoint_shipment.py"
+			],
+			[
+				"ordersty",
+				"xavier-sg/app/styles/orders.styl"
+			],
+			[
+				"shipment",
+				"xavier-sg/app/models/shipment.js"
+			],
+			[
+				"endcust",
+				"xavier-django/sg/endpoint_customer.py"
+			],
+			[
+				"shipmeh",
+				"xavier-sg/app/templates/shipments.hbs"
+			],
+			[
+				"shipmen",
+				"xavier-sg/app/routes/shipments.js"
+			],
 			[
 				"shihbs",
 				"xavier-sg/app/templates/shipments.hbs"
@@ -1408,10 +1637,6 @@
 				"xavier-sg/app/models/order.js"
 			],
 			[
-				"shipment",
-				"xavier-sg/app/routes/shipments.js"
-			],
-			[
 				"sgflat",
 				"xavier-sg/app/templates/components/sg-flatpickr.hbs"
 			],
@@ -1420,20 +1645,12 @@
 				"xavier-sg/app/helpers/export-csv-action.js"
 			],
 			[
-				"shipmen",
-				"xavier-sg/app/models/shipment.js"
-			],
-			[
 				"shiphb",
 				"xavier-sg/app/templates/shipments.hbs"
 			],
 			[
 				"seri",
 				"xavier-django/sg/serializers.py"
-			],
-			[
-				"order",
-				"xavier-sg/app/models/order.js"
 			],
 			[
 				"view",
@@ -1446,10 +1663,6 @@
 			[
 				"invent",
 				"xavier-sg/app/controllers/shortcut-inventory.js"
-			],
-			[
-				"mater",
-				"xavier-sg/app/models/material.js"
 			],
 			[
 				"orderactions",
@@ -1480,10 +1693,6 @@
 				"xavier-sg/app/templates/shortcut-shipping.hbs"
 			],
 			[
-				"ship",
-				"xavier-sg/app/routes/shortcut-shipping.js"
-			],
-			[
 				"shipme",
 				"xavier-django/sg/endpoint_shipment.py"
 			],
@@ -1508,10 +1717,6 @@
 				"xavier-django/forecast/utils.py"
 			],
 			[
-				"model",
-				"xavier-django/sg/models.py"
-			],
-			[
 				"viewset",
 				"xavier-sg/tests/integration/components/schedulerjs-wrap-test.js"
 			],
@@ -1532,10 +1737,6 @@
 				"xavier-django/xavier/urls.py"
 			],
 			[
-				"invenhbs",
-				"xavier-sg/app/templates/shortcut-inventory.hbs"
-			],
-			[
 				"shippingh",
 				"xavier-sg/app/templates/shortcut-shipping.hbs"
 			],
@@ -1546,10 +1747,6 @@
 			[
 				"envi",
 				"xavier-sg/config/environment.js"
-			],
-			[
-				"apphbs",
-				"xavier-sg/app/templates/application.hbs"
 			],
 			[
 				"side",
@@ -1564,20 +1761,8 @@
 				"xavier-sg/app/styles/app.styl"
 			],
 			[
-				"trans",
-				"xavier-sg/app/locales/zh/translations.js"
-			],
-			[
 				"reciphb",
 				"xavier-sg/app/templates/setting-recipe.hbs"
-			],
-			[
-				"rawhbs",
-				"xavier-sg/app/templates/components/raw-table-body.hbs"
-			],
-			[
-				"tablehbs",
-				"xavier-sg/app/templates/components/inventory-table-body.hbs"
 			],
 			[
 				"quality",
@@ -1586,10 +1771,6 @@
 			[
 				"qualithb",
 				"xavier-sg/app/templates/setting-quality.hbs"
-			],
-			[
-				"recip",
-				"xavier-sg/app/styles/recipe.styl"
 			],
 			[
 				"order.sty",
@@ -1602,10 +1783,6 @@
 			[
 				"settingrecipe",
 				"xavier-sg/app/controllers/setting-recipe.js"
-			],
-			[
-				"recihbs",
-				"xavier-sg/app/templates/setting-recipe.hbs"
 			],
 			[
 				"env",
@@ -1628,20 +1805,8 @@
 				"xavier-sg/app/templates/application.hbs"
 			],
 			[
-				"tran",
-				"xavier-sg/app/locales/en/translations.js"
-			],
-			[
 				"inventory-table",
 				"xavier-sg/app/templates/components/inventory-table-body.hbs"
-			],
-			[
-				"rawhb",
-				"xavier-sg/app/templates/components/raw-table-body.hbs"
-			],
-			[
-				"materi",
-				"xavier-sg/app/models/material.js"
 			],
 			[
 				"rawm",
@@ -1650,10 +1815,6 @@
 			[
 				"invehbs",
 				"xavier-sg/app/templates/shortcut-inventory.hbs"
-			],
-			[
-				"material",
-				"xavier-sg/app/models/material.js"
 			],
 			[
 				"consuhbs",
@@ -1684,14 +1845,6 @@
 				"xavier-sg/app/templates/components/order-progress-bar.hbs"
 			],
 			[
-				"orderpart",
-				"xavier-sg/app/templates/components/order-part.hbs"
-			],
-			[
-				"orderhbs",
-				"xavier-sg/app/templates/orders/index.hbs"
-			],
-			[
 				"export",
 				"xavier-sg/app/helpers/export-csv-action.js"
 			],
@@ -1702,10 +1855,6 @@
 			[
 				"appli",
 				"xavier-sg/app/controllers/application.js"
-			],
-			[
-				"applic",
-				"xavier-sg/app/templates/application.hbs"
 			],
 			[
 				"basi",
@@ -1754,154 +1903,6 @@
 			[
 				"entrans",
 				"xavier-sg/app/locales/en/translations.js"
-			],
-			[
-				"elemnt",
-				"xavier-sg/app/controllers/orders/element.js"
-			],
-			[
-				"materialhbs",
-				"xavier-sg/app/templates/components/material-display.hbs"
-			],
-			[
-				"isvalid",
-				"xavier-sg/app/helpers/moment-is-valid.js"
-			],
-			[
-				"sgdat",
-				"xavier-sg/app/transforms/sg-date.js"
-			],
-			[
-				"timehbs",
-				"xavier-sg/app/templates/components/sg-time-picker.hbs"
-			],
-			[
-				"recipehbs",
-				"xavier-sg/app/templates/setting-recipe.hbs"
-			],
-			[
-				"recipe",
-				"xavier-sg/app/models/recipe.js"
-			],
-			[
-				"global",
-				"xavier-django/xavier/global_utils.py"
-			],
-			[
-				"signal",
-				"xavier-django/sg/signals.py"
-			],
-			[
-				"qcst",
-				"xavier-sg/app/styles/qc.styl"
-			],
-			[
-				"inventorytable",
-				"xavier-sg/app/components/inventory-table-body.js"
-			],
-			[
-				"porderhbs",
-				"xavier-sg/app/templates/components/order-part.hbs"
-			],
-			[
-				"orderpro",
-				"xavier-sg/app/utils/order-process.js"
-			],
-			[
-				"timelin",
-				"xavier-sg/app/mixins/timeline-actions.js"
-			],
-			[
-				"action",
-				"xavier-sg/app/mixins/timeline-actions.js"
-			],
-			[
-				"elemen",
-				"xavier-sg/app/controllers/orders/element.js"
-			],
-			[
-				"sgtimelin",
-				"xavier-sg/app/components/sg-timeline.js"
-			],
-			[
-				"sgtimelinejs",
-				"xavier-sg/app/components/sg-timeline-composition.js"
-			],
-			[
-				"comphbs",
-				"xavier-sg/app/templates/components/sg-timeline-composition.hbs"
-			],
-			[
-				"sgtimepi",
-				"xavier-sg/app/components/sg-time-picker.js"
-			],
-			[
-				"orderhb",
-				"xavier-sg/app/templates/components/order-part.hbs"
-			],
-			[
-				"composi",
-				"xavier-sg/app/templates/components/sg-timeline-composition.hbs"
-			],
-			[
-				"element",
-				"xavier-sg/app/controllers/orders/element.js"
-			],
-			[
-				"ordhbs",
-				"xavier-sg/app/templates/orders/element.hbs"
-			],
-			[
-				"ordrhbs",
-				"xavier-sg/app/templates/components/order-part.hbs"
-			],
-			[
-				"inventhbs",
-				"xavier-sg/app/templates/shortcut-inventory.hbs"
-			],
-			[
-				"timelineac",
-				"xavier-sg/app/mixins/timeline-actions.js"
-			],
-			[
-				"shorthbs",
-				"xavier-sg/app/templates/shortcut-machine.hbs"
-			],
-			[
-				"shoctinv",
-				"xavier-sg/app/templates/shortcut-inventory.hbs"
-			],
-			[
-				"shortcuthbs",
-				"xavier-sg/app/templates/shortcut-inventory.hbs"
-			],
-			[
-				"compojs",
-				"xavier-sg/app/components/sg-timeline-composition.js"
-			],
-			[
-				"sgtimelinec",
-				"xavier-sg/app/templates/components/sg-timeline-composition.hbs"
-			],
-			[
-				"sg-timeline",
-				"xavier-sg/app/components/sg-timeline.js"
-			],
-			[
-				"shortm",
-				"xavier-sg/app/controllers/shortcut-machine.js"
-			],
-			[
-				"sg-timelinecomp",
-				"xavier-sg/app/templates/components/sg-timeline-composition.hbs"
-			],
-			[
-				"machinhb",
-				"xavier-sg/app/templates/shortcut-machine.hbs"
-			],
-			[
-				"inventor",
-				"xavier-sg/app/templates/shortcut-inventory.hbs"
 			]
 		],
 		"width": 0.0
@@ -1917,10 +1918,54 @@
 	},
 	"select_symbol":
 	{
-		"height": 392.0,
-		"last_filter": "",
+		"height": 47.0,
+		"last_filter": "saveOrder",
 		"selected_items":
 		[
+			[
+				"saveOrder",
+				"saveOrder"
+			],
+			[
+				"mater",
+				"Material"
+			],
+			[
+				"order",
+				"Order"
+			],
+			[
+				"material",
+				"Material"
+			],
+			[
+				"createship",
+				"createShipment"
+			],
+			[
+				"sgtime",
+				"sgTimeClick"
+			],
+			[
+				"menu",
+				"decrementRunningTransitions"
+			],
+			[
+				"create",
+				"createNewRawMaterial"
+			],
+			[
+				"createNewRawMaterial",
+				"createNewRawMaterial"
+			],
+			[
+				"savo",
+				"saveOrder"
+			],
+			[
+				"neworder",
+				"newOrder"
+			],
 			[
 				"saveo",
 				"saveOrder"
@@ -1930,7 +1975,7 @@
 				"btn-group"
 			]
 		],
-		"width": 467.0
+		"width": 593.0
 	},
 	"selected_group": 0,
 	"settings":

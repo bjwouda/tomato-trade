@@ -9,6 +9,8 @@ import _ from 'lodash/lodash';
 
 
 export default Model.extend({
+  i18n: Ember.inject.service(),
+
   // normal attribtues
   name                  : attr('string'),
   
@@ -59,10 +61,11 @@ export default Model.extend({
 
   //Result Seller 1 - Bob
   descriptivePlayerIdInGame: Ember.computed("playerPosition", "name", function() {
-    let prefix = this.get("isSeller") ? "Seller " : "Buyer ";
+    var prefix = this.get("isSeller") ? "seller" : "buyer";
+    prefix = this.get('i18n').t(prefix);
     let pos = this.get("playerPosition");
     let postfix = this.get("name") ? ` - ${this.get("name")}` : '';
-    return `${prefix}${pos}${postfix}`;
+    return `${prefix} ${pos}${postfix}`;
   }),
   
 

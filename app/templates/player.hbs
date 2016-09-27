@@ -176,7 +176,7 @@
                 <li class="list-group-item">
                   <strong>{{t "previousAcceptedOffers"}}</strong>
                 </li>
-                {{#each (filter-by "state" "accepted" (reverse obj.history))  as |offer|}}
+                {{#each (take 10 (filter-by "state" "accepted" (reverse obj.history)))  as |offer|}}
                   {{player-offer-display offer=offer}}
                 {{else}}
                   <li class="list-group-item"><i>{{t "na"}}</i></li>

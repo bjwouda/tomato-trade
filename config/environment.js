@@ -8,10 +8,10 @@ module.exports = function(environment) {
     locationType: 'auto',
 
     firebase: {
-      apiKey: "AIzaSyBxB2yDx0LIwExC-pKDlOlN-gxZK83MkYI",
-      authDomain: "tomato-37b32.firebaseapp.com",
-      databaseURL: "https://tomato-37b32.firebaseio.com",
-      storageBucket: "tomato-37b32.appspot.com",
+      apiKey: "AIzaSyB62IKGJyM3h6e29cLzNPovStBUH2JZmSc",
+      authDomain: "tomato2-f1fcb.firebaseapp.com",
+      databaseURL: "https://tomato2-f1fcb.firebaseio.com",
+      storageBucket: "",
     },
 
     EmberENV: {

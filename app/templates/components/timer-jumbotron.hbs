@@ -8,16 +8,16 @@
       <h4 class="text-center game-title">{{liquid-bind game.currentTitle}}</h4>
       <p>
         {{#if game.isPaused}}
-          <p>Game is paused</p>
+          <p>{{t "GameIsPaused"}}</p>
         {{else}}
           {{tom-clock timeStartTs=game.timeStartTs timeEndTs=game.timeEndTs}}
         {{/if}}
       </p>
     {{else}}
       {{#if game.gameIsAboutToStart}}
-        <h4 class="text-center game-title">Game is about to start</h4>
+        <h4 class="text-center game-title">{{t "GameIsAboutToStart"}}</h4>
       {{else}}
-        <h4 class="text-center game-title">Game has ended</h4>
+        <h4 class="text-center game-title">{{t "GameHasEnded"}}</h4>
       {{/if}}
     {{/if}}
   </div>

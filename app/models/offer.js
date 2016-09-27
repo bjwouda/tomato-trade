@@ -46,7 +46,7 @@ export default Model.extend({
     return (this.get("receiver.id") === undefined) ? "External" : this.get('receiver.id');
   }),
 
-  idxOfOfferInGame: Ember.computed("game.offers.[]", function() {
+  idxOfOfferInGame: Ember.computed("", function() {
     
     let gameOffers = this.get("game.offers");
     if (gameOffers === undefined || gameOffers.map === undefined) { return ""; }

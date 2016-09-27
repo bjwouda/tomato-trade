@@ -1,4 +1,7 @@
 export default {
+    "GameIsPaused" : "[NL]Game is paused",
+    "GameIsAboutToStart" : "[NL]Game is about to start",
+    "GameHasEnded" : "[NL]Game has ended",
     "accept": "Accepteren",
     "accepted": "Aanvaard",
     "avgTomatoPrice": "Gemiddelde Tomaten Prijs",

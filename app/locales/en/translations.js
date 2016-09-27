@@ -1,4 +1,7 @@
 export default {
+    "GameIsPaused" : "Game is paused",
+    "GameIsAboutToStart" : "Game is about to start",
+    "GameHasEnded" : "Game has ended",
     "accept": "Accept",
     "accepted": "Accepted",
     "avgTomatoPrice": "Average Tomato Price",
@@ -39,5 +42,10 @@ export default {
         "resourceOverview": "Resource Overview",
         "history": "Transaction history",
         "title": "Tomato trade"
-    }
+    },
+    "fine": "fine",
+    "fixedCost": "fixed cost",
+    "kgOfTomatoes": "kg of tomatoes",
+    "pricePerKg": "price per kg",
+    "retailPrice": "retail price"
 }

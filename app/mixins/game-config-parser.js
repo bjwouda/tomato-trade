@@ -11,6 +11,7 @@ let fn = function(self, tag) {
 }
 
 export default Ember.Mixin.create({
+  i18n: Ember.inject.service(),
 
   gameConfigurationRO: Ember.computed("gameConfiguration", {
     get() {
@@ -84,6 +85,7 @@ export default Ember.Mixin.create({
         let tradeType = x.startsWith("w") ? "Weekly trade" : "Daily trade";
         let tradingFor = /\d+/.exec(x)[0];
         let currentWeek = +tradingFor + (x.startsWith("w") ? -1 : 0);
+        
         let roundTitle = `#${round} Week: ${currentWeek}: ${tradeType} for Week ${tradingFor}`;
         let playerSettings = allPlayerIds.map( (x)=> { return this.getValueForUserAndRound(cleanLines, x, round); } );
         return { round, roundTitle, playerSettings, tradingFor, tradeType};
