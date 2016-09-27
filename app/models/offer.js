@@ -47,7 +47,6 @@ export default Model.extend({
   }),
 
   idxOfOfferInGame: Ember.computed("", function() {
-    
     let gameOffers = this.get("game.offers");
     if (gameOffers === undefined || gameOffers.map === undefined) { return ""; }
 

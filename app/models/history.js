@@ -20,7 +20,9 @@ export default Model.extend({
     
     historyGame  : belongsTo('game'),
 
-    idxOfOfferInGame: Ember.computed("offerId", "historyGame.offers.[]", function() {
+    idxOfOfferInGame: Ember.computed("offerId", function() {
+        // return "0";
+
         if (!this.get("offerId")) { return "status"; }
 
         let gameOffers = this.get("historyGame.offers");
