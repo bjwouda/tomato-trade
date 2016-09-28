@@ -80,7 +80,7 @@ export default Model.extend({
   }),
 
   // groupedReceivedOpenOffers: Ember.computed("traders.@each.id", "receivedOffers.@each.state", "sentOpenOffers.@each.state", "historicOffers.@each.state", function () {
-  groupedReceivedOpenOffers: Ember.computed("traders.@each.id", "receivedOffers.@each.state", "sentOpenOffers.@each.state", function () {
+  groupedReceivedOpenOffers: Ember.computed("traders.@each.id", "receivedOpenOffers", "sentOpenOffers", "historicOffers", function () {
     var start = new Date().getTime();
 
     var userIds = this.get("traders").map( (x) => { 

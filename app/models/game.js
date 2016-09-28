@@ -43,7 +43,7 @@ export default Model.extend(GameConfigParser, {
 
   users:             hasMany('user', { async: true }),
   offers:            hasMany('offer', { async: true }),
-  historyLogs:       hasMany('history', { async: true }),
+  historyLogs:       hasMany('history', { async: false }),
 
   //                                     __           __
   //   _________  ____ ___  ____  __  __/ /____  ____/ /
