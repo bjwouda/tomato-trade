@@ -56,6 +56,10 @@ export default Ember.Mixin.create(LogFunctions, {
       offer.save();
 
       this.logPlayerOfferWithObj(this.store, game, offer, "confirmed");
+
+      if (offer.get("isExternal")) {
+        this.send("acceptOffer", game, offer);
+      }
     },
 
     recallConfirmationOffer(game, offer) {

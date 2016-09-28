@@ -13,7 +13,7 @@ export default Model.extend({
   isConfirmed : attr('boolean', {defaultValue: false}),// before offer is 'accepted' it needs to be confirmed by both sides
   isAccepted  : attr('boolean', {defaultValue: false}),// before offer is 'accepted' it needs to be confirmed by both sides
 
-  notes      : attr('string'),
+  // notes      : attr('string'),
   ts         : attr('number', { defaultValue(){ return new Date().getTime(); } }), //timeStamp
 
   roundNumber : attr('number'),

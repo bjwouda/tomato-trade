@@ -175,72 +175,7 @@
     {{/unless}}
 
 
-    {{#unless game.isDeleted}}
-
-{{!--       <span class="title-container"><h3>Offers</h3></span>
-
-      {{#each game.sortedOffers as |offer|}}
-
-        <p> [{{offer.state}}] <b>{{offer.senderName}}</b> --&gt; <b>{{offer.receiver.name}}</b> {{moment-format offer.ts "HH:mm:ss"}} T: {{offer.tomatoes}} M: {{offer.price}}</p>
-
-      {{/each}}
-
-      <hr> --}}
-
-
-      <span class="title-container">
-        <h4>Historical Offers 
-          <button type="button" class="btn btn-primary btn-xs" {{action 'exportCSV' game.historyLogs}}>Export CSV</button>
-        </h4>
-      </span>
-      
-      
-      {{#if showFilterTable}}
-          <button class="btn btn-info" {{action (toggle "showFilterTable" this)}}>Hide filters</button>
-          {{models-table
-                data=game.sortedHistoryLogsById
-                columns=columns
-                showTableFooter=false
-                pageSize=100
-                rowTemplate="custom/colored-rows"
-          }}
-      {{else}}
-        <button class="btn btn-info" {{action (toggle "showFilterTable" this)}}>Show filters</button>
-        <div class="table-responsive">
-          <table class="table table-striped">
-            <thead>
-              <tr>
-                <th>Round</th>
-                <th>OfferId</th>
-                <th>Sender</th>
-                <th>Receiver</th>
-                <th>Status</th>
-                <th>Offer</th>
-                <th>Time Stamp</th>
-              </tr>
-            </thead>
-            <tbody>
-
-              {{#each (take 20 game.sortedHistoryLogsById) as |historicalOffer|}}
-
-                <tr class="{{historicalOffer.cssStatus}}">
-                  <td>{{historicalOffer.round}}</td>
-                  <td>{{historicalOffer.idxOfOfferInGame}}</td>
-                  <td>{{historicalOffer.userSender}}</td>
-                  <td>{{historicalOffer.userReceiver}}</td>
-                  <td>{{historicalOffer.state}}</td>
-                  <td>{{historicalOffer.offer}}</td>
-                  <td>{{moment-format historicalOffer.ts "HH:mm:ss"}}</td>
-                </tr>
-
-              {{/each}}
-
-            </tbody>
-          </table>
-        </div>
-      {{/if}}
-
-      {{/unless}}
+    
 
   </div>
 </div>

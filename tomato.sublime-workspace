@@ -4,22 +4,6 @@
 		"selected_items":
 		[
 			[
-				"subt",
-				"subTitleTag"
-			],
-			[
-				"web",
-				"webUrl"
-			],
-			[
-				"des",
-				"descriptionLookup"
-			],
-			[
-				"thro",
-				"throttle"
-			],
-			[
 				"if",
 				"if	if"
 			],
@@ -514,6 +498,22 @@
 			[
 				"try",
 				"try	Try/Except"
+			],
+			[
+				"art",
+				"article_nuance_lut"
+			],
+			[
+				"arr",
+				"arrRaw"
+			],
+			[
+				"pro",
+				"prospectEntryCtrl"
+			],
+			[
+				"pref",
+				"prefetch_related"
 			]
 		]
 	},
@@ -571,14 +571,10 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 167.0,
-		"last_filter": "lower",
+		"height": 392.0,
+		"last_filter": "",
 		"selected_items":
 		[
-			[
-				"lower",
-				"Convert Case: Lower Case"
-			],
 			[
 				"ali",
 				"AlignTab: Live Preview Mode"
@@ -606,6 +602,10 @@
 			[
 				"lint",
 				"SublimeLinter: Lint This View"
+			],
+			[
+				"lower",
+				"Convert Case: Lower Case"
 			],
 			[
 				"spaces",
@@ -902,51 +902,44 @@
 	},
 	"file_history":
 	[
-		"/Users/kkohn/Documents/berni-sach/utils/cheeriojs_test.js",
-		"/Users/kkohn/Documents/berni-sach/app/routes/application.js",
-		"/Users/kkohn/Documents/berni-sach/app/styles/app.scss",
-		"/Users/kkohn/Documents/berni-sach/utils/node_runner.js",
-		"/Users/kkohn/Documents/berni-sach/app/templates/application.hbs",
-		"/Users/kkohn/Documents/berni-sach/package.json",
-		"/Users/kkohn/Documents/berni-sach/utils/purplecarrot.txt",
-		"/Users/kkohn/Documents/Huawei-IOV/demos/DraggableWidgetsUI/js/communicationMenu.jsx",
-		"/Users/kkohn/Documents/Huawei-IOV/demos/DraggableWidgetsUI/js/main.jsx",
-		"/Users/kkohn/Documents/Huawei-IOV/demos/DraggableWidgetsUI/js/communicationPage.jsx",
-		"/Users/kkohn/Documents/Huawei-IOV/demos/DraggableWidgetsUI/bundle.js",
+		"/Users/kkohn/Documents/xavier-django/sg/models.py",
+		"/Users/kkohn/Documents/xavier-django/ben/models.py",
 		"/Users/kkohn/Documents/xavier-sg/app/templates/components/raw-table-body.hbs",
 		"/Users/kkohn/Documents/xavier-sg/app/models/material.js",
+		"/Users/kkohn/Documents/xavier-sg/app/models/raw-material.js",
+		"/Users/kkohn/Documents/xavier-sg/app/locales/en/translations.js",
+		"/Users/kkohn/Documents/xavier-sg/app/templates/application.hbs",
+		"/Users/kkohn/Documents/xavier-sg/app/styles/qc.styl",
+		"/Users/kkohn/Documents/xavier-sg/app/styles/orders.styl",
+		"/Users/kkohn/Documents/xavier-sg/app/controllers/orders/index.js",
+		"/Users/kkohn/Documents/xavier-sg/app/templates/components/order-part.hbs",
+		"/Users/kkohn/Documents/xavier-sg/app/templates/orders/index.hbs",
+		"/Users/kkohn/Documents/xavier-sg/app/mixins/order-actions.js",
 		"/Users/kkohn/Documents/xavier-sg/app/templates/setting-quality.hbs",
 		"/Users/kkohn/Documents/xavier-sg/app/templates/setting-recipe.hbs",
 		"/Users/kkohn/Documents/xavier-sg/app/utils/order-process.js",
 		"/Users/kkohn/Documents/xavier-ember/_utils/click_deploy_button.py",
 		"/Users/kkohn/Documents/xavier-ember/_utils/deploy-test.sh",
-		"/Users/kkohn/Documents/xavier-sg/app/templates/components/order-part.hbs",
 		"/Users/kkohn/Documents/xavier-sg/app/templates/components/inventory-table-body.hbs",
 		"/Users/kkohn/Documents/xavier-sg/app/templates/shortcut-consumable.hbs",
 		"/Users/kkohn/Documents/xavier-sg/app/templates/shortcut-inventory.hbs",
 		"/Users/kkohn/Documents/xavier-sg/app/components/sg-timeline-composition.js",
 		"/Users/kkohn/Documents/xavier-sg/app/models/machine.js",
-		"/Users/kkohn/Documents/xavier-sg/app/locales/en/translations.js",
 		"/Users/kkohn/Documents/xavier-sg/app/routes/orders/element.js",
 		"/Users/kkohn/Documents/xavier-sg/app/templates/orders/element.hbs",
-		"/Users/kkohn/Documents/xavier-sg/app/mixins/order-actions.js",
 		"/Users/kkohn/Documents/xavier-sg/app/styles/app.styl",
 		"/Users/kkohn/Documents/xavier-django/sg/signals.py",
 		"/Users/kkohn/Documents/xavier-sg/app/controllers/orders/element.js",
-		"/Users/kkohn/Documents/xavier-django/sg/models.py",
 		"/Users/kkohn/Documents/xavier-sg/app/templates/components/material-display.hbs",
 		"/Users/kkohn/Documents/xavier-sg/app/models/order.js",
 		"/Users/kkohn/Documents/xavier-sg/app/styles/mixins.styl",
 		"/Users/kkohn/Documents/xavier-sg/app/styles/sidebar.styl",
-		"/Users/kkohn/Documents/xavier-sg/app/templates/application.hbs",
 		"/Users/kkohn/Documents/xavier-sg/app/components/sg-timeline.js",
 		"/Users/kkohn/Documents/xavier-sg/app/components/order-part.js",
 		"/Users/kkohn/Documents/xavier-sg/app/components/raw-table-body.js",
-		"/Users/kkohn/Documents/xavier-sg/app/models/raw-material.js",
 		"/Users/kkohn/Documents/xavier-django/frontend/static/oneplace/assets/vendor-3e07f716bc19e539796eb9cce4eac577.js",
 		"/Users/kkohn/Documents/xavier-sg/app/controllers/shortcut-inventory.js",
 		"/Users/kkohn/Documents/xavier-sg/app/controllers/shortcut-consumable.js",
-		"/Users/kkohn/Documents/xavier-sg/app/styles/orders.styl",
 		"/Users/kkohn/Documents/xavier-sg/app/helpers/toggle-sortable.js",
 		"/Users/kkohn/Documents/xavier-sg/app/utils/handle-resterror.js",
 		"/Users/kkohn/Documents/xavier-sg/app/models/recipe.js",
@@ -955,7 +948,6 @@
 		"/Users/kkohn/Library/Application Support/Sublime Text 3/Packages/User/Default (OSX).sublime-keymap",
 		"/Users/kkohn/Documents/xavier-sg/app/routes/orders.js",
 		"/Users/kkohn/Documents/xavier-sg/app/controllers/application.js",
-		"/Users/kkohn/Documents/xavier-sg/app/templates/orders/index.hbs",
 		"/Users/kkohn/Documents/xavier-sg/app/controllers/shipments.js",
 		"/Users/kkohn/Documents/xavier-sg/app/templates/shipments.hbs",
 		"/Users/kkohn/Documents/xavier-sg/app/models/shipment.js",
@@ -973,7 +965,6 @@
 		"/Users/kkohn/Documents/xavier-sg/app/components/inventory-table-body.js",
 		"/Users/kkohn/Documents/xavier-django/sg/views.py",
 		"/Users/kkohn/Documents/xavier-django/sg/serializers.py",
-		"/Users/kkohn/Documents/xavier-sg/app/controllers/orders/index.js",
 		"/Users/kkohn/Documents/xavier-sg/app/controllers/index.js",
 		"/Users/kkohn/Documents/xavier-sg/app/mixins/timeline-actions.js",
 		"/Users/kkohn/Documents/xavier-sg/app/router.js",
@@ -1025,11 +1016,20 @@
 		"/Users/kkohn/Documents/xavier-django/sg/migrations/0004_auto_20160819_0542.py",
 		"/Users/kkohn/Documents/xavier-django/frontend/signals.py",
 		"/Users/kkohn/Documents/xavier-sg/app/helpers/set-zero.js",
-		"/Users/kkohn/Documents/xavier-sg/app/styles/qc.styl",
 		"/Users/kkohn/Documents/xavier-sg/app/helpers/set-zero-action.js",
 		"/Users/kkohn/Documents/xavier-sg/app/components/sg-time-picker.js",
 		"/Users/kkohn/Documents/xavier-sg/app/controllers/shortcut-machine.js",
-		"/Users/kkohn/Documents/xavier-sg/app/helpers/moment-add.js"
+		"/Users/kkohn/Documents/xavier-sg/app/helpers/moment-add.js",
+		"/Users/kkohn/Documents/xavier-sg/app/styles/timeline.styl",
+		"/Users/kkohn/Downloads/acodeit/index.html",
+		"/Users/kkohn/Documents/xavier-sg/app/helpers/upper-case.js",
+		"/Users/kkohn/Documents/xavier-sg/app/routes/not-found.js",
+		"/Users/kkohn/Documents/xavier-sg/app/templates/components/sg-timeline.hbs",
+		"/Users/kkohn/Documents/xavier-django/_utils/sg_initdata.py",
+		"/Users/kkohn/Documents/xavier-django/_utils/excel_test_ben.py",
+		"/Users/kkohn/Documents/xavier-sg/app/transforms/sg-json.js",
+		"/Users/kkohn/Documents/xavier-sg/app/models/material-qc-guideline.js",
+		"/Users/kkohn/Documents/xavier-sg/package.json"
 	],
 	"find":
 	{
@@ -1040,7 +1040,8 @@
 		"height": 93.0,
 		"where_history":
 		[
-			"*.jsx",
+			"*.js",
+			"*.scss",
 			"*.js",
 			"*.hbs",
 			"*.js",
@@ -1166,8 +1167,7 @@
 			"*.hbs",
 			"*.js",
 			"*.j",
-			"*.hbs",
-			"*.js"
+			"*.hbs"
 		]
 	},
 	"find_state":
@@ -1175,72 +1175,14 @@
 		"case_sensitive": false,
 		"find_history":
 		[
-			"img",
-			"title",
-			"= $(",
-			"title",
-			"= $(\"",
-			"text()",
-			"title",
-			"image",
-			",",
-			"= $(",
-			"$(",
-			"title",
-			"$(\"",
-			"h3",
-			"href",
-			"image",
-			"= $(\"",
-			"ima",
-			"= $(",
-			"$(",
-			"href",
-			"link",
-			"image",
-			"console.log",
-			"let tmp = ",
-			"recipe",
-			"img",
-			"image",
-			"reci",
-			"sockeUpdate",
-			"throttle",
-			"descriptionLookup",
-			"Leap",
-			"leap",
-			"activa",
-			"activ",
-			"temp",
-			"startTemp",
-			"value",
-			"tem",
-			"temper",
-			"updateTouchState",
-			"d3render",
-			"contact name",
-			"name",
-			"leapRunLoop",
-			"log",
-			"heeee",
-			"currentattr",
-			"leap",
-			"active",
-			"activa",
-			"activ",
-			"speed",
-			"speed update",
-			"activateMenu",
-			"throttle",
-			"transform",
-			"trans",
-			"render",
-			"drag",
-			"image",
-			"json",
-			"socket",
-			"updatebox",
-			"update",
+			"state",
+			"        <td>{{input value=material.lotNumber}}</td>\n        <td>{{input value=material.productName}}</td>\n        <td>{{input value=material.nuance}}</td>\n        <td>{{input value=material.qty}}</td>",
+			"error",
+			"materialQcState",
+			"}}</td>",
+			"{{#if (not material._edit)}}",
+			"newOrder",
+			"flobin",
 			"print",
 			"qty",
 			"qc",
@@ -1302,7 +1244,65 @@
 			"nuance",
 			"destroy",
 			"notify.*error",
-			"this"
+			"this",
+			"this.notify",
+			"notify",
+			"_newRawProductName",
+			"auto",
+			"new",
+			"$green",
+			"state",
+			"status",
+			"notify",
+			"type",
+			"save",
+			"kg",
+			"tons",
+			"new",
+			"type 1",
+			"type1",
+			",",
+			"200",
+			"filter",
+			"cancelled",
+			"onHold",
+			"open",
+			"setCurrentFilter",
+			"textarea",
+			"{{#if shipment._edit}}\n                {{input value=qc.key}}\n              {{else}}\n                {{qc.key}}\n              {{/if}}",
+			"order",
+			"customer",
+			"customers",
+			"model",
+			"text",
+			"=",
+			"power",
+			"notify",
+			"grey-cell",
+			"info-row",
+			"item",
+			"_isEdit",
+			"</td>",
+			"input",
+			"<tr>",
+			"tr>",
+			"cell",
+			"on-hold",
+			"state",
+			"status",
+			"notify",
+			"save",
+			"_isEdit",
+			"material",
+			"sg-flat",
+			"destroy",
+			"edit",
+			"status",
+			"exp",
+			"link-to",
+			"linkto",
+			"moment",
+			"table"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1379,7 +1379,7 @@
 	{
 		"height": 88.0
 	},
-	"pinned_build_system": "Packages/User/Node.sublime-build",
+	"pinned_build_system": "Packages/User/Anaconda Python.sublime-build",
 	"project": "tomato.sublime-project",
 	"replace":
 	{
@@ -1393,12 +1393,20 @@
 		"selected_items":
 		[
 			[
-				"applic",
-				"app/templates/application.hbs"
+				"models",
+				"xavier-django/ben/models.py"
 			],
 			[
 				"rawhb",
 				"xavier-sg/app/templates/components/raw-table-body.hbs"
+			],
+			[
+				"allhbs",
+				"xavier-sg/app/templates/application.hbs"
+			],
+			[
+				"applichb",
+				"xavier-sg/app/templates/application.hbs"
 			],
 			[
 				"orderhbs",
@@ -1741,10 +1749,6 @@
 				"xavier-sg/app/templates/shortcut-shipping.hbs"
 			],
 			[
-				"applichb",
-				"xavier-sg/app/templates/application.hbs"
-			],
-			[
 				"envi",
 				"xavier-sg/config/environment.js"
 			],
@@ -1857,6 +1861,10 @@
 				"xavier-sg/app/controllers/application.js"
 			],
 			[
+				"applic",
+				"xavier-sg/app/templates/application.hbs"
+			],
+			[
 				"basi",
 				"xavier-sg/app/styles/basic.styl"
 			],
@@ -1895,14 +1903,6 @@
 			[
 				"zh",
 				"xavier-sg/app/locales/zh/translations.js"
-			],
-			[
-				"applstyl",
-				"xavier-sg/app/styles/app.styl"
-			],
-			[
-				"entrans",
-				"xavier-sg/app/locales/en/translations.js"
 			]
 		],
 		"width": 0.0
