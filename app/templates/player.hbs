@@ -70,6 +70,12 @@
                 <li class="list-group-item">
                   <div class="form-inline">
                     {{#if (eq k 'External')}}
+                          {{#if (gte obj.sentOffers.length 3)}}
+                            <div class="alert alert-danger" role="alert">
+                              You can only have 3 active send offers
+                            </div>
+                          {{/if}}
+                          
                          <div class="form-group">
                             <label for="offerTomato">{{t 'tomatoes'}}<span class="to-tomato"></span>(max. {{model.extOfferTomato}})</label>
 
@@ -86,11 +92,6 @@
 
                           </div>
                           
-                          {{#if (gte obj.sentOffers.length 3)}}
-                            <div class="alert alert-danger" role="alert">
-                              You can only have 3 active send offers
-                            </div>
-                          {{/if}}
 
                           <div class="form-group">
                             
@@ -115,6 +116,12 @@
                             {{/if}}
                           </div>
                     {{else}}
+                      {{#if (gte obj.sentOffers.length 3)}}
+                        <div class="alert alert-danger" role="alert">
+                          You can only have 3 active send offers
+                        </div>
+                      {{/if}}
+
                       <div class="form-group">
 
                           <label for="offerTomato">{{t 'tomatoes'}} <span class="to-tomato"></span></label>
@@ -132,11 +139,6 @@
 
                       </div>
 
-                      {{#if (gte obj.sentOffers.length 3)}}
-                        <div class="alert alert-danger" role="alert">
-                          You can only have 3 active send offers
-                        </div>
-                      {{/if}}
                       
                       <div class="form-group">
                         

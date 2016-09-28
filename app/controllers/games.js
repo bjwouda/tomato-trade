@@ -256,6 +256,23 @@ export default Ember.Controller.extend(OfferActions, LangActions, LogFunctions, 
       });
     },
 
+    testManyOffers() {
+      let self = this;
+      let game = this.get("game");
+      let users = this.get("game.users").then(function(_users) {
+        // sendOffer(game, sender, receiver, tomatoes, price)
+        let users = _users.map(x=>x);
+
+        for (let x of _.range(50)) {
+          self.send("sendOffer", game, users[0], users[1], 1.0, 1.0);
+          console.log(x);
+        }
+        
+      });
+
+
+    },
+
     clearHistoryLogs() {
       this.get("game.historyLogs").clear();
       this.get("game").save();
