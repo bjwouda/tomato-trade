@@ -16,6 +16,7 @@ export default Model.extend({
   // notes      : attr('string'),
   ts         : attr('number', { defaultValue(){ return new Date().getTime(); } }), //timeStamp
 
+  idxOfOfferInGame : attr('number'),
   roundNumber : attr('number'),
   weekNumber : attr('number'),
   game       : belongsTo('game'),
@@ -46,7 +47,7 @@ export default Model.extend({
     return (this.get("receiver.id") === undefined) ? "External" : this.get('receiver.id');
   }),
 
-  idxOfOfferInGame: Ember.computed("", function() {
+  idxOfOfferInGameCalc: Ember.computed("", function() {
     let gameOffers = this.get("game.offers");
     if (gameOffers === undefined || gameOffers.map === undefined) { return ""; }
 

@@ -19,6 +19,7 @@ export default Ember.Mixin.create(LogFunctions, {
         var newOffer = this.store.createRecord('offer', {
           tomatoes: tomatoes,
           price: price,
+          idxOfOfferInGame: game.get("offerCnt"),
           isExternal: isExternal,
           roundNumber: game.get("roundNumber"),
           weekNumber: game.get("weekNumber"),
@@ -27,8 +28,9 @@ export default Ember.Mixin.create(LogFunctions, {
           notes: `${moment().format()};created\n`,
         });
 
-        this.logPlayerOffer(this.store, game, sender, receiver, tomatoes, price, "open", newOffer.get("id"));
+        this.logPlayerOffer(this.store, game, sender, receiver, tomatoes, price, "open", newOffer.get("id"), game.get("offerCnt"));
 
+        game.incrementProperty('offerCnt');
         game.get('offers').addObject(newOffer);
 
         if (+receiver !== 0) {

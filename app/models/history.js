@@ -14,13 +14,15 @@ export default Model.extend({
     tomatoesOffer			: attr('string'),
     priceOffer				: attr('string'),
     round                   : attr('string'),
+    idxOfOfferInGame        : attr('number'),
+    
     ts                      : attr('number', { 
         defaultValue(){ return new Date().getTime(); }
     }), //timeStamp
     
-    historyGame  : belongsTo('game'),
+    historyGame  : belongsTo('game', {async: true}),
 
-    idxOfOfferInGame: Ember.computed("offerId", function() {
+    idxOfOfferInGameCalc: Ember.computed("offerId", function() {
         // return "0";
 
         if (!this.get("offerId")) { return "status"; }

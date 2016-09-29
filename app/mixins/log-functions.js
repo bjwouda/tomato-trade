@@ -11,12 +11,15 @@ export default Ember.Mixin.create({
 			let tomatoes = offer.get("tomatoes");
 			let price = offer.get("price");
 			let offerId = offer.get("id");
+			let idxOfOfferInGame = offer.get("idxOfOfferInGame");
 
-			self.logPlayerOffer(store, game, sender, receiver, tomatoes, price, state, offerId);
+			console.log(idxOfOfferInGame);
+
+			self.logPlayerOffer(store, game, sender, receiver, tomatoes, price, state, offerId, idxOfOfferInGame);
 		})
 	},
 
-	logPlayerOffer(store, game, sender, receiver, tomatoes, price, state, offerId) {
+	logPlayerOffer(store, game, sender, receiver, tomatoes, price, state, offerId, idxOfOfferInGame) {
 	  Ember.run(function() {
 	
 		  let stateCssLUT = {
@@ -37,6 +40,7 @@ export default Ember.Mixin.create({
 	        cssStatus    : stateCssLUT[state],
 	        offer        : "tomatoes: " + tomatoes + ", price: " + price,
 	        tomatoesOffer: tomatoes,
+	        idxOfOfferInGame : idxOfOfferInGame,
 	        priceOffer 	 : price,
 	        round        : "Round " + game.get("roundCnt"),
 	        historyGame  : game

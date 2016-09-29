@@ -29,6 +29,7 @@ export default Model.extend(GameConfigParser, {
   gameConfiguration: attr('string', { defaultValue: rawConfigString }), // CHECK THE MIXIN, quite some stuff attached there...
   gameName:          attr('string'),
   
+  offerCnt:          attr('number', { defaultValue: 1 }),
   roundCnt:          attr('number', { defaultValue: 0 }),
   minutesPerRound:   storeWithWeek("roundCnt", "minutesPerRound"),
   fine:              storeWithWeek("roundCnt", "fine"),
@@ -43,7 +44,7 @@ export default Model.extend(GameConfigParser, {
 
   users:             hasMany('user', { async: true }),
   offers:            hasMany('offer', { async: true }),
-  historyLogs:       hasMany('history', { async: false }),
+  // historyLogs:       hasMany('history', { async: true }),
 
   //                                     __           __
   //   _________  ____ ___  ____  __  __/ /____  ____/ /

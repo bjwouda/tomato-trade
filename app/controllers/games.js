@@ -17,43 +17,6 @@ export default Ember.Controller.extend(OfferActions, LangActions, LogFunctions, 
     this.set("showFilterTable", false);
   }),
 
-  columns: [
-    {
-      "propertyName": "round",
-      "title": "Round",
-      "filterWithSelect": true
-    },
-    {
-      "propertyName": "idxOfOfferInGame",
-      "title": "Offerid"
-    },
-    {
-      "propertyName": "userSender",
-      "title": "Usersender"
-    },
-    {
-      "propertyName": "userReceiver",
-      "title": "Userreceiver"
-    },
-    {
-      "propertyName": "state",
-      "title": "State"
-    },
-   
-    {
-      "propertyName": "tomatoesOffer",
-      "title": "tomatoes"
-    },
-    {
-      "propertyName": "priceOffer",
-      "title": "price"
-    },
-    {
-      "propertyName": "tsDesc",
-      "title": "Time"
-    },
-
-  ],
 
   // isConfiguration   : Ember.computed("model.[]", function() {
   //   return this.get("model.length") !== 0;
@@ -131,7 +94,8 @@ export default Ember.Controller.extend(OfferActions, LangActions, LogFunctions, 
           state        : "New Round",
           cssStatus    : "info",
           offer        : "Minutes on this round " +  minutesPerRound, //We could also include tomato goal for each user
-          round        : "Round " + (game.get("roundCnt") + 1)
+          round        : "Round " + (game.get("roundCnt") + 1),
+          historyGame  : game
         });
         
       } else {
@@ -142,7 +106,8 @@ export default Ember.Controller.extend(OfferActions, LangActions, LogFunctions, 
           state        : "First Round",
           cssStatus    : "info",
           offer        : "Minutes on this round " +  minutesPerRound, //We could also include tomato goal for each user
-          round        : "Round " + game.get("roundCnt")
+          round        : "Round " + game.get("roundCnt"),
+          historyGame  : game
         });     
       }
       
@@ -154,11 +119,12 @@ export default Ember.Controller.extend(OfferActions, LangActions, LogFunctions, 
           state        : "",
           cssStatus    : "info",
           offer        : "",
-          round        : "Round " + game.get("roundCnt")
+          round        : "Round " + game.get("roundCnt"),
+          historyGame  : game
         });     
-        game.get('historyLogs').addObject(userHistory);
+        // game.get('historyLogs').addObject(userHistory);
         userHistory.save().then(() => { 
-          game.save();
+          // game.save();
           return true;
         });
 
@@ -166,17 +132,19 @@ export default Ember.Controller.extend(OfferActions, LangActions, LogFunctions, 
 
       });
 
-      game.get('historyLogs').addObject(newHistoryObj);
+      // game.get('historyLogs').addObject(newHistoryObj);
 
       newHistoryObj.save().then(() => { 
-        game.save();
+        // game.save();
         return true;
       });
 
       game.set("timeStartTs", Date.now());
       game.set("timeEndTs", Date.now() + minutesPerRound * 60 * 1000);
-
       game.incrementProperty("roundCnt", 1);
+
+      game.get("offers").map(x=>x.destroyRecord())
+
       game.save().then(() => {
         let lut = [
           ["getRetailpriceForRound", "retailPrice"],
@@ -257,18 +225,20 @@ export default Ember.Controller.extend(OfferActions, LangActions, LogFunctions, 
     },
 
     testManyOffers() {
-      let self = this;
-      let game = this.get("game");
-      let users = this.get("game.users").then(function(_users) {
-        // sendOffer(game, sender, receiver, tomatoes, price)
-        let users = _users.map(x=>x);
+      Ember.run(() => {      
+        let self = this;
+        let game = this.get("game");
+        let users = this.get("game.users").then(function(_users) {
+          // sendOffer(game, sender, receiver, tomatoes, price)
+          let users = _users.map(x=>x);
 
-        for (let x of _.range(50)) {
-          self.send("sendOffer", game, users[0], users[1], 1.0, 1.0);
-          console.log(x);
-        }
-        
-      });
+          for (let x of _.range(50)) {
+            self.send("sendOffer", game, users[0], users[1], 1.0, 1.0);
+            console.log(x);
+          }
+        });
+          
+      })
 
 
     },
@@ -276,23 +246,6 @@ export default Ember.Controller.extend(OfferActions, LangActions, LogFunctions, 
     clearHistoryLogs() {
       this.get("game.historyLogs").clear();
       this.get("game").save();
-    },
-
-    exportCSV(historyLogs) {
-      var data = [];
-      var titles = ["round", "idxOfOfferInGame", "userSender", "userReceiver", "state", "offer", "tomatoesOffer", "priceOffer", "tsDesc"];
-
-      data.push(titles);
-      historyLogs.map((historyElement) => {
-        // historyElement => 1x historical element
-        // now go through each element in titles and get it from historyElement
-        var resolvedTitles = titles.map((titleElement) => {
-          return historyElement.get(titleElement);
-        });
-        data.push(resolvedTitles);
-      });
-      // this.get('csv').export(data, 'test.csv');
-      this.get('excel').export(data, 'sheet1', 'test.xlsx');
     },
 
   }
