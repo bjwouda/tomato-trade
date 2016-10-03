@@ -4,8 +4,40 @@
 		"selected_items":
 		[
 			[
+				"active",
+				"activeCheck"
+			],
+			[
+				"dir",
+				"dirLvls"
+			],
+			[
 				"if",
 				"if	if"
+			],
+			[
+				"f",
+				"fun	Function"
+			],
+			[
+				"ov",
+				"ov:s	overflow:scroll"
+			],
+			[
+				"inlin",
+				"inline-block"
+			],
+			[
+				"flex",
+				"flex-direction"
+			],
+			[
+				"trans",
+				"transparent"
+			],
+			[
+				"bx",
+				"bxz:bb	box-sizing:border-box"
 			],
 			[
 				"order",
@@ -14,10 +46,6 @@
 			[
 				"fpp",
 				"fppMaterial"
-			],
-			[
-				"f",
-				"f	Anonymous Function"
 			],
 			[
 				"linkto",
@@ -280,10 +308,6 @@
 				"background-color"
 			],
 			[
-				"ov",
-				"overflow"
-			],
-			[
 				"resize",
 				"resizeHandler"
 			],
@@ -490,30 +514,6 @@
 			[
 				"Bookmar",
 				"BookmarkCategory"
-			],
-			[
-				"arti",
-				"article_nuance"
-			],
-			[
-				"try",
-				"try	Try/Except"
-			],
-			[
-				"art",
-				"article_nuance_lut"
-			],
-			[
-				"arr",
-				"arrRaw"
-			],
-			[
-				"pro",
-				"prospectEntryCtrl"
-			],
-			[
-				"pref",
-				"prefetch_related"
 			]
 		]
 	},
@@ -571,10 +571,34 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 392.0,
-		"last_filter": "",
+		"height": 107.0,
+		"last_filter": "lint sett",
 		"selected_items":
 		[
+			[
+				"lint sett",
+				"Preferences: SublimeLinter Settings – User"
+			],
+			[
+				"lint",
+				"SublimeLinter: Toggle Linter"
+			],
+			[
+				"linter set",
+				"Preferences: SublimeLinter Settings – User"
+			],
+			[
+				"linter sett",
+				"Preferences: SublimeLinter Settings – Default"
+			],
+			[
+				"linter",
+				"SublimeLinter: Enable Linter"
+			],
+			[
+				"sort",
+				"Sort Lines"
+			],
 			[
 				"ali",
 				"AlignTab: Live Preview Mode"
@@ -594,14 +618,6 @@
 			[
 				"align",
 				"AlignTab: Live Preview Mode"
-			],
-			[
-				"sort",
-				"Sort Lines"
-			],
-			[
-				"lint",
-				"SublimeLinter: Lint This View"
 			],
 			[
 				"lower",
@@ -872,7 +888,7 @@
 				"Git: Status"
 			]
 		],
-		"width": 485.0
+		"width": 467.0
 	},
 	"console":
 	{
@@ -902,6 +918,49 @@
 	},
 	"file_history":
 	[
+		"/Users/kkohn/Documents/inspiration-boards-backend/InspirationBoards/settings.py",
+		"/Users/kkohn/Documents/acode-glance/app/application/route.js",
+		"/Users/kkohn/Documents/acode-glance/app/welcome/setup/route.js",
+		"/Users/kkohn/Documents/acode-glance/app/welcome/setup/template.hbs",
+		"/Users/kkohn/Documents/acode-glance/app/router.js",
+		"/Users/kkohn/Documents/acode-glance/app/styles/forms.scss",
+		"/Users/kkohn/Documents/acode-glance/app/utils/fileio.js",
+		"/Users/kkohn/Documents/acode-glance/app/components/tristate-cell/component.js",
+		"/Users/kkohn/Documents/acode-glance/app/components/file-picker/component.js",
+		"/Users/kkohn/Documents/acode-glance/app/components/file-picker/template.hbs",
+		"/Users/kkohn/Documents/acode-glance/app/welcome/setup-folder/route.js",
+		"/Users/kkohn/Documents/acode-glance/app/components/file-picker/style.scss",
+		"/Users/kkohn/Documents/acode-glance/app/components/tristate-cell/template.hbs",
+		"/Users/kkohn/Documents/acode-glance/app/components/file-picker/tristate-cell/template.hbs",
+		"/Users/kkohn/Library/Application Support/Sublime Text 3/Packages/User/jshint-config.js",
+		"/Users/kkohn/Library/Application Support/Sublime Text 3/Packages/User/SublimeLinter.sublime-settings",
+		"/Users/kkohn/Documents/acode-glance/ember-cli-build.js",
+		"/Users/kkohn/Library/Application Support/Sublime Text 3/Packages/SublimeLinter/SublimeLinter.sublime-settings",
+		"/Users/kkohn/Documents/acode-glance/.jshintrc",
+		"/Users/kkohn/Documents/acode-glance/app/styles/basic.scss",
+		"/Users/kkohn/Documents/acode-glance/app/styles/app.scss",
+		"/Users/kkohn/Documents/acode-glance/app/application/style.scss",
+		"/Users/kkohn/Documents/acode-glance/app/welcome/setup-folder/template.hbs",
+		"/Users/kkohn/Documents/acode-glance/.babelrc",
+		"/Users/kkohn/Documents/acode-glance/electron.js",
+		"/Users/kkohn/Documents/acode-glance/app/components/lock-screen/style.scss",
+		"/Users/kkohn/Documents/acode-glance/app/welcome/setup-folder/controller.js",
+		"/Users/kkohn/Documents/acode-glance/app/application/template.hbs",
+		"/Users/kkohn/Documents/acode-glance/app/welcome/login/route.js",
+		"/Users/kkohn/Documents/acode-glance/app/welcome/login/template.hbs",
+		"/Users/kkohn/Documents/acode-glance/app/styles/forms-range.scss",
+		"/Users/kkohn/Documents/acode-glance/.gitignore",
+		"/Users/kkohn/Documents/acode-glance/package.json",
+		"/Users/kkohn/Documents/acode-glance/app/welcome/setup/style.scss",
+		"/Users/kkohn/Documents/acode-glance/app/styles/pods.scss",
+		"/Users/kkohn/Documents/acode-glance/app/welcome/login/style.scss",
+		"/Users/kkohn/Documents/acode-glance/app/components/lock-screen/template.hbs",
+		"/Users/kkohn/Documents/acode-glance/app/components/lock-screen/component.js",
+		"/Users/kkohn/Documents/acode-glance/app/components/acode-foo/style.scss",
+		"/Users/kkohn/Documents/acode-glance/app/components/acode-foo/template.hbs",
+		"/Users/kkohn/Documents/acode-glance/app/styles/acode-glance.scss",
+		"/Users/kkohn/Downloads/clipboard_history.txt",
+		"/Users/kkohn/Documents/acode-glance/glance.sublime-project",
 		"/Users/kkohn/Documents/xavier-django/sg/models.py",
 		"/Users/kkohn/Documents/xavier-django/ben/models.py",
 		"/Users/kkohn/Documents/xavier-sg/app/templates/components/raw-table-body.hbs",
@@ -986,50 +1045,7 @@
 		"/Users/kkohn/Documents/xavier-sg/app/templates/components/sg-timeline-composition.hbs",
 		"/Users/kkohn/Documents/xavier-sg/app/controllers/setting-recipe.js",
 		"/Users/kkohn/Documents/xavier-sg/app/locales/zh/translations.js",
-		"/private/tmp/foo.json",
-		"/Users/kkohn/Documents/xavier-sg/app/styles/recipe.styl",
-		"/Users/kkohn/Documents/xavier-sg/app/styles/print-override.styl",
-		"/Users/kkohn/Documents/xavier-sg/deploy.sh",
-		"/Users/kkohn/.bash_profile",
-		"/Users/kkohn/Documents/xavier-sg/app/templates/index.hbs",
-		"/Users/kkohn/Documents/xavier-sg/app/instance-initializers/i18n.js",
-		"/Users/kkohn/Documents/xavier-sg/app/helpers/print-action.js",
-		"/Users/kkohn/Documents/xavier-sg/app/templates/components/order-progress-bar.hbs",
-		"/Users/kkohn/Documents/xavier-sg/app/transforms/sg-date.js",
-		"/Users/kkohn/Documents/xavier-sg/_utils/configParser.js",
-		"/Users/kkohn/Documents/xavier-sg/node_modules/ember-crumbly/app/initializers/crumbly.js",
-		"/Users/kkohn/Documents/xavier-sg/node_modules/ember-crumbly/addon/components/bread-crumbs.js",
-		"/Users/kkohn/Documents/xavier-sg/app/mixins/route-breadcrumb-i18n.js",
-		"/Users/kkohn/Documents/xavier-sg/app/styles/basic.styl",
-		"/Users/kkohn/Documents/xavier-sg/_utils/get_hbs_content.py",
-		"/Users/kkohn/Documents/xavier-sg/app/templates/components/qc-group-table.hbs",
-		"/Users/kkohn/Documents/xavier-sg/app/routes/shortcut-machine.js",
-		"/Users/kkohn/Documents/xavier-sg/app/routes/setting-recipe.js",
-		"/Users/kkohn/Documents/xavier-sg/app/routes/shortcut-inventory.js",
-		"/Users/kkohn/Documents/xavier-sg/app/routes/application.js",
-		"/Users/kkohn/Documents/xavier-sg/app/mixins/lang-actions.js",
-		"/Users/kkohn/Documents/xavier-sg/app/utils/i18n/missing-message.js",
-		"/Users/kkohn/Documents/xavier-django/sg/migrations/0005_auto_20160819_0644.py",
-		"/Users/kkohn/Documents/xavier-django/xavier/settings.py",
-		"/Users/kkohn/Documents/xavier-django/sg/migrations/0005_auto_20160819_0643.py",
-		"/Users/kkohn/Documents/xavier-sg/app/helpers/moment-is-valid.js",
-		"/Users/kkohn/Documents/xavier-django/sg/migrations/0004_auto_20160819_0542.py",
-		"/Users/kkohn/Documents/xavier-django/frontend/signals.py",
-		"/Users/kkohn/Documents/xavier-sg/app/helpers/set-zero.js",
-		"/Users/kkohn/Documents/xavier-sg/app/helpers/set-zero-action.js",
-		"/Users/kkohn/Documents/xavier-sg/app/components/sg-time-picker.js",
-		"/Users/kkohn/Documents/xavier-sg/app/controllers/shortcut-machine.js",
-		"/Users/kkohn/Documents/xavier-sg/app/helpers/moment-add.js",
-		"/Users/kkohn/Documents/xavier-sg/app/styles/timeline.styl",
-		"/Users/kkohn/Downloads/acodeit/index.html",
-		"/Users/kkohn/Documents/xavier-sg/app/helpers/upper-case.js",
-		"/Users/kkohn/Documents/xavier-sg/app/routes/not-found.js",
-		"/Users/kkohn/Documents/xavier-sg/app/templates/components/sg-timeline.hbs",
-		"/Users/kkohn/Documents/xavier-django/_utils/sg_initdata.py",
-		"/Users/kkohn/Documents/xavier-django/_utils/excel_test_ben.py",
-		"/Users/kkohn/Documents/xavier-sg/app/transforms/sg-json.js",
-		"/Users/kkohn/Documents/xavier-sg/app/models/material-qc-guideline.js",
-		"/Users/kkohn/Documents/xavier-sg/package.json"
+		"/private/tmp/foo.json"
 	],
 	"find":
 	{
@@ -1040,6 +1056,11 @@
 		"height": 93.0,
 		"where_history":
 		[
+			"*.py",
+			"*.js",
+			"*.scss",
+			"*.js",
+			"*.scss",
 			"*.js",
 			"*.scss",
 			"*.js",
@@ -1162,11 +1183,6 @@
 			"*.js",
 			"*.py",
 			"*.js",
-			"*.hbs",
-			"*.styl",
-			"*.hbs",
-			"*.js",
-			"*.j",
 			"*.hbs"
 		]
 	},
@@ -1175,6 +1191,33 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"tags",
+			"\\.tags",
+			"tags",
+			"# ",
+			".r",
+			".h",
+			".w",
+			"selected",
+			"observer",
+			"activeCheck",
+			"Dirs",
+			"dirs",
+			"bgc",
+			"build",
+			"electron-builds",
+			"node_modules",
+			"transition",
+			"calc(1.2rem + 20px + 4px);",
+			"password",
+			"30px",
+			"border",
+			"10px",
+			"ok",
+			"radius",
+			"text",
+			"h2",
+			"datetime",
 			"state",
 			"        <td>{{input value=material.lotNumber}}</td>\n        <td>{{input value=material.productName}}</td>\n        <td>{{input value=material.nuance}}</td>\n        <td>{{input value=material.qty}}</td>",
 			"error",
@@ -1275,34 +1318,7 @@
 			"customers",
 			"model",
 			"text",
-			"=",
-			"power",
-			"notify",
-			"grey-cell",
-			"info-row",
-			"item",
-			"_isEdit",
-			"</td>",
-			"input",
-			"<tr>",
-			"tr>",
-			"cell",
-			"on-hold",
-			"state",
-			"status",
-			"notify",
-			"save",
-			"_isEdit",
-			"material",
-			"sg-flat",
-			"destroy",
-			"edit",
-			"status",
-			"exp",
-			"link-to",
-			"linkto",
-			"moment",
-			"table"
+			"="
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1392,6 +1408,30 @@
 		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"approute",
+				"app/application/route.js"
+			],
+			[
+				"approu",
+				"app/router.js"
+			],
+			[
+				"fileo",
+				"app/utils/fileio.js"
+			],
+			[
+				"clibuil",
+				"ember-cli-build.js"
+			],
+			[
+				"form",
+				"app/styles/forms.scss"
+			],
+			[
+				"forms",
+				"app/styles/forms.scss"
+			],
 			[
 				"models",
 				"xavier-django/ben/models.py"
@@ -1879,30 +1919,6 @@
 			[
 				"entran",
 				"xavier-sg/app/locales/en/translations.js"
-			],
-			[
-				"orderparthb",
-				"xavier-sg/app/templates/components/order-part.hbs"
-			],
-			[
-				"i18j",
-				"xavier-sg/app/mixins/route-breadcrumb-i18n.js"
-			],
-			[
-				"routemachine",
-				"xavier-sg/app/routes/shortcut-machine.js"
-			],
-			[
-				"transl",
-				"xavier-sg/app/locales/en/translations.js"
-			],
-			[
-				"applich",
-				"xavier-sg/app/templates/application.hbs"
-			],
-			[
-				"zh",
-				"xavier-sg/app/locales/zh/translations.js"
 			]
 		],
 		"width": 0.0
