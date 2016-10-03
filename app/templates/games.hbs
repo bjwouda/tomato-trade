@@ -6,8 +6,7 @@
           {{#unless game.isDeleted}}
             <li> <span class="title-container"><h4>Round Controlls</h4></span></li>
             
-            <li class="active" {{action 'testManyOffers'}}><a href="">TestButton</a></li>
-            <li class="nav-divider"></li>
+            
 
             {{#if (and game.gameIsAboutToStart game.gameConfigurationValid)}}
               <li class="active" {{action 'nextRound' game game.minutesPerRound}}><a href="">Start Game</a></li>
@@ -40,6 +39,8 @@
             {{/if}}
 
             <li class="active" {{action (toggle "isConfiguration" this)}}><a href="">Game Config</a></li>
+            <li class="active"> {{#link-to 'historical' game}}Historical{{/link-to}}</li>
+            
             <li class="nav-divider"></li>
 
             {{#if isEditing}}

@@ -75,6 +75,12 @@
                               You can only have 3 active send offers
                             </div>
                           {{/if}}
+
+                          {{#if (gt _ext_offerTomato model.remainingTomatoes)}}
+                            <div class="alert alert-danger" role="alert">
+                              Your offer can't exceed your remaining tomatoes
+                            </div>
+                          {{/if}}
                           
                          <div class="form-group">
                             <label for="offerTomato">{{t 'tomatoes'}}<span class="to-tomato"></span>(max. {{model.extOfferTomato}})</label>
@@ -109,6 +115,7 @@
                                     (lt obj.sentOffers.length 3) 
                                     (gt _ext_offerTomato 0) 
                                     (my-lte _ext_offerTomato model.extOfferTomato)
+                                    (gte model.remainingTomatoes _ext_offerTomato)
                                   )}}
                                   <button class="btn btn-info" {{action 'sendOffer' game model 0 _ext_offerTomato model.extOfferPrice}}>{{t 'send'}}</button>
                             {{else}}
@@ -119,6 +126,11 @@
                       {{#if (gte obj.sentOffers.length 3)}}
                         <div class="alert alert-danger" role="alert">
                           You can only have 3 active send offers
+                        </div>
+                      {{/if}}
+                      {{#if (gt obj.user._offerTomato model.remainingTomatoes)}}
+                        <div class="alert alert-danger" role="alert">
+                          Your offer can't exceed your remaining tomatoes
                         </div>
                       {{/if}}
 
@@ -151,10 +163,11 @@
                         }}
 
 
-                        {{#if (and 
+                         {{#if (and 
                                 (lt obj.sentOffers.length 3)
                                 (gt obj.user._offerTomato 0) 
                                 (gt obj.user._offerPrice 0)
+                                (gte model.remainingTomatoes obj.user._offerTomato)
                               )}}
                           {{#if (eq k 'External')}}
                               <button class="btn btn-info" {{action 'sendOffer' game model 0 obj.user._offerTomato obj.user._offerPrice}}>{{t 'send'}}</button>
@@ -182,7 +195,9 @@
                   store=store 
                   game=game 
                   openOffers=(reverse obj.openOffers) 
-                  sentOffers=(reverse obj.sentOffers)}}
+                  sentOffers=(reverse obj.sentOffers)
+                  remainingTomatoes=model.remainingTomatoes
+                  }}
             </ul>
             
             <ul class="list-group">
