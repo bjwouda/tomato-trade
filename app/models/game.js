@@ -94,8 +94,8 @@ export default Model.extend(GameConfigParser, {
     el => el.get("isSeller") === false),
 
 
-  currentTitle: Ember.computed("roundCnt", function() {
-    return  this.get(`gameMatrix.${this.get("roundCnt") - 1}.roundTitle`);
+  currentGameSettings: Ember.computed("roundCnt", function() {
+    return  this.get(`gameMatrix.${this.get("roundCnt") - 1}`);
   }),
 
   allUsers: Ember.computed.filter('users', function() {

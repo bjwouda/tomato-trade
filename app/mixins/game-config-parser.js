@@ -82,13 +82,14 @@ export default Ember.Mixin.create({
 
       let gameMatrix = roundArray.map((x,i) => {
         let round = i+1;
-        let tradeType = x.startsWith("w") ? "Weekly trade" : "Daily trade";
+        let tradeType = x.startsWith("w") ? "weekly" : "daily";
         let tradingFor = /\d+/.exec(x)[0];
         let currentWeek = +tradingFor + (x.startsWith("w") ? -1 : 0);
         
-        let roundTitle = `#${round} Week: ${currentWeek}: ${tradeType} for Week ${tradingFor}`;
+        let roundTitle = "N-A (USE TRANSLATION)" // `#${round} Week: ${currentWeek}: ${tradeType} for Week ${tradingFor}`;
+        // currentWeek tradeType tradeWeek
         let playerSettings = allPlayerIds.map( (x)=> { return this.getValueForUserAndRound(cleanLines, x, round); } );
-        return { round, roundTitle, playerSettings, tradingFor, tradeType};
+        return { round, roundTitle, playerSettings, tradingFor, tradeType, currentWeek};
       });
 
       console.log(gameMatrix[0]);

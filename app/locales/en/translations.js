@@ -47,5 +47,10 @@ export default {
     "fixedCost": "fixed cost",
     "kgOfTomatoes": "kg of tomatoes",
     "pricePerKg": "price per kg",
-    "retailPrice": "retail price"
+    "retailPrice": "retail price",
+    "only3activeOffers" : "You can only have 3 active send offers",
+    "cantExceedTomatoes" : "Your offer can't exceed your remaining tomatoes",
+    "offerExceedMax" :" Offer tomatoes ({{offerTomatoes}}) can't exceed remaining tomatoes ({{remainingTomatoes}})",
+    "weekly": "weekly",
+    "daily" : "daily"
 }

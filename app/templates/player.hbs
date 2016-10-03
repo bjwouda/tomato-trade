@@ -72,13 +72,13 @@
                     {{#if (eq k 'External')}}
                           {{#if (gte obj.sentOffers.length 3)}}
                             <div class="alert alert-danger" role="alert">
-                              You can only have 3 active send offers
+                              {{t "only3activeOffers"}}
                             </div>
                           {{/if}}
 
-                          {{#if (gt _ext_offerTomato model.remainingTomatoes)}}
+                          {{#if (and model.isSeller (gt _ext_offerTomato model.remainingTomatoes))}}
                             <div class="alert alert-danger" role="alert">
-                              Your offer can't exceed your remaining tomatoes
+                              {{t "cantExceedTomatoes"}}
                             </div>
                           {{/if}}
                           
@@ -110,12 +110,12 @@
                               disabled=1
                             }}
 
-
+                            {{!-- check logic here is inverse to above --}}
                             {{#if (and 
                                     (lt obj.sentOffers.length 3) 
                                     (gt _ext_offerTomato 0) 
                                     (my-lte _ext_offerTomato model.extOfferTomato)
-                                    (gte model.remainingTomatoes _ext_offerTomato)
+                                    (or (not model.isSeller) (lte _ext_offerTomato model.remainingTomatoes))
                                   )}}
                                   <button class="btn btn-info" {{action 'sendOffer' game model 0 _ext_offerTomato model.extOfferPrice}}>{{t 'send'}}</button>
                             {{else}}
@@ -125,12 +125,12 @@
                     {{else}}
                       {{#if (gte obj.sentOffers.length 3)}}
                         <div class="alert alert-danger" role="alert">
-                          You can only have 3 active send offers
+                          {{t "only3activeOffers"}}
                         </div>
                       {{/if}}
-                      {{#if (gt obj.user._offerTomato model.remainingTomatoes)}}
+                      {{#if (and model.isSeller (gt obj.user._offerTomato model.remainingTomatoes))}}
                         <div class="alert alert-danger" role="alert">
-                          Your offer can't exceed your remaining tomatoes
+                          {{t "cantExceedTomatoes"}}
                         </div>
                       {{/if}}
 
@@ -163,11 +163,12 @@
                         }}
 
 
+                         {{!-- check logic here is inverse to above --}}
                          {{#if (and 
                                 (lt obj.sentOffers.length 3)
                                 (gt obj.user._offerTomato 0) 
                                 (gt obj.user._offerPrice 0)
-                                (gte model.remainingTomatoes obj.user._offerTomato)
+                                (or (not model.isSeller) (lte obj.user._offerTomato model.remainingTomatoes)) 
                               )}}
                           {{#if (eq k 'External')}}
                               <button class="btn btn-info" {{action 'sendOffer' game model 0 obj.user._offerTomato obj.user._offerPrice}}>{{t 'send'}}</button>
@@ -194,6 +195,7 @@
                 {{player-offers 
                   store=store 
                   game=game 
+                  isSeller=model.isSeller
                   openOffers=(reverse obj.openOffers) 
                   sentOffers=(reverse obj.sentOffers)
                   remainingTomatoes=model.remainingTomatoes

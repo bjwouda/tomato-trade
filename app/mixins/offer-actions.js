@@ -76,6 +76,21 @@ export default Ember.Mixin.create(LogFunctions, {
       let self = this;
 
       Ember.run(function() {
+
+        // Do some extra check that no negative values occur somehow...
+
+        let receiverTomatoes = +offer.get("receiver.content.tomatoes") + offer.get("tomatoes") < offer.get("receiver.content.goalTomatoes")
+                          && offer.get("receiver.content.isSeller");
+
+        let senderTomatoes = +offer.get("sender.content.tomatoes") + offer.get("tomatoes") < offer.get("sender.content.goalTomatoes")
+                          && offer.get("sender.content.isSeller");
+
+        if (receiverTomatoes || senderTomatoes) { 
+          debugger;
+          self.send("declineOffer", game, offer);
+          return
+        }
+
         offer.set("isAccepted", true);
         offer.set("state", "accepted");
         offer.set("notes", offer.get("notes") + `${moment().format()};accepted\n`);

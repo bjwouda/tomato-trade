@@ -5,7 +5,11 @@
   </div>
   <div class="row">
     {{#if game.gameIsRunning}}
-      <h4 class="text-center game-title">{{liquid-bind game.currentTitle}}</h4>
+      <h4 class="text-center game-title">{{liquid-bind (t "weekDescription"         
+        currentWeek=game.currentGameSettings.currentWeek 
+        tradeType=(t game.currentGameSettings.tradeType)
+        tradeWeek=game.currentGameSettings.tradingFor
+      )}}</h4>
       <p>
         {{#if game.isPaused}}
           <p>{{t "GameIsPaused"}}</p>
