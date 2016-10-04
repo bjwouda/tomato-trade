@@ -34,9 +34,9 @@
             </thead>
             <tbody>
               <tr>
-                <td>{{model.goalTomatoes}}  <span class="to-tomato"></span></td>
-                <td>{{model.tomatoes}} <span class="to-tomato"></span></td>
-                <td>{{model.remainingTomatoes}} <span class="to-tomato"></span></td>
+                <td>{{digit-group-format model.goalTomatoes}}  <span class="to-tomato"></span></td>
+                <td>{{digit-group-format model.tomatoes}} <span class="to-tomato"></span></td>
+                <td>{{digit-group-format model.remainingTomatoes}} <span class="to-tomato"></span></td>
                 <td>{{digit-format model.avgTomatoPrice}} <span class="to-price"></span></td>
                 {{#if model.isSeller}}
                   <td>{{digit-format model.sellerKPI}}</td>

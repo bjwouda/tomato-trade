@@ -4,16 +4,28 @@
 		"selected_items":
 		[
 			[
+				"if",
+				"if	if(handlebars)"
+			],
+			[
+				"v",
+				"va	vertical-align"
+			],
+			[
+				"bg",
+				"bgc	background-color"
+			],
+			[
+				"par",
+				"parent"
+			],
+			[
 				"active",
 				"activeCheck"
 			],
 			[
 				"dir",
 				"dirLvls"
-			],
-			[
-				"if",
-				"if	if"
 			],
 			[
 				"f",
@@ -153,10 +165,6 @@
 			],
 			[
 				"bgc",
-				"background-color"
-			],
-			[
-				"bg",
 				"background-color"
 			],
 			[
@@ -506,14 +514,6 @@
 			[
 				"re",
 				"retVal"
-			],
-			[
-				"unicode",
-				"unicode	unicode"
-			],
-			[
-				"Bookmar",
-				"BookmarkCategory"
 			]
 		]
 	},
@@ -571,10 +571,18 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 107.0,
-		"last_filter": "lint sett",
+		"height": 127.0,
+		"last_filter": "remove",
 		"selected_items":
 		[
+			[
+				"remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"lintesett",
+				"Preferences: SublimeLinter Settings – User"
+			],
 			[
 				"lint sett",
 				"Preferences: SublimeLinter Settings – User"
@@ -872,10 +880,6 @@
 				"Set Syntax: Sass"
 			],
 			[
-				"remove",
-				"Package Control: Remove Package"
-			],
-			[
 				"beau",
 				"HTMLBeautify"
 			],
@@ -888,7 +892,7 @@
 				"Git: Status"
 			]
 		],
-		"width": 467.0
+		"width": 485.0
 	},
 	"console":
 	{
@@ -918,42 +922,46 @@
 	},
 	"file_history":
 	[
-		"/Users/kkohn/Documents/inspiration-boards-backend/InspirationBoards/settings.py",
+		"/Users/kkohn/Documents/acode-glance/app/welcome/login/style.scss",
+		"/Users/kkohn/Documents/acode-glance/app/styles/app.scss",
+		"/Users/kkohn/Documents/acode-glance/app/welcome/login/template.hbs",
+		"/Users/kkohn/Documents/acode-glance/app/welcome/login/controller.js",
 		"/Users/kkohn/Documents/acode-glance/app/application/route.js",
+		"/Users/kkohn/Documents/acode-glance/app/styles/forms.scss",
+		"/Users/kkohn/Documents/acode-glance/app/welcome/privacy/template.hbs",
+		"/Users/kkohn/Documents/acode-glance/app/welcome/privacy/route.js",
+		"/Users/kkohn/Documents/acode-glance/app/welcome/setup-folder/route.js",
+		"/Users/kkohn/Documents/acode-glance/electron.js",
+		"/Users/kkohn/Documents/acode-glance/app/welcome/privacy/style.scss",
+		"/Users/kkohn/Documents/acode-glance/app/components/file-picker/component.js",
+		"/Users/kkohn/Documents/acode-glance/app/components/file-picker/style.scss",
+		"/Users/kkohn/Documents/acode-glance/app/components/file-picker/template.hbs",
+		"/Users/kkohn/Library/Application Support/Sublime Text 3/Packages/User/jshint-config.js",
+		"/Users/kkohn/Library/Application Support/Sublime Text 3/Packages/User/SublimeLinter.sublime-settings",
+		"/Users/kkohn/Library/Application Support/Sublime Text 3/Packages/SublimeLinter/SublimeLinter.sublime-settings",
 		"/Users/kkohn/Documents/acode-glance/app/welcome/setup/route.js",
 		"/Users/kkohn/Documents/acode-glance/app/welcome/setup/template.hbs",
 		"/Users/kkohn/Documents/acode-glance/app/router.js",
-		"/Users/kkohn/Documents/acode-glance/app/styles/forms.scss",
 		"/Users/kkohn/Documents/acode-glance/app/utils/fileio.js",
 		"/Users/kkohn/Documents/acode-glance/app/components/tristate-cell/component.js",
-		"/Users/kkohn/Documents/acode-glance/app/components/file-picker/component.js",
-		"/Users/kkohn/Documents/acode-glance/app/components/file-picker/template.hbs",
-		"/Users/kkohn/Documents/acode-glance/app/welcome/setup-folder/route.js",
-		"/Users/kkohn/Documents/acode-glance/app/components/file-picker/style.scss",
 		"/Users/kkohn/Documents/acode-glance/app/components/tristate-cell/template.hbs",
 		"/Users/kkohn/Documents/acode-glance/app/components/file-picker/tristate-cell/template.hbs",
-		"/Users/kkohn/Library/Application Support/Sublime Text 3/Packages/User/jshint-config.js",
-		"/Users/kkohn/Library/Application Support/Sublime Text 3/Packages/User/SublimeLinter.sublime-settings",
 		"/Users/kkohn/Documents/acode-glance/ember-cli-build.js",
-		"/Users/kkohn/Library/Application Support/Sublime Text 3/Packages/SublimeLinter/SublimeLinter.sublime-settings",
 		"/Users/kkohn/Documents/acode-glance/.jshintrc",
 		"/Users/kkohn/Documents/acode-glance/app/styles/basic.scss",
-		"/Users/kkohn/Documents/acode-glance/app/styles/app.scss",
 		"/Users/kkohn/Documents/acode-glance/app/application/style.scss",
 		"/Users/kkohn/Documents/acode-glance/app/welcome/setup-folder/template.hbs",
 		"/Users/kkohn/Documents/acode-glance/.babelrc",
-		"/Users/kkohn/Documents/acode-glance/electron.js",
 		"/Users/kkohn/Documents/acode-glance/app/components/lock-screen/style.scss",
 		"/Users/kkohn/Documents/acode-glance/app/welcome/setup-folder/controller.js",
 		"/Users/kkohn/Documents/acode-glance/app/application/template.hbs",
 		"/Users/kkohn/Documents/acode-glance/app/welcome/login/route.js",
-		"/Users/kkohn/Documents/acode-glance/app/welcome/login/template.hbs",
 		"/Users/kkohn/Documents/acode-glance/app/styles/forms-range.scss",
 		"/Users/kkohn/Documents/acode-glance/.gitignore",
 		"/Users/kkohn/Documents/acode-glance/package.json",
+		"/Users/kkohn/Documents/inspiration-boards-backend/InspirationBoards/settings.py",
 		"/Users/kkohn/Documents/acode-glance/app/welcome/setup/style.scss",
 		"/Users/kkohn/Documents/acode-glance/app/styles/pods.scss",
-		"/Users/kkohn/Documents/acode-glance/app/welcome/login/style.scss",
 		"/Users/kkohn/Documents/acode-glance/app/components/lock-screen/template.hbs",
 		"/Users/kkohn/Documents/acode-glance/app/components/lock-screen/component.js",
 		"/Users/kkohn/Documents/acode-glance/app/components/acode-foo/style.scss",
@@ -1041,11 +1049,7 @@
 		"/Users/kkohn/Documents/xavier-sg/app/templates/shortcut-shipping.hbs",
 		"/Users/kkohn/Documents/xavier-sg/config/environment.js",
 		"/Users/kkohn/Documents/xavier-sg/app/styles/bread-bar.styl",
-		"/Users/kkohn/Documents/xavier-sg/app/templates/shortcut-machine.hbs",
-		"/Users/kkohn/Documents/xavier-sg/app/templates/components/sg-timeline-composition.hbs",
-		"/Users/kkohn/Documents/xavier-sg/app/controllers/setting-recipe.js",
-		"/Users/kkohn/Documents/xavier-sg/app/locales/zh/translations.js",
-		"/private/tmp/foo.json"
+		"/Users/kkohn/Documents/xavier-sg/app/templates/shortcut-machine.hbs"
 	],
 	"find":
 	{
@@ -1056,7 +1060,6 @@
 		"height": 93.0,
 		"where_history":
 		[
-			"*.py",
 			"*.js",
 			"*.scss",
 			"*.js",
@@ -1183,7 +1186,8 @@
 			"*.js",
 			"*.py",
 			"*.js",
-			"*.hbs"
+			"*.hbs",
+			"*.styl"
 		]
 	},
 	"find_state":
@@ -1191,9 +1195,16 @@
 		"case_sensitive": false,
 		"find_history":
 		[
-			"tags",
-			"\\.tags",
-			"tags",
+			"observes",
+			"obser",
+			"on",
+			"(not (eq pw1 pw2))",
+			"computed",
+			"position: absolute; top:0; right: 40px",
+			"10px",
+			";",
+			"_dirs",
+			"deserializeInput",
 			"# ",
 			".r",
 			".h",
@@ -1311,14 +1322,7 @@
 			"onHold",
 			"open",
 			"setCurrentFilter",
-			"textarea",
-			"{{#if shipment._edit}}\n                {{input value=qc.key}}\n              {{else}}\n                {{qc.key}}\n              {{/if}}",
-			"order",
-			"customer",
-			"customers",
-			"model",
-			"text",
-			"="
+			"textarea"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1409,12 +1413,12 @@
 		"selected_items":
 		[
 			[
-				"approute",
+				"approu",
 				"app/application/route.js"
 			],
 			[
-				"approu",
-				"app/router.js"
+				"approute",
+				"app/application/route.js"
 			],
 			[
 				"fileo",

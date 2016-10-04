@@ -45,6 +45,9 @@ export default {
     "tomato": "Tomaat",
     "tomatoes": "Tomaten",
     "weekDescription": "We zijn in week {{currentWeek}}, u bent bezig met de <b> {{tradeType}} handel </ b> van week {{tradeWeek}}",
+    "externalTradingNotAvailable": "Externe handel is niet beschikbaar",
+    "round": "ronde",
+    "offer": "aanbieding",
     "player": {
         "tradingMenu": "Onderhandel Menu",
         "resourceOverview": "resource Overzicht",

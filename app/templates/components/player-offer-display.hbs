@@ -1,5 +1,5 @@
   <li class="list-group-item {{offer.state}}">
-    Round: {{offer.roundNumber}} Offer: {{offer.idxOfOfferInGame}} [{{offer.state}}] 
+    {{t "round"}}: {{offer.roundNumber}} {{t "offer"}}: {{offer.idxOfOfferInGame}} [{{t offer.state}}] 
     <b>{{offer.receiverName}}</b>  
     {{moment-format offer.ts "HH:mm:ss"}}
     <br>
