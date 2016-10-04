@@ -122,9 +122,8 @@ export default Ember.Controller.extend(OfferActions, LangActions, LogFunctions, 
                     round: "Round " + game.get("roundCnt"),
                     historyGame: game
                 });
-                // game.get('historyLogs').addObject(userHistory);
+
                 userHistory.save().then(() => {
-                    // game.save();
                     return true;
                 });
 
@@ -132,10 +131,8 @@ export default Ember.Controller.extend(OfferActions, LangActions, LogFunctions, 
 
             });
 
-            // game.get('historyLogs').addObject(newHistoryObj);
 
             newHistoryObj.save().then(() => {
-                // game.save();
                 return true;
             });
 
@@ -159,6 +156,7 @@ export default Ember.Controller.extend(OfferActions, LangActions, LogFunctions, 
                     let newVal = game[fnName](game.get("roundCnt"));
                     game.set(attrName, newVal);
                 }
+                game.save()
 
             });
 

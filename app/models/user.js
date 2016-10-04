@@ -45,11 +45,19 @@ export default Model.extend({
   }),
 
   buyerKPI: Ember.computed("userGame.fine", "userGame.fixedCost", "userGame.retailPrice", "money", "goalTomatoes", function() {
-    let costBuying      = Math.abs(this.get("money"));
-    let totalFixedCosts = Math.abs(this.get("goalTomatoes") * this.get("userGame.fixedCost"));
-    let totalFine       = Math.abs(this.get("remainingTomatoes") * this.get("userGame.fine"));
-    let revenue         = Math.abs(this.get("tomatoes") * this.get("userGame.retailPrice"));
-    return (revenue - costBuying - totalFixedCosts - totalFine) / this.get("goalTomatoes");
+    let retailPrice       = this.get("userGame.retailPrice");
+    let fixedCost         = this.get("userGame.fixedCost");
+    let tomatoes          = this.get("tomatoes");
+    let goalTomatoes      = this.get("goalTomatoes");
+    let remainingTomatoes = this.get("remainingTomatoes");
+    let fine              = this.get("userGame.fine")
+
+    let costBuying        = Math.abs(this.get("money"));
+    let totalRevenue      = Math.min(tomatoes, goalTomatoes) * retailPrice;
+    let totalFine         = Math.max(remainingTomatoes * fine);
+    let totalFixedCosts   = goalTomatoes * fixedCost;
+
+    return (totalRevenue - costBuying - totalFixedCosts - totalFine) / goalTomatoes;
   }),
 
   //Result s1, s2, b1, b2...
