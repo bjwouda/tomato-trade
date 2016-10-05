@@ -54,7 +54,7 @@ export default Model.extend({
 
     let costBuying        = Math.abs(this.get("money"));
     let totalRevenue      = Math.min(tomatoes, goalTomatoes) * retailPrice;
-    let totalFine         = Math.max(remainingTomatoes * fine);
+    let totalFine         = Math.max(0, remainingTomatoes * fine);
     let totalFixedCosts   = goalTomatoes * fixedCost;
 
     return (totalRevenue - costBuying - totalFixedCosts - totalFine) / goalTomatoes;
