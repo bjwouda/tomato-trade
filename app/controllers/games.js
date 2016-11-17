@@ -98,6 +98,26 @@ export default Ember.Controller.extend(OfferActions, LangActions, LogFunctions, 
                     historyGame: game
                 });
 
+                game.get("users").map((u) => {
+                    let userHistory = this.store.createRecord('history', {
+                        offerId: undefined,
+                        userSender: `Stats for ${u.get("descriptivePlayerIdInGame")}`,
+                        userReceiver: "",
+                        state: "",
+                        cssStatus: "info",
+                        offer: u.get("logPlayerStatus"),
+                        round: "Round " + game.get("roundCnt"),
+                        historyGame: game
+                    });
+
+                    userHistory.save().then(() => {
+                        return true;
+                    });
+
+                    u.set("enableExternalTrading", false);
+
+                });
+
             } else {
                 var newHistoryObj = this.store.createRecord('history', {
                     offerId: undefined,
@@ -111,25 +131,7 @@ export default Ember.Controller.extend(OfferActions, LangActions, LogFunctions, 
                 });
             }
 
-            game.get("users").map((u) => {
-                let userHistory = this.store.createRecord('history', {
-                    offerId: undefined,
-                    userSender: `Stats for ${u.get("descriptivePlayerIdInGame")}`,
-                    userReceiver: "",
-                    state: "",
-                    cssStatus: "info",
-                    offer: "",
-                    round: "Round " + game.get("roundCnt"),
-                    historyGame: game
-                });
 
-                userHistory.save().then(() => {
-                    return true;
-                });
-
-                u.set("enableExternalTrading", false);
-
-            });
 
 
             newHistoryObj.save().then(() => {

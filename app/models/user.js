@@ -29,7 +29,16 @@ export default Model.extend({
   receivedOffers        : hasMany('offer', { async: true, inverse: 'receiver' }),
   sentOffers            : hasMany('offer', { async: true, inverse: 'sender' }),
 
+  logPlayerStatus: Ember.computed("sellerKPI", "buyerKPI", function() {
+    let isSellerLUT = { 
+      true : ["goalTomatoes", "remainingTomatoes", "tomatoes", "sellerKPI"],
+      false : ["goalTomatoes", "remainingTomatoes", "tomatoes", "buyerKPI"],
+    }
+    let propsToLog = isSellerLUT[this.get("isSeller")]
+    let vals = propsToLog.map( x=>`${x}:${this.get(x)}` )
+    return vals.join(", ")
 
+  }),
 
   remainingTomatoes  : Ember.computed("tomatoes", "goalTomatoes", function() {
     return this.get("goalTomatoes") - Math.abs(this.get("tomatoes"));

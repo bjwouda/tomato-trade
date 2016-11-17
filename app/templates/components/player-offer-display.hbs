@@ -1,9 +1,24 @@
   <li class="list-group-item {{offer.state}}">
     {{t "round"}}: {{offer.roundNumber}} {{t "offer"}}: {{offer.idxOfOfferInGame}} [{{t offer.state}}] 
-    <b>{{offer.receiverName}}</b>  
+    
+	{{#if (eq offer.receiverName "External")}}
+    	<b>{{t "external"}}</b>  
+  	{{else}}
+    	<b>{{offer.receiverName}}</b>  
+	{{/if}}
+
+
     {{moment-format offer.ts "HH:mm:ss"}}
     <br>
-    <b>{{offer.senderName}}</b> --&gt;
+
+	{{#if (eq offer.senderName "External")}}
+    	<b>{{t "external"}}</b>  
+  	{{else}}
+    	<b>{{offer.senderName}}</b>  
+	{{/if}}
+
+
+    --&gt;
     <span class="to-tomato"></span> {{digit-group-format offer.tomatoes}} 
     <span class="to-money"></span> {{digit-format offer.price}}
   </li>
