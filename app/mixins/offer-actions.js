@@ -123,10 +123,10 @@ export default Ember.Mixin.create(LogFunctions, {
     declineOffer(game, offer) {
       offer.set("state", "declined");
       offer.set("notes", offer.get("notes") + `${moment().format()};declined\n`);
-      offer.save();
 
       this.logPlayerOfferWithObj(this.store, game, offer, "declined");
 
+      return offer.save();
     },
 
     recallOffer(game, offer) {

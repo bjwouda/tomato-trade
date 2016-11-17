@@ -7,7 +7,7 @@ export default Ember.Controller.extend({
             "title": "Round",
             "filterWithSelect": true
         }, {
-            "propertyName": "idxOfOfferInGame",
+            "propertyName": "idxOfOfferInGameCalc",
             "title": "Offerid"
         }, {
             "propertyName": "userSender",
@@ -41,7 +41,7 @@ export default Ember.Controller.extend({
 
         exportCSV(historyLogs) {
             var data = [];
-            var titles = ["round", "idxOfOfferInGame", "userSender", "userReceiver", "state", "offer", "tomatoesOffer", "priceOffer", "tsDesc"];
+            var titles = ["round", "idxOfOfferInGameCalc", "userSender", "userReceiver", "state", "offer", "tomatoesOffer", "priceOffer", "tsDesc"];
 
             data.push(titles);
             historyLogs.map((historyElement) => {

@@ -22,15 +22,17 @@ export default Model.extend({
     
     historyGame  : belongsTo('game', {async: true}),
 
-    idxOfOfferInGameCalc: Ember.computed("offerId", function() {
+    idxOfOfferInGameCalc: Ember.computed("offerId", "historyGame", "historyGame.offers.[]", function() {
         // return "0";
 
         if (!this.get("offerId")) { return "status"; }
 
-        let gameOffers = this.get("historyGame.offers");
+        let gameOffers = this.get("historyGame.offers")
+
         if (gameOffers === undefined || gameOffers.map === undefined) { return ""; }
 
-        return gameOffers.map((x)=>{ return x.get("id"); }).indexOf(this.get("offerId"));
+        let ids = JSON.parse(sessionStorage["allObjIds"])
+        return ids.indexOf(this.get("offerId")) + 1;
         
     }),
 

@@ -5,15 +5,15 @@
 		[
 			[
 				"if",
-				"if	if(handlebars)"
+				"if\tif(handlebars)"
 			],
 			[
 				"v",
-				"va	vertical-align"
+				"va\tvertical-align"
 			],
 			[
 				"bg",
-				"bgc	background-color"
+				"bgc\tbackground-color"
 			],
 			[
 				"par",
@@ -29,11 +29,11 @@
 			],
 			[
 				"f",
-				"fun	Function"
+				"fun\tFunction"
 			],
 			[
 				"ov",
-				"ov:s	overflow:scroll"
+				"ov:s\toverflow:scroll"
 			],
 			[
 				"inlin",
@@ -49,7 +49,7 @@
 			],
 			[
 				"bx",
-				"bxz:bb	box-sizing:border-box"
+				"bxz:bb\tbox-sizing:border-box"
 			],
 			[
 				"order",
@@ -61,7 +61,7 @@
 			],
 			[
 				"linkto",
-				"linkto	{{#link-to}} {{/link-to}}"
+				"linkto\t{{#link-to}} {{/link-to}}"
 			],
 			[
 				"ordera",
@@ -145,7 +145,7 @@
 			],
 			[
 				"log",
-				"log	console"
+				"log\tconsole"
 			],
 			[
 				"Material",
@@ -169,7 +169,7 @@
 			],
 			[
 				"for",
-				"for	for (…) {…} (Improved Native For-Loop)"
+				"for\tfor (…) {…} (Improved Native For-Loop)"
 			],
 			[
 				"_eav",
@@ -177,7 +177,7 @@
 			],
 			[
 				"i",
-				"if	if"
+				"if\tif"
 			],
 			[
 				"materqto",
@@ -189,7 +189,7 @@
 			],
 			[
 				"link",
-				"linkto	{{#link-to}} {{/link-to}}"
+				"linkto\t{{#link-to}} {{/link-to}}"
 			],
 			[
 				"fpx",
@@ -265,11 +265,11 @@
 			],
 			[
 				"each",
-				"each	{{#each }} {{/each}}"
+				"each\t{{#each }} {{/each}}"
 			],
 			[
 				"fo",
-				"for	for (…) {…} (Improved Native For-Loop)"
+				"for\tfor (…) {…} (Improved Native For-Loop)"
 			],
 			[
 				"mat",
@@ -341,7 +341,7 @@
 			],
 			[
 				"di",
-				"d-if	display: inline-flex;"
+				"d-if\tdisplay: inline-flex;"
 			],
 			[
 				"diff",
@@ -365,7 +365,7 @@
 			],
 			[
 				"td",
-				"td-n	text-decoration: none;"
+				"td-n\ttext-decoration: none;"
 			],
 			[
 				"arc",
@@ -393,7 +393,7 @@
 			],
 			[
 				"property",
-				"property	New Property"
+				"property\tNew Property"
 			],
 			[
 				"colum",
@@ -405,7 +405,7 @@
 			],
 			[
 				"attr",
-				"getattr	getattr"
+				"getattr\tgetattr"
 			],
 			[
 				"ancho",
@@ -421,7 +421,7 @@
 			],
 			[
 				"el",
-				"elif	Else if"
+				"elif\tElse if"
 			],
 			[
 				"attachment",

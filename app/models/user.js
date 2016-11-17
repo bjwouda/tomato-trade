@@ -76,6 +76,13 @@ export default Model.extend({
     return `${prefix} ${pos}${postfix}`;
   }),
   
+  descriptivePlayerIdInGameForLogger: Ember.computed("playerPosition", "name", function() {
+    var prefix = this.get("isSeller") ? "seller" : "buyer";
+    let pos = this.get("playerPosition");
+    let postfix = this.get("name") ? ` - ${this.get("name")}` : '';
+    return `${prefix} ${pos}${postfix}`;
+  }),
+  
 
   playerPosition: Ember.computed("userGame.buyers", "userGame.sellers", "isSeller", "id", function () {
     if (this.get("isSeller")) { // for the sellers
