@@ -1,5 +1,8 @@
 import Ember from 'ember';
 
+import _ from 'lodash/lodash';
+
+
 export default Ember.Controller.extend({
 
     columns: [{
@@ -36,6 +39,15 @@ export default Ember.Controller.extend({
       //Descending sort to historyLogs
   	historyLogsSortingDescById  : ['ts:desc'],
   	sortedHistoryLogsById: Ember.computed.sort('model', 'historyLogsSortingDescById'),
+
+    needsReload: Ember.computed("model.[]", function() {    
+        let history = this.get("model")
+        let offerIds = history.map( x=>x.get("offerId") )
+        console.log("checking....")
+        console.log(sessionStorage["allObjIds"])
+        console.log(JSON.stringify( _.uniq(offerIds).sort()))
+        return sessionStorage["allObjIds"] !== JSON.stringify( _.uniq(offerIds).sort() )
+    }),
 
     actions: {
 
