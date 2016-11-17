@@ -21,9 +21,10 @@ export default Ember.Controller.extend({
         }, {
             "propertyName": "state",
             "title": "State"
-        },
-
-        {
+        }, {
+            "propertyName": "offer",
+            "title": "Offer"
+        },{
             "propertyName": "tomatoesOffer",
             "title": "tomatoes"
         }, {

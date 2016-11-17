@@ -24,6 +24,15 @@ export default Ember.Controller.extend(OfferActions, LangActions, LogFunctions, 
 
     actions: {
 
+        allowGlobalExternalTrading() {
+            this.get("game.users").forEach( (u) => {
+
+
+                u.toggleProperty("enableExternalTrading")
+                u.save()
+            })
+        },
+
         // USER
         saveUser(user) { user.save(); },
         deleteUser(user) {
