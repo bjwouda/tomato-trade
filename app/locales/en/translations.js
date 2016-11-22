@@ -45,13 +45,13 @@ export default {
     "tomato": "Tomato",
     "tomatoes": "Tomatoes",
     "weekDescription": "We are having week {{currentWeek}}, you're performing the <b>{{tradeType}} trade</b> for week {{tradeWeek}}",
-    "externalTradingNotAvailable": "External trading is not available",
-    "round": "round",
-    "offer": "offer",
     "player": {
         "tradingMenu": "Trading Menu",
         "resourceOverview": "Resource Overview",
         "history": "Transaction history",
         "title": "Tomato trade"
-    }
+    },
+    "externalTradingNotAvailable": "External trading is not available",
+    "round": "round",
+    "offer": "offer"
 }
