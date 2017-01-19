@@ -53,5 +53,9 @@ export default {
     },
     "externalTradingNotAvailable": "Externe handel is niet beschikbaar",
     "round": "ronde",
-    "offer": "bod"
+    "offer": "bod",
+    "waitingToConfirm" : "Wacht op de bevestiging",
+    "confirm" : "Bevestigen",
+    "recallConfirm" : "Bevestiging intrekken",
+    "declined" : "Geweigerd",
 }

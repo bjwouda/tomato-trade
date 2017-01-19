@@ -16,9 +16,7 @@ export default Model.extend({
     round                   : attr('string'),
     idxOfOfferInGame        : attr('number'),
     
-    ts                      : attr('number', { 
-        defaultValue(){ return moment().unix(); }
-    }), //timeStamp
+    ts                      : attr('number', { defaultValue(){ return moment().unix() * 1000; } }), //timeStamp
     
     historyGame  : belongsTo('game', {async: true}),
 

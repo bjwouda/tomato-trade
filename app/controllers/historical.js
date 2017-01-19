@@ -65,6 +65,9 @@ export default Ember.Controller.extend({
                 });
                 data.push(resolvedTitles);
             });
+
+            
+            
             // this.get('csv').export(data, 'test.csv');
             this.get('excel').export(data, 'sheet1', 'test.xlsx');
         },

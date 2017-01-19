@@ -2,6 +2,7 @@
 
 module.exports = function(environment) {
   var ENV = {
+
     modulePrefix: 'tomato',
     environment: environment,
     baseURL: '/',
@@ -22,6 +23,7 @@ module.exports = function(environment) {
     },
 
     APP: {
+      VERSION: "1.0.0",
       // Here you can pass flags/options to your application instance
       // when it is created
     }

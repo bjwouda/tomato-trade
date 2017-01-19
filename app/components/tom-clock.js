@@ -14,9 +14,6 @@ export default Ember.Component.extend({
 	test: Ember.on("didInsertElement", function() {
 		var self = this;
 
-		// self.set("timeStartTs", Date.now());
-		// self.set("timeEndTs", Date.now() + 100 * 1000);
-
 		let timerHandle = setInterval(function() {
 
 			if (!self.get("timeStartTs") && !self.get("timeEndTs")) {
@@ -28,7 +25,7 @@ export default Ember.Component.extend({
 			self.set("timeMissingMin", endMoment.diff(nowMoment, 'minutes'));
 			self.set("timeMissingSec", endMoment.diff(nowMoment, 'seconds'));
 
-			var currDiff = Date.now() - self.get("timeStartTs");
+			var currDiff = moment() - self.get("timeStartTs");
 			var totalDiff = (self.get("timeEndTs") - self.get("timeStartTs")); // turn ms into min
 
 			var ratio = (currDiff / totalDiff);

@@ -37,6 +37,21 @@
               <li class="active" {{action 'letGameEndInXMinutes' game 0}}><a href="">End Now</a></li>
               <li class="active" {{action 'allowGlobalExternalTrading'}}><a href="">Global Trading</a></li>
               <li class="nav-divider"></li>
+              <div class="form-group">
+                  <span class="title-container"><h5>{{capitalize (t 'Global Trading Schedule')}}</h5></span> {{input value=_autoTradingString action=(action "setAutoTrading" _autoTradingString) on="enter" class="form-control"}}
+              </div>
+              <li class="active" {{action "setAutoTrading" _autoTradingString}}><a href="">Save Trading Schedule
+                {{#if autoTradingTs}}
+                  ({{autoTradingTs}})
+                {{/if}}
+              </a></li>
+              
+{{!--               {{timeMissingSec}}
+              {{#each autoTradingArr as |item|}}
+                <p>{{item}}</p>
+              {{/each}}
+ --}}              
+              <li class="nav-divider"></li>
             {{/if}}
 
             <li class="active" {{action (toggle "isConfiguration" this)}}><a href="">Game Config</a></li>
@@ -118,13 +133,12 @@
 
           <br>
 
-          <span class="title-container">
-            <button class="btn btn-info pull-right " {{action "revertGameConfig"}}>Revert</button>
-            {{#if (not game.isNew)}}
-              <button class="btn btn-info pull-right " {{action "updateGameConfig"}}>Update</button>
-            {{/if}}
-            <button class="btn btn-info pull-right " {{action "saveGameConfig"}}>Save</button>
-          </span>
+          <button class="btn btn-info pull-right " {{action "revertGameConfig"}}>Revert</button>
+          {{#if (not game.isNew)}}
+            <button class="btn btn-info pull-right " {{action "updateGameConfig"}}>Update</button>
+          {{/if}}
+          <button class="btn btn-info pull-right " {{action "saveGameConfig"}}>Save</button>
+        
         </div>
 
         {{#if game.gameConfigurationValid}}

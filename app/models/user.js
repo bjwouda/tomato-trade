@@ -6,7 +6,23 @@ import { belongsTo, hasMany } from 'ember-data/relationships';
 import storeWithWeek from '../utils/store-with-week';
 import _ from 'lodash/lodash';
 
+function calcSellerKPI(remainingTomatoes, money, avgTomatoPrice, fine, goalTomatoes) {
+    if (remainingTomatoes < 0) {
+        money = money + remainingTomatoes * (avgTomatoPrice + fine)
+    }
 
+    return money / goalTomatoes;
+}
+
+function calcBuyerKPI(money, tomatoes, goalTomatoes, retailPrice, remainingTomatoes, fine, fixedCost) {
+    let costBuying = Math.abs(money);
+    let totalRevenue = Math.min(tomatoes, goalTomatoes) * retailPrice;
+    let totalFine = Math.max(0, remainingTomatoes * fine);
+    let totalFixedCosts = goalTomatoes * fixedCost;
+
+    return (totalRevenue - costBuying - totalFixedCosts - totalFine) / goalTomatoes;
+    // body...
+}
 
 export default Model.extend({
     i18n: Ember.inject.service(),
@@ -45,13 +61,52 @@ export default Model.extend({
     }),
 
     avgTomatoPrice: Ember.computed("tomatoes", "money", function() {
-        if (this.get("money") === 0) {
-            return 0; }
+        if (this.get("money") === 0) { return 0 }
         return Math.abs(this.get("money") / this.get("tomatoes"));
     }),
 
+    weeklyKPIOverview: Ember.computed("sellerKPI", "buyerKPI", function () {
+        let x = this.get("playerWeekStatus")
+        delete x["firebaseDummyPlaceholder"] // needs to be kicked out, otherwise causes trouble ;-)
+
+        let xArr = _.map(x, (v,k) => {return _.extend({idx: k}, v) })
+
+        let fn = () => {}
+        if (this.get("isSeller")) {
+            fn = (goalTomatoes, money, tomatoes) => {
+                let remainingTomatoes = +this.get("remainingTomatoes");
+                let fine              = +this.get("userGame.fine")
+                let avgTomatoPrice    = +this.get('avgTomatoPrice')
+                return calcSellerKPI(remainingTomatoes, money, avgTomatoPrice, fine, goalTomatoes)
+            }
+        } else {
+            fn = (goalTomatoes, money, tomatoes) => {
+                let retailPrice       = +this.get("userGame.retailPrice");
+                let fixedCost         = +this.get("userGame.fixedCost");
+                let remainingTomatoes = +this.get("remainingTomatoes");
+                let fine              = +this.get("userGame.fine")
+                return calcBuyerKPI(money, tomatoes, goalTomatoes, retailPrice, remainingTomatoes, fine, fixedCost)
+            }        
+        }
+
+        xArr.forEach( (x) => {
+            x.kpi = fn(+(x.goalTomatoes || 0), +(x.money || 0), +(x.tomatoes || 0))
+        } )
+
+        return xArr
+        // goalTomatoes, money, tomatoes
+
+    }),
+
     sellerKPI: Ember.computed("tomatoes", "money", function() {
-        return this.get("money") / this.get("goalTomatoes");
+        let remainingTomatoes = +this.get("remainingTomatoes");
+        let money             = +this.get("money")
+        let fine              = +this.get("userGame.fine")
+        let avgTomatoPrice    = +this.get('avgTomatoPrice')
+        let goalTomatoes      = +this.get('goalTomatoes')
+
+        return calcSellerKPI(remainingTomatoes, money, avgTomatoPrice, fine, goalTomatoes)
+
     }),
 
     buyerKPI: Ember.computed("userGame.fine", "userGame.fixedCost", "userGame.retailPrice", "money", "goalTomatoes", function() {
@@ -61,13 +116,9 @@ export default Model.extend({
         let goalTomatoes = this.get("goalTomatoes");
         let remainingTomatoes = this.get("remainingTomatoes");
         let fine = this.get("userGame.fine")
+        let money = this.get('money')
 
-        let costBuying = Math.abs(this.get("money"));
-        let totalRevenue = Math.min(tomatoes, goalTomatoes) * retailPrice;
-        let totalFine = Math.max(0, remainingTomatoes * fine);
-        let totalFixedCosts = goalTomatoes * fixedCost;
-
-        return (totalRevenue - costBuying - totalFixedCosts - totalFine) / goalTomatoes;
+        return calcBuyerKPI(money, tomatoes, goalTomatoes, retailPrice, remainingTomatoes, fine, fixedCost)
     }),
 
     //Result s1, s2, b1, b2...

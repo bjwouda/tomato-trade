@@ -1,0 +1,35 @@
+  <div class="row">
+      <div class="col-sm-5">
+        
+        {{#timer-jumbotron game=game}}
+            <div class="line-1">{{capitalize (t model.roleDescription)}} {{model.playerPosition}} {{model.name}}</div>
+        {{/timer-jumbotron}}
+
+      </div>
+      
+      <div class="col-sm-7">
+        <div class="" style="background-color: #eeeeee;padding: 22px 10px;border-radius: 5px; min-height: 200px; font-size: 14pt;">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>{{capitalize (t 'goalTomatoes')}}</th>
+                <th>{{capitalize (t 'tomatoes')}}</th>
+                <th>{{capitalize (t 'remainingTomatoes')}}</th>
+                <th>{{capitalize (t 'avgTomatoPrice')}}</th>
+{{!--                 <th>{{capitalize (t 'sellerKPI')}}</th>
+ --}}              </tr>
+              
+            </thead>
+            <tbody>
+              <tr>
+                <td>{{digit-group-format model.goalTomatoes}}  <span class="to-tomato"></span></td>
+                <td>{{digit-group-format model.tomatoes}} <span class="to-tomato"></span></td>
+                <td>{{digit-group-format model.remainingTomatoes}} <span class="to-tomato"></span></td>
+                <td>{{digit-format model.avgTomatoPrice}} <span class="to-price"></span></td>
+{{!--                 <td>{{digit-format model.sellerKPI}}</td>
+ --}}              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+  </div>

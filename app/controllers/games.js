@@ -7,6 +7,7 @@ import _ from 'lodash/lodash';
 
 export default Ember.Controller.extend(OfferActions, LangActions, LogFunctions, {
 
+    autoTradingArr: [],
     activeUser: null,
     gameConfiguration: null,
     game: Ember.computed.alias("model"),
@@ -22,12 +23,53 @@ export default Ember.Controller.extend(OfferActions, LangActions, LogFunctions, 
     //   return this.get("model.length") !== 0;
     // }),
 
+    autoTradingTimer: Ember.on("init", function() {
+        let inRangeCheck = (x, arr) => {
+            return _.inRange(x, arr[0], arr[1])
+        }
+
+        let isInTimeArray = (ts) => {
+            let autoTradingArr = this.get('autoTradingArr')
+            return autoTradingArr.some((arr) => inRangeCheck(ts, arr))
+        }
+
+        let timerHandle = setInterval(() => {
+            let prevTimeMissingSec = this.get("timeMissingSec")
+            let newTimeMissingSec = moment(this.get("game.timeEndTs")).diff(moment())
+
+            this.set("timeMissingSec", newTimeMissingSec, 'seconds');
+
+            let prevCheck = isInTimeArray(prevTimeMissingSec)
+            let newCheck = isInTimeArray(newTimeMissingSec)
+
+             // here we dont need to do anything
+            if (prevCheck === newCheck) {return}
+
+            // if the new value is negative -> prev was positive -> flank down -> disable everything
+            // must be the other case ;-) -> flank up
+            let flankDown = (newCheck === false)
+
+            this.get("game.users").forEach((u) => {
+                u.set("enableExternalTrading", !flankDown)
+                u.save()
+            })
+
+        }, 1000);
+
+    }),
+
     actions: {
 
+        setAutoTrading(s) {
+            let arr = s.split(";").map(x => x.split("-"))
+            let autoTradingArr = arr.map(x => x.map(y => parseInt(+y * 60 * 1000)).sort((a, b) => a - b))
+            this.set("autoTradingArr", autoTradingArr)
+
+            this.set("autoTradingTs", moment().format("LTS"))
+        },
+
         allowGlobalExternalTrading() {
-            this.get("game.users").forEach( (u) => {
-
-
+            this.get("game.users").forEach((u) => {
                 u.toggleProperty("enableExternalTrading")
                 u.save()
             })
@@ -60,7 +102,7 @@ export default Ember.Controller.extend(OfferActions, LangActions, LogFunctions, 
         // GAME
 
         pauseGame(game) {
-            game.set("timePausedTs", Date.now());
+            game.set("timePausedTs", moment());
             game.save();
         },
 
@@ -68,7 +110,7 @@ export default Ember.Controller.extend(OfferActions, LangActions, LogFunctions, 
             try {
                 let pausedStartDelta = game.get("timePausedTs") - game.get("timeStartTs");
                 let previousDelta = game.get("timeEndTs") - game.get("timeStartTs");
-                game.set("timeStartTs", Date.now() - pausedStartDelta);
+                game.set("timeStartTs", moment() - pausedStartDelta);
                 game.set("timeEndTs", game.get("timeStartTs") + previousDelta);
             } catch (err) {
                 console.log("error when resuming...");
@@ -79,14 +121,16 @@ export default Ember.Controller.extend(OfferActions, LangActions, LogFunctions, 
         },
 
         letGameEndInXMinutes(game, xMinutes, shouldResetStart) {
-            game.set("timeEndTs", Date.now() + xMinutes * 60 * 1000);
+            game.set("timeEndTs", moment() + xMinutes * 60 * 1000);
 
-            if (shouldResetStart) { game.set("timeStartTs", Date.now()); }
+            if (shouldResetStart) { game.set("timeStartTs", moment()); }
 
             game.save();
         },
 
         nextRound(game, minutesPerRound) {
+
+            let gameIsLastRound = this.get('game.isLastRound')
 
             minutesPerRound = game.getMinutesPerRoundForRound(1 + game.get("roundCnt"));
 
@@ -119,9 +163,25 @@ export default Ember.Controller.extend(OfferActions, LangActions, LogFunctions, 
                         historyGame: game
                     });
 
-                    userHistory.save().then(() => {
-                        return true;
-                    });
+                    userHistory.save()
+
+                    if (gameIsLastRound) {
+                        let allKpis = u.get("weeklyKPIOverview").map( x=> x.kpi)
+                        let meanKpi = _.sum(allKpis) / allKpis.length
+
+                        let userTotalHistory = this.store.createRecord('history', {
+                            offerId: undefined,
+                            userSender: `Final stats for ${u.get("descriptivePlayerIdInGame")}`,
+                            userReceiver: "",
+                            state: "",
+                            cssStatus: "info",
+                            offer: `Final KPI (average) ${meanKpi}`,
+                            round: "Round " + game.get("roundCnt"),
+                            historyGame: game
+                        });
+
+                        userTotalHistory.save()
+                    }
 
                     u.set("enableExternalTrading", false);
 
@@ -147,8 +207,8 @@ export default Ember.Controller.extend(OfferActions, LangActions, LogFunctions, 
                 return true;
             });
 
-            game.set("timeStartTs", Date.now());
-            game.set("timeEndTs", Date.now() + minutesPerRound * 60 * 1000);
+            game.set("timeStartTs", moment());
+            game.set("timeEndTs", moment() + minutesPerRound * 60 * 1000);
             game.incrementProperty("roundCnt", 1);
 
             game.get("offers").map(x => x.destroyRecord())
@@ -232,6 +292,19 @@ export default Ember.Controller.extend(OfferActions, LangActions, LogFunctions, 
                     self.set("isConfiguration", false);
                     // self.send("nextRound", self.get("game"), 5);
                     self.send("clearHistoryLogs");
+
+                    var newHistoryObj = self.get("store").createRecord('history', {
+                        offerId: undefined,
+                        userSender: "---",
+                        userReceiver: "---",
+                        state: "New Config loaded",
+                        cssStatus: "info",
+                        offer: self.get("game.gameConfigurationSafe"), //We could also include tomato goal for each user
+                        round: "---",
+                        historyGame: self.get("game")
+                    });
+                    newHistoryObj.save()
+
                 });
             });
         },

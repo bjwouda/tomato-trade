@@ -23,7 +23,7 @@ export default Ember.Mixin.create(LogFunctions, {
           isExternal: isExternal,
           roundNumber: game.get("roundNumber"),
           weekNumber: game.get("weekNumber"),
-          ts: Date.now(),
+          ts: moment(),
           state: "open",
           notes: `${moment().format()};created\n`,
         });
