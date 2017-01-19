@@ -1,4 +1,4 @@
-import Ember from 'ember'; 
+import Ember from 'ember';
 import Model from 'ember-data/model';
 import attr from 'ember-data/attr';
 import { belongsTo, hasMany } from 'ember-data/relationships';
@@ -9,167 +9,177 @@ import _ from 'lodash/lodash';
 
 
 export default Model.extend({
-  i18n: Ember.inject.service(),
+    i18n: Ember.inject.service(),
 
-  // normal attribtues
-  name                  : attr('string'),
-  
-  goalTomatoes          : storeWithWeek("userGame.weekCnt", "goalTomatoes"),
-  tomatoes              : storeWithWeek("userGame.weekCnt", "tomatoes"),
-  money                 : storeWithWeek("userGame.weekCnt", "money"),
-  extOfferTomato        : storeWithWeek("userGame.weekCnt", "extOfferTomato"),
-  extOfferPrice         : storeWithWeek("userGame.weekCnt", "extOfferPrice"),
-  
-  enableExternalTrading : attr('boolean', {default: false}),
-  isSeller              : attr('boolean'),
-  playerWeekStatus      : attr('json'),
+    // normal attribtues
+    name: attr('string'),
 
-  // relational attributes
-  userGame              : belongsTo('game'),
-  receivedOffers        : hasMany('offer', { async: true, inverse: 'receiver' }),
-  sentOffers            : hasMany('offer', { async: true, inverse: 'sender' }),
+    goalTomatoes: storeWithWeek("userGame.weekCnt", "goalTomatoes"),
+    tomatoes: storeWithWeek("userGame.weekCnt", "tomatoes"),
+    money: storeWithWeek("userGame.weekCnt", "money"),
+    extOfferTomato: storeWithWeek("userGame.weekCnt", "extOfferTomato"),
+    extOfferPrice: storeWithWeek("userGame.weekCnt", "extOfferPrice"),
 
-  logPlayerStatus: Ember.computed("sellerKPI", "buyerKPI", function() {
-    let isSellerLUT = { 
-      true : ["goalTomatoes", "remainingTomatoes", "tomatoes", "sellerKPI"],
-      false : ["goalTomatoes", "remainingTomatoes", "tomatoes", "buyerKPI"],
-    }
-    let propsToLog = isSellerLUT[this.get("isSeller")]
-    let vals = propsToLog.map( x=>`${x}:${this.get(x)}` )
-    return vals.join(", ")
+    enableExternalTrading: attr('boolean', { default: false }),
+    isSeller: attr('boolean'),
+    playerWeekStatus: attr('json'),
 
-  }),
+    // relational attributes
+    userGame: belongsTo('game'),
+    receivedOffers: hasMany('offer', { async: true, inverse: 'receiver' }),
+    sentOffers: hasMany('offer', { async: true, inverse: 'sender' }),
 
-  remainingTomatoes  : Ember.computed("tomatoes", "goalTomatoes", function() {
-    return this.get("goalTomatoes") - Math.abs(this.get("tomatoes"));
-  }),
+    logPlayerStatus: Ember.computed("sellerKPI", "buyerKPI", function() {
+        let isSellerLUT = {
+            true: ["goalTomatoes", "remainingTomatoes", "tomatoes", "sellerKPI"],
+            false: ["goalTomatoes", "remainingTomatoes", "tomatoes", "buyerKPI"],
+        }
+        let propsToLog = isSellerLUT[this.get("isSeller")]
+        let vals = propsToLog.map(x => `${x}:${this.get(x)}`)
+        return vals.join(", ")
 
-  avgTomatoPrice     : Ember.computed("tomatoes", "money", function() {
-    if (this.get("money") === 0) {return 0;}
-    return Math.abs(this.get("money") / this.get("tomatoes"));
-  }),
+    }),
 
-  sellerKPI : Ember.computed("tomatoes", "money", function() {
-    return this.get("money") / this.get("goalTomatoes");
-  }),
+    remainingTomatoes: Ember.computed("tomatoes", "goalTomatoes", function() {
+        return this.get("goalTomatoes") - Math.abs(this.get("tomatoes"));
+    }),
 
-  buyerKPI: Ember.computed("userGame.fine", "userGame.fixedCost", "userGame.retailPrice", "money", "goalTomatoes", function() {
-    let retailPrice       = this.get("userGame.retailPrice");
-    let fixedCost         = this.get("userGame.fixedCost");
-    let tomatoes          = this.get("tomatoes");
-    let goalTomatoes      = this.get("goalTomatoes");
-    let remainingTomatoes = this.get("remainingTomatoes");
-    let fine              = this.get("userGame.fine")
+    avgTomatoPrice: Ember.computed("tomatoes", "money", function() {
+        if (this.get("money") === 0) {
+            return 0; }
+        return Math.abs(this.get("money") / this.get("tomatoes"));
+    }),
 
-    let costBuying        = Math.abs(this.get("money"));
-    let totalRevenue      = Math.min(tomatoes, goalTomatoes) * retailPrice;
-    let totalFine         = Math.max(0, remainingTomatoes * fine);
-    let totalFixedCosts   = goalTomatoes * fixedCost;
+    sellerKPI: Ember.computed("tomatoes", "money", function() {
+        return this.get("money") / this.get("goalTomatoes");
+    }),
 
-    return (totalRevenue - costBuying - totalFixedCosts - totalFine) / goalTomatoes;
-  }),
+    buyerKPI: Ember.computed("userGame.fine", "userGame.fixedCost", "userGame.retailPrice", "money", "goalTomatoes", function() {
+        let retailPrice = this.get("userGame.retailPrice");
+        let fixedCost = this.get("userGame.fixedCost");
+        let tomatoes = this.get("tomatoes");
+        let goalTomatoes = this.get("goalTomatoes");
+        let remainingTomatoes = this.get("remainingTomatoes");
+        let fine = this.get("userGame.fine")
 
-  //Result s1, s2, b1, b2...
-  playerIdInGame: Ember.computed("playerPosition", function() {
-    let prefix = this.get("isSeller") ? "s" : "b";
-    let pos = this.get("playerPosition");
-    return `${prefix}${pos}`;
-  }),
+        let costBuying = Math.abs(this.get("money"));
+        let totalRevenue = Math.min(tomatoes, goalTomatoes) * retailPrice;
+        let totalFine = Math.max(0, remainingTomatoes * fine);
+        let totalFixedCosts = goalTomatoes * fixedCost;
 
-  //Result Seller 1 - Bob
-  descriptivePlayerIdInGame: Ember.computed("playerPosition", "name", function() {
-    var prefix = this.get("isSeller") ? "seller" : "buyer";
-    prefix = this.get('i18n').t(prefix);
-    let pos = this.get("playerPosition");
-    let postfix = this.get("name") ? ` - ${this.get("name")}` : '';
-    return `${prefix} ${pos}${postfix}`;
-  }),
-  
-  descriptivePlayerIdInGameForLogger: Ember.computed("playerPosition", "name", function() {
-    var prefix = this.get("isSeller") ? "seller" : "buyer";
-    let pos = this.get("playerPosition");
-    let postfix = this.get("name") ? ` - ${this.get("name")}` : '';
-    return `${prefix} ${pos}${postfix}`;
-  }),
-  
+        return (totalRevenue - costBuying - totalFixedCosts - totalFine) / goalTomatoes;
+    }),
 
-  playerPosition: Ember.computed("userGame.buyers", "userGame.sellers", "isSeller", "id", function () {
-    if (this.get("isSeller")) { // for the sellers
-      return this.get("userGame.sellers").map((x) => { return x.get("id"); }).indexOf(this.get("id")) + 1;
-    } else { // for the buyers
-      if (this.get("userGame.buyers")) {
-        return this.get("userGame.buyers").map((x) => { return x.get("id"); }).indexOf(this.get("id")) + 1;
-      }
-    }
-  }),
+    //Result s1, s2, b1, b2...
+    playerIdInGame: Ember.computed("playerPosition", function() {
+        let prefix = this.get("isSeller") ? "s" : "b";
+        let pos = this.get("playerPosition");
+        return `${prefix}${pos}`;
+    }),
 
-  // groupedReceivedOpenOffers: Ember.computed("traders.@each.id", "receivedOffers.@each.state", "sentOpenOffers.@each.state", "historicOffers.@each.state", function () {
-  groupedReceivedOpenOffers: Ember.computed("traders.@each.id", "receivedOpenOffers", "sentOpenOffers", "historicOffers", function () {
-    var start = new Date().getTime();
+    //Result Seller 1 - Bob
+    descriptivePlayerIdInGame: Ember.computed("playerPosition", "name", function() {
+        var prefix = this.get("isSeller") ? "seller" : "buyer";
+        prefix = this.get('i18n').t(prefix);
+        let pos = this.get("playerPosition");
+        let postfix = this.get("name") ? ` - ${this.get("name")}` : '';
+        return `${prefix} ${pos}${postfix}`;
+    }),
 
-    var userIds = this.get("traders").map( (x) => { 
-      return {"id": x.get("id"), "ref": x};
-    } ); // [1, 2, 3]
-    var tmpReturnObj = _.indexBy(userIds, "id"); // {1: 1, 2: 2, 3: 3}
-    tmpReturnObj["External"] = {"id": "External", "ref": {'name': "External"}};
-    
-    var receivedOpenOffersLUT = _.groupBy(this.get("receivedOpenOffers"),  (x) => { return x.get("senderId");} );
-    var sentOpenOffersLUT = _.groupBy(this.get("sentOpenOffers"),  (x) => { return x.get("receiverId");} );
-    var historicOffersSentLUT = _.groupBy(this.get("historicOffers"),  (x) => { return x.get("senderId");} );
-    var historicOffersReceivedLUT = _.groupBy(this.get("historicOffers"),  (x) => { return x.get("receiverId");} );
+    descriptivePlayerIdInGameForLogger: Ember.computed("playerPosition", "name", function() {
+        var prefix = this.get("isSeller") ? "seller" : "buyer";
+        let pos = this.get("playerPosition");
+        let postfix = this.get("name") ? ` - ${this.get("name")}` : '';
+        return `${prefix} ${pos}${postfix}`;
+    }),
 
-    var newReturnObj = _.mapValues(tmpReturnObj, function(v, k) { 
-      var a = historicOffersReceivedLUT[k] ? historicOffersReceivedLUT[k] : [];
-      var b = historicOffersSentLUT[k] ? historicOffersSentLUT[k] : [];
-      var allHistorcOffers = a.concat(b);
-      allHistorcOffers = _.sortBy(allHistorcOffers, function(o) { return o.get("ts"); });
-      
-      return {
-        user: v.ref, 
-        openOffers: receivedOpenOffersLUT[k] ? receivedOpenOffersLUT[k] : [],
-        sentOffers: sentOpenOffersLUT[k] ? sentOpenOffersLUT[k] : [],
-        history: allHistorcOffers,
-      }; 
-    });
-    
-    // console.log(newReturnObj);
-    
-    console.log(new Date().getTime() - start);
 
-    return newReturnObj;
-  }),
+    playerPosition: Ember.computed("userGame.buyers", "userGame.sellers", "isSeller", "id", function() {
+        if (this.get("isSeller")) { // for the sellers
+            return this.get("userGame.sellers").map((x) => {
+                return x.get("id"); }).indexOf(this.get("id")) + 1;
+        } else { // for the buyers
+            if (this.get("userGame.buyers")) {
+                return this.get("userGame.buyers").map((x) => {
+                    return x.get("id"); }).indexOf(this.get("id")) + 1;
+            }
+        }
+    }),
 
-  // computed attributes
+    // groupedReceivedOpenOffers: Ember.computed("traders.@each.id", "receivedOffers.@each.state", "sentOpenOffers.@each.state", "historicOffers.@each.state", function () {
+    groupedReceivedOpenOffers: Ember.computed("traders.@each.id", "receivedOpenOffers", "sentOpenOffers", "historicOffers", function() {
 
-  externalOffers: Ember.computed("groupedReceivedOpenOffers", function() {
-    return this.get("groupedReceivedOpenOffers.External");
-  }),
+        var userIds = this.get("traders").map((x) => {
+            return { "id": x.get("id"), "ref": x };
+        }); // [1, 2, 3]
+        var tmpReturnObj = _.indexBy(userIds, "id"); // {1: 1, 2: 2, 3: 3}
+        tmpReturnObj["External"] = { "id": "External", "ref": { 'name': "External" } };
 
-  receivedOpenOffers: Ember.computed.filter('receivedOffers.@each.state', 
-                         (el) => {return el.get("state") === "open"; }),
-  sentOpenOffers: Ember.computed.filter('sentOffers.@each.state', 
-                         (el) => {return el.get("state") === "open"; }),
+        var receivedOpenOffersLUT = _.groupBy(this.get("receivedOpenOffers"), (x) => {
+            return x.get("senderId"); });
+        var sentOpenOffersLUT = _.groupBy(this.get("sentOpenOffers"), (x) => {
+            return x.get("receiverId"); });
+        var historicOffersSentLUT = _.groupBy(this.get("historicOffers"), (x) => {
+            return x.get("senderId"); });
+        var historicOffersReceivedLUT = _.groupBy(this.get("historicOffers"), (x) => {
+            return x.get("receiverId"); });
 
-  historicOffers: Ember.computed('receivedOffers.@each.state', 'sentOffers.@each.state', 
-    function() {
-      var receivedOffers = this.get('receivedOffers').filter((el) => {return el.get("state") !== "open"; });
-      var sentOffers = this.get('sentOffers').filter((el) => {return el.get("state") !== "open"; });
+        var newReturnObj = _.mapValues(tmpReturnObj, function(v, k) {
+            var a = historicOffersReceivedLUT[k] ? historicOffersReceivedLUT[k] : [];
+            var b = historicOffersSentLUT[k] ? historicOffersSentLUT[k] : [];
+            var allHistorcOffers = a.concat(b);
+            allHistorcOffers = _.sortBy(allHistorcOffers, function(o) {
+                return o.get("ts"); });
 
-      let combination = [].concat(receivedOffers, sentOffers);
-      return _.sortBy(combination, function(o) { return o.get('ts'); }).reverse();
-  }),
+            return {
+                user: v.ref,
+                openOffers: receivedOpenOffersLUT[k] ? receivedOpenOffersLUT[k] : [],
+                sentOffers: sentOpenOffersLUT[k] ? sentOpenOffersLUT[k] : [],
+                history: allHistorcOffers,
+            };
+        });
 
-  roleDescription: Ember.computed('isSeller', function() {
-    return this.get('isSeller') ? 'seller' : 'buyer';
-  }),
+        // console.log(newReturnObj);
 
-  traders: Ember.computed('isSeller', 'userGame.sellers.[]', 'userGame.buyers.[]', function(){
-  	if (this.get('isSeller')) {
-  		return this.get('userGame.buyers');
-  	} else {
-  		return this.get('userGame.sellers');
-  	}
-  }),
+        return newReturnObj;
+    }),
+
+    // computed attributes
+
+    externalOffers: Ember.computed("groupedReceivedOpenOffers", function() {
+        return this.get("groupedReceivedOpenOffers.External");
+    }),
+
+    receivedOpenOffers: Ember.computed.filter('receivedOffers.@each.state',
+        (el) => {
+            return el.get("state") === "open"; }),
+    sentOpenOffers: Ember.computed.filter('sentOffers.@each.state',
+        (el) => {
+            return el.get("state") === "open"; }),
+
+    historicOffers: Ember.computed('receivedOffers.@each.state', 'sentOffers.@each.state',
+        function() {
+            var receivedOffers = this.get('receivedOffers').filter((el) => {
+                return el.get("state") !== "open"; });
+            var sentOffers = this.get('sentOffers').filter((el) => {
+                return el.get("state") !== "open"; });
+
+            let combination = [].concat(receivedOffers, sentOffers);
+            return _.sortBy(combination, function(o) {
+                return o.get('ts'); }).reverse();
+        }),
+
+    roleDescription: Ember.computed('isSeller', function() {
+        return this.get('isSeller') ? 'seller' : 'buyer';
+    }),
+
+    traders: Ember.computed('isSeller', 'userGame.sellers.[]', 'userGame.buyers.[]', function() {
+        if (this.get('isSeller')) {
+            return this.get('userGame.buyers');
+        } else {
+            return this.get('userGame.sellers');
+        }
+    }),
 
 
 });

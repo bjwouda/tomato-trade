@@ -17,7 +17,7 @@ export default Model.extend({
     idxOfOfferInGame        : attr('number'),
     
     ts                      : attr('number', { 
-        defaultValue(){ return new Date().getTime(); }
+        defaultValue(){ return moment().unix(); }
     }), //timeStamp
     
     historyGame  : belongsTo('game', {async: true}),
