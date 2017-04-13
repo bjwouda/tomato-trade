@@ -8,7 +8,8 @@
     "test": "tests"
   },
   "scripts": {
-    "init": "bower install",
+    "ember": "ember",
+    "bower": "bower",
     "build": "ember build",
     "start": "ember server",
     "test": "ember test"
