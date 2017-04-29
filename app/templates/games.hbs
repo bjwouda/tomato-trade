@@ -5,8 +5,8 @@
         <ul class="nav">
           {{#unless game.isDeleted}}
             <li> <span class="title-container"><h4>Round Controlls</h4></span></li>
-            
-            
+
+
 
             {{#if (and game.gameIsAboutToStart game.gameConfigurationValid)}}
               <li class="active" {{action 'nextRound' game game.minutesPerRound}}><a href="">Start Game</a></li>
@@ -24,7 +24,7 @@
               {{/if}}
             {{/if}}
 
-            {{#if game.gameIsRunning}}            
+            {{#if game.gameIsRunning}}
 
               {{#if game.isPaused}}
                 <li class="active" {{action 'resumeGame' game}}><a href="">Resume game</a></li>
@@ -45,18 +45,18 @@
                   ({{autoTradingTs}})
                 {{/if}}
               </a></li>
-              
+
 {{!--               {{timeMissingSec}}
               {{#each autoTradingArr as |item|}}
                 <p>{{item}}</p>
               {{/each}}
- --}}              
+ --}}
               <li class="nav-divider"></li>
             {{/if}}
 
             <li class="active" {{action (toggle "isConfiguration" this)}}><a href="">Game Config</a></li>
             <li class="active"> {{#link-to 'historical' game.id}}Historical{{/link-to}}</li>
-            
+
             <li class="nav-divider"></li>
 
             {{#if isEditing}}
@@ -91,15 +91,15 @@
                 </div>
               </span>
             {{/if}}
-            
+
             <li class="nav-divider"></li>
 
             {{#each game.gameMatrix as |item index|}}
               <li>
-                {{#if (eqNum item.round game.roundCnt)}}
+                {{#if (eq-num item.round game.roundCnt)}}
                   <strong>Round {{item.round}} {{item.tradeType}}</strong>
-                  
-                {{else}}  
+
+                {{else}}
                   Round {{item.round}} {{item.tradeType}}
                 {{/if}}
               </li>
@@ -114,7 +114,7 @@
   </div>
   <div class="col-xs-12 col-sm-9">
 
-    
+
     {{#if isConfiguration}}
 
       <br>
@@ -126,7 +126,7 @@
           <span class="line-1">Game Configuration</span>
         </div>
         <br>
-        
+
         <div class="form-group">
 
           {{textarea value=game.gameConfigurationRO class="form-control game-config-textarea" col="10" rows="10"}}
@@ -138,11 +138,11 @@
             <button class="btn btn-info pull-right " {{action "updateGameConfig"}}>Update</button>
           {{/if}}
           <button class="btn btn-info pull-right " {{action "saveGameConfig"}}>Save</button>
-        
+
         </div>
 
         {{#if game.gameConfigurationValid}}
-          
+
           <p>Player IDS: {{game.numberOfPlayers.allPlayerIds}} </p>
           <p>Number of {{t "buyer"}}s: {{game.numberOfPlayers.nrOfBuyers}} </p>
           <p>Number of {{t "seller"}}s: {{game.numberOfPlayers.nrOfSellers}} </p>
@@ -160,8 +160,8 @@
     {{#unless game.isDeleted}}
 
       <br>
-  
-      
+
+
       {{#timer-jumbotron game=game}}
         <span class="line-1">{{t 'masterScreen'}}</span>
       {{/timer-jumbotron}}
@@ -188,7 +188,7 @@
       </div>
       <!--/row-->
 
-    {{/unless}}    
+    {{/unless}}
 
   </div>
 </div>
