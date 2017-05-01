@@ -1,9 +1,17 @@
+<!-- logo -->
+<!-- navbar + language switch -->
 <div class="container-fluid">
-  <div class="row text-right">
-    <a href="#" class="{{if (eq i18n.locale 'en') 'lead'}}" {{action "changeLang" 'en'}}>EN</a>
-    <a href="#" class="{{if (eq i18n.locale 'nl') 'lead'}}" class="lead" {{action "changeLang" 'nl'}}>NL</a>
-    <span style="position: fixed; right: 5px; bottom: 5px;">[{{version}}]</span>
-    {{!-- <a href="#" class="{{if (eq i18n.locale 'zh') 'lead'}}" {{action "changeLang" 'zh'}}>ZH</a> --}}
-  </div>
+	<div class="row text-right">
+		<a href="#" class="lead" {{action "changeLang" 'en'}}>EN</a>
+		<a href="#" class="lead" {{action "changeLang" 'nl'}}>NL</a>
+	</div>
 </div>
+<!-- help section -->
+<!-- infobar (player only, two lines?) -->
+<!-- offers -->
+<!-- transactions (accepted, declined) -->
 {{outlet}}
+<!-- actionbar (player only) -->
+<!-- logos -->
+<!-- sitemap? -->
+<!-- credits, version, license -->
