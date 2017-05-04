@@ -1,16 +1,24 @@
 
 
 <div class="container-fluid">
-  {{#if game.gameIsAboutToStart}}
-  
-    <h1>Tutorial goes here.</h1>
-    
-  {{else if game.gameIsRunning}}
+  {{#if (or game.gameIsAboutToStart game.gameIsRunning)}}
   
     {{#if model.isSeller}}
       {{seller-header game=game model=model}}
     {{else}}
       {{buyer-header game=game model=model}}
+    {{/if}}
+    
+    {{#if (eq-num tutorialState 0)}}
+      <h1>Starting tutorial...</h1>
+      
+      <button class="btn btn-info" {{action 'advanceTutorialState'}}>{{t 'start'}}</button>
+    {{/if}}
+    
+    {{#if (eq-num tutorialState 1)}}
+      <h1>Stopping tutorial...</h1>
+      
+      <button class="btn btn-info" {{action 'resetTutorialState'}}>{{t 'stop'}}</button>
     {{/if}}
     
     <div class="row">

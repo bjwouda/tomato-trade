@@ -9,6 +9,8 @@ let lastRound = 1
 export default Ember.Controller.extend(OfferActions, LangActions, {
 	game: Ember.computed.alias("model.userGame.content"),
 	_extOfferTomato: 0,
+  
+  tutorialState: 0,
 
 	clearInputsOnNewRound: Ember.observer("game.roundCnt", function() {
 
@@ -21,5 +23,15 @@ export default Ember.Controller.extend(OfferActions, LangActions, {
 			u.set("_offerTomato", "")
 			u.set("_offerPrice", "")
 		})
-	})
+	}),
+  
+  actions: {
+    advanceTutorialState() {
+      this.set("tutorialState", this.get('tutorialState') + 1);
+    },
+    
+    resetTutorialState() {
+      this.set("tutorialState", 0);
+    }
+  }
 });
