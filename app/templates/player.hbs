@@ -15,7 +15,7 @@
       <button class="btn btn-info" {{action 'advanceTutorialState'}}>{{t 'start'}}</button>
     {{/if}}
     
-    {{#if (eq-num tutorialState 1)}}
+    {{#if (gt tutorialState 0)}}
       <h1>Stopping tutorial...</h1>
       
       <button class="btn btn-info" {{action 'resetTutorialState'}}>{{t 'stop'}}</button>
@@ -153,6 +153,15 @@
                       {{/if}}  
                     </div>
                   </li>
+                  
+                  {{#if (eq-num tutorialState 1)}}
+                  <li class="list-group-item list-group-item-info">
+                    <button class="btn btn-info btn-xs pull-right" {{action 'advanceTutorialState'}}>{{t 'ok'}}</button>
+                    
+                    <span>Information about offers goes here.</span>
+                  </li>
+                  {{/if}}
+                   
               </ul>
 
               <ul class="list-group">
@@ -167,6 +176,15 @@
                     sentOffers=(reverse obj.sentOffers)
                     remainingTomatoes=model.remainingTomatoes
                     }}
+                  
+                  {{#if (eq-num tutorialState 2)}}
+                  <li class="list-group-item list-group-item-info">
+                    <button class="btn btn-info btn-xs pull-right" {{action 'advanceTutorialState'}}>{{t 'ok'}}</button>
+                    
+                    <span>Information about offers goes here.</span>
+                  </li>
+                  {{/if}}
+                  
               </ul>
               
               <ul class="list-group">
@@ -179,6 +197,14 @@
                   {{else}}
                       <li class="list-group-item"><i>{{t "na"}}</i></li>
                   {{/each}}
+                  
+                  {{#if (eq-num tutorialState 3)}}
+                  <li class="list-group-item list-group-item-info">
+                    <button class="btn btn-info btn-xs pull-right" {{action 'advanceTutorialState'}}>{{t 'ok'}}</button>
+                    
+                    <span>Information about offers goes here.</span>
+                  </li>
+                  {{/if}}
 
               </ul>
 
@@ -191,6 +217,14 @@
                   {{else}}
                     <li class="list-group-item"><i>{{t "na"}}</i></li>
                   {{/each}}
+                  
+                  {{#if (eq-num tutorialState 4)}}
+                  <li class="list-group-item list-group-item-info">
+                    <button class="btn btn-info btn-xs pull-right" {{action 'resetTutorialState'}}>{{t 'ok'}}</button>
+                    
+                    <span>Information about offers goes here.</span>
+                  </li>
+                  {{/if}}
               </ul>
 
 
