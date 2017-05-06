@@ -38,7 +38,7 @@
               <li class="active" {{action 'allowGlobalExternalTrading'}}><a href="">Global Trading</a></li>
               <li class="nav-divider"></li>
               <div class="form-group">
-                  <span class="title-container"><h5>{{capitalize (t 'Global Trading Schedule')}}</h5></span> {{input value=_autoTradingString action=(action "setAutoTrading" _autoTradingString) on="enter" class="form-control"}}
+                  <span class="title-container"><h5>{{capitalize (t 'Global Trading Schedule')}}</h5></span> {{input value=_autoTradingString enter=(action "setAutoTrading" _autoTradingString) class="form-control"}}
               </div>
               <li class="active" {{action "setAutoTrading" _autoTradingString}}><a href="">Save Trading Schedule
                 {{#if autoTradingTs}}
