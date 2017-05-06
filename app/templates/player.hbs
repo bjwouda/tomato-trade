@@ -1,5 +1,3 @@
-
-
 <div class="container-fluid">
   {{#if (or game.gameIsAboutToStart game.gameIsRunning)}}
   
@@ -7,18 +5,6 @@
       {{seller-header game=game model=model}}
     {{else}}
       {{buyer-header game=game model=model}}
-    {{/if}}
-    
-    {{#if (eq-num tutorialState 0)}}
-      <h1>Starting tutorial...</h1>
-      
-      <button class="btn btn-info" {{action 'advanceTutorialState'}}>{{t 'start'}}</button>
-    {{/if}}
-    
-    {{#if (gt tutorialState 0)}}
-      <h1>Stopping tutorial...</h1>
-      
-      <button class="btn btn-info" {{action 'resetTutorialState'}}>{{t 'stop'}}</button>
     {{/if}}
     
     <div class="row">
@@ -154,13 +140,9 @@
                     </div>
                   </li>
                   
-                  {{#if (eq-num tutorialState 1)}}
-                  <li class="list-group-item list-group-item-info">
-                    <button class="btn btn-info btn-xs pull-right" {{action 'advanceTutorialState'}}>{{t 'ok'}}</button>
-                    
-                    <span>Information about offers goes here.</span>
-                  </li>
-                  {{/if}}
+                  {{#tutorial-list-item game=game currentState=tutorialState activeState=0 advance=(action "advanceTutorialState")}}
+                    Information about offers goes here.
+                  {{/tutorial-list-item}}
                    
               </ul>
 
@@ -177,13 +159,9 @@
                     remainingTomatoes=model.remainingTomatoes
                     }}
                   
-                  {{#if (eq-num tutorialState 2)}}
-                  <li class="list-group-item list-group-item-info">
-                    <button class="btn btn-info btn-xs pull-right" {{action 'advanceTutorialState'}}>{{t 'ok'}}</button>
-                    
-                    <span>Information about offers goes here.</span>
-                  </li>
-                  {{/if}}
+                  {{#tutorial-list-item game=game currentState=tutorialState activeState=1 recede=(action "recedeTutorialState") advance=(action "advanceTutorialState")}}
+                    Information about offers goes here.
+                  {{/tutorial-list-item}}
                   
               </ul>
               
@@ -198,13 +176,9 @@
                       <li class="list-group-item"><i>{{t "na"}}</i></li>
                   {{/each}}
                   
-                  {{#if (eq-num tutorialState 3)}}
-                  <li class="list-group-item list-group-item-info">
-                    <button class="btn btn-info btn-xs pull-right" {{action 'advanceTutorialState'}}>{{t 'ok'}}</button>
-                    
-                    <span>Information about offers goes here.</span>
-                  </li>
-                  {{/if}}
+                  {{#tutorial-list-item game=game currentState=tutorialState activeState=2 recede=(action "recedeTutorialState") advance=(action "advanceTutorialState")}}
+                    Information about offers goes here.
+                  {{/tutorial-list-item}}
 
               </ul>
 
@@ -218,13 +192,10 @@
                     <li class="list-group-item"><i>{{t "na"}}</i></li>
                   {{/each}}
                   
-                  {{#if (eq-num tutorialState 4)}}
-                  <li class="list-group-item list-group-item-info">
-                    <button class="btn btn-info btn-xs pull-right" {{action 'resetTutorialState'}}>{{t 'ok'}}</button>
-                    
-                    <span>Information about offers goes here.</span>
-                  </li>
-                  {{/if}}
+                  {{#tutorial-list-item game=game currentState=tutorialState activeState=3 recede=(action "recedeTutorialState")}}
+                    Information about offers goes here.
+                  {{/tutorial-list-item}}
+                  
               </ul>
 
 
