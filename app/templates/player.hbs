@@ -9,10 +9,12 @@
     
     {{tutorial-row tutorial='player' step='introduction' previous=null active=isTutorialActive}}
     
+    {{tutorial-row tutorial='player' step='buyerIntroduction' active=isTutorialActive}}
+  
     {{#if model.isSeller}}
-      {{tutorial-row tutorial='player' step='sellerIntroduction' active=isTutorialActive}}
+      {{tutorial-row tutorial='player' step='sellerIntroduction' previous='previouslyAcceptedOffers' active=isTutorialActive}}
     {{else}}
-      {{tutorial-row tutorial='player' step='buyerIntroduction' active=isTutorialActive}}
+      {{tutorial-row tutorial='player' step='sellerIntroduction' active=isTutorialActive}}
     {{/if}}
     
     <div class="row">
@@ -195,7 +197,7 @@
                   {{/each}}
                   
                   {{#if model.isSeller}}
-                    {{tutorial-list-item tutorial='player' step='previouslyAcceptedOffers' active=isTutorialActive}}
+                    {{tutorial-list-item tutorial='player' step='previouslyAcceptedOffers' next='sellerIntroduction' active=isTutorialActive}}
                   {{else}}
                     {{tutorial-list-item tutorial='player' step='previouslyAcceptedOffers' active=isTutorialActive}}
                   {{/if}}
