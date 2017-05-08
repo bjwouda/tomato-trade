@@ -12,41 +12,41 @@ export default Ember.Service.extend({
     
     if(_.has(tutorialState, tutorial)) {
       return tutorialState[tutorial];
-	}
-	else {
+    }
+    else {
       return 0;
-	}
+    }
   },
   
-  recedeTutorialState(tutorial, amount) {
-    if(typeof amount == 'undefined') {
-      amount = 1;
-    }
+  setTutorialState(tutorial, state) {
+    let tutorialState = this.get('tutorialState');
     
+    tutorialState[tutorial] = state;
+    
+    this.set('quantumState', !this.get('quantumState'));
+  },
+  
+  decrementTutorialState(tutorial) {
     let tutorialState = this.get('tutorialState');
     
     if(!_.has(tutorialState, tutorial)) {
       tutorialState[tutorial] = 0;
     }
-	
-	tutorialState[tutorial] -= amount;
-	
-	this.set('quantumState', !this.get('quantumState'));
+    
+    tutorialState[tutorial] -= 1;
+    
+    this.set('quantumState', !this.get('quantumState'));
   },
   
-  advanceTutorialState(tutorial, amount) {
-    if(typeof amount == 'undefined') {
-      amount = 1;
-    }
-    
+  incrementTutorialState(tutorial) {
     let tutorialState = this.get('tutorialState');
     
     if(!_.has(tutorialState, tutorial)) {
       tutorialState[tutorial] = 0;
     }
-	
-	tutorialState[tutorial] += amount;
-	
-	this.set('quantumState', !this.get('quantumState'));
+    
+    tutorialState[tutorial] += 1;
+    
+    this.set('quantumState', !this.get('quantumState'));
   }
 });

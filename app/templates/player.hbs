@@ -7,7 +7,7 @@
       {{buyer-header game=game model=model isTutorialActive=isTutorialActive}}
     {{/if}}
     
-    {{tutorial-row tutorial='player' step='introduction' active=isTutorialActive decrease=0}}
+    {{tutorial-row tutorial='player' step='introduction' previous=null active=isTutorialActive}}
     
     {{#if model.isSeller}}
       {{tutorial-row tutorial='player' step='sellerIntroduction' active=isTutorialActive}}

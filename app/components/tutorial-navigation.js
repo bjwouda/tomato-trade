@@ -6,12 +6,16 @@ export default Ember.Component.extend({
   tutorialState: Ember.inject.service(),
   
   actions: {
-    recedeTutorialState(tutorial, amount) {
-      this.get("tutorialState").recedeTutorialState(tutorial, amount);
+    changeTutorialState(tutorial, state) {
+      this.get("tutorialState").setTutorialState(tutorial, state);
     },
     
-    advanceTutorialState(tutorial, amount) {
-      this.get("tutorialState").advanceTutorialState(tutorial, amount);
+    recedeTutorialState(tutorial) {
+      this.get("tutorialState").decrementTutorialState(tutorial);
+    },
+    
+    advanceTutorialState(tutorial) {
+      this.get("tutorialState").incrementTutorialState(tutorial);
     }
   }
 });
