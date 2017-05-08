@@ -1,0 +1,57 @@
+<div class="jumbotron jumbotron-header">
+
+  <div class="row">
+    <div class="col-sm-6">
+      <h3 class="property-label">{{capitalize (t 'goalTomatoes')}}</h3>
+    </div>
+    <div class="col-sm-6">
+      <h3 class="property-label">{{capitalize (t 'tomatoes')}}</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-6">
+      <p class="property-value">{{digit-group-format model.goalTomatoes}}</p>
+    </div>
+    <div class="col-sm-6">
+      <p class="property-value">{{digit-group-format model.tomatoes}}</p>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-sm-6">
+      {{tutorial-list tutorial='player' step='sellerPropertyGoal' active=isTutorialActive}}
+    </div>
+    <div class="col-sm-6">
+      {{tutorial-list tutorial='player' step='sellerPropertyInventory' active=isTutorialActive}}
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-sm-6">
+      <h3 class="property-label">{{capitalize (t 'remainingTomatoes')}}</h3>
+    </div>
+    <div class="col-sm-6">
+      <h3 class="property-label">{{capitalize (t 'avgTomatoPrice')}}</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-6">
+      <p class="property-value">{{digit-group-format model.remainingTomatoes}}</p>
+    </div>
+    <div class="col-sm-6">
+      <p class="property-value">{{digit-format model.avgTomatoPrice}}</p>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-sm-6">
+      {{tutorial-list tutorial='player' step='sellerPropertyRemaining' active=isTutorialActive}}
+    </div>
+    <div class="col-sm-6">
+      {{tutorial-list tutorial='player' step='sellerPropertyAveragePrice' active=isTutorialActive}}
+    </div>
+  </div>
+  
+  {{tutorial-row tutorial='player' step='sellerPropertiesIntroduction' active=isTutorialActive}}
+  
+</div>

@@ -12,7 +12,6 @@
 
 .title-container {
   font-weight: 700;
-  position: relative;
   margin: 20px auto;
   width: 100%;
   font-size: 30px;
@@ -48,7 +47,6 @@ span.to-tomato {
     /*font-size: 18pt;*/
 }
 
-
 span.to-money {
     color: #8C9566;
     /*font-size: 18pt;*/
@@ -75,4 +73,19 @@ li.list-group-item.declined { background-color: rgba(255, 0, 0, 0.3); }
 
 th {
   height: 70px;
+}
+
+.jumbotron-header {
+  min-height: 220px;
+}
+
+.property-label {
+  font-weight: bold;
+  text-align: center;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
+  opacity: 0.8;
+}
+
+.property-value {
+  text-align: center;
 }

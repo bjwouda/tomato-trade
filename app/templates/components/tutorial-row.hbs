@@ -1,11 +1,13 @@
-{{#if (and game.gameIsAboutToStart (eq-num currentState activeState))}}
+{{#if (and active (eq-num (tutorial-state tutorial step) state))}}
   <div class="row">
     <div class="col-sm-12">
       <ul class="list-group">
         <li class="list-group-item list-group-item-info">
-          {{tutorial-navigation recede=recede advance=advance}}
-
-          {{yield}}
+          
+          {{tutorial-navigation tutorial=tutorial decrease=decrease increase=increase}}
+          
+          {{t (concat 'tutorial' '.' tutorial '.' step)}}
+          
         </li>
       </ul>
     </div>

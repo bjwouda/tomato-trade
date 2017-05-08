@@ -14,7 +14,7 @@ export default {
     "GameHasEnded": "Game has ended",
     "accept": "Accept",
     "accepted": "Accepted",
-    "avgTomatoPrice": "Average Tomato Price",
+    "avgTomatoPrice": "Average price",
     "buyer": "Trader",
     "buyerKPI": "Trader KPI",
     "currentTomatoes": "Current Tomatoes",
@@ -22,7 +22,7 @@ export default {
     "decline": "Decline",
     "declineed": "Declined",
     "external": "External Trader",
-    "goalTomatoes": "Tomato Goal",
+    "goalTomatoes": "Goal",
     "historicalScreen": "Historical Screen",
     "last5Transactions": "Last 5 transactions",
     "masterScreen": "Master Screen",
@@ -34,7 +34,7 @@ export default {
     "recall": "Recall",
     "recalled": "Recalled",
     "receivedOffers": "Received Offers",
-    "remainingTomatoes": "Remaining Tomatoes",
+    "remainingTomatoes": "Remaining",
     "seller": "Cooperative",
     "sellerKPI": "Cooperative KPI",
     "send": "Send",
@@ -43,8 +43,9 @@ export default {
     "sentOffers": "Sent Offers",
     "timeUp": "Time is up! Please finish your trade.",
     "tomato": "Tomato",
-    "tomatoes": "Tomatoes",
-    "weekDescription": "We are having week {{currentWeek}}, you're performing the <b>{{tradeType}} trade</b> for week {{tradeWeek}}",
+    "tomatoes": "Inventory",
+    "currentWeekDescription": "It is week <strong>{{currentWeek}}</strong>",
+    "tradeWeekDescription": "You are doing the <strong>{{tradeType}} trade</strong> for week <strong>{{tradeWeek}}</strong>",
     "player": {
         "tradingMenu": "Trading Menu",
         "resourceOverview": "Resource Overview",
@@ -53,5 +54,10 @@ export default {
     },
     "externalTradingNotAvailable": "External trading is not available",
     "round": "round",
-    "offer": "offer"
+    "offer": "offer",
+    "tutorial": {
+        "player": {
+			"introduction": "Introduction goes here."
+		}
+    }
 }

@@ -1,0 +1,56 @@
+<div class="jumbotron jumbotron-header">
+
+  <div class="row">
+    <div class="col-sm-6">
+      <h3 class="property-label">{{capitalize (t 'fine')}}</h3>
+    </div>
+    <div class="col-sm-6">
+      <h3 class="property-label">{{capitalize (t 'fixedCost')}}</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-6">
+      <p class="property-value">{{digit-format model.userGame.fine}}</p>
+    </div>
+    <div class="col-sm-6">
+      <p class="property-value">{{digit-format model.userGame.fixedCost}}</p>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-sm-6">
+      {{tutorial-list tutorial='player' step='buyerPropertyFine' active=isTutorialActive}}
+    </div>
+    <div class="col-sm-6">
+      {{tutorial-list tutorial='player' step='buyerPropertyFixedCost' active=isTutorialActive}}
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-sm-6">
+      <h3 class="property-label">{{capitalize (t 'retailPrice')}}</h3>
+    </div>
+    <div class="col-sm-6">
+      <h3 class="property-label" />
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-6">
+      <p class="property-value">{{digit-format model.userGame.retailPrice}}</p>
+    </div>
+    <div class="col-sm-6">
+      <p class="property-value" />
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-sm-6">
+      {{tutorial-list tutorial='player' step='buyerPropertyRetailPrice' active=isTutorialActive}}
+    </div>
+    <div class="col-sm-6">
+      
+    </div>
+  </div>
+  
+  {{tutorial-row tutorial='player' step='buyerPropertiesIntroduction' active=isTutorialActive}}
+</div>

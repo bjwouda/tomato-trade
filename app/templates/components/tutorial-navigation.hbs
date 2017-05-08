@@ -1,8 +1,4 @@
 <div class="btn-group btn-group btn-group-xs pull-right">
-  {{#if attrs.recede}}
-    <button class="btn btn-info" {{action (action recede)}}><span class="glyphicon glyphicon-arrow-left" /></button>
-  {{/if}}
-  {{#if attrs.advance}}
-    <button class="btn btn-info" {{action (action advance)}}><span class="glyphicon glyphicon-arrow-right" /></button>
-  {{/if}}
+  <button class="btn btn-info" {{action 'recedeTutorialState' tutorial decrease}}><span class="glyphicon glyphicon-arrow-left" /></button>
+  <button class="btn btn-info" {{action 'advanceTutorialState' tutorial increase}}><span class="glyphicon glyphicon-arrow-right" /></button>
 </div>

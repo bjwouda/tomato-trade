@@ -1,0 +1,20 @@
+{
+  "player": [
+    "introduction",
+    "makeOffer",
+    "currentTransaction",
+    "last5Transactions",
+    "previouslyAcceptedOffers",
+    "buyerIntroduction",
+    "buyerPropertiesIntroduction",
+    "buyerPropertyFine",
+    "buyerPropertyFixedCost",
+    "buyerPropertyRetailPrice",
+    "sellerIntroduction",
+    "sellerPropertiesIntroduction",
+    "sellerPropertyGoal",
+    "sellerPropertyInventory",
+    "sellerPropertyRemaining",
+    "sellerPropertyAveragePrice"
+  ]
+}

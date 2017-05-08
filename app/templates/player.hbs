@@ -2,14 +2,18 @@
   {{#if (or game.gameIsAboutToStart game.gameIsRunning)}}
   
     {{#if model.isSeller}}
-      {{seller-header game=game model=model}}
+      {{seller-header game=game model=model isTutorialActive=isTutorialActive}}
     {{else}}
-      {{buyer-header game=game model=model}}
+      {{buyer-header game=game model=model isTutorialActive=isTutorialActive}}
     {{/if}}
     
-    {{#tutorial-row game=game currentState=tutorialState activeState=0 advance=(action "advanceTutorialState")}}
-      Information about the game goes here.
-    {{/tutorial-row}}
+    {{tutorial-row tutorial='player' step='introduction' active=isTutorialActive}}
+    
+    {{#if model.isSeller}}
+      {{tutorial-row tutorial='player' step='sellerIntroduction' active=isTutorialActive}}
+    {{else}}
+      {{tutorial-row tutorial='player' step='buyerIntroduction' active=isTutorialActive}}
+    {{/if}}
     
     <div class="row">
         
@@ -144,9 +148,7 @@
                     </div>
                   </li>
                   
-                  {{#tutorial-list-item game=game currentState=tutorialState activeState=1 advance=(action "advanceTutorialState") recede=(action "recedeTutorialState")}}
-                    Information about offers goes here.
-                  {{/tutorial-list-item}}
+                  {{tutorial-list-item tutorial='player' step='makeOffer' active=isTutorialActive}}
                    
               </ul>
 
@@ -163,9 +165,7 @@
                     remainingTomatoes=model.remainingTomatoes
                     }}
                   
-                  {{#tutorial-list-item game=game currentState=tutorialState activeState=2 recede=(action "recedeTutorialState") advance=(action "advanceTutorialState")}}
-                    Information about offers goes here.
-                  {{/tutorial-list-item}}
+                  {{tutorial-list-item tutorial='player' step='currentTransaction' active=isTutorialActive}}
                   
               </ul>
               
@@ -180,9 +180,7 @@
                       <li class="list-group-item"><i>{{t "na"}}</i></li>
                   {{/each}}
                   
-                  {{#tutorial-list-item game=game currentState=tutorialState activeState=3 recede=(action "recedeTutorialState") advance=(action "advanceTutorialState")}}
-                    Information about offers goes here.
-                  {{/tutorial-list-item}}
+                  {{tutorial-list-item tutorial='player' step='last5Transactions' active=isTutorialActive}}
 
               </ul>
 
@@ -196,9 +194,11 @@
                     <li class="list-group-item"><i>{{t "na"}}</i></li>
                   {{/each}}
                   
-                  {{#tutorial-list-item game=game currentState=tutorialState activeState=4 recede=(action "recedeTutorialState")}}
-                    Information about offers goes here.
-                  {{/tutorial-list-item}}
+                  {{#if model.isSeller}}
+                    {{tutorial-list-item tutorial='player' step='previouslyAcceptedOffers' active=isTutorialActive}}
+                  {{else}}
+                    {{tutorial-list-item tutorial='player' step='previouslyAcceptedOffers' active=isTutorialActive}}
+                  {{/if}}
                   
               </ul>
 

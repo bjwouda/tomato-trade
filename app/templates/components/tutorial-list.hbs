@@ -1,0 +1,11 @@
+{{#if (and active (eq-num (tutorial-state tutorial step) state))}}
+  <ul class="list-group">
+    <li class="list-group-item list-group-item-info">
+      
+      {{tutorial-navigation tutorial=tutorial decrease=decrease increase=increase}}
+      
+      {{t (concat 'tutorial' '.' tutorial '.' step)}}
+      
+    </li>
+  </ul>
+{{/if}}

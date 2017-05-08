@@ -1,28 +1,68 @@
-<div class="jumbotron" style="min-height: 200px">
+<div class="jumbotron jumbotron-header">
+
   <a href="#" class="visible-xs" data-toggle="offcanvas"><i class="fa fa-lg fa-reorder"></i></a>
-  <div class="title-container">
-    {{yield}}
-  </div>
+
   <div class="row">
-    {{#if game.gameIsRunning}}
-      <h4 class="text-center game-title">{{liquid-bind (t "weekDescription"         
-        currentWeek=game.currentGameSettings.currentWeek 
-        tradeType=(t game.currentGameSettings.tradeType)
-        tradeWeek=game.currentGameSettings.tradingFor
-      )}}</h4>
-      <p>
+    <div class="col-sm-12">
+    
+      <div class="title-container">
+        {{yield}}
+      </div>
+      
+    </div>
+  </div>
+  
+  {{#if game.gameIsAboutToStart}}
+    <div class="row">
+      <div class="col-sm-12">
+      
+        <h4 class="text-center">{{t "GameIsAboutToStart"}}</h4>
+        
+      </div>
+    </div>
+  {{else if game.gameIsRunning}}
+    <div class="row">
+      <div class="col-sm-12">
+      
+        <h4 class="text-center">
+          {{liquid-bind (t "currentWeekDescription"
+            currentWeek=game.currentGameSettings.currentWeek
+          )}}
+        </h4>
+        
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+
+      <h4 class="text-center">
+        {{liquid-bind (t "tradeWeekDescription"
+          tradeType=(t game.currentGameSettings.tradeType)
+          tradeWeek=game.currentGameSettings.tradingFor
+        )}}
+      </h4>
+
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+      
         {{#if game.isPaused}}
-          <p>{{t "GameIsPaused"}}</p>
+          <h3 class="text-center">{{t "GameIsPaused"}}</h3>
         {{else}}
           {{tom-clock timeStartTs=game.timeStartTs timeEndTs=game.timeEndTs}}
         {{/if}}
-      </p>
-    {{else}}
-      {{#if game.gameIsAboutToStart}}
-        <h4 class="text-center game-title">{{t "GameIsAboutToStart"}}</h4>
-      {{else}}
-        <h4 class="text-center game-title">{{t "GameHasEnded"}}</h4>
-      {{/if}}
-    {{/if}}
-  </div>
+        
+      </div>
+    </div>
+  {{else}}
+    <div class="row">
+      <div class="col-sm-12">
+      
+        <h4 class="text-center">{{t "GameHasEnded"}}</h4>
+        
+      </div>
+    </div>
+  {{/if}}
+  
 </div>

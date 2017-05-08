@@ -9,8 +9,6 @@ let lastRound = 1;
 export default Ember.Controller.extend(OfferActions, LangActions, {
   game: Ember.computed.alias("model.userGame.content"),
   _extOfferTomato: 0,
-  
-  tutorialState: 0,
 
   clearInputsOnNewRound: Ember.observer("game.roundCnt", function() {
     let roundCnt = this.get('game.roundCnt');
@@ -26,13 +24,5 @@ export default Ember.Controller.extend(OfferActions, LangActions, {
     });
   }),
   
-  actions: {
-    recedeTutorialState() {
-      this.set("tutorialState", this.get('tutorialState') - 1);
-    },
-    
-    advanceTutorialState() {
-      this.set("tutorialState", this.get('tutorialState') + 1);
-    }
-  }
+  isTutorialActive: Ember.computed.alias("game.gameIsAboutToStart")
 });
