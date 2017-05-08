@@ -1,4 +1,8 @@
 <div class="btn-group btn-group btn-group-xs pull-right">
-  <button class="btn btn-info" {{action 'recedeTutorialState' tutorial decrease}}><span class="glyphicon glyphicon-arrow-left" /></button>
-  <button class="btn btn-info" {{action 'advanceTutorialState' tutorial increase}}><span class="glyphicon glyphicon-arrow-right" /></button>
+  {{#if (not-eq decrease 0)}}
+    <button class="btn btn-info" {{action 'recedeTutorialState' tutorial decrease}}><span class="glyphicon glyphicon-arrow-left" /></button>
+  {{/if}}
+  {{#if (not-eq increase 0)}}
+    <button class="btn btn-info" {{action 'advanceTutorialState' tutorial increase}}><span class="glyphicon glyphicon-arrow-right" /></button>
+  {{/if}}
 </div>
