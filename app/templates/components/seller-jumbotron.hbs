@@ -36,7 +36,13 @@
   </div>
   <div class="row">
     <div class="col-sm-6">
-      <p class="property-value">{{digit-group-format model.remainingTomatoes}}</p>
+      {{#tutorial-inside-range tutorial='player' start='sellerPropertyRemaining' end='sellerPropertyAveragePrice' active=isTutorialActive}}
+        <p class="property-value">TODO</p>
+      {{/tutorial-inside-range}}
+      
+      {{#tutorial-outside-range tutorial='player' start='sellerPropertyRemaining' end='sellerPropertyAveragePrice' active=isTutorialActive}}
+        <p class="property-value">{{digit-group-format model.remainingTomatoes}}</p>
+      {{/tutorial-outside-range}}
     </div>
     <div class="col-sm-6">
       <p class="property-value">{{digit-format model.avgTomatoPrice}}</p>
