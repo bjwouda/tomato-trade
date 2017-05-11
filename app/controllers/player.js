@@ -24,5 +24,31 @@ export default Ember.Controller.extend(OfferActions, LangActions, {
     });
   }),
   
-  isTutorialActive: Ember.computed.alias("game.gameIsAboutToStart")
+  isTutorialActive: Ember.computed.alias("game.gameIsAboutToStart"),
+  
+  chartData: Ember.computed("game", function() {
+    return createChartData(["Round 1", "Round 2", "Round 3", "Round 4", "Round 5", "Round 6", "Round 7", "Round 8", "Round 9"], "Points", [10, 11, 8, 7, 13, 14, 6, 3, 8]);
+  })
 });
+
+function createChartData(labels, label, data) {
+  return {
+    labels: labels,
+    datasets: [
+      {
+        label: label,
+        fill: false,
+        lineTension: 0,
+        backgroundColor: "hsl(9,100%,64%)",
+        borderColor: "hsl(9,100%,64%)",
+        pointBorderColor: "hsl(9,100%,44%)",
+        pointBackgroundColor: "hsl(9,100%,64%)",
+        borderWidth: 2,
+        pointRadius: 6,
+        pointHoverRadius: 8,
+        pointHitRadius: 16,
+        data: data
+      }
+    ]
+  };
+}
