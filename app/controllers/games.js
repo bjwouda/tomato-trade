@@ -148,6 +148,7 @@ export default Ember.Controller.extend(OfferActions, LangActions, LogFunctions, 
                     cssStatus: "info",
                     offer: "Minutes on this round " + minutesPerRound, //We could also include tomato goal for each user
                     round: "Round " + (game.get("roundCnt") + 1),
+                    type: "Round",
                     historyGame: game
                 });
 
@@ -160,6 +161,7 @@ export default Ember.Controller.extend(OfferActions, LangActions, LogFunctions, 
                         cssStatus: "info",
                         offer: u.get("logPlayerStatus"),
                         round: "Round " + game.get("roundCnt"),
+                        type: "Statistic",
                         historyGame: game
                     });
 
@@ -177,6 +179,7 @@ export default Ember.Controller.extend(OfferActions, LangActions, LogFunctions, 
                             cssStatus: "info",
                             offer: `Final KPI (average) ${meanKpi}`,
                             round: "Round " + game.get("roundCnt"),
+                            type: "KPI",
                             historyGame: game
                         });
 
@@ -196,6 +199,7 @@ export default Ember.Controller.extend(OfferActions, LangActions, LogFunctions, 
                     cssStatus: "info",
                     offer: "Minutes on this round " + minutesPerRound, //We could also include tomato goal for each user
                     round: "Round " + game.get("roundCnt"),
+                    type: "Round",
                     historyGame: game
                 });
             }
@@ -301,6 +305,7 @@ export default Ember.Controller.extend(OfferActions, LangActions, LogFunctions, 
                         cssStatus: "info",
                         offer: self.get("game.gameConfigurationSafe"), //We could also include tomato goal for each user
                         round: "---",
+                        type: "Configuration",
                         historyGame: self.get("game")
                     });
                     newHistoryObj.save()

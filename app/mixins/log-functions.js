@@ -43,6 +43,7 @@ export default Ember.Mixin.create({
 	        idxOfOfferInGame : idxOfOfferInGame,
 	        priceOffer 	 : price,
 	        round        : "Round " + game.get("roundCnt"),
+          type         : "Offer",
 	        historyGame  : game
 	      });
 

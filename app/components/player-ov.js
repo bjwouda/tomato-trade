@@ -30,7 +30,8 @@ export default Ember.Component.extend(OfferActions, {
         state        : "",
         cssStatus    : "info",
         offer        : "by " + prc + "%",
-        round        : "Round " + game.get("roundCnt")
+        round        : "Round " + game.get("roundCnt"),
+        type         : "Prognosis"
       });
 
       game.get('historyLogs').addObject(newHistoryObj);

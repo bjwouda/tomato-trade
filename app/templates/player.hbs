@@ -216,69 +216,7 @@
     
   {{else}}
   
-    <div class="row">
-      <div class="col-sm-6">
-        <div class="jumbotron">
-          <div class="title-container">Cooperative 1</div>
-          <div class="row">
-            <div class="col-sm-4">
-              <p>KPI 1: 10 points</p>
-            </div>
-            <div class="col-sm-4">
-              <p class="text-center">KPI 2: 10 points</p>
-            </div>
-            <div class="col-sm-4">
-              <p>KPI 3: 10 points</p>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-sm-4">
-              <p>KPI 4: 10 points</p>
-            </div>
-            <div class="col-sm-4">
-              <p>KPI 5: 10 points</p>
-            </div>
-            <div class="col-sm-4">
-              <p>KPI 6: 10 points</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-6">
-        <div class="jumbotron">
-          <div class="title-container">Cooperative 2</div>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-6">
-        <div class="jumbotron">
-          <div class="title-container">Trader 1</div>
-            {{ember-chart type='line' data=chartData}}
-        </div>
-      </div>
-      <div class="col-sm-6">
-        <div class="jumbotron">
-          <div class="title-container">Trader 2</div>
-        </div>
-      </div>
-    </div>
-    
-    <div class="row">
-      <div class="col-sm-12">
-        <div class="jumbotron">
-          <div class="title-container">Best transactions</div>
-        </div>
-      </div>
-    </div>
-    
-    <div class="row">
-      <div class="col-sm-12">
-        <div class="jumbotron">
-          <div class="title-container">All transactions</div>
-        </div>
-      </div>
-    </div>
+    {{player-results game=game}}
   
   {{/if}}
   
