@@ -92,5 +92,15 @@ li.list-group-item.declined { background-color: rgba(255, 0, 0, 0.3); }
 }
 
 .jumbotron .table > thead > tr > th {
-  border-bottom: 1px solid #ddd;
+  border-top-width: 0px;
+  border-bottom-width: 0px;
+}
+
+.jumbotron .models-table-wrapper {
+  margin-bottom: 20px;
+}
+
+/* Makes the table footer look less uneven. See also "transactionsTableClasses" in "player-results.js". */
+.table-summary {
+  margin-top: 8px;
 }

@@ -89,28 +89,7 @@
       <div class="title-container">Best transactions</div>
       <div class="row">
         <div class="col-sm-12">
-          <table class="table table-responsive">
-            <thead>
-              <tr>
-                <th>Round</th>
-                <th>Sender</th>
-                <th>Receiver</th>
-                <th>Amount</th>
-                <th>Unit price</th>
-              </tr>
-            </thead>
-            <tbody>
-              {{#each (take 3 bestTransactions) as |transaction|}}
-                <tr>
-                  <td>{{transaction.round}}</td>
-                  <td>{{transaction.sender}}</td>
-                  <td>{{transaction.receiver}}</td>
-                  <td>{{transaction.amount}}</td>
-                  <td>{{digit-format transaction.unitPrice}}</td>
-                </tr>
-              {{/each}}
-            </tbody>
-          </table>
+          {{models-table data=(take 3 bestTransactions) columns=bestTransactionsTableColumns customClasses=transactionsTableClasses customMessages=transactionsTableMessages showColumnsDropdown=false useFilteringByColumns=false showTableFooter=false}}
         </div>
       </div>
     </div>
@@ -121,6 +100,11 @@
   <div class="col-sm-12">
     <div class="jumbotron">
       <div class="title-container">All transactions</div>
+      <div class="row">
+        <div class="col-sm-12">
+          {{models-table data=transactions columns=transactionsTableColumns customClasses=transactionsTableClasses customMessages=transactionsTableMessages showColumnsDropdown=false useNumericPagination=true}}
+        </div>
+      </div>
     </div>
   </div>
 </div>

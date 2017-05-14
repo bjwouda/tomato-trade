@@ -1,7 +1,10 @@
 import Ember from 'ember';
 
+import _ from 'lodash/lodash';
+
 export default Ember.Component.extend({
   store: Ember.inject.service(),
+  i18n: Ember.inject.service(),
   
   histories: [],
   
@@ -46,37 +49,95 @@ export default Ember.Component.extend({
     return createChartData("Remaining tomatoes", labels, data);
   }),
   
-  allTransactions: Ember.computed("histories.[]", "histories.@each", function() {
-    let transaction1 = Ember.Object.create({
-      round: 0,
-      sender: "You",
-      receiver: "Not you",
-      amount: 1000,
-      unitPrice: 1
+  transactions: Ember.computed("histories.[]", "histories.@each", function() {
+    return _.range(1, 100).map(function(round) {
+      return Ember.Object.create({
+        round: round,
+        sender: "You",
+        receiver: "Not you",
+        amount: 1000,
+        unitPrice: 1
+      });
 	});
-	
-	let transaction2 = Ember.Object.create({
-      round: 1,
-      sender: "You",
-      receiver: "Not you",
-      amount: 1000,
-      unitPrice: 1
-	});
-	
-	let transaction3 = Ember.Object.create({
-      round: 2,
-      sender: "You",
-      receiver: "Not you",
-      amount: 1000,
-      unitPrice: 1
-	});
-    
-    return [transaction1, transaction2, transaction3];
   }),
   
-  bestTransactions: Ember.computed.sort("allTransactions", function(transaction1, transaction2) {
+  transactionsTableColumns: Ember.computed("i18n.locale", function() {
+    return [
+      {
+        "propertyName": "round",
+        "title": localize(this, "i18n", "results.round")
+      },
+      {
+        "propertyName": "sender",
+        "title": localize(this, "i18n", "results.sender")
+      },
+      {
+        "propertyName": "receiver",
+        "title": localize(this, "i18n", "results.receiver")
+      },
+      {
+        "propertyName": "amount",
+        "title": localize(this, "i18n", "results.amount")
+      },
+      {
+        "propertyName": "unitPrice",
+        "title": localize(this, "i18n", "results.unitPrice"),
+        "template": "custom/euro-currency-column"
+      }
+    ];
+  }),
+  
+  bestTransactions: Ember.computed.sort("transactions", function(transaction1, transaction2) {
     return transaction1.get('round') - transaction2.get('round');
-  })
+  }),
+  
+  bestTransactionsTableColumns: Ember.computed("i18n.locale", function() {
+    return [
+      {
+        "propertyName": "round",
+        "title": localize(this, "i18n", "results.round"),
+        "disableSorting": true,
+        "disableFiltering": true
+      },
+      {
+        "propertyName": "sender",
+        "title": localize(this, "i18n", "results.sender"),
+        "disableSorting": true,
+        "disableFiltering": true
+      },
+      {
+        "propertyName": "receiver",
+        "title": localize(this, "i18n", "results.receiver"),
+        "disableSorting": true,
+        "disableFiltering": true
+      },
+      {
+        "propertyName": "amount",
+        "title": localize(this, "i18n", "results.amount"),
+        "disableSorting": true,
+        "disableFiltering": true
+      },
+      {
+        "propertyName": "unitPrice",
+        "title": localize(this, "i18n", "results.unitPrice"),
+        "disableSorting": true,
+        "disableFiltering": true,
+        "template": "custom/euro-currency-column"
+      }
+    ];
+  }),
+  
+  transactionsTableClasses: {
+    "table": "table table-responsive",
+    // Makes the table footer look less uneven. See also ".table-summary" in "app.css".
+    "footerSummaryNumericPagination": "col-md-7 col-sm-7col-xs-7",
+    "paginationWrapperNumeric": "col-md-3 col-sm-3 col-xs-3"
+  },
+  
+  transactionsTableMessages: {
+    "tableSummary": "%@ - %@ / %@",
+    "noDataToShow": ""
+  }
 });
 
 function createChartData(label, labels, data) {
@@ -99,4 +160,9 @@ function createChartData(label, labels, data) {
       }
     ]
   };
+}
+
+function localize(self, i18n, key) {
+  // i18n allows HTML, but ember-models-table doesn't. So don't use HTML.
+  return "" + self.get(i18n).t(key);
 }
