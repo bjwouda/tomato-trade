@@ -44,6 +44,38 @@ export default Ember.Component.extend({
     });
     
     return createChartData("Remaining tomatoes", labels, data);
+  }),
+  
+  allTransactions: Ember.computed("histories.[]", "histories.@each", function() {
+    let transaction1 = Ember.Object.create({
+      round: 0,
+      sender: "You",
+      receiver: "Not you",
+      amount: 1000,
+      unitPrice: 1
+	});
+	
+	let transaction2 = Ember.Object.create({
+      round: 1,
+      sender: "You",
+      receiver: "Not you",
+      amount: 1000,
+      unitPrice: 1
+	});
+	
+	let transaction3 = Ember.Object.create({
+      round: 2,
+      sender: "You",
+      receiver: "Not you",
+      amount: 1000,
+      unitPrice: 1
+	});
+    
+    return [transaction1, transaction2, transaction3];
+  }),
+  
+  bestTransactions: Ember.computed.sort("allTransactions", function(transaction1, transaction2) {
+    return transaction1.get('round') - transaction2.get('round');
   })
 });
 

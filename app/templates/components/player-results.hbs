@@ -4,24 +4,46 @@
       <div class="title-container">Cooperative 1</div>
       <div class="row">
         <div class="col-sm-4">
-          <p>KPI 1: 10 points</p>
+          <h3 class="property-label">KPI 1</h3>
         </div>
         <div class="col-sm-4">
-          <p class="text-center">KPI 2: 10 points</p>
+          <h3 class="property-label">KPI 2</h3>
         </div>
         <div class="col-sm-4">
-          <p>KPI 3: 10 points</p>
+          <h3 class="property-label">KPI 3</h3>
         </div>
       </div>
       <div class="row">
         <div class="col-sm-4">
-          <p>KPI 4: 10 points</p>
+          <p class="property-value">10 points</p>
         </div>
         <div class="col-sm-4">
-          <p>KPI 5: 10 points</p>
+          <p class="property-value">10 points</p>
         </div>
         <div class="col-sm-4">
-          <p>KPI 6: 10 points</p>
+          <p class="property-value">10 points</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-4">
+          <h3 class="property-label">KPI 4</h3>
+        </div>
+        <div class="col-sm-4">
+          <h3 class="property-label">KPI 5</h3>
+        </div>
+        <div class="col-sm-4">
+          <h3 class="property-label">KPI 6</h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-4">
+          <p class="property-value">10 points</p>
+        </div>
+        <div class="col-sm-4">
+          <p class="property-value">10 points</p>
+        </div>
+        <div class="col-sm-4">
+          <p class="property-value">10 points</p>
         </div>
       </div>
     </div>
@@ -36,7 +58,22 @@
   <div class="col-sm-6">
     <div class="jumbotron">
       <div class="title-container">Trader 1</div>
-        {{ember-chart type='line' data=trader1RemainingTomatoes}}
+      <div class="row">
+        <div class="col-sm-6">
+          {{ember-chart type='line' data=trader1RemainingTomatoes}}
+        </div>
+        <div class="col-sm-6">
+          {{ember-chart type='line' data=trader1RemainingTomatoes}}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          {{ember-chart type='line' data=trader1RemainingTomatoes}}
+        </div>
+        <div class="col-sm-6">
+          {{ember-chart type='line' data=trader1RemainingTomatoes}}
+        </div>
+      </div>
     </div>
   </div>
   <div class="col-sm-6">
@@ -50,6 +87,32 @@
   <div class="col-sm-12">
     <div class="jumbotron">
       <div class="title-container">Best transactions</div>
+      <div class="row">
+        <div class="col-sm-12">
+          <table class="table table-responsive">
+            <thead>
+              <tr>
+                <th>Round</th>
+                <th>Sender</th>
+                <th>Receiver</th>
+                <th>Amount</th>
+                <th>Unit price</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each (take 3 bestTransactions) as |transaction|}}
+                <tr>
+                  <td>{{transaction.round}}</td>
+                  <td>{{transaction.sender}}</td>
+                  <td>{{transaction.receiver}}</td>
+                  <td>{{transaction.amount}}</td>
+                  <td>{{digit-format transaction.unitPrice}}</td>
+                </tr>
+              {{/each}}
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   </div>
 </div>

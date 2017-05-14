@@ -71,10 +71,6 @@ li.list-group-item.accepted { background-color: rgba(0, 255, 0, 0.3); }
 li.list-group-item.recalled { background-color: rgba(120, 120, 120, 0.3); }
 li.list-group-item.declined { background-color: rgba(255, 0, 0, 0.3); }
 
-th {
-  height: 70px;
-}
-
 .jumbotron-header {
   min-height: 220px;
 }
@@ -88,4 +84,13 @@ th {
 
 .property-value {
   text-align: center;
+}
+
+.jumbotron .table > tbody {
+  background-color: white;
+  border: 1px solid #ddd;
+}
+
+.jumbotron .table > thead > tr > th {
+  border-bottom: 1px solid #ddd;
 }
