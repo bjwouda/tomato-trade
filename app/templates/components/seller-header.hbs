@@ -2,7 +2,7 @@
 
   <div class="col-sm-4">
     {{#timer-jumbotron game=game}}
-        <div class="line-1">{{capitalize (t model.roleDescription)}} {{model.playerPosition}} {{model.name}}</div>
+      {{player-line player=model}}
     {{/timer-jumbotron}}
   </div>
 
