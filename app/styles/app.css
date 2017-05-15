@@ -100,7 +100,7 @@ li.list-group-item.declined { background-color: rgba(255, 0, 0, 0.3); }
   margin-bottom: 20px;
 }
 
-/* Makes the table footer look less uneven. See also "transactionsTableClasses" in "player-results.js". */
+/* Makes the table footer look less uneven. See also "classes" in "mixins/table-properties.js". */
 .table-summary {
   margin-top: 8px;
 }

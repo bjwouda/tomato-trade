@@ -1,110 +1,32 @@
 <div class="row">
   <div class="col-sm-6">
-    <div class="jumbotron">
-      <div class="title-container">Cooperative 1</div>
+    {{#each game.sellers as |seller|}}
       <div class="row">
-        <div class="col-sm-4">
-          <h3 class="property-label">KPI 1</h3>
-        </div>
-        <div class="col-sm-4">
-          <h3 class="property-label">KPI 2</h3>
-        </div>
-        <div class="col-sm-4">
-          <h3 class="property-label">KPI 3</h3>
+        <div class="col-sm-12">
+          {{player-results-player player=seller histories=histories}}
         </div>
       </div>
-      <div class="row">
-        <div class="col-sm-4">
-          <p class="property-value">10 points</p>
-        </div>
-        <div class="col-sm-4">
-          <p class="property-value">10 points</p>
-        </div>
-        <div class="col-sm-4">
-          <p class="property-value">10 points</p>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-4">
-          <h3 class="property-label">KPI 4</h3>
-        </div>
-        <div class="col-sm-4">
-          <h3 class="property-label">KPI 5</h3>
-        </div>
-        <div class="col-sm-4">
-          <h3 class="property-label">KPI 6</h3>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-4">
-          <p class="property-value">10 points</p>
-        </div>
-        <div class="col-sm-4">
-          <p class="property-value">10 points</p>
-        </div>
-        <div class="col-sm-4">
-          <p class="property-value">10 points</p>
-        </div>
-      </div>
-    </div>
+    {{/each}}
   </div>
   <div class="col-sm-6">
-    <div class="jumbotron">
-      <div class="title-container">Cooperative 2</div>
-    </div>
-  </div>
-</div>
-<div class="row">
-  <div class="col-sm-6">
-    <div class="jumbotron">
-      <div class="title-container">Trader 1</div>
+    {{#each game.buyers as |buyer|}}
       <div class="row">
-        <div class="col-sm-6">
-          {{ember-chart type='line' data=trader1RemainingTomatoes}}
-        </div>
-        <div class="col-sm-6">
-          {{ember-chart type='line' data=trader1RemainingTomatoes}}
+        <div class="col-sm-12">
+          {{player-results-player player=buyer histories=histories}}
         </div>
       </div>
-      <div class="row">
-        <div class="col-sm-6">
-          {{ember-chart type='line' data=trader1RemainingTomatoes}}
-        </div>
-        <div class="col-sm-6">
-          {{ember-chart type='line' data=trader1RemainingTomatoes}}
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-6">
-    <div class="jumbotron">
-      <div class="title-container">Trader 2</div>
-    </div>
+    {{/each}}
   </div>
 </div>
 
 <div class="row">
   <div class="col-sm-12">
-    <div class="jumbotron">
-      <div class="title-container">Best transactions</div>
-      <div class="row">
-        <div class="col-sm-12">
-          {{models-table data=(take 3 bestTransactions) columns=bestTransactionsTableColumns customClasses=transactionsTableClasses customMessages=transactionsTableMessages showColumnsDropdown=false useFilteringByColumns=false showTableFooter=false}}
-        </div>
-      </div>
-    </div>
+    {{player-results-best-transactions histories=histories}}
   </div>
 </div>
 
 <div class="row">
   <div class="col-sm-12">
-    <div class="jumbotron">
-      <div class="title-container">All transactions</div>
-      <div class="row">
-        <div class="col-sm-12">
-          {{models-table data=transactions columns=transactionsTableColumns customClasses=transactionsTableClasses customMessages=transactionsTableMessages showColumnsDropdown=false useNumericPagination=true}}
-        </div>
-      </div>
-    </div>
+    {{player-results-all-transactions histories=histories}}
   </div>
 </div>

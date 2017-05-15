@@ -1,0 +1,8 @@
+<div class="jumbotron">
+  <div class="title-container">Best transactions</div>
+  <div class="row">
+    <div class="col-sm-12">
+      {{models-table data=(take 3 bestTransactions) columns=columns customClasses=classes customMessages=messages showColumnsDropdown=false useFilteringByColumns=false showTableFooter=false}}
+    </div>
+  </div>
+</div>
