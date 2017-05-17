@@ -104,3 +104,8 @@ li.list-group-item.declined { background-color: rgba(255, 0, 0, 0.3); }
 .table-summary {
   margin-top: 8px;
 }
+
+/* Added to keep the top margin on a page now that the localization settings have been disabled. */
+.container-fluid  {
+  padding-top: 30px;
+}
