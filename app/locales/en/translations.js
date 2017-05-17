@@ -72,8 +72,24 @@ export default {
       "unitPrice": "Unit price"
     }
   },
+  "history": {
+    "title": "History",
+    "needsReload": "Please reload the page, so the indices can be calculated consistently",
+    "import": "Import",
+    "export": "Export",
+    "round": "Round",
+    "calculatedOfferID": "Calculated offer ID",
+    "offerID": "Offer ID",
+    "sender": "Sender",
+    "receiver": "Receiver",
+    "status": "Status",
+    "offer": "Offer",
+    "tomatoes": "Tomatoes",
+    "unitPrice": "Unit price",
+    "time": "Time"
+  },
   "table": {
-    "tableSummary": "Displaying %@ through %@ out of the %@ transactions",
-    "noDataToShow": "No transactions have been performed."
+    "tableSummary": "Displaying %@ through %@ out of the %@ entries",
+    "noDataToShow": "There are no entries available."
   }
 }

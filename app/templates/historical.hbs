@@ -1,77 +1,32 @@
-
-    {{#unless game.isDeleted}}
-
-{{!--       <span class="title-container"><h3>Offers</h3></span>
-
-      {{#each game.sortedOffers as |offer|}}
-
-        <p> [{{offer.state}}] <b>{{offer.senderName}}</b> --&gt; <b>{{offer.receiver.name}}</b> {{moment-format offer.ts "HH:mm:ss"}} T: {{offer.tomatoes}} M: {{offer.price}}</p>
-
-      {{/each}}
-
-      <hr> --}}
-
-
-      <span class="title-container">
-        <h4>Historical Offers
+{{#unless game.isDeleted}}
+  <div class="container-fluid">
+    <div class="jumbotron">
+      
+      <div class="title-container">{{t 'history.title'}}</div>
+      
+      <div class="row">
+        <div class="col-sm-12">
+          
           {{#if needsReload}}
-            <p>Please reload page, so indexes can be calculated consistently</p>
-          {{else}}  
-            <button type="button" class="btn btn-primary btn-xs" {{action 'exportCSV' sortedHistoryLogsById}}>Export CSV</button>
+            <div class="alert alert-warning">{{t 'history.needsReload'}}</div>
+          {{else}}
+            <div class="text-center">
+              <div class="btn-group btn-group-xs">
+                <button type="button" class="btn btn-info" {{action 'importHistory'}}>{{t 'history.import'}}</button>
+                <button type="button" class="btn btn-info" {{action 'exportHistory'}}>{{t 'history.export'}}</button>
+              </div>
+            </div>
           {{/if}}
-
-        </h4>
-      </span>
-      
-      
-      {{#if showFilterTable}}
-          <button class="btn btn-info" {{action (toggle "showFilterTable" this)}}>Hide filters</button>
-          {{models-table
-                data=sortedHistoryLogsById
-                columns=columns
-                showTableFooter=false
-                pageSize=100
-                rowTemplate="custom/colored-rows"
-          }}
-      {{else}}
-        <button class="btn btn-info" {{action (toggle "showFilterTable" this)}}>Show filters</button>
-        <div class="table-responsive">
-          <table class="table table-striped">
-            <thead>
-              <tr>
-                <th>Round</th>
-                <th>OfferIdCalc</th>
-                <th>OfferId</th>
-                <th>Sender</th>
-                <th>Receiver</th>
-                <th>Status</th>
-                <th>Offer</th>
-                <th>Time Stamp</th>
-              </tr>
-            </thead>
-            <tbody>
-
-              {{#each (take 20 sortedHistoryLogsById) as |historicalOffer|}}
-
-                <tr class="{{historicalOffer.cssStatus}}">
-                  <td>{{historicalOffer.round}}</td>
-                  <td>{{historicalOffer.idxOfOfferInGameCalc}}</td>
-                  <td>{{historicalOffer.idxOfOfferInGame}}</td>
-                  <td>{{historicalOffer.userSender}}</td>
-                  <td>{{historicalOffer.userReceiver}}</td>
-                  <td>{{historicalOffer.state}}</td>
-                  <td>{{historicalOffer.offer}}</td>
-                  <td>{{moment-format historicalOffer.ts "HH:mm:ss"}}</td>
-                </tr>
-
-              {{/each}}
-
-            </tbody>
-          </table>
+          
         </div>
-      {{/if}}
-
-      {{/unless}}
-
-
-{{outlet}}
+      </div>
+      
+      <div class="row">
+        <div class="col-sm-12">
+          {{models-table data=sortedHistoryLogsById columns=columns customClasses=classes customMessages=messages showColumnsDropdown=false useNumericPagination=true}}
+        </div>
+      </div>
+      
+    </div>
+  </div>
+{{/unless}}
