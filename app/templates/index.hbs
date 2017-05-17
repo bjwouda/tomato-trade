@@ -1,26 +1,21 @@
-<div class="container">
-  
-  <div class="row">
-    <button class="btn" {{action 'createNewGame'}}>New game</button>
+<div class="container-fluid">
+  <div class="jumbotron">
+    
+    <div class="title-container">{{t 'index.title'}}</div>
+    
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="btn-container">
+          <button class="btn btn-xs btn-info" {{action 'addGame'}}>{{t 'index.add'}}</button>
+        </div>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="col-sm-12">
+        {{models-table data=model columns=columns customClasses=classes customMessages=messages showColumnsDropdown=false filteringIgnoreCase=true useNumericPagination=true remove='removeGame' confirm='confirmRemoveGame' cancel='cancelRemoveGame'}}
+      </div>
+    </div>
+    
   </div>
-
-  <div class="row">
-    <ul class="list-group games">
-      {{#each model as |game|}}
-        <li class="list-group-item">
-          {{#link-to 'games' game}}Game - {{game.gameName}} - {{moment-format game.ts "YYYY/MM/DD HH:mm:ss"}} ({{game.id}}){{/link-to}}
-
-          {{#if game._aboutToDelete}}
-            <button class="btn btn-xs btn-danger" {{action 'removeGame' game}}>Confirm removal</button>
-            <button class="btn btn-xs" {{action (toggle "_aboutToDelete" game)}}>Cancel</button>
-          {{else}}
-            <button class="btn btn-xs btn-danger" {{action (toggle "_aboutToDelete" game)}}>Remove Game</button>
-          {{/if}}
-           
-
-        </li>
-      {{/each}}
-    </ul>
-  </div>
-
 </div>

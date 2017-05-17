@@ -109,3 +109,9 @@ li.list-group-item.declined { background-color: rgba(255, 0, 0, 0.3); }
 .container-fluid  {
   padding-top: 30px;
 }
+
+/* For buttons between a title and a table. */
+.btn-container {
+  padding: 10px;
+  text-align: center;
+}

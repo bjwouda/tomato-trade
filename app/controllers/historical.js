@@ -58,8 +58,9 @@ export default Ember.Controller.extend(TableUtilities, {
         "template": "custom/euro-currency-column"
       },
       {
-        "propertyName": "tsDesc",
-        "title": this.localize("history.time")
+        "propertyName": "ts",
+        "title": this.localize("history.time"),
+        "template": "custom/moment-time-column"
       }
     ];
   }),

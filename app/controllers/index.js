@@ -1,25 +1,58 @@
 import Ember from 'ember';
 
-export default Ember.Controller.extend({
+import TableUtilities from "../mixins/table-utilities";
 
-  actions: {
-    createNewGame() {
-      var gameName;
-      do {
-        gameName = prompt("How do you want to call the new game?");
-
-        if (gameName === null) { return; }
+export default Ember.Controller.extend(TableUtilities, {
+  columns: Ember.computed("i18n.locale", function() {
+    return [
+      {
+        "propertyName": "gameName",
+        "title": this.localize("index.name"),
+        "template": "custom/game-link-cell"
+      },
+      {
+        "propertyName": "ts",
+        "title": this.localize("index.date"),
+        "template": "custom/moment-date-time-column"
+      },
+      {
+        "propertyName": "id",
+        "title": this.localize("index.id"),
+        "template": "custom/game-link-cell"
+      },
+      {
+        "title": this.localize("index.remove"),
+        "template": "custom/game-remove-cell"
       }
-      while (! gameName);
-
-      var newGame = this.store.createRecord('game', { gameName });
-      newGame.save();
+    ];
+  }),
+  
+  actions: {
+    addGame() {
+      let gameName;
+      
+      do {
+        gameName = prompt(this.localize("index.prompt"));
+        
+        if(gameName === null) {
+          return;
+        }
+      }
+      while(!gameName);
+      
+      this.store.createRecord('game', { gameName }).save();
     },
-
+    
     removeGame(game) {
-    	
+      game.set("_aboutToDelete", true);
+    },
+    
+    confirmRemoveGame(game) {
       game.destroyRecord();
     },
+    
+    cancelRemoveGame(game) {
+      game.set("_aboutToDelete", false);
+    }
   }
-
 });

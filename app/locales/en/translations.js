@@ -60,6 +60,17 @@ export default {
       "introduction": "Introduction goes here."
     }
   },
+  "index": {
+    "title": "Tomato Trade",
+    "add": "Create a new game",
+    "prompt": "Please enter a name for the game:",
+    "name": "Name",
+    "date": "Date",
+    "id": "ID",
+    "remove": "Remove",
+    "confirm": "Confirm",
+    "cancel": "Cancel"
+  },
   "results": {
     "player": {
       "remainingTomatoes": "Remaining tomatoes"

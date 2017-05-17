@@ -10,7 +10,7 @@
           {{#if needsReload}}
             <div class="alert alert-warning">{{t 'history.needsReload'}}</div>
           {{else}}
-            <div class="text-center">
+            <div class="btn-container">
               <div class="btn-group btn-group-xs">
                 <button type="button" class="btn btn-info" {{action 'importHistory'}}>{{t 'history.import'}}</button>
                 <button type="button" class="btn btn-info" {{action 'exportHistory'}}>{{t 'history.export'}}</button>
@@ -23,7 +23,7 @@
       
       <div class="row">
         <div class="col-sm-12">
-          {{models-table data=sortedHistoryLogsById columns=columns customClasses=classes customMessages=messages showColumnsDropdown=false useNumericPagination=true}}
+          {{models-table data=sortedHistoryLogsById columns=columns customClasses=classes customMessages=messages showColumnsDropdown=false filteringIgnoreCase=true useNumericPagination=true}}
         </div>
       </div>
       
