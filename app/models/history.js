@@ -18,8 +18,6 @@ export default Model.extend({
     
     ts                      : attr('number', { defaultValue(){ return moment().unix() * 1000; } }), //timeStamp
     
-    type                    : attr('string'), // An indicator of what is actually in there.
-    
     historyGame  : belongsTo('game', {async: true}),
 
     idxOfOfferInGameCalc: Ember.computed("offerId", "historyGame", "historyGame.offers.[]", function() {
