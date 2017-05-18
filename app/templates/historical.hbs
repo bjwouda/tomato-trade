@@ -12,7 +12,7 @@
           {{else}}
             <div class="btn-container">
               <div class="btn-group btn-group-xs">
-                <button type="button" class="btn btn-info" {{action 'importHistory'}}>{{t 'history.import'}}</button>
+                {{#load-xlsx-button classNames="btn btn-info" action='importHistory'}}{{t 'history.import'}}{{/load-xlsx-button}}
                 <button type="button" class="btn btn-info" {{action 'exportHistory'}}>{{t 'history.export'}}</button>
               </div>
             </div>

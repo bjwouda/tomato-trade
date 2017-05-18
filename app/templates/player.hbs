@@ -1,5 +1,5 @@
 <div class="container-fluid">
-  {{#if (or game.gameIsAboutToStart game.gameIsRunning)}}
+  {{#if (and (or game.gameIsAboutToStart game.gameIsRunning) (not game.isImported))}}
   
     {{#if model.isSeller}}
       {{seller-header game=game model=model isTutorialActive=isTutorialActive}}

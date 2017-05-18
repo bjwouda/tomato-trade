@@ -66,8 +66,39 @@ export default Ember.Controller.extend(TableUtilities, {
   }),
   
   actions: {
-    importHistory() {
+    importHistory(rows) {
+      let store = this.get("store");
+      let model = this.get("model");
+      let game = this.get("game");
       
+      // TODO Confirmation.
+      model.forEach(function(history) {
+        history.destroyRecord();
+      });
+      
+      // TODO Will bitch about indices, needs a fix.
+      this.set("model", []);
+      
+      // Missing: offerID, cssStatus, idxOfOfferInGame... session storage will also be unavailable.
+      // Not used: idxOfOffer (which represents the idxOfOfferInGameCalc of the original game).
+      rows.forEach(function(row) {
+        let history = store.createRecord("history", {
+          userSender: row.userSender,
+          userReceiver: row.userReceiver,
+          state: row.state,
+          offer: row.offer,
+          round: row.round,
+          offerTomotoes: row.offerTomatoes,
+          offerPrice: row.offerPrice,
+          ts: moment(row.tsDesc, "HH:mm:ss").unix(),
+          historyGame: game
+        });
+        
+        history.save();
+      });
+      
+      game.set("isImported", true);
+      game.save();
     },
     
     exportHistory() {
@@ -85,7 +116,6 @@ export default Ember.Controller.extend(TableUtilities, {
         data.push(resolvedTitles);
       });
       
-      // this.get('csv').export(data, 'test.csv');
       this.get('excel').export(data, 'sheet1', 'History.xlsx');
     },
   }
