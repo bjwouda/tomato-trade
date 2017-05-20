@@ -67,8 +67,6 @@ export default Ember.Controller.extend(TableUtilities, {
   
   actions: {
     importHistory(rows) {
-      console.log(rows);
-      
       if(confirm(this.get("i18n").t("history.confirm"))) {
         let store = this.get("store");
         let model = this.get("model");
