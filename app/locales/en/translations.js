@@ -97,7 +97,8 @@ export default {
     "offer": "Offer",
     "tomatoes": "Tomatoes",
     "unitPrice": "Unit price",
-    "time": "Time"
+    "time": "Time",
+    "confirm": "This will replace the existing history. Are you sure you wish to continue?"
   },
   "table": {
     "tableSummary": "Displaying %@ through %@ out of the %@ entries",
