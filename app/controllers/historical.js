@@ -100,7 +100,7 @@ export default Ember.Controller.extend(TableUtilities, {
               round: row.round,
               offerTomotoes: row.offerTomatoes,
               offerPrice: row.offerPrice,
-              ts: moment(row.tsDesc, "HH:mm:ss").unix(),
+              ts: +moment(row.tsDesc, "HH:mm:ss"),
               historyGame: game
             });
             

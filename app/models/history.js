@@ -11,14 +11,14 @@ export default Model.extend({
     state                   : attr('string'), //Open, Accepted, Declined could also be represented by color (Yellow: offer sent, Red: offer rejected, etc)
     cssStatus               : attr('string'), //active, success, danger 
     offer                   : attr('string'), // number of tomatos, price
-    tomatoesOffer			: attr('string'),
-    priceOffer				: attr('string'),
+    tomatoesOffer           : attr('string'),
+    priceOffer              : attr('string'),
     round                   : attr('string'),
     idxOfOfferInGame        : attr('number'),
     
-    ts                      : attr('number', { defaultValue(){ return moment().unix() * 1000; } }), //timeStamp
+    ts                      : attr('number', { defaultValue(){ return +moment(); } }), //timeStamp
     
-    historyGame  : belongsTo('game', {async: true}),
+    historyGame             : belongsTo('game', {async: true}),
 
     idxOfOfferInGameCalc: Ember.computed("offerId", "historyGame", "historyGame.offers.[]", function() {
         // return "0";
@@ -34,7 +34,7 @@ export default Model.extend({
         
     }),
 
-    tsDesc     : Ember.computed('ts', function() {
+    tsDesc: Ember.computed('ts', function() {
         return moment(this.get("ts")).format("HH:mm:ss");
     }),
 

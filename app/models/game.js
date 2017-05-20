@@ -24,7 +24,7 @@ import _ from 'lodash/lodash';
 
 export default Model.extend(GameConfigParser, {
   i18n: Ember.inject.service(),
-  ts:                attr('number', { defaultValue(){ return moment().unix(); } }), //timeStamp
+  ts:                attr('number', { defaultValue(){ return +moment(); } }), //timeStamp
   history:           attr('string'),
   gameConfiguration: attr('string', { defaultValue: rawConfigString }), // CHECK THE MIXIN, quite some stuff attached there...
   gameName:          attr('string'),

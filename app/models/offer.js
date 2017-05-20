@@ -14,7 +14,7 @@ export default Model.extend({
   isAccepted  : attr('boolean', {defaultValue: false}),// before offer is 'accepted' it needs to be confirmed by both sides
 
   // notes      : attr('string'),
-  ts         : attr('number', { defaultValue(){ return moment().unix(); } }), //timeStamp
+  ts         : attr('number', { defaultValue(){ return +moment(); } }), //timeStamp
 
   idxOfOfferInGame : attr('number'),
   roundNumber : attr('number'),
@@ -32,7 +32,7 @@ export default Model.extend({
   }),
 
   senderName : Ember.computed('sender.name', 'isExternal', function() {
-  	return (this.get('sender.id') === undefined) ? "External" : this.get('sender.name');
+    return (this.get('sender.id') === undefined) ? "External" : this.get('sender.name');
   }),
 
   receiverName : Ember.computed('sender.name', 'isExternal', function() {
