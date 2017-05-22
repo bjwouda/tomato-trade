@@ -4,7 +4,7 @@
   </div>
   <div class="row">
     <div class="col-sm-4">
-      <h3 class="property-label">KPI 1</h3>
+      <h3 class="property-label">Revenue</h3>
     </div>
     <div class="col-sm-4">
       <h3 class="property-label">KPI 2</h3>
@@ -15,7 +15,7 @@
   </div>
   <div class="row">
     <div class="col-sm-4">
-      <p class="property-value">10 points</p>
+      <p class="property-value">{{digit-group-format cooperative1Revenue}}</p>
     </div>
     <div class="col-sm-4">
       <p class="property-value">10 points</p>
@@ -47,19 +47,24 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-sm-6">
-      {{ember-chart type='line' data=trader1RemainingTomatoes}}
-    </div>
-    <div class="col-sm-6">
-      {{ember-chart type='line' data=trader1RemainingTomatoes}}
+    <div class="col-sm-12">
+      <h4 class="property-label">Round {{round}}</h4>
     </div>
   </div>
   <div class="row">
-    <div class="col-sm-6">
-      {{ember-chart type='line' data=trader1RemainingTomatoes}}
+    <div class="col-sm-12">
+      {{ember-chart type='line' data=seller1Buyer2Offers options=options}}
     </div>
-    <div class="col-sm-6">
-      {{ember-chart type='line' data=seller1Buyer2Offers}}
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="text-center">
+        <div class="btn-group btn-group-xs">
+          {{#each rounds as |index|}}
+            <button class="btn btn-info" {{action 'setRound' index}}>{{index}}</button>
+          {{/each}}
+        </div>
+      </div>
     </div>
   </div>
 </div>
