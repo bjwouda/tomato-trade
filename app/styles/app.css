@@ -45,11 +45,13 @@
 span.to-tomato {
     color: #D20009;
     /*font-size: 18pt;*/
+    margin-right: 0.2em;
 }
 
 span.to-money {
     color: #8C9566;
     /*font-size: 18pt;*/
+    margin-right: 0.2em;
 }
 
 .note {

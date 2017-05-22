@@ -76,6 +76,14 @@ export default {
       "remainingTomatoes": "Remaining tomatoes"
     },
     "transactions": {
+      "best": {
+        "title": "Best transactions",
+        "buyerTitle": "Best trader transactions",
+        "sellerTitle": "Best cooperative transactions"
+      },
+      "all": {
+        "title": "All transactions"
+      },
       "round": "Round",
       "sender": "Sender",
       "receiver": "Receiver",
