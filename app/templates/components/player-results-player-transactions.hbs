@@ -1,0 +1,16 @@
+<div class="row">
+  <div class="col-sm-12">
+    {{ember-chart type='line' data=data options=options}}
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-12">
+    <div class="text-center">
+      <div class="btn-group btn-group-xs">
+        {{#each rounds as |index|}}
+          <button class="btn btn-info" {{action 'setRound' index}}>{{index}}</button>
+        {{/each}}
+      </div>
+    </div>
+  </div>
+</div>
