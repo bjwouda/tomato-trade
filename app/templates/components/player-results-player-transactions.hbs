@@ -1,14 +1,19 @@
 <div class="row">
   <div class="col-sm-12">
+    <h4 class="property-label">Round {{selectedRound}}</h4>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-12">
     {{ember-chart type='line' data=data options=options}}
   </div>
 </div>
 <div class="row">
   <div class="col-sm-12">
-    <div class="text-center">
+    <div class="btn-container">
       <div class="btn-group btn-group-xs">
-        {{#each rounds as |index|}}
-          <button class="btn btn-info" {{action 'setRound' index}}>{{index}}</button>
+        {{#each rounds as |round|}}
+          <button class="btn btn-info" {{action 'selectRound' round}}>{{round}}</button>
         {{/each}}
       </div>
     </div>

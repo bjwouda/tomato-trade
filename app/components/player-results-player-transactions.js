@@ -5,9 +5,25 @@ import ChartUtilities from "../mixins/chart-utilities";
 import _ from 'lodash/lodash';
 
 export default Ember.Component.extend(ChartUtilities, {
-  data: Ember.computed("histories.[]", "histories.@each", "round", function() {
+  selectedRound: 1,
+  
+  numberOfRounds: Ember.computed("histories.[]", "histories.@each", function() {
+    let offers = this.get("histories").filter(function(history) {
+      return isOfferState(history.get("state"));
+    });
+    
+    return Math.max.apply(null, offers.map(function(offer) {
+      return parseInt(offer.get("round").split(/ /)[1]);
+    }));
+  }),
+  
+  rounds: Ember.computed("numberOfRounds", function() {
+    return _.range(1, 1 + this.get("numberOfRounds"));
+  }),
+  
+  data: Ember.computed("histories.[]", "histories.@each", "selectedRound", function() {
     let histories = this.get("histories");
-    let index = this.get("round");
+    let selectedRound = this.get("selectedRound");
     
     let offers1 = histories.filter(function(history) {
       let sender = history.get("userSender");
@@ -15,9 +31,9 @@ export default Ember.Component.extend(ChartUtilities, {
       let state = history.get("state");
       let round = parseInt(history.get("round").split(/ /)[1]);
       
-      let hasUsers = (sender.startsWith("seller 1") && receiver.startsWith("buyer 1"));
-      let hasState = state === "open" || state === "accepted" || state === "declined" || state === "confirmed" || state === "recalled - open" || state === "recalled - confirmed";
-      let hasRound = round === index;
+      let hasUsers = sender.startsWith("seller 1") && receiver.startsWith("buyer 1");
+      let hasState = isOfferState(state);
+      let hasRound = round === selectedRound;
       
       return hasUsers && hasState && hasRound;
     });
@@ -28,9 +44,9 @@ export default Ember.Component.extend(ChartUtilities, {
       let state = history.get("state");
       let round = parseInt(history.get("round").split(/ /)[1]);
       
-      let hasUsers = (receiver.startsWith("seller 1") && sender.startsWith("buyer 1"));
-      let hasState = state === "open" || state === "accepted" || state === "declined" || state === "confirmed" || state === "recalled - open" || state === "recalled - confirmed";
-      let hasRound = round === index;
+      let hasUsers = receiver.startsWith("seller 1") && sender.startsWith("buyer 1");
+      let hasState = isOfferState(state);
+      let hasRound = round === selectedRound;
       
       return hasUsers && hasState && hasRound;
     });
@@ -121,17 +137,13 @@ export default Ember.Component.extend(ChartUtilities, {
     }
   },
   
-  round: 1,
-  
-  numberOfRounds: Ember.computed.alias("game.numberOfRounds"),
-  
-  rounds: Ember.computed("numberOfRounds", function() {
-    return _.range(1, 11);
-  }),
-  
   actions: {
-    setRound(round) {
-      this.set("round", round);
+    selectRound(round) {
+      this.set("selectedRound", round);
     }
   }
 });
+
+function isOfferState(state) {
+  return state === "open" || state === "accepted" || state === "declined" || state === "confirmed" || state === "recalled - open" || state === "recalled - confirmed";
+}

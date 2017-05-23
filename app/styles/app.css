@@ -114,7 +114,7 @@ li.list-group-item.declined { background-color: rgba(255, 0, 0, 0.3); }
   padding-top: 30px;
 }
 
-/* For buttons between a title and a table. */
+/* For buttons near a table or a graph. */
 .btn-container {
   padding: 10px;
   text-align: center;
