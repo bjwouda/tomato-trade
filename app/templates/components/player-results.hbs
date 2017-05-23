@@ -1,18 +1,18 @@
 <div class="row">
   <div class="col-sm-6">
-    {{#each game.sellers as |seller|}}
+    {{#each sellers as |seller|}}
       <div class="row">
         <div class="col-sm-12">
-          {{player-results-player player=seller histories=histories}}
+          {{player-results-player player=seller histories=histories buyers=buyers sellers=sellers}}
         </div>
       </div>
     {{/each}}
   </div>
   <div class="col-sm-6">
-    {{#each game.buyers as |buyer|}}
+    {{#each buyers as |buyer|}}
       <div class="row">
         <div class="col-sm-12">
-          {{player-results-player player=buyer histories=histories}}
+          {{player-results-player player=buyer histories=histories buyers=buyers sellers=sellers}}
         </div>
       </div>
     {{/each}}

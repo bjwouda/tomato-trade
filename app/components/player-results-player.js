@@ -1,6 +1,8 @@
 import Ember from 'ember';
 
-export default Ember.Component.extend({
+import OfferUtilities from "../mixins/offer-utilities";
+
+export default Ember.Component.extend(OfferUtilities, {
   cooperative1Revenue: Ember.computed("histories.[]", "histories.@each", "round", function() {
     let histories = this.get("histories");
     let index = this.get("round");
@@ -11,12 +13,13 @@ export default Ember.Component.extend({
       let state = history.get("state");
       let round = parseInt(history.get("round").split(/ /)[1]);
       
+      // TODO
       let hasUsers = (sender.startsWith("seller 1") && (receiver.startsWith("buyer 1") || receiver.startsWith("buyer 2") || receiver.startsWith("External"))) || (receiver.startsWith("seller 1") && (sender.startsWith("buyer 1") || sender.startsWith("buyer 2") || sender.startsWith("External")));
-      let hasState = state === "accepted";
+      let hasState = this.isOfferAcceptedState(state);
       let hasRound = round === index;
       
       return hasUsers && hasState && hasRound;
-    });
+    }, this);
     
     let revenue = offers.map(function(offer) {
       let offerParameters = offer.get("offer").split(/, |:/);

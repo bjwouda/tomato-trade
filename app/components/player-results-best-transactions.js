@@ -1,18 +1,15 @@
 import Ember from 'ember';
 
+import OfferUtilities from "../mixins/offer-utilities";
 import TableUtilities from "../mixins/table-utilities";
 
-import _ from 'lodash/lodash';
-
-export default Ember.Component.extend(TableUtilities, {
+export default Ember.Component.extend(OfferUtilities, TableUtilities, {
   transactions: Ember.computed("histories.[]", "histories.@each", function() {
     let histories = this.get("histories");
     
     let offers = histories.filter(function(history) {
-      return history.get("state") === "accepted" && history.get("userSender") !== "External" && history.get("userReceiver") !== "External";
-    });
-    
-    let self = this;
+      return this.isOfferAcceptedState(history.get("state")) && !this.isOfferExternalUser(history.get("userSender")) && !this.isOfferExternalUser(history.get("userReceiver"));
+    }, this);
     
     return offers.map(function(offer) {
       let roundParameters = offer.get("round").split(/ /);
@@ -20,14 +17,14 @@ export default Ember.Component.extend(TableUtilities, {
       let receiverParameters = offer.get("userReceiver").split(/[ -]+/);
       let offerParameters = offer.get("offer").split(/:|, /);
       
-      let sender = self.localize(senderParameters[0]) + " " + senderParameters[1] + " " + senderParameters[2];
-      let receiver = self.localize(receiverParameters[0]) + " " + receiverParameters[1] + " " + receiverParameters[2];
+      let sender = this.localize(senderParameters[0]) + " " + senderParameters[1] + " " + senderParameters[2];
+      let receiver = this.localize(receiverParameters[0]) + " " + receiverParameters[1] + " " + receiverParameters[2];
       
-      if(senderParameters[0] === "External") {
+      if(this.isOfferExternalUser(senderParameters[0])) {
         sender = senderParameters[0];
       }
       
-      if(receiverParameters[0] === "External") {
+      if(this.isOfferExternalUser(receiverParameters[0])) {
         receiver = receiverParameters[0];
       }
       
@@ -38,16 +35,16 @@ export default Ember.Component.extend(TableUtilities, {
         amount: parseInt(offerParameters[1]),
         unitPrice: parseFloat(offerParameters[3])
       });
-    });
+    }, this);
   }),
   
   bestTransactions: Ember.computed.sort("transactions", function(transaction1, transaction2) {
     // See the unit price column definition for some important information regarding sorting.
-    if(this.get("role") === "buyer") {
+    if(this.isOfferBuyerUser(this.get("role"))) {
       // Lowest unit price.
       return transaction1.get("unitPrice") - transaction2.get("unitPrice");
     }
-    else if(this.get("role") === "seller") {
+    else if(this.isOfferSellerUser(this.get("role"))) {
       // Highest unit price.
       return transaction2.get("unitPrice") - transaction1.get("unitPrice");
     }
@@ -97,7 +94,7 @@ export default Ember.Component.extend(TableUtilities, {
         // We still need the sort above because we use the "take" helper.
         // Basically, this is a hack added to make things work.
         "sortPrecedence": 1000,
-        "sortDirection": this.get("role") === "buyer" ? "asc" : "desc"
+        "sortDirection": this.isOfferBuyerUser(this.get("role")) ? "asc" : "desc"
       }
     ];
   })
