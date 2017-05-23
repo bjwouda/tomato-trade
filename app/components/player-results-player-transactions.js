@@ -5,6 +5,45 @@ import ChartUtilities from "../mixins/chart-utilities";
 
 import _ from 'lodash/lodash';
 
+function getOffersForPairInRound(offers, role1, position1, role2, position2) {
+  return offers.filter(function(offer) {
+    return offer.get("userSender").startsWith(role1 + " " + position1) && offer.get("userReceiver").startsWith(role2 + " " + position2);
+  });
+}
+
+function getDataFromOffers(offers) {
+  return offers.map(function(offer) {
+    let offerParameters = offer.get("offer").split(/, |:/);
+    
+    let tomatoes = offerParameters[1];
+    let unitPrice = offerParameters[3];
+    
+    let time = offer.get("ts");
+    
+    return {
+      x: moment(time),
+      y: +(unitPrice)
+    };
+  });
+}
+
+function getColorsFromOffers(offers) {
+  return offers.map(function(offer) {
+    let state = offer.get("state");
+    
+    let stateColors = {
+      "open"                 : "hsl(9,0%,100%)",
+      "confirmed"            : "hsl(69,100%,64%)",
+      "recalled - confirmed" : "hsl(9,0%,64%)",
+      "accepted"             : "hsl(129,100%,64%)",
+      "declined"             : "hsl(9,100%,64%)",
+      "recalled - open"      : "hsl(9,0%,64%)"
+    };
+    
+    return stateColors[state];
+  });
+}
+
 export default Ember.Component.extend(OfferUtilities, ChartUtilities, {
   selectedRound: 1,
   
@@ -30,6 +69,16 @@ export default Ember.Component.extend(OfferUtilities, ChartUtilities, {
     
     let selectedRound = this.get("selectedRound");
     
+    let offers = histories.filter(function(history) {
+      let state = history.get("state");
+      let round = parseInt(history.get("round").split(/ /)[1]);
+      
+      let hasState = this.isOfferState(state);
+      let hasRound = round === selectedRound;
+      
+      return hasState && hasRound;
+    }, this);
+    
     let player = this.get("player");
     let playerRole = player.get("roleDescription");
     let playerPosition = player.get("playerPosition");
@@ -50,8 +99,8 @@ export default Ember.Component.extend(OfferUtilities, ChartUtilities, {
       let clientRole = client.get("roleDescription");
       let clientPosition = client.get("playerPosition");
       
-      let sentOffers = getOffersForPairInRound.call(this, histories, playerRole, playerPosition, clientRole, clientPosition, selectedRound);
-      let receivedOffers = getOffersForPairInRound.call(this, histories, clientRole, clientPosition, playerRole, playerPosition, selectedRound);
+      let sentOffers = getOffersForPairInRound(offers, playerRole, playerPosition, clientRole, clientPosition);
+      let receivedOffers = getOffersForPairInRound(offers, clientRole, clientPosition, playerRole, playerPosition);
       
       let sentData = getDataFromOffers(sentOffers);
       let receivedData = getDataFromOffers(receivedOffers);
@@ -92,52 +141,3 @@ export default Ember.Component.extend(OfferUtilities, ChartUtilities, {
     }
   }
 });
-
-function getOffersForPairInRound(histories, role1, position1, role2, position2, selectedRound) {
-  return histories.filter(function(history) {
-    let sender = history.get("userSender");
-    let receiver = history.get("userReceiver");
-    let state = history.get("state");
-    let round = parseInt(history.get("round").split(/ /)[1]);
-    
-    let hasUsers = sender.startsWith(role1 + " " + position1) && receiver.startsWith(role2 + " " + position2);
-    let hasState = this.isOfferState(state);
-    let hasRound = round === selectedRound;
-    
-    return hasUsers && hasState && hasRound;
-  }, this);
-}
-
-function getDataFromOffers(offers) {
-  return offers.map(function(offer) {
-    // Hacky way to get to the offer parameters in existing histories.
-    let offerParameters = offer.get("offer").split(/, |:/);
-    
-    let tomatoes = offerParameters[1];
-    let unitPrice = offerParameters[3];
-    
-    let time = offer.get("ts");
-    
-    return {
-      x: moment(time),
-      y: +(unitPrice)
-    };
-  });
-}
-
-function getColorsFromOffers(offers) {
-  return offers.map(function(offer) {
-    let state = offer.get("state");
-    
-    let stateColors = {
-      "open"                 : "hsl(9,0%,100%)",
-      "confirmed"            : "hsl(69,100%,64%)",
-      "recalled - confirmed" : "hsl(9,0%,64%)",
-      "accepted"             : "hsl(129,100%,64%)",
-      "declined"             : "hsl(9,100%,64%)",
-      "recalled - open"      : "hsl(9,0%,64%)"
-    };
-    
-    return stateColors[state];
-  });
-}
