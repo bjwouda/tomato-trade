@@ -20,17 +20,6 @@ export default Ember.Mixin.create({
       radii = 6;
     }
     
-    let hoverRadii;
-    
-    if(radii instanceof Array) {
-      hoverRadii = radii.map(function(radius) {
-        return radius + 2;
-      });
-    }
-    else {
-      hoverRadii = radii + 2;
-    }
-    
     return {
       label: this.get("i18n").t(key),
       fill: false,
@@ -39,10 +28,12 @@ export default Ember.Mixin.create({
       borderColor: "hsl(9,100%,64%)",
       pointBorderColor: "hsl(9,100%,44%)",
       pointBackgroundColor: colors,
+      pointHoverBorderColor: "hsl(9,100%,44%)",
+      pointHoverBackgroundColor: colors,
       borderWidth: 2,
       pointRadius: radii,
-      pointHoverRadius: hoverRadii,
-      pointHitRadius: hoverRadii,
+      pointHoverRadius: radii,
+      pointHitRadius: radii,
       data: data
     };
   }
