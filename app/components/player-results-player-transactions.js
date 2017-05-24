@@ -3,6 +3,8 @@ import Ember from 'ember';
 import OfferUtilities from "../mixins/offer-utilities";
 import ChartUtilities from "../mixins/chart-utilities";
 
+import GameConfigParser from "../mixins/game-config-parser";
+
 import _ from 'lodash/lodash';
 
 function getOffersForPairInRound(offers, role1, position1, role2, position2) {
@@ -80,6 +82,30 @@ export default Ember.Component.extend(OfferUtilities, ChartUtilities, {
   
   rounds: Ember.computed("numberOfRounds", function() {
     return _.range(1, 1 + this.get("numberOfRounds"));
+  }),
+  
+  configuration: Ember.computed("histories.[]", "histories.@each", function() {
+    let history = this.get("histories").find(function(history) {
+      return history.get("state") === "New Config loaded";
+    });
+    
+    let gameConfigurationSafe = history.get("offer");
+    
+    let gameConfigParser = Ember.Object.extend(GameConfigParser).create({
+      gameConfigurationSafe: gameConfigurationSafe
+    });
+    
+    return gameConfigParser.get("gameMatrix");
+  }),
+  
+  weeks: Ember.computed("configuration", function() {
+    let configuration = this.get("configuration");
+    
+    let weeks = configuration.map(function(round) {
+      return parseInt(round.tradingFor);
+    });
+    
+    return _.uniq(weeks).sort();
   }),
   
   data: Ember.computed("histories.[]", "histories.@each", "buyers", "sellers", "selectedRound", function() {
