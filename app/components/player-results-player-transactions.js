@@ -15,7 +15,6 @@ function getDataFromOffers(offers) {
   return offers.map(function(offer) {
     let offerParameters = offer.get("offer").split(/, |:/);
     
-    let tomatoes = offerParameters[1];
     let unitPrice = offerParameters[3];
     
     let time = offer.get("ts");
@@ -41,6 +40,28 @@ function getColorsFromOffers(offers) {
     };
     
     return stateColors[state];
+  });
+}
+
+function getRadiiFromOffers(offers) {
+  return offers.map(function(offer) {
+    let offerParameters = offer.get("offer").split(/, |:/);
+    
+    let tomatoes = parseInt(offerParameters[1]);
+    
+    // Apply an exponential bracketing.
+    if(tomatoes <= 50000) {
+      return 4;
+    }
+    else if(tomatoes <= 250000) {
+      return 6;
+    }
+    else if(tomatoes <= 1250000) {
+      return 8;
+    }
+    else {
+      return 10;
+    }
   });
 }
 
@@ -108,8 +129,11 @@ export default Ember.Component.extend(OfferUtilities, ChartUtilities, {
       let sentColors = getColorsFromOffers(sentOffers);
       let receivedColors = getColorsFromOffers(receivedOffers);
       
-      let sentDataSet = this.createChartDataSet("results.player.received", sentData, sentColors);
-      let receivedDataSet = this.createChartDataSet("results.player.sent", receivedData, receivedColors);
+      let sentRadii = getRadiiFromOffers(sentOffers);
+      let receivedRadii = getRadiiFromOffers(receivedOffers);
+      
+      let sentDataSet = this.createChartDataSet("results.player.received", sentData, sentColors, sentRadii);
+      let receivedDataSet = this.createChartDataSet("results.player.sent", receivedData, receivedColors, receivedRadii);
       
       dataSets.pushObject(sentDataSet);
       dataSets.pushObject(receivedDataSet);

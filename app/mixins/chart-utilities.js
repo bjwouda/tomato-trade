@@ -11,9 +11,24 @@ export default Ember.Mixin.create({
     }
   },
   
-  createChartDataSet(key, data, colors) {
+  createChartDataSet(key, data, colors, radii) {
     if(typeof colors === "undefined") {
       colors = "hsl(9,100%,64%)";
+    }
+    
+    if(typeof radii === "undefined") {
+      radii = 6;
+    }
+    
+    let hoverRadii;
+    
+    if(radii instanceof Array) {
+      hoverRadii = radii.map(function(radius) {
+        return radius + 2;
+      });
+    }
+    else {
+      hoverRadii = radii + 2;
     }
     
     return {
@@ -25,9 +40,9 @@ export default Ember.Mixin.create({
       pointBorderColor: "hsl(9,100%,44%)",
       pointBackgroundColor: colors,
       borderWidth: 2,
-      pointRadius: 6,
-      pointHoverRadius: 8,
-      pointHitRadius: 16,
+      pointRadius: radii,
+      pointHoverRadius: hoverRadii,
+      pointHitRadius: hoverRadii,
       data: data
     };
   }
