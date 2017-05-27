@@ -68,21 +68,7 @@ function getRadiiFromOffers(offers) {
 }
 
 export default Ember.Component.extend(OfferUtilities, ChartUtilities, {
-  selectedRound: 1,
-  
-  numberOfRounds: Ember.computed("histories.[]", "histories.@each", function() {
-    let offers = this.get("histories").filter(function(history) {
-      return this.isOfferState(history.get("state"));
-    }, this);
-    
-    return Math.max.apply(null, offers.map(function(offer) {
-      return parseInt(offer.get("round").split(/ /)[1]);
-    }));
-  }),
-  
-  rounds: Ember.computed("numberOfRounds", function() {
-    return _.range(1, 1 + this.get("numberOfRounds"));
-  }),
+  selectedWeek: 1,
   
   configuration: Ember.computed("histories.[]", "histories.@each", function() {
     let history = this.get("histories").find(function(history) {
@@ -108,23 +94,58 @@ export default Ember.Component.extend(OfferUtilities, ChartUtilities, {
     return _.uniq(weeks).sort();
   }),
   
-  data: Ember.computed("histories.[]", "histories.@each", "buyers", "sellers", "selectedRound", function() {
+  weeksForRounds: Ember.computed("configuration", function() {
+    let configuration = this.get("configuration");
+    
+    let weeksForRounds = [];
+    
+    configuration.map(function(roundConfiguration) {
+      let round = parseInt(roundConfiguration.round);
+      
+      weeksForRounds[round] = parseInt(roundConfiguration.tradingFor);
+    });
+    
+    return weeksForRounds;
+  }),
+  
+  typesForRounds: Ember.computed("configuration", function() {
+    let configuration = this.get("configuration");
+    
+    let typesForRounds = [];
+    
+    configuration.forEach(function(roundConfiguration) {
+      let round = parseInt(roundConfiguration.round);
+      
+      typesForRounds[round] = roundConfiguration.tradeType;
+    });
+    
+    return typesForRounds;
+  }),
+  
+  offers: Ember.computed("histories.[]", "histories.@each", "weeksForRounds", "selectedWeek", function() {
+    return this.get("histories").filter(function(history) {
+      let state = history.get("state");
+      let round = parseInt(history.get("round").split(/ /)[1]);
+      
+      let weeksForRounds = this.get("weeksForRounds");
+      let selectedWeek = this.get("selectedWeek");
+      
+      let week = weeksForRounds[round];
+      
+      let hasState = this.isOfferState(state);
+      let isInWeek = week === selectedWeek;
+      
+      return hasState && isInWeek;
+    }, this);
+  }),
+  
+  data: Ember.computed("histories.[]", "histories.@each", "buyers", "sellers", "offers", function() {
     let histories = this.get("histories");
     
     let buyers = this.get("buyers");
     let sellers = this.get("sellers");
     
-    let selectedRound = this.get("selectedRound");
-    
-    let offers = histories.filter(function(history) {
-      let state = history.get("state");
-      let round = parseInt(history.get("round").split(/ /)[1]);
-      
-      let hasState = this.isOfferState(state);
-      let hasRound = round === selectedRound;
-      
-      return hasState && hasRound;
-    }, this);
+    let offers = this.get("offers");
     
     let player = this.get("player");
     let playerRole = player.get("roleDescription");
@@ -186,8 +207,8 @@ export default Ember.Component.extend(OfferUtilities, ChartUtilities, {
   },
   
   actions: {
-    selectRound(round) {
-      this.set("selectedRound", round);
+    selectWeek(week) {
+      this.set("selectedWeek", week);
     }
   }
 });

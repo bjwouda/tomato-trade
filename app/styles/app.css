@@ -119,3 +119,8 @@ li.list-group-item.declined { background-color: rgba(255, 0, 0, 0.3); }
   padding: 10px;
   text-align: center;
 }
+
+/* For text in front of a button group. */
+.btn-group-leader {
+  margin-right: 2px;
+}
