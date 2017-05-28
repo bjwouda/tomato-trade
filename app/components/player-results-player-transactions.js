@@ -225,14 +225,12 @@ export default Ember.Component.extend(OfferUtilities, ChartUtilities, {
     let playerPosition = player.get("playerPosition");
     let playerIsSeller = player.get("isSeller");
     
-    let clients = [];
+    let clients = playerIsSeller ? buyers : sellers;
     
-    if(playerIsSeller) {
-      clients = buyers;
-    }
-    else {
-      clients = sellers;
-    }
+    let actions = [
+      "send",
+      "receive"
+    ];
     
     let dataSets = [];
     
@@ -240,52 +238,40 @@ export default Ember.Component.extend(OfferUtilities, ChartUtilities, {
       let clientRole = client.get("roleDescription");
       let clientPosition = client.get("playerPosition");
       
-      let sent = selection.filter(function(group) {
-        // We know there is at least one offer, and that they all contain (almost) the same information.
-        let offer = group[0];
+      actions.forEach(function(action) {
+        let groups = selection.filter(function(group) {
+          // We know there is at least one offer, and that they all contain (almost) the same information.
+          let offer = group[0];
+          
+          let sender = offer.get("userSender");
+          let receiver = offer.get("userReceiver");
+          
+          let isSender = action === "send";
+          
+          let senderRole       = isSender ? playerRole     : clientRole    ;
+          let senderPosition   = isSender ? playerPosition : clientPosition;
+          let receiverRole     = isSender ? clientRole     : playerRole    ;
+          let receiverPosition = isSender ? clientPosition : playerPosition;
+          
+          return this.isOfferUser(sender, senderRole, senderPosition) && this.isOfferUser(receiver, receiverRole, receiverPosition);
+        }, this);
         
-        return this.isOfferUser(offer.get("userSender"), playerRole, playerPosition) && this.isOfferUser(offer.get("userReceiver"), clientRole, clientPosition);
-      }, this);
-      
-      let received = selection.filter(function(group) {
-        // We know there is at least one offer, and that they all contain (almost) the same information.
-        let offer = group[0];
+        let offers = groups.reduce(function(array, group) {
+          return array.concat(group);
+        }, []);
         
-        return this.isOfferUser(offer.get("userSender"), clientRole, clientPosition) && this.isOfferUser(offer.get("userReceiver"), playerRole, playerPosition);
-      }, this);
-      
-      let sentOffers = sent.reduce(function(array, group) {
-        return array.concat(group);
-      }, []);
-      
-      let receivedOffers = received.reduce(function(array, group) {
-        return array.concat(group);
-      }, []);
-      
-      sent.forEach(function(group) {
-        let data = getDataForOffers(group);
-        let colors = getColorsForOffers(group);
-        let borders = getBordersForOffers(group, this.get("typesForRounds"));
-        let radii = getRadiiForOffers(group);
-        let color = getColorForPosition(clientPosition);
-        let dash = getDashForDirection("send");
-        
-        let dataSet = this.createChartDataSet("results.player.transactions.sent", data, colors, borders, radii, color, dash);
-        
-        dataSets.pushObject(dataSet);
-      }, this);
-      
-      received.forEach(function(group) {
-        let data = getDataForOffers(group);
-        let colors = getColorsForOffers(group);
-        let borders = getBordersForOffers(group, this.get("typesForRounds"));
-        let radii = getRadiiForOffers(group);
-        let color = getColorForPosition(clientPosition);
-        let dash = getDashForDirection("receive");
-        
-        let dataSet = this.createChartDataSet("results.player.transactions.received", data, colors, borders, radii, color, dash);
-        
-        dataSets.pushObject(dataSet);
+        groups.forEach(function(group) {
+          let data = getDataForOffers(group);
+          let colors = getColorsForOffers(group);
+          let borders = getBordersForOffers(group, this.get("typesForRounds"));
+          let radii = getRadiiForOffers(group);
+          let color = getColorForPosition(clientPosition);
+          let dash = getDashForDirection(action);
+          
+          let dataSet = this.createChartDataSet("results.player.transactions." + action, data, colors, borders, radii, color, dash);
+          
+          dataSets.pushObject(dataSet);
+        }, this);
       }, this);
     }, this);
     
