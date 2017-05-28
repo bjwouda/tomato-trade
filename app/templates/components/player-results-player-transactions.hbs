@@ -11,7 +11,7 @@
 <div class="row">
   <div class="col-sm-12">
     <div class="btn-container">
-      <div class="btn-group btn-group-xs btn-group-leader">{{t 'player.results.player.transactions.week'}}</div>
+      <div class="btn-group btn-group-xs btn-group-xs-leader">{{t 'player.results.player.transactions.week'}}</div>
       <div class="btn-group btn-group-xs">
         {{#each weeks as |week|}}
           <button class="btn {{if (eq week selectedWeek) 'btn-primary' 'btn-info'}}" {{action 'selectWeek' week}}>{{week}}</button>

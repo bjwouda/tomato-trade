@@ -7,13 +7,9 @@ import GameConfigParser from "../mixins/game-config-parser";
 
 import _ from 'lodash/lodash';
 
-function getOffersForPairInRound(offers, role1, position1, role2, position2) {
-  return offers.filter(function(offer) {
-    return offer.get("userSender").startsWith(role1 + " " + position1) && offer.get("userReceiver").startsWith(role2 + " " + position2);
-  });
-}
+import moment from 'moment';
 
-function getDataFromOffers(offers) {
+function getDataForOffers(offers) {
   return offers.map(function(offer) {
     let offerParameters = offer.get("offer").split(/, |:/);
     
@@ -28,7 +24,7 @@ function getDataFromOffers(offers) {
   });
 }
 
-function getColorsFromOffers(offers) {
+function getColorsForOffers(offers) {
   return offers.map(function(offer) {
     let state = offer.get("state");
     
@@ -45,7 +41,22 @@ function getColorsFromOffers(offers) {
   });
 }
 
-function getRadiiFromOffers(offers) {
+function getBordersForOffers(offers, typesForRounds) {
+  return offers.map(function(offer) {
+    let round = parseInt(offer.get("round").split(/ /)[1]);
+    
+    let type = typesForRounds[round];
+    
+    let typeBorders = {
+      "weekly" : "hsl(9,100%,44%)",
+      "daily"  : "hsl(249,100%,44%)"
+    };
+    
+    return typeBorders[type];
+  });
+}
+
+function getRadiiForOffers(offers) {
   return offers.map(function(offer) {
     let offerParameters = offer.get("offer").split(/, |:/);
     
@@ -65,6 +76,25 @@ function getRadiiFromOffers(offers) {
       return 10;
     }
   });
+}
+
+function getColorForPosition(position) {
+  let hue = 9 + 180 * (position - 1);
+  let saturation = 100;
+  let lightness = 64;
+  
+  return `hsl(${hue},${saturation}%,${lightness}%)`;
+}
+
+function getDashForDirection(direction) {
+  if(direction === "send") {
+    // A solid line for outgoing offers.
+    return [];
+  }
+  else if(direction === "receive") {
+    // A dashed line for incoming offers.
+    return [4, 2];
+  }
 }
 
 export default Ember.Component.extend(OfferUtilities, ChartUtilities, {
@@ -91,7 +121,9 @@ export default Ember.Component.extend(OfferUtilities, ChartUtilities, {
       return parseInt(round.tradingFor);
     });
     
-    return _.uniq(weeks).sort();
+    return _.uniq(weeks).sort(function(value1, value2) {
+      return value1 - value2;
+    });
   }),
   
   weeksForRounds: Ember.computed("configuration", function() {
@@ -122,32 +154,73 @@ export default Ember.Component.extend(OfferUtilities, ChartUtilities, {
     return typesForRounds;
   }),
   
-  offers: Ember.computed("histories.[]", "histories.@each", "weeksForRounds", "selectedWeek", function() {
+  offers: Ember.computed("histories.[]", "histories.@each", function() {
     return this.get("histories").filter(function(history) {
       let state = history.get("state");
-      let round = parseInt(history.get("round").split(/ /)[1]);
       
-      let weeksForRounds = this.get("weeksForRounds");
-      let selectedWeek = this.get("selectedWeek");
-      
-      let week = weeksForRounds[round];
-      
-      let hasState = this.isOfferState(state);
-      let isInWeek = week === selectedWeek;
-      
-      return hasState && isInWeek;
+      return this.isOfferState(state);
     }, this);
   }),
   
-  data: Ember.computed("histories.[]", "histories.@each", "buyers", "sellers", "offers", function() {
-    let histories = this.get("histories");
+  indices: Ember.computed("offers", function() {
+    let offers = this.get("offers");
+    
+    let indices = offers.map(function(offer) {
+      return parseInt(offer.get("idxOfOfferInGame"));
+    });
+    
+    return _.uniq(indices).sort(function(value1, value2) {
+      return value1 - value2;
+    });
+  }),
+  
+  groups: Ember.computed("offers", "indices", function() {
+    let offers = this.get("offers");
+    let indices = this.get("indices");
+    
+    let groups = [];
+    
+    indices.forEach(function(index) {
+      let group = offers.filter(function(offer) {
+        let offerIndex = parseInt(offer.get("idxOfOfferInGame"));
+        
+        return offerIndex === index;
+      });
+      
+      // No need to sort the offers, they should already be in chronological order.
+      groups.pushObject(group);
+    });
+    
+    // No need to sort the groups, they should already be in index order.
+    return groups;
+  }),
+  
+  selection: Ember.computed("groups", "weeksForRounds", "selectedWeek", function() {
+    let groups = this.get("groups");
+    
+    let weeksForRounds = this.get("weeksForRounds");
+    let selectedWeek = this.get("selectedWeek");
+    
+    return groups.filter(function(group) {
+      // We know there is at least one offer, and that they all contain (almost) the same information.
+      let offer = group[0];
+      
+      let round = parseInt(offer.get("round").split(/ /)[1]);
+      
+      let week = weeksForRounds[round];
+      
+      return week === selectedWeek;
+    });
+  }),
+  
+  data: Ember.computed("player", "buyers", "sellers", "selection", function() {
+    let player = this.get("player");
     
     let buyers = this.get("buyers");
     let sellers = this.get("sellers");
     
-    let offers = this.get("offers");
+    let selection = this.get("selection");
     
-    let player = this.get("player");
     let playerRole = player.get("roleDescription");
     let playerPosition = player.get("playerPosition");
     let playerIsSeller = player.get("isSeller");
@@ -167,23 +240,53 @@ export default Ember.Component.extend(OfferUtilities, ChartUtilities, {
       let clientRole = client.get("roleDescription");
       let clientPosition = client.get("playerPosition");
       
-      let sentOffers = getOffersForPairInRound(offers, playerRole, playerPosition, clientRole, clientPosition);
-      let receivedOffers = getOffersForPairInRound(offers, clientRole, clientPosition, playerRole, playerPosition);
+      let sent = selection.filter(function(group) {
+        // We know there is at least one offer, and that they all contain (almost) the same information.
+        let offer = group[0];
+        
+        return this.isOfferUser(offer.get("userSender"), playerRole, playerPosition) && this.isOfferUser(offer.get("userReceiver"), clientRole, clientPosition);
+      }, this);
       
-      let sentData = getDataFromOffers(sentOffers);
-      let receivedData = getDataFromOffers(receivedOffers);
+      let received = selection.filter(function(group) {
+        // We know there is at least one offer, and that they all contain (almost) the same information.
+        let offer = group[0];
+        
+        return this.isOfferUser(offer.get("userSender"), clientRole, clientPosition) && this.isOfferUser(offer.get("userReceiver"), playerRole, playerPosition);
+      }, this);
       
-      let sentColors = getColorsFromOffers(sentOffers);
-      let receivedColors = getColorsFromOffers(receivedOffers);
+      let sentOffers = sent.reduce(function(array, group) {
+        return array.concat(group);
+      }, []);
       
-      let sentRadii = getRadiiFromOffers(sentOffers);
-      let receivedRadii = getRadiiFromOffers(receivedOffers);
+      let receivedOffers = received.reduce(function(array, group) {
+        return array.concat(group);
+      }, []);
       
-      let sentDataSet = this.createChartDataSet("results.player.received", sentData, sentColors, sentRadii);
-      let receivedDataSet = this.createChartDataSet("results.player.sent", receivedData, receivedColors, receivedRadii);
+      sent.forEach(function(group) {
+        let data = getDataForOffers(group);
+        let colors = getColorsForOffers(group);
+        let borders = getBordersForOffers(group, this.get("typesForRounds"));
+        let radii = getRadiiForOffers(group);
+        let color = getColorForPosition(clientPosition);
+        let dash = getDashForDirection("send");
+        
+        let dataSet = this.createChartDataSet("results.player.transactions.sent", data, colors, borders, radii, color, dash);
+        
+        dataSets.pushObject(dataSet);
+      }, this);
       
-      dataSets.pushObject(sentDataSet);
-      dataSets.pushObject(receivedDataSet);
+      received.forEach(function(group) {
+        let data = getDataForOffers(group);
+        let colors = getColorsForOffers(group);
+        let borders = getBordersForOffers(group, this.get("typesForRounds"));
+        let radii = getRadiiForOffers(group);
+        let color = getColorForPosition(clientPosition);
+        let dash = getDashForDirection("receive");
+        
+        let dataSet = this.createChartDataSet("results.player.transactions.received", data, colors, borders, radii, color, dash);
+        
+        dataSets.pushObject(dataSet);
+      }, this);
     }, this);
     
     return this.createChartData(dataSets);

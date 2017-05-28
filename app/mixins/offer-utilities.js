@@ -29,12 +29,21 @@ export default Ember.Mixin.create({
     return this.isOfferOpenState(state) || this.isOfferAcceptedState(state) || this.isOfferDeclinedState(state) || this.isOfferConfirmedState(state) || this.isOfferRecalledOpenState(state) || this.isOfferRecalledConfirmedState(state);
   },
   
-  isOfferBuyerUser(user) {
-    return user === "buyer";
+  isOfferUser(user, role, position) {
+    if(typeof position === "undefined") {
+      return user.startsWith(role);
+    }
+    else {
+      return user.startsWith(role + " " + position);
+    }
   },
   
-  isOfferSellerUser(user) {
-    return user === "seller";
+  isOfferBuyerUser(user, position) {
+    return this.isOfferUser(user, "buyer");
+  },
+  
+  isOfferSellerUser(user, position) {
+    return this.isOfferUser(user, "seller");
   },
   
   isOfferExternalUser(user) {

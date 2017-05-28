@@ -78,18 +78,20 @@ export default Ember.Controller.extend(TableUtilities, {
         
         model = [];
         
-        // Missing: offerID, cssStatus, idxOfOfferInGame.
-        // Not used: idxOfOffer (which represents the idxOfOfferInGameCalc of the original game).
+        // offerID and cssStatus are not available, but are fortunately not needed for imported games.
         rows.forEach(function(row) {
-          // Not required: offerTomatoes, offerPrice. This is to allow backwards compatibility.
+          // offerTomatoes and offerPrice are not required to be backwards compatible with older exports.
           if(
             typeof row.userSender !== "undefined" &&
             typeof row.userReceiver !== "undefined" &&
             typeof row.state !== "undefined" &&
             typeof row.offer !== "undefined" &&
             typeof row.round !== "undefined" &&
+            typeof row.idxOfOfferInGameCalc !== "undefined" &&
             typeof row.tsDesc !== "undefined"
           ) {
+            // idxOfOfferInGame was originally something else, but using the imported idxOfOfferInGameCalc
+            // should result in the same behaviour (this was the computed idxOfOfferInGameCalc originally).
             let history = store.createRecord("history", {
               userSender: row.userSender,
               userReceiver: row.userReceiver,
@@ -98,6 +100,7 @@ export default Ember.Controller.extend(TableUtilities, {
               round: row.round,
               offerTomotoes: row.offerTomatoes,
               offerPrice: row.offerPrice,
+              idxOfOfferInGame: row.idxOfOfferInGameCalc,
               ts: +moment(row.tsDesc, "HH:mm:ss"),
               historyGame: game
             });
