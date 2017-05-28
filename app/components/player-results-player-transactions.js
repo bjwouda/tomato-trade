@@ -49,7 +49,7 @@ function getBordersForOffers(offers, typesForRounds) {
     
     let typeBorders = {
       "weekly" : "hsl(9,100%,44%)",
-      "daily"  : "hsl(249,100%,44%)"
+      "daily"  : "hsl(129,100%,24%)"
     };
     
     return typeBorders[type];
@@ -79,7 +79,7 @@ function getRadiiForOffers(offers) {
 }
 
 function getColorForPosition(position) {
-  let hue = 9 + 180 * (position - 1);
+  let hue = 9 + 200 * (position - 1);
   let saturation = 100;
   let lightness = 64;
   
@@ -260,18 +260,16 @@ export default Ember.Component.extend(OfferUtilities, ChartUtilities, {
           return array.concat(group);
         }, []);
         
-        groups.forEach(function(group) {
-          let data = getDataForOffers(group);
-          let colors = getColorsForOffers(group);
-          let borders = getBordersForOffers(group, this.get("typesForRounds"));
-          let radii = getRadiiForOffers(group);
-          let color = getColorForPosition(clientPosition);
-          let dash = getDashForDirection(action);
-          
-          let dataSet = this.createChartDataSet("results.player.transactions." + action, data, colors, borders, radii, color, dash);
-          
-          dataSets.pushObject(dataSet);
-        }, this);
+        let data = getDataForOffers(offers);
+        let colors = getColorsForOffers(offers);
+        let borders = getBordersForOffers(offers, this.get("typesForRounds"));
+        let radii = getRadiiForOffers(offers);
+        let color = getColorForPosition(clientPosition);
+        let dash = getDashForDirection(action);
+        
+        let dataSet = this.createChartDataSet("results.player.transactions." + action, data, colors, borders, radii, color, dash);
+        
+        dataSets.pushObject(dataSet);
       }, this);
     }, this);
     

@@ -36,7 +36,7 @@ export default Ember.Mixin.create({
       label: this.get("i18n").t(key),
       fill: false,
       lineTension: 0,
-      backgroundColor: color,
+      backgroundColor: "rgb(0,0,0,0)",
       borderColor: color,
       pointBorderColor: borders,
       pointBackgroundColor: colors,
