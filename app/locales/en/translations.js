@@ -73,7 +73,13 @@ export default {
   },
   "results": {
     "player": {
-      "remainingTomatoes": "Remaining tomatoes"
+      "transactions": {
+        "title": "Transactions",
+        "week": "Week:",
+        "to": "To",
+        "from": "From",
+        "space": " "
+      }
     },
     "transactions": {
       "best": {
@@ -112,4 +118,4 @@ export default {
     "tableSummary": "Displaying %@ through %@ out of the %@ entries",
     "noDataToShow": "There are no entries available."
   }
-}
+};

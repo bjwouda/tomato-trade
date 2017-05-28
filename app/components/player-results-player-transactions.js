@@ -98,6 +98,8 @@ function getDashForDirection(direction) {
 }
 
 export default Ember.Component.extend(OfferUtilities, ChartUtilities, {
+  i18n: Ember.inject.service(),
+  
   selectedWeek: 1,
   
   configuration: Ember.computed("histories.[]", "histories.@each", function() {
@@ -213,7 +215,9 @@ export default Ember.Component.extend(OfferUtilities, ChartUtilities, {
     });
   }),
   
-  data: Ember.computed("player", "buyers", "sellers", "selection", function() {
+  data: Ember.computed("i18n.locale", "player", "buyers", "sellers", "selection", "typesForRounds", function() {
+    let i18n = this.get("i18n");
+    
     let player = this.get("player");
     
     let buyers = this.get("buyers");
@@ -239,19 +243,19 @@ export default Ember.Component.extend(OfferUtilities, ChartUtilities, {
       let clientPosition = client.get("playerPosition");
       
       actions.forEach(function(action) {
+        let isSender = action === "send";
+        
+        let senderRole       = isSender ? playerRole     : clientRole    ;
+        let senderPosition   = isSender ? playerPosition : clientPosition;
+        let receiverRole     = isSender ? clientRole     : playerRole    ;
+        let receiverPosition = isSender ? clientPosition : playerPosition;
+        
         let groups = selection.filter(function(group) {
           // We know there is at least one offer, and that they all contain (almost) the same information.
           let offer = group[0];
           
           let sender = offer.get("userSender");
           let receiver = offer.get("userReceiver");
-          
-          let isSender = action === "send";
-          
-          let senderRole       = isSender ? playerRole     : clientRole    ;
-          let senderPosition   = isSender ? playerPosition : clientPosition;
-          let receiverRole     = isSender ? clientRole     : playerRole    ;
-          let receiverPosition = isSender ? clientPosition : playerPosition;
           
           return this.isOfferUser(sender, senderRole, senderPosition) && this.isOfferUser(receiver, receiverRole, receiverPosition);
         }, this);
@@ -260,6 +264,16 @@ export default Ember.Component.extend(OfferUtilities, ChartUtilities, {
           return array.concat(group);
         }, []);
         
+        let key = isSender ? "results.player.transactions.to" : "results.player.transactions.from";
+        
+        let labels = [
+          i18n.t(key),
+          i18n.t(clientRole),
+          clientPosition
+        ];
+        
+        let label = labels.join(i18n.t("results.player.transactions.space"));
+        
         let data = getDataForOffers(offers);
         let colors = getColorsForOffers(offers);
         let borders = getBordersForOffers(offers, this.get("typesForRounds"));
@@ -267,7 +281,7 @@ export default Ember.Component.extend(OfferUtilities, ChartUtilities, {
         let color = getColorForPosition(clientPosition);
         let dash = getDashForDirection(action);
         
-        let dataSet = this.createChartDataSet("results.player.transactions." + action, data, colors, borders, radii, color, dash);
+        let dataSet = this.createChartDataSet(label, data, colors, borders, radii, color, dash);
         
         dataSets.pushObject(dataSet);
       }, this);
