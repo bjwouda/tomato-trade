@@ -3,47 +3,13 @@
     {{player-line player=player}}
   </div>
   <div class="row">
-    <div class="col-sm-4">
-      <h3 class="property-label">Revenue</h3>
-    </div>
-    <div class="col-sm-4">
-      <h3 class="property-label">KPI 2</h3>
-    </div>
-    <div class="col-sm-4">
-      <h3 class="property-label">KPI 3</h3>
+    <div class="col-sm-12">
+      <h3 class="property-label">{{t 'results.player.averageUnitPrice'}}</h3>
     </div>
   </div>
   <div class="row">
-    <div class="col-sm-4">
-      <p class="property-value">{{digit-group-format cooperative1Revenue}}</p>
-    </div>
-    <div class="col-sm-4">
-      <p class="property-value">10 points</p>
-    </div>
-    <div class="col-sm-4">
-      <p class="property-value">10 points</p>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-sm-4">
-      <h3 class="property-label">KPI 4</h3>
-    </div>
-    <div class="col-sm-4">
-      <h3 class="property-label">KPI 5</h3>
-    </div>
-    <div class="col-sm-4">
-      <h3 class="property-label">KPI 6</h3>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-sm-4">
-      <p class="property-value">10 points</p>
-    </div>
-    <div class="col-sm-4">
-      <p class="property-value">10 points</p>
-    </div>
-    <div class="col-sm-4">
-      <p class="property-value">10 points</p>
+    <div class="col-sm-12">
+      <p class="property-value"><span class="to-money" />{{digit-group-format averageUnitPrice}}</p>
     </div>
   </div>
   <div class="row">

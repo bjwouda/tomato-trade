@@ -73,6 +73,7 @@ export default {
   },
   "results": {
     "player": {
+      "averageUnitPrice": "Average unit price",
       "transactions": {
         "title": "Transactions",
         "week": "Week:",

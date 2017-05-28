@@ -3,9 +3,38 @@ import Ember from 'ember';
 import OfferUtilities from "../mixins/offer-utilities";
 
 export default Ember.Component.extend(OfferUtilities, {
-  cooperative1Revenue: Ember.computed("histories.[]", "histories.@each", "round", function() {
+  configuration: Ember.computed("histories.[]", "histories.@each", function() {
+    let history = this.get("histories").find(function(history) {
+      return history.get("state") === "New Config loaded";
+    });
+    
+    let gameConfigurationSafe = history.get("offer");
+    
+    let gameConfigParser = Ember.Object.extend(GameConfigParser).create({
+      gameConfigurationSafe: gameConfigurationSafe
+    });
+    
+    return gameConfigParser.get("gameMatrix");
+  }),
+  
+  offers: Ember.computed("histories.[]", "histories.@each", function() {
+    return this.get("histories").filter(function(history) {
+      let sender = history.get("userSender");
+      let receiver = history.get("userReceiver");
+      let state = history.get("state");
+      
+      // TODO this doesn't make sense, fix it
+      return this.isOfferAcceptedState(state) && this.isOfferUser(sender) || this.isOfferUser(receiver);
+    });
+  }),
+  
+  averageUnitPrice: Ember.computed("histories.[]", "histories.@each", function() {
+    // TODO need weeks, calculate offer total per week, calculate average, average weeks, work in prognosis percentage
+    // TODO medal
+  }),
+  
+  cooperative1Revenue: Ember.computed("histories.[]", "histories.@each", function() {
     let histories = this.get("histories");
-    let index = this.get("round");
     
     let offers = histories.filter(function(history) {
       let sender = history.get("userSender");
@@ -30,24 +59,5 @@ export default Ember.Component.extend(OfferUtilities, {
     }, 0);
     
     return revenue;
-  }),
-  
-  trader1RemainingTomatoes: Ember.computed("histories.[]", "histories.@each", function() {
-    let histories = this.get('histories');
-    
-    let statistics = histories.filter(function(history) {
-      return history.get('userSender') === "Stats for Trader 1";
-    });
-    
-    let labels = statistics.map(function(statistic) {
-      return statistic.get('round');
-    });
-    
-    let data = statistics.map(function(statistic) {
-      // Hacky way to get to the remaining tomatoes in existing histories.
-      return statistic.get('offer').split(/, |:/)[3];
-    });
-    
-    return this.createChartData("results.player.remainingTomatoes", labels, data);
   })
 });
