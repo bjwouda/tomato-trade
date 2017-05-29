@@ -133,7 +133,7 @@ export default Ember.Component.extend(OfferUtilities, ChartUtilities, {
     
     let weeksForRounds = [];
     
-    configuration.map(function(roundConfiguration) {
+    configuration.forEach(function(roundConfiguration) {
       let round = parseInt(roundConfiguration.round);
       
       weeksForRounds[round] = parseInt(roundConfiguration.tradingFor);
