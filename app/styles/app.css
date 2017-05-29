@@ -43,17 +43,15 @@
 }
 
 span.to-tomato {
-    color: #D20009;
-    /*font-size: 18pt;*/
-    margin-right: 0.25em;
-    font-size: 75%;
+  color: #D20009;
+  margin-right: 0.25em;
+  font-size: 75%;
 }
 
 span.to-money {
-    color: #8C9566;
-    /*font-size: 18pt;*/
-    margin-right: 0.25em;
-    font-size: 75%;
+  color: #8C9566;
+  margin-right: 0.25em;
+  font-size: 75%;
 }
 
 .note {
@@ -110,7 +108,7 @@ li.list-group-item.declined { background-color: rgba(255, 0, 0, 0.3); }
 }
 
 /* Added to keep the top margin on a page now that the localization settings have been disabled. */
-.container-fluid  {
+.container-fluid {
   padding-top: 30px;
 }
 
@@ -123,4 +121,22 @@ li.list-group-item.declined { background-color: rgba(255, 0, 0, 0.3); }
 /* For text in front of an XS button group. */
 .btn-group-xs-leader {
   margin-right: 2px;
+}
+
+/* The ever desired golden tomato medal. Meant to be used in conjunction with the "span.to-tomato" class. */
+span.golden-tomato {
+  color: #FFC400;
+  font-size: 150%;
+}
+
+span.golden-tomato-anchor {
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+span.golden-tomato-container {
+  position: absolute;
+  top: -0.225em;
+  left: 0.5em;
 }

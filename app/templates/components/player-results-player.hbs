@@ -9,7 +9,16 @@
   </div>
   <div class="row">
     <div class="col-sm-12">
-      <p class="property-value"><span class="to-money" />{{digit-group-format averageUnitPrice}}</p>
+      <p class="property-value">
+        <span class="to-money" />{{digit-format averageUnitPrice}}
+        {{#if isWinner}}
+          <span class="golden-tomato-anchor">
+            <span class="golden-tomato-container">
+              <span class="to-tomato golden-tomato" />
+            </span>
+          </span>
+        {{/if}}
+      </p>
     </div>
   </div>
   <div class="row">
