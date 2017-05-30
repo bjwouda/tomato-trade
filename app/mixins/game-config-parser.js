@@ -92,12 +92,12 @@ export default Ember.Mixin.create({
         return { round, roundTitle, playerSettings, tradingFor, tradeType, currentWeek};
       });
 
-      console.log(gameMatrix[0]);
-      console.log(gameMatrix);
+      //console.log(gameMatrix[0]);
+      //console.log(gameMatrix);
       return gameMatrix;
 
     } catch(err) {
-      console.warn("there was some error with the game matrix");
+      console.warn("There was an error with the game matrix.");
       return [];
       
     }
@@ -110,7 +110,7 @@ export default Ember.Mixin.create({
     let gameLine = this.getGameLine(cleanLines);
     var gameSegments = gameLine.split(",");
     gameSegments.shift(); // remove first element
-    console.log(gameSegments);
+    //console.log(gameSegments);
     let total = gameSegments.length;
     let weeks = gameSegments.filter((x) => {
       return x.startsWith("w"); }).length;

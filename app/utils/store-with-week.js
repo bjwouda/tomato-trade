@@ -15,13 +15,13 @@ export default function storeWithWeek(weekCntPath, key) {
       var previousObj = this.get("playerWeekStatus");
 
 
-      console.debug(previousObj);
+      //console.debug(previousObj);
 
       if (!weekCnt) {return;}
 
       if (! previousObj[`w${weekCnt}`]) { previousObj[`w${weekCnt}`] = {}; }
       previousObj[`w${weekCnt}`][key] = val;
-      console.debug(previousObj);
+      //console.debug(previousObj);
 
       this.set("playerWeekStatus", previousObj);
       return val;

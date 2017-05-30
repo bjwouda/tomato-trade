@@ -13,7 +13,7 @@ export default Ember.Mixin.create({
 			let offerId = offer.get("id");
 			let idxOfOfferInGame = offer.get("idxOfOfferInGame");
 
-			console.log(idxOfOfferInGame);
+			//console.log(idxOfOfferInGame);
 
 			self.logPlayerOffer(store, game, sender, receiver, tomatoes, price, state, offerId, idxOfOfferInGame);
 		})

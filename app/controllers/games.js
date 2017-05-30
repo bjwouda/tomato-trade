@@ -222,8 +222,8 @@ export default Ember.Controller.extend(OfferActions, LangActions, LogFunctions, 
                 ];
 
                 for (let [fnName, attrName] of lut) {
-                    console.log(fnName);
-                    console.log(attrName);
+                    //console.log(fnName);
+                    //console.log(attrName);
                     let newVal = game[fnName](game.get("roundCnt"));
                     game.set(attrName, newVal);
                 }

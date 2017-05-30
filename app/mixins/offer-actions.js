@@ -85,10 +85,10 @@ export default Ember.Mixin.create(LogFunctions, {
         let senderTomatoes = -offer.get("sender.content.tomatoes") + offer.get("tomatoes") > +offer.get("sender.content.goalTomatoes")
                           && offer.get("sender.content.isSeller");
 
-        console.log(-offer.get("sender.content.tomatoes"), offer.get("tomatoes"), offer.get("sender.content.goalTomatoes"))
+        //console.log(-offer.get("sender.content.tomatoes"), offer.get("tomatoes"), offer.get("sender.content.goalTomatoes"))
 
         if (receiverTomatoes || senderTomatoes) { 
-          console.log("Offer needed to be declined, otherwise seller would have sold more tomatoes than available")
+          //console.log("Offer needed to be declined, otherwise seller would have sold more tomatoes than available")
           self.send("declineOffer", game, offer);
           return
         }
