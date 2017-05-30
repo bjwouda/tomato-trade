@@ -1,24 +1,28 @@
-  <li class="list-group-item {{offer.state}}">
-    {{t "round"}}: {{offer.roundNumber}} {{t "offer"}}: {{offer.idxOfOfferInGame}} [{{t offer.state}}] 
-    
-	{{#if (eq offer.receiverName "External")}}
-    	<b>{{t "external"}}</b>  
-  	{{else}}
-    	<b>{{offer.receiverName}}</b>  
-	{{/if}}
-
-
-    {{moment-format offer.ts "HH:mm:ss"}}
-    <br>
-
-	{{#if (eq offer.senderName "External")}}
-    	<b>{{t "external"}}</b>  
-  	{{else}}
-    	<b>{{offer.senderName}}</b>  
-	{{/if}}
-
-
-    --&gt;
-    <span class="to-tomato"></span> {{digit-group-format offer.tomatoes}} 
-    <span class="to-money"></span> {{digit-format offer.price}}
-  </li>
+<li class="list-group-item {{offer.state}}">
+  
+  {{moment-format offer.ts "HH:mm:ss"}}
+  
+  ({{t 'player.offerDisplay.round'}} {{offer.roundNumber}})
+  
+  {{t 'player.offerDisplay.offer'}} {{offer.idxOfOfferInGame}}{{t 'player.offerDisplay.offerSeparator'}}
+  
+  {{#if (eq offer.senderName "External")}}
+      <strong>{{t "player.offerDisplay.external"}}</strong>  
+    {{else}}
+      <strong>{{offer.senderName}}</strong>  
+  {{/if}}
+  
+  <span class="glyphicon glyphicon-arrow-right" />
+  
+  {{#if (eq offer.receiverName "External")}}
+      <strong>{{t 'player.offerDisplay.external'}}</strong>
+    {{else}}
+      <strong>{{offer.receiverName}}</strong>
+  {{/if}}
+  
+  <span class="to-tomato" />{{digit-group-format offer.tomatoes}}
+  <span class="to-money" />{{digit-format offer.price}}
+  
+  ({{t (concat 'player.offerDisplay.' state)}})
+  
+</li>

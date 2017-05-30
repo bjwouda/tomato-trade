@@ -4,21 +4,16 @@ export default {
   "GameIsAboutToStart": "Game is about to start",
   "GameHasEnded": "Game has ended",
   "accept": "Accept",
-  "accepted": "Accepted",
   "currentTomatoes": "Current Tomatoes",
   "decline": "Decline",
-  "declined": "Declined",
   "external": "External Trader",
   "money": "Money",
   "na": "N/A",
   "recall": "Recall",
-  "recalled": "Recalled",
   "timeUp": "Time is up! Please finish your trade.",
   "tomato": "Tomato",
   "currentWeekDescription": "It is week <strong>{{currentWeek}}</strong>",
   "tradeWeekDescription": "You are doing the <strong>{{tradeType}} trade</strong> for week <strong>{{tradeWeek}}</strong>",
-  "round": "round",
-  "offer": "offer",
   
   "index": {
     "title": "Tomato Trade",
@@ -118,6 +113,15 @@ export default {
       "sold": "Sold",
       "remainder": "Remainder",
       "averageUnitPrice": "Average price"
+    },
+    "offerDisplay": {
+      "round": "round",
+      "offer": "Offer",
+      "offerSeparator": ":",
+      "accepted": "accepted",
+      "declined": "declined",
+      "recalled": "recalled",
+      "external": "External"
     },
     "results": {
       "player": {
