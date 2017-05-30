@@ -16,7 +16,7 @@ export default Ember.Component.extend({
 
 		let timerHandle = setInterval(function() {
 
-			if (!self.get("timeStartTs") && !self.get("timeEndTs")) {
+			if(!self.get("timeStartTs") && !self.get("timeEndTs")) {
 				return;
 			}
 

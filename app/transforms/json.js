@@ -9,7 +9,7 @@ export default Transform.extend({
   },
 
   serialize(deserialized) {
-  	if (_.isEmpty(deserialized)) {
+  	if(_.isEmpty(deserialized)) {
   		return {firebaseDummyPlaceholder: "firebaseDummyPlaceholder"}
   	} {
   		return deserialized;

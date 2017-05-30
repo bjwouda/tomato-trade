@@ -131,10 +131,10 @@ export default Ember.Mixin.create({
   },
 
   getValueForUserAndRound(cleanLines, user, round, postFix = '') {  
-    if (!user) {
+    if(!user) {
       throw "user must exist";
     }
-    if (round <= 0) {
+    if(round <= 0) {
       throw "round must be greater 0"; }
 
     let userLine = cleanLines.filter((x) => { return x.startsWith(`${user}${postFix}`); })[0];
@@ -154,12 +154,12 @@ export default Ember.Mixin.create({
 
     let gameLinePresent = cleanLines
       .filter((x) => { return /^game/.test(x); });
-    if (gameLinePresent.length !== 1) {
+    if(gameLinePresent.length !== 1) {
       throw "Please check how to create a game config, game line not found"; }
 
     let checkNumbers = cleanLines.map((x) => { return x.split(",").length - 1; });
     let sameCommas = checkNumbers.every((x) => { return x === checkNumbers[0]; });
-    if (!sameCommas) {
+    if(!sameCommas) {
       throw "The game config has not the same amount of colums in every row, plase cound <,> in the config again"; }
 
     let uniqueUsers = cleanLines
@@ -167,7 +167,7 @@ export default Ember.Mixin.create({
       .map((x) => { return x.split(",")[0]; })
     ;
 
-    if (_.uniq(uniqueUsers).length !== uniqueUsers.length) {
+    if(_.uniq(uniqueUsers).length !== uniqueUsers.length) {
       throw "Every user must be unique in the config, two times b1 causes errors"; }
 
     return cleanLines;

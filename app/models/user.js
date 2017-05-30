@@ -7,7 +7,7 @@ import storeWithWeek from '../utils/store-with-week';
 import _ from 'lodash/lodash';
 
 function calcSellerKPI(remainingTomatoes, money, avgTomatoPrice, fine, goalTomatoes) {
-    if (remainingTomatoes < 0) {
+    if(remainingTomatoes < 0) {
         money = money + remainingTomatoes * (avgTomatoPrice + fine)
     }
 
@@ -61,7 +61,7 @@ export default Model.extend({
     }),
 
     avgTomatoPrice: Ember.computed("tomatoes", "money", function() {
-        if (this.get("money") === 0) { return 0 }
+        if(this.get("money") === 0) { return 0 }
         return Math.abs(this.get("money") / this.get("tomatoes"));
     }),
 
@@ -72,7 +72,7 @@ export default Model.extend({
         let xArr = _.map(x, (v,k) => {return _.extend({idx: k}, v) })
 
         let fn = () => {}
-        if (this.get("isSeller")) {
+        if(this.get("isSeller")) {
             fn = (goalTomatoes, money, tomatoes) => {
                 let remainingTomatoes = +this.get("remainingTomatoes");
                 let fine              = +this.get("userGame.fine")
@@ -146,11 +146,11 @@ export default Model.extend({
 
 
     playerPosition: Ember.computed("userGame.buyers", "userGame.sellers", "isSeller", "id", function() {
-        if (this.get("isSeller")) { // for the sellers
+        if(this.get("isSeller")) { // for the sellers
             return this.get("userGame.sellers").map((x) => {
                 return x.get("id"); }).indexOf(this.get("id")) + 1;
         } else { // for the buyers
-            if (this.get("userGame.buyers")) {
+            if(this.get("userGame.buyers")) {
                 return this.get("userGame.buyers").map((x) => {
                     return x.get("id"); }).indexOf(this.get("id")) + 1;
             }
@@ -225,7 +225,7 @@ export default Model.extend({
     }),
 
     traders: Ember.computed('isSeller', 'userGame.sellers.[]', 'userGame.buyers.[]', function() {
-        if (this.get('isSeller')) {
+        if(this.get('isSeller')) {
             return this.get('userGame.buyers');
         } else {
             return this.get('userGame.sellers');

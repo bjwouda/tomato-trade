@@ -8,7 +8,6 @@ export default Ember.Controller.extend(TableUtilities, {
   needsReload: Ember.computed("model.[]", function() {    
     let history = this.get("model");
     let offerIds = history.map(x => x.get("offerId"));
-    //console.log("checking....");
     //console.log(sessionStorage["allObjIds"]);
     //console.log(JSON.stringify(_.uniq(offerIds).sort()));
     return sessionStorage["allObjIds"] !== JSON.stringify(_.uniq(offerIds).sort());

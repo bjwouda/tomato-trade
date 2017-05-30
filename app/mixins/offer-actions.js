@@ -14,7 +14,7 @@ export default Ember.Mixin.create(LogFunctions, {
     sendOffer(game, sender, receiver, tomatoes, price) {
       Ember.run(() => {
         var isExternal = false;
-        if (+sender === 0 || +receiver === 0) { isExternal = true; }
+        if(+sender === 0 || +receiver === 0) { isExternal = true; }
 
         var newOffer = this.store.createRecord('offer', {
           tomatoes: tomatoes,
@@ -33,19 +33,19 @@ export default Ember.Mixin.create(LogFunctions, {
         game.incrementProperty('offerCnt');
         game.get('offers').addObject(newOffer);
 
-        if (+receiver !== 0) {
+        if(+receiver !== 0) {
           receiver.get('receivedOffers').addObject(newOffer);
           receiver.set("hasDirtyAttributes", false);
         }
 
-        if (+sender !== 0) {
+        if(+sender !== 0) {
           sender.get('sentOffers').addObject(newOffer);
           sender.set("hasDirtyAttributes", false);
         }
 
         newOffer.save().then(() => {
-          if (+sender !== 0) { sender.save(); }
-          if (+receiver !== 0) { receiver.save(); }
+          if(+sender !== 0) { sender.save(); }
+          if(+receiver !== 0) { receiver.save(); }
           game.save();
           return true;
         });
@@ -59,7 +59,7 @@ export default Ember.Mixin.create(LogFunctions, {
 
       this.logPlayerOfferWithObj(this.store, game, offer, "confirmed");
 
-      if (offer.get("isExternal")) {
+      if(offer.get("isExternal")) {
         this.send("acceptOffer", game, offer);
       }
     },
@@ -87,7 +87,7 @@ export default Ember.Mixin.create(LogFunctions, {
 
         //console.log(-offer.get("sender.content.tomatoes"), offer.get("tomatoes"), offer.get("sender.content.goalTomatoes"))
 
-        if (receiverTomatoes || senderTomatoes) { 
+        if(receiverTomatoes || senderTomatoes) { 
           //console.log("Offer needed to be declined, otherwise seller would have sold more tomatoes than available")
           self.send("declineOffer", game, offer);
           return
@@ -97,7 +97,7 @@ export default Ember.Mixin.create(LogFunctions, {
         offer.set("state", "accepted");
         offer.set("notes", offer.get("notes") + `${moment().format()};accepted\n`);
 
-        if (offer.get("receiver.content") !== null) {
+        if(offer.get("receiver.content") !== null) {
           var sign = offer.get("receiver.content.isSeller") ? 1 : -1;
           offer.set("receiver.content.money", +offer.get("receiver.content.money") + sign * offer.get("price") * offer.get("tomatoes"));
           offer.set("receiver.content.tomatoes", +offer.get("receiver.content.tomatoes") - sign * offer.get("tomatoes"));
@@ -105,7 +105,7 @@ export default Ember.Mixin.create(LogFunctions, {
           offer.get("receiver.content").save();
         }
 
-        if (offer.get("sender.content") !== null) {
+        if(offer.get("sender.content") !== null) {
           var sign = offer.get("sender.content.isSeller") ? 1 : -1;
           offer.set("sender.content.money", +offer.get("sender.content.money") + sign * offer.get("price") * offer.get("tomatoes"));
           offer.set("sender.content.tomatoes", +offer.get("sender.content.tomatoes") - sign * offer.get("tomatoes"));

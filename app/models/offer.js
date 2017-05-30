@@ -25,7 +25,7 @@ export default Model.extend({
 
   // for the race-condition, check if this flag is set, then set the state to accepted no matter what
   isAcceptedWatch : Ember.observer("isAccepted", function() {
-    if (this.get("isAccepted")) {
+    if(this.get("isAccepted")) {
       this.set("state", "accepted");
       this.save();
     }
@@ -49,7 +49,7 @@ export default Model.extend({
 
   idxOfOfferInGameCalc: Ember.computed("", function() {
     let gameOffers = this.get("game.offers");
-    if (gameOffers === undefined || gameOffers.map === undefined) { return ""; }
+    if(gameOffers === undefined || gameOffers.map === undefined) { return ""; }
 
     return gameOffers.map((x)=>{ return x.get("id"); }).indexOf(this.get("id"));
     

@@ -61,7 +61,7 @@ export default Model.extend(GameConfigParser, {
   weekNumber: Ember.computed.alias("weekCnt"),
   weekCnt: Ember.computed("roundCnt", function() {
     var roundCnt = this.get("roundCnt") - 1;
-    if (roundCnt < 0) {roundCnt = 0;}
+    if(roundCnt < 0) {roundCnt = 0;}
     return this.get(`gameMatrix.${roundCnt}.tradingFor`);
   }),
 
