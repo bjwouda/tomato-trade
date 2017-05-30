@@ -1,6 +1,22 @@
 {
   "player": [
     "introduction",
+    "goal",
+    "tutorialExplanation",
+    "overview",
+    "sellerOverview",
+    "buyerOverview",
+    "flowWeek",
+    "clock",
+    "sellerProperties",
+    "buyerProperties",
+    "externalOffer",
+    "flowDay",
+    "prognosis",
+    "ending",
+    "watchFor",
+    "outroduction",
+    
     "makeOffer",
     "currentTransaction",
     "last5Transactions",

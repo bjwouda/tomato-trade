@@ -44,25 +44,25 @@ export default Ember.Component.extend(OfferUtilities, TableUtilities, {
     return [
       {
         "propertyName": "round",
-        "title": this.localize("results.transactions.round"),
+        "title": this.localize("player.results.transactions.round"),
         "template": "custom/round-number-column"
       },
       {
         "propertyName": "sender",
-        "title": this.localize("results.transactions.sender")
+        "title": this.localize("player.results.transactions.sender")
       },
       {
         "propertyName": "receiver",
-        "title": this.localize("results.transactions.receiver")
+        "title": this.localize("player.results.transactions.receiver")
       },
       {
         "propertyName": "amount",
-        "title": this.localize("results.transactions.amount"),
+        "title": this.localize("player.results.transactions.amount"),
         "template": "custom/tomato-amount-column"
       },
       {
         "propertyName": "unitPrice",
-        "title": this.localize("results.transactions.unitPrice"),
+        "title": this.localize("player.results.transactions.unitPrice"),
         "template": "custom/euro-currency-column"
       }
     ];

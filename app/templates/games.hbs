@@ -82,7 +82,7 @@
                   <span class="title-container"><h5>{{t 'games.fine'}}</h5></span> {{input disabled=1 type="number" value=game.fine class="form-control" }}
                 </div>
                 <div class="form-group">
-                  <span class="title-container"><h5>{{t 'games.fixedCost'}}</h5></span> {{input disabled=1 type="number" value=game.fixedCost class="form-control" }}
+                  <span class="title-container"><h5>{{t 'games.fixedCosts'}}</h5></span> {{input disabled=1 type="number" value=game.fixedCost class="form-control" }}
                 </div>
                 <div class="form-group">
                   <span class="title-container"><h5>{{t 'games.retailPrice'}}</h5></span> {{input disabled=1 type="number" value=game.retailPrice class="form-control" }}
@@ -95,9 +95,9 @@
             {{#each game.gameMatrix as |item index|}}
               <li>
                 {{#if (eq-num item.round game.roundCnt)}}
-                  <strong>{{t 'games.round'}} {{item.round}} {{item.tradeType}}</strong>
+                  <strong>{{t 'games.round'}} {{item.round}} {{t (concat 'games.' item.tradeType)}}</strong>
                 {{else}}
-                  {{t 'games.round'}} {{item.round}} {{item.tradeType}}
+                  {{t 'games.round'}} {{item.round}} {{t (concat 'games.' item.tradeType)}}
                 {{/if}}
               </li>
             {{/each}}

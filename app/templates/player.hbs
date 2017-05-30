@@ -22,57 +22,70 @@
       {{#each-in model.groupedReceivedOpenOffers as |k obj|}}
         <div class="col-sm-4 ">
           {{#if (eq k 'External')}}
-            <h4>{{capitalize (t 'external')}}</h4>
+            <h3 class="property-label">{{t 'player.external'}}</h3>
           {{else}}
-            <h4>{{capitalize (t obj.user.roleDescription)}} {{obj.user.playerPosition}}: {{obj.user.name}}</h4>
+            <h3 class="property-label">{{t (concat 'player.' obj.user.roleDescription)}} {{obj.user.playerPosition}} {{obj.user.name}}</h3>
           {{/if}}
           
           {{#if (or model.enableExternalTrading (not (eq k 'External')))}}
             
             <ul class="list-group">
               <li class="list-group-item">
-                <div class="form-inline">
-                  {{#if (eq k 'External')}}
-                    {{#if (gte obj.sentOffers.length 3)}}
-                      <div class="alert alert-danger" role="alert">
-                        {{t "only3activeOffers"}}
-                      </div>
-                    {{/if}}
-                    
-                    {{#if (and model.isSeller (gt _ext_offerTomato model.remainingTomatoes))}}
-                      <div class="alert alert-danger" role="alert">
-                        {{t "cantExceedTomatoes"}}
-                      </div>
-                    {{/if}}
-                     
-                    <div class="form-group">
-                      
-                      <label for="offerTomato"><span class="to-tomato" />{{t 'tomatoes'}}(max. {{model.extOfferTomato}})</label>
-                      
-                      {{number-input 
-                        class="form-control" 
-                        placeholder=(t "kgOfTomatoes")
-                        unmaskedValue=_ext_offerTomato  
-                        group=true 
-                        groupSize=3 
-                        separator="," 
-                        decimal=false 
-                        radix="."
-                      }}
-                      
+                {{#if (eq k 'External')}}
+                  
+                  {{#if (gte obj.sentOffers.length 3)}}
+                    <div class="alert alert-danger" role="alert">
+                      {{t "player.offerExceeds3StandingOffers"}}
                     </div>
-                    
-                    <div class="form-group">
-                      
-                      <label for="offerPrice"><span class="to-money" />{{t 'price'}}</label>
-                      {{input-money
-                        prefix='€ ' 
-                        number=model.extOfferPrice 
-                        class="form-control" 
-                        placeholder=(t "pricePerKg")
-                        disabled=1
-                      }}
-                      
+                  {{/if}}
+                  
+                  {{#if (and model.isSeller (gt _ext_offerTomato model.remainingTomatoes))}}
+                    <div class="alert alert-danger" role="alert">
+                      {{t "player.offerExceedsRemainder"}}
+                    </div>
+                  {{/if}}
+                  
+                  <div class="form-group row">
+                    <div class="col-2 col-sm-2 col-lg-2">
+                      <label for="offerTomato" class="form-control-static">{{t 'player.amount'}}</label>
+                    </div>
+                    <div class="col-6 col-sm-6 col-lg-6">
+                      <span class="to-tomato" />
+                      <span class="input-prefix">
+                        {{number-input 
+                          class="form-control" 
+                          placeholder=(t "player.amountPlaceholder")
+                          unmaskedValue=_ext_offerTomato  
+                          group=true 
+                          groupSize=3 
+                          separator="," 
+                          decimal=false 
+                          radix="."
+                        }}
+                      </span>
+                    </div>
+                    <div class="col-4 col-sm-4 col-lg-4">
+                      <div class="form-control-static"><em>{{t 'player.externalOfferMaximum'}} {{model.extOfferTomato}}</em></div>
+                    </div>
+                  </div>
+                  
+                  <div class="row">
+                    <div class="col-2 col-sm-2 col-lg-2">
+                      <label for="offerPrice" class="form-control-static">{{t 'player.unitPrice'}}</label>
+                    </div>
+                    <div class="col-6 col-sm-6 col-lg-6">
+                      <span class="to-money" />
+                      <span class="input-prefix">
+                        {{input-money
+                          prefix='€ ' 
+                          number=model.extOfferPrice 
+                          class="form-control" 
+                          placeholder=(t "player.unitPricePlaceholder")
+                          disabled=1
+                        }}
+                      </span>
+                    </div>
+                    <div class="col-4 col-sm-4 col-lg-4">
                       {{!-- check logic here is inverse to above --}}
                       {{#if (and 
                               (lt obj.sentOffers.length 3) 
@@ -80,50 +93,62 @@
                               (my-lte _ext_offerTomato model.extOfferTomato)
                               (or (not model.isSeller) (lte _ext_offerTomato model.remainingTomatoes))
                             )}}
-                        <button class="btn btn-info" {{action 'sendOffer' game model 0 _ext_offerTomato model.extOfferPrice}}>{{t 'send'}}</button>
+                        <button class="btn btn-info pull-right" {{action 'sendOffer' game model 0 _ext_offerTomato model.extOfferPrice}}>{{t 'player.send'}}</button>
                       {{else}}
-                        <button disabled class="btn btn-default" {{action 'sendOffer' game model 0 _ext_offerTomato model.extOfferPrice}}>{{t 'send'}}</button>
+                        <button disabled class="btn btn-default pull-right" {{action 'sendOffer' game model 0 _ext_offerTomato model.extOfferPrice}}>{{t 'player.send'}}</button>
                       {{/if}}
                     </div>
-                  {{else}}
-                    {{#if (gte obj.sentOffers.length 3)}}
-                      <div class="alert alert-danger" role="alert">
-                        {{t "only3activeOffers"}}
-                      </div>
-                    {{/if}}
-                    {{#if (and model.isSeller (gt obj.user._offerTomato model.remainingTomatoes))}}
-                      <div class="alert alert-danger" role="alert">
-                        {{t "cantExceedTomatoes"}}
-                      </div>
-                    {{/if}}
-                    
-                    <div class="form-group">
-                      
-                      <label for="offerTomato"><span class="to-tomato" />{{t 'tomatoes'}}</label>
-                      
-                      {{number-input 
-                        class="form-control" 
-                        placeholder=(t "kgOfTomatoes")
-                        unmaskedValue=obj.user._offerTomato  
-                        group=true 
-                        groupSize=3 
-                        separator="," 
-                        decimal=false 
-                        radix="."
-                      }}
-                      
+                  </div>
+                  
+                {{else}}
+                  
+                  {{#if (gte obj.sentOffers.length 3)}}
+                    <div class="alert alert-danger" role="alert">
+                      {{t "player.offerExceeds3StandingOffers"}}
                     </div>
-                    
-                    <div class="form-group">
-                      
-                      <label for="offerPrice"><span class="to-money" />{{t 'price'}}</label>
-                      {{input-money
-                        prefix='€ ' 
-                        number=obj.user._offerPrice 
-                        class="form-control" 
-                        placeholder=(t "pricePerKg")
-                      }}
-                      
+                  {{/if}}
+                  {{#if (and model.isSeller (gt obj.user._offerTomato model.remainingTomatoes))}}
+                    <div class="alert alert-danger" role="alert">
+                      {{t "player.offerExceedsRemainder"}}
+                    </div>
+                  {{/if}}
+                  
+                  <div class="form-group row">
+                    <div class="col-3 col-sm-3 col-lg-3">
+                      <label for="offerTomato" class="form-control-static">{{t 'player.amount'}}</label>
+                    </div>
+                    <div class="col-5 col-sm-5 col-lg-5">
+                      <span class="to-tomato" />
+                      <span class="input-prefix">
+                        {{number-input 
+                          class="form-control" 
+                          placeholder=(t "player.amountPlaceholder")
+                          unmaskedValue=obj.user._offerTomato  
+                          group=true 
+                          groupSize=3 
+                          separator="," 
+                          decimal=false 
+                          radix="."
+                        }}
+                      </span>
+                    </div>
+                  </div>
+                  
+                  <div class="row">
+                    <div class="col-3 col-sm-3 col-lg-3">
+                      <label for="offerPrice" class="form-control-static">{{t 'player.unitPrice'}}</label>
+                    </div>
+                    <div class="col-5 col-sm-5 col-lg-5">
+                      <span class="to-money" />
+                      <span class="input-prefix">
+                        {{input-money
+                          number=obj.user._offerPrice 
+                          class="form-control" 
+                          placeholder=(t "player.unitPricePlaceholder")
+                        }}
+                      </span>
+                    </div>
+                    <div class="col-4 col-sm-4 col-lg-4">
                       {{!-- check logic here is inverse to above --}}
                       {{#if (and 
                               (lt obj.sentOffers.length 3)
@@ -132,20 +157,21 @@
                               (or (not model.isSeller) (lte obj.user._offerTomato model.remainingTomatoes)) 
                             )}}
                         {{#if (eq k 'External')}}
-                          <button class="btn btn-info" {{action 'sendOffer' game model 0 obj.user._offerTomato obj.user._offerPrice}}>{{t 'send'}}</button>
+                          <button class="btn btn-info pull-right" {{action 'sendOffer' game model 0 obj.user._offerTomato obj.user._offerPrice}}>{{t 'player.send'}}</button>
                         {{else}}
-                          <button class="btn btn-info" {{action 'sendOffer' game model obj.user obj.user._offerTomato obj.user._offerPrice}}>{{t 'send'}}</button>
+                          <button class="btn btn-info pull-right" {{action 'sendOffer' game model obj.user obj.user._offerTomato obj.user._offerPrice}}>{{t 'player.send'}}</button>
                         {{/if}}
                       {{else}}
                         {{#if (eq k 'External')}}
-                          <button disabled class="btn btn-default" {{action 'sendOffer' game model 0 obj.user._offerTomato obj.user._offerPrice}}>{{t 'send'}}</button>
+                          <button disabled class="btn btn-default pull-right" {{action 'sendOffer' game model 0 obj.user._offerTomato obj.user._offerPrice}}>{{t 'player.send'}}</button>
                         {{else}}
-                          <button disabled class="btn btn-default" {{action 'sendOffer' game model obj.user obj.user._offerTomato obj.user._offerPrice}}>{{t 'send'}}</button>
+                          <button disabled class="btn btn-default pull-right" {{action 'sendOffer' game model obj.user obj.user._offerTomato obj.user._offerPrice}}>{{t 'player.send'}}</button>
                         {{/if}}
                       {{/if}}
                     </div>
-                  {{/if}}  
-                </div>
+                  </div>
+                  
+                {{/if}}
               </li>
               
               {{tutorial-list-item tutorial='player' step='makeOffer' active=isTutorialActive}}
@@ -155,7 +181,7 @@
             <ul class="list-group">
               
               <li class="list-group-item">
-                <strong>{{t "currentTransaction"}}</strong>
+                <strong>{{t "player.currentTransactions"}}</strong>
               </li>
               {{player-offers 
                 store=store 
@@ -173,13 +199,13 @@
             <ul class="list-group">
               
               <li class="list-group-item">
-                <strong>{{t 'last5Transactions'}}</strong>
+                <strong>{{t 'player.last5Transactions'}}</strong>
               </li>
               
               {{#each (take 5 (reverse obj.history)) as |offer|}}
                   {{player-offer-display offer=offer}}
               {{else}}
-                  <li class="list-group-item"><i>{{t "na"}}</i></li>
+                  <li class="list-group-item">{{t "player.noTransactions"}}</li>
               {{/each}}
               
               {{tutorial-list-item tutorial='player' step='last5Transactions' active=isTutorialActive}}
@@ -189,12 +215,12 @@
             <ul class="list-group">
               
               <li class="list-group-item">
-                <strong>{{t "previousAcceptedOffers"}}</strong>
+                <strong>{{t "player.previouslyAcceptedOffers"}}</strong>
               </li>
-              {{#each (take 10 (filter-by "state" "accepted" (reverse obj.history)))  as |offer|}}
+              {{#each (take 10 (filter-by "state" "accepted" (reverse obj.history))) as |offer|}}
                 {{player-offer-display offer=offer}}
               {{else}}
-                <li class="list-group-item"><i>{{t "na"}}</i></li>
+                <li class="list-group-item">{{t "player.noTransactions"}}</li>
               {{/each}}
               
               {{#if model.isSeller}}
@@ -206,7 +232,7 @@
             </ul>
             
           {{else}}
-            <p>{{t "externalTradingNotAvailable"}}</p>
+            <p class="property-value">{{t "player.noExternalTransactions"}}</p>
           {{/if}}
           
         </div>

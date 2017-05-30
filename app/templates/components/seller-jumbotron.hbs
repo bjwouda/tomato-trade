@@ -2,10 +2,10 @@
 
   <div class="row">
     <div class="col-sm-6">
-      <h3 class="property-label">{{capitalize (t 'goalTomatoes')}}</h3>
+      <h3 class="property-label">{{t (if model.isSeller 'player.sellerProperties.supply' 'player.buyerProperties.demand')}}</h3>
     </div>
     <div class="col-sm-6">
-      <h3 class="property-label">{{capitalize (t 'tomatoes')}}</h3>
+      <h3 class="property-label">{{t (if model.isSeller 'player.sellerProperties.sold' 'player.buyerProperties.bought')}}</h3>
     </div>
   </div>
   <div class="row">
@@ -28,10 +28,10 @@
   
   <div class="row">
     <div class="col-sm-6">
-      <h3 class="property-label">{{capitalize (t 'remainingTomatoes')}}</h3>
+      <h3 class="property-label">{{t (if model.isSeller 'player.sellerProperties.remainder' 'player.buyerProperties.remainder')}}</h3>
     </div>
     <div class="col-sm-6">
-      <h3 class="property-label">{{capitalize (t 'avgTomatoPrice')}}</h3>
+      <h3 class="property-label">{{t (if model.isSeller 'player.sellerProperties.averageUnitPrice' 'player.buyerProperties.averageUnitPrice')}}</h3>
     </div>
   </div>
   <div class="row">

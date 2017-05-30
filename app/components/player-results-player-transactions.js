@@ -264,7 +264,7 @@ export default Ember.Component.extend(OfferUtilities, ChartUtilities, {
           return array.concat(group);
         }, []);
         
-        let key = isSender ? "results.player.transactions.to" : "results.player.transactions.from";
+        let key = isSender ? "player.results.player.transactions.to" : "player.results.player.transactions.from";
         
         let labels = [
           i18n.t(key),
@@ -272,7 +272,7 @@ export default Ember.Component.extend(OfferUtilities, ChartUtilities, {
           clientPosition
         ];
         
-        let label = labels.join(i18n.t("results.player.transactions.space"));
+        let label = labels.join(i18n.t("player.results.player.transactions.space"));
         
         let data = getDataForOffers(offers);
         let colors = getColorsForOffers(offers);

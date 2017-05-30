@@ -1,60 +1,36 @@
 export default {
-  "daily": "daily",
-  "weekly": "weekly",
-  "fine": "fine",
-  "fixedCost": "fixed cost",
-  "kgOfTomatoes": "kg of tomatoes",
-  "pricePerKg": "price per kg",
-  "retailPrice": "retail price",
-  "only3activeOffers": "You can only have 3 active send offers",
-  "cantExceedTomatoes": "Your offer can't exceed your remaining tomatoes",
   "offerExceedMax": " Offer tomatoes ({{offerTomatoes}}) can't exceed remaining tomatoes ({{remainingTomatoes}})",
   "GameIsPaused": "Game is paused",
   "GameIsAboutToStart": "Game is about to start",
   "GameHasEnded": "Game has ended",
   "accept": "Accept",
   "accepted": "Accepted",
-  "avgTomatoPrice": "Average price",
-  "buyer": "Trader",
-  "buyerKPI": "Trader KPI",
   "currentTomatoes": "Current Tomatoes",
-  "currentTransaction": "Current Transactions",
   "decline": "Decline",
-  "declineed": "Declined",
+  "declined": "Declined",
   "external": "External Trader",
-  "goalTomatoes": "Goal",
-  "historicalScreen": "Historical Screen",
-  "last5Transactions": "Last 5 transactions",
-  "masterScreen": "Master Screen",
   "money": "Money",
   "na": "N/A",
-  "offerNotValid": "Please place a valid offer where both values are greater 0",
-  "previousAcceptedOffers": "Previous accepted offers",
-  "price": "Price",
   "recall": "Recall",
   "recalled": "Recalled",
-  "receivedOffers": "Received Offers",
-  "remainingTomatoes": "Remaining",
-  "seller": "Cooperative",
-  "sellerKPI": "Cooperative KPI",
-  "send": "Send",
-  "sendOfferTo": "Send individual offer to",
-  "sendOfferToEveryone": "Send offer to everyone",
-  "sentOffers": "Sent Offers",
   "timeUp": "Time is up! Please finish your trade.",
   "tomato": "Tomato",
-  "tomatoes": "Inventory",
   "currentWeekDescription": "It is week <strong>{{currentWeek}}</strong>",
   "tradeWeekDescription": "You are doing the <strong>{{tradeType}} trade</strong> for week <strong>{{tradeWeek}}</strong>",
-  "player": {
-      "tradingMenu": "Trading Menu",
-      "resourceOverview": "Resource Overview",
-      "history": "Transaction history",
-      "title": "Tomato trade"
-  },
-  "externalTradingNotAvailable": "External trading is not available",
   "round": "round",
   "offer": "offer",
+  
+  "index": {
+    "title": "Tomato Trade",
+    "add": "Create a new game",
+    "prompt": "Please enter a name for the game:",
+    "name": "Name",
+    "date": "Date",
+    "id": "ID",
+    "remove": "Remove",
+    "confirm": "Confirm",
+    "cancel": "Cancel"
+  },
   "games": {
     "startGame": "Start game",
     "endGame": "End game",
@@ -78,8 +54,10 @@ export default {
     "week": "Week",
     "minutesPerRound": "Minutes per round",
     "fine": "Fine",
-    "fixedCost": "Fixed cost",
+    "fixedCosts": "Fixed costs",
     "retailPrice": "Retail price",
+    "weekly": "weekly",
+    "daily": "daily",
     "gameWasDeleted": "GAME WAS DELETED, PLEASE CHECK",
     "playerIDs": "Players",
     "numberOfSellers": "Cooperatives",
@@ -91,49 +69,6 @@ export default {
     "cancelConfiguration": "Cancel",
     "facilitator": "Facilitator",
     "confirmation": "This will cause everything to start from scratch. Are you sure you wish to change the configuration?"
-  },
-  "tutorial": {
-    "player": {
-      "introduction": "Introduction goes here."
-    }
-  },
-  "index": {
-    "title": "Tomato Trade",
-    "add": "Create a new game",
-    "prompt": "Please enter a name for the game:",
-    "name": "Name",
-    "date": "Date",
-    "id": "ID",
-    "remove": "Remove",
-    "confirm": "Confirm",
-    "cancel": "Cancel"
-  },
-  "results": {
-    "player": {
-      "averageUnitPrice": "Average unit price",
-      "transactions": {
-        "title": "Transactions",
-        "week": "Week:",
-        "to": "To",
-        "from": "From",
-        "space": " "
-      }
-    },
-    "transactions": {
-      "best": {
-        "title": "Best transactions",
-        "buyerTitle": "Best trader transactions",
-        "sellerTitle": "Best cooperative transactions"
-      },
-      "all": {
-        "title": "All transactions"
-      },
-      "round": "Round",
-      "sender": "Sender",
-      "receiver": "Receiver",
-      "amount": "Amount",
-      "unitPrice": "Unit price"
-    }
   },
   "history": {
     "title": "History",
@@ -151,6 +86,91 @@ export default {
     "unitPrice": "Unit price",
     "time": "Time",
     "confirm": "This will replace the existing history. Are you sure you wish to continue?"
+  },
+  "player": {
+    "external": "External",
+    "buyer": "Trader",
+    "seller": "Cooperative",
+    "offerExceeds3StandingOffers": "You can't have more than 3 standing offers.",
+    "offerExceedsRemainder": "Your can't offer more than your remainder.",
+    "amount": "Amount:",
+    "externalOfferMaximum": "Maximum of",
+    "amountPlaceholder": "kilograms",
+    "unitPrice": "Unit price:",
+    "unitPricePlaceholder": "price per kilogram",
+    "send": "Send",
+    "currentTransactions": "Current transactions",
+    "last5Transactions": "Last 5 transactions",
+    "noTransactions": "There are no transactions.",
+    "previouslyAcceptedOffers": "Previously accepted offers",
+    "noExternalTransactions": "There are no external transactions.",
+    "buyerProperties": {
+      "demand": "Demand",
+      "bought": "Bought",
+      "remainder": "Remainder",
+      "averageUnitPrice": "Average price",
+      "fine": "Fine",
+      "fixedCosts": "Fixed costs",
+      "retailPrice": "Retail price"
+    },
+    "sellerProperties": {
+      "supply": "Supply",
+      "sold": "Sold",
+      "remainder": "Remainder",
+      "averageUnitPrice": "Average price"
+    },
+    "results": {
+      "player": {
+        "averageUnitPrice": "Average unit price",
+        "transactions": {
+          "title": "Transactions",
+          "week": "Week:",
+          "to": "To",
+          "from": "From",
+          "space": " "
+        }
+      },
+      "transactions": {
+        "best": {
+          "title": "Best transactions",
+          "buyerTitle": "Best trader transactions",
+          "sellerTitle": "Best cooperative transactions"
+        },
+        "all": {
+          "title": "All transactions"
+        },
+        "round": "Round",
+        "sender": "Sender",
+        "receiver": "Receiver",
+        "amount": "Amount",
+        "unitPrice": "Unit price"
+      }
+    }
+  },
+  "timer": {
+    
+  },
+  "tutorial": {
+    "player": {
+      "introduction": "Welcome to Tomato Trade! (With a picture?)",
+      "goal": "Doel SamenMarkt® Een betere toekomst voor de tuinbouw in Nederland Transparante prijsvorming Rationaliteit Stabiliteit Vertrouwen",
+      "tutorialExplanation": "This tutorial aims to let you know about tomatoes. It will do this by... In het kort Voorbereiding Spelverloop Resultaten",
+      "overview": "De tomatenhandel in Nederland verloopt ongeveer als volgt: [plaatje] Dit spel focust zich op de handel tussen coöperaties en handelshuizen Daarbij zijn het aanbod, de vraag en de retailprijs bekend Het spel speelt zich af in een aantal verschillende weken van het jaar Er zijn een aantal rollen te verdelen: coöperaties en handelshuizen Samen onderhandelen deze spelers over contracten voor de levering van tomaten Het doel is om beter te presteren dan je concurrenten",
+      "sellerOverview": "Een coöperatie verkoopt tomaten namens telers aan handelshuizen Daarbij is het doel simpel: een zo hoog mogelijke uitbetaalprijs verkrijgen Elke coöperatie heeft Een aanbod aan tomaten (in kg)",
+      "buyerOverview": "Een handelshuis koopt tomaten in om deze door te verkopen aan de retail Daarbij is het doel een zo hoog mogelijke winst te verkrijgen Elk handelshuis heeft Een vraag naar tomaten vanuit de retail (in kg) Een retailprijs die u krijgt voor uw tomaten (in €/kg) Vaste kosten (in €/kg) Een boete voor niet geleverde tomaten (in €/kg)",
+      "flowWeek": "De levering van tomaten voor een bepaalde week bestaat uit twee delen: Het onderhandelen over weekcontracten voor de volgende week De dagcontracten voor de resterende tomaten Nu kunnen de onderhandelingen beginnen! Verkoop uw aanbod (coöperatie) of voldoe aan uw vraag (handelshuis) De spelers kunnen een bod naar elkaar sturen Na wederzijds accepteren is een contract gesloten Tijd per ronde = 6 of 4 minuten LET OP: uw aanbod of vraag is slechts een prognose, dit kan afwijken!",
+      "timer": "Dit vak laat zien: Uw rol en spelersnaam De week en het type contracten waarover onderhandeld wordt De resterende tijd",
+      "sellerProperties": "Dit vak laat zien: Uw aanbod (kg) Uw aantal verkochte tomaten (kg) Uw resterende aanbod (kg) Uw gemiddelde onderhandelprijs (€/kg) van deze ronde",
+      "buyerProperties": "Dit vak laat zien: Uw vraag (kg) Uw aantal gekochte tomaten (kg) Uw resterende vraag (kg) Uw gemiddelde tomatenprijs (€/kg) van deze ronde Uw boete voor het niet leveren van tomaten (€/kg vraag resterend) Uw vaste kosten (€/kg vraag) Uw verkoopprijs richting de retail (€/kg) Uw KPI: uw winst of verlies (€/kg vraag) over het gehele spel",
+      "externalOffer": "Dit bod kan naast de andere biedingen worden geaccepteerd De geboden hoeveelheid is een maximum, u kunt akkoord gaan met minder LET OP: Dit bod blijft niet eeuwig geldig...",
+      "flowDay": "Na de ronde voor de weekcontracten, volgen de dagcontracten! Hiermee worden de resterende tomaten verkocht of ingekocht Uw aanbod of vraag wordt nu pas definitief LET OP: Tomaten die resteren na de dagcontracten worden gedumpt (€0,00/kg) Niet voldaan aan de vraag? Dan krijgt u een bepaalde boete per kg",
+      "prognosis": "Voor de start met de daghandel wordt uw definitieve aanbod of vraag bepaald -10% -5% 0% 0% +5% +10% LET OP: Houd bij de weekhandel rekening met deze mogelijke afwijking",
+      "ending": "[Resultaten...] De winnaars worden bepaald met de KPI's: De coöperatie met de hoogste uitbetaalprijs (gemiddeld) Het handelshuis met de hoogste winst (per kg vraag)",
+      "watchFor": "Overgebleven tomaten leveren niks op Maar, sluit geen contracten voor tomaten die u niet heeft! Uw vraag of aanbod kan maximaal 10% afwijken Er is een boete bij onvoldoende tomaten voor de retail Na enkele minuten ontvangt u een extern bod",
+      "outroduction": "Succes!",
+      
+      "sellerPropertySupply": "Dit vak laat zien: Uw aanbod (kg) Uw aantal verkochte tomaten (kg) Uw resterende aanbod (kg) Uw gemiddelde onderhandelprijs (€/kg) van deze ronde",
+    }
   },
   "table": {
     "tableSummary": "Displaying %@ through %@ out of the %@ entries",

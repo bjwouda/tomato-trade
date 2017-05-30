@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-sm-12">
-    <h4 class="property-label">{{t 'results.player.transactions.title'}}</h4>
+    <h4 class="property-label">{{t 'player.results.player.transactions.title'}}</h4>
   </div>
 </div>
 <div class="row">
@@ -11,7 +11,7 @@
 <div class="row">
   <div class="col-sm-12">
     <div class="btn-container">
-      <div class="btn-group btn-group-xs btn-group-xs-leader">{{t 'results.player.transactions.week'}}</div>
+      <div class="btn-group btn-group-xs btn-group-xs-leader">{{t 'player.results.player.transactions.week'}}</div>
       <div class="btn-group btn-group-xs">
         {{#each weeks as |week|}}
           <button class="btn {{if (eq week selectedWeek) 'btn-primary' 'btn-info'}}" {{action 'selectWeek' week}}>{{week}}</button>

@@ -140,3 +140,9 @@ span.golden-tomato-container {
   top: -0.225em;
   left: 0.5em;
 }
+
+/* Allows for a tomato or money icon before an input field. */
+.input-prefix input {
+  display: inline;
+  width: 90%;
+}
