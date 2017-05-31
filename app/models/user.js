@@ -130,7 +130,7 @@ export default Model.extend({
 
     //Result Seller 1 - Bob
     descriptivePlayerIdInGame: Ember.computed("playerPosition", "name", function() {
-        var prefix = this.get("isSeller") ? "seller" : "buyer";
+        var prefix = this.get("isSeller") ? "player.seller" : "player.buyer";
         prefix = this.get('i18n').t(prefix);
         let pos = this.get("playerPosition");
         let postfix = this.get("name") ? ` - ${this.get("name")}` : '';
