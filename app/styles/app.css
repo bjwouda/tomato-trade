@@ -162,3 +162,9 @@ span.tomato-container {
 span.spacer {
   padding-left: 1em;
 }
+
+/* For labels in navigation lists. */
+.label-nav {
+  font-weight: normal;
+  padding-left: 1em;
+}

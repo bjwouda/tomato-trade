@@ -33,9 +33,16 @@
               <li class="active" {{action 'letGameEndInXMinutes' game 0}}><a href="">{{t 'games.endGameNow'}}</a></li>
               <li class="active" {{action 'allowGlobalExternalTrading'}}><a href="">{{t 'games.globalTrading'}}</a></li>
               <li class="nav-divider"></li>
-              <div class="form-group">
-                <span class="title-container"><h5>{{t 'games.globalTradingSchedule'}}</h5></span> {{input value=_autoTradingString enter=(action "setAutoTrading" _autoTradingString) class="form-control"}}
-              </div>
+              <li>
+                <div class="row">
+                  <div class="col-6 col-sm-6 col-lg-6">
+                    <label class="label-nav form-control-static">{{t 'games.globalTradingSchedule'}}</label>
+                  </div>
+                  <div class="col-6 col-sm-6 col-lg-6">
+                    {{input value=_autoTradingString enter=(action "setAutoTrading" _autoTradingString) class="form-control"}}
+                  </div>
+                </div>
+              </li>
               <li class="active" {{action "setAutoTrading" _autoTradingString}}><a href="">{{t 'games.saveGlobalTradingSchedule'}}
                 {{#if autoTradingTs}}
                   ({{autoTradingTs}})
@@ -65,40 +72,100 @@
             {{/if}}
             
             {{#if isEditing}}
-              <span>
-                <div class="form-group">
-                  <span class="title-container"><h5>{{t 'games.name'}}</h5></span> {{input disabled=(not isEditing) type="text" value=game.gameName class="form-control" }}
+              <li class="nav-divider"></li>
+              
+              <li>
+                <div class="form-group row">
+                  <div class="col-6 col-sm-6 col-lg-6">
+                    <label class="label-nav form-control-static">{{t 'games.name'}}</label>
+                  </div>
+                  <div class="col-6 col-sm-6 col-lg-6">
+                    {{input disabled=(not isEditing) type="text" value=game.gameName class="form-control"}}
+                  </div>
                 </div>
-                <div class="form-group">
-                  <span class="title-container"><h5>{{t 'games.round'}}</h5></span> {{input disabled=(not isEditing) type="number" value=game.roundCnt class="form-control" }}
+                <div class="form-group row">
+                  <div class="col-6 col-sm-6 col-lg-6">
+                    <label class="label-nav form-control-static">{{t 'games.round'}}</label>
+                  </div>
+                  <div class="col-6 col-sm-6 col-lg-6">
+                    {{input disabled=(not isEditing) type="number" value=game.roundCnt class="form-control"}}
+                  </div>
                 </div>
-                <div class="form-group">
-                  <span class="title-container"><h5>{{t 'games.week'}}</h5></span> {{input disabled=1 type="number" value=game.weekCnt class="form-control" }}
+                <div class="form-group row">
+                  <div class="col-6 col-sm-6 col-lg-6">
+                    <label class="label-nav form-control-static">{{t 'games.week'}}</label>
+                  </div>
+                  <div class="col-6 col-sm-6 col-lg-6">
+                    {{input disabled=1 type="number" value=game.weekCnt class="form-control"}}
+                  </div>
                 </div>
-                <div class="form-group">
-                  <span class="title-container"><h5>{{t 'games.minutesPerRound'}}</h5></span> {{input disabled=1 type="number" value=game.minutesPerRound class="form-control" }}
+                <div class="form-group row">
+                  <div class="col-6 col-sm-6 col-lg-6">
+                    <label class="label-nav form-control-static">{{t 'games.minutesPerRound'}}</label>
+                  </div>
+                  <div class="col-6 col-sm-6 col-lg-6">
+                    {{input disabled=1 type="number" value=game.minutesPerRound class="form-control"}}
+                  </div>
                 </div>
-                <div class="form-group">
-                  <span class="title-container"><h5>{{t 'games.fine'}}</h5></span> {{input disabled=1 type="number" value=game.fine class="form-control" }}
+                <div class="form-group row">
+                  <div class="col-6 col-sm-6 col-lg-6">
+                    <label class="label-nav form-control-static">{{t 'games.fine'}}</label>
+                  </div>
+                  <div class="col-6 col-sm-6 col-lg-6">
+                    <div class="input-tomato">
+                      <span class="tomato-anchor">
+                        <span class="tomato-container">
+                          <span class="to-money" />
+                        </span>
+                      </span>
+                      {{input disabled=1 type="number" value=game.fine class="form-control"}}
+                    </div>
+                  </div>
                 </div>
-                <div class="form-group">
-                  <span class="title-container"><h5>{{t 'games.fixedCosts'}}</h5></span> {{input disabled=1 type="number" value=game.fixedCost class="form-control" }}
+                <div class="form-group row">
+                  <div class="col-6 col-sm-6 col-lg-6">
+                    <label class="label-nav form-control-static">{{t 'games.fixedCosts'}}</label>
+                  </div>
+                  <div class="col-6 col-sm-6 col-lg-6">
+                    <div class="input-tomato">
+                      <span class="tomato-anchor">
+                        <span class="tomato-container">
+                          <span class="to-money" />
+                        </span>
+                      </span>
+                      {{input disabled=1 type="number" value=game.fixedCost class="form-control"}}
+                    </div>
+                  </div>
                 </div>
-                <div class="form-group">
-                  <span class="title-container"><h5>{{t 'games.retailPrice'}}</h5></span> {{input disabled=1 type="number" value=game.retailPrice class="form-control" }}
+                <div class="row">
+                  <div class="col-6 col-sm-6 col-lg-6">
+                    <label class="label-nav form-control-static">{{t 'games.retailPrice'}}</label>
+                  </div>
+                  <div class="col-6 col-sm-6 col-lg-6">
+                    <div class="input-tomato">
+                      <span class="tomato-anchor">
+                        <span class="tomato-container">
+                          <span class="to-money" />
+                        </span>
+                      </span>
+                      {{input disabled=1 type="number" value=game.retailPrice class="form-control"}}
+                    </div>
+                  </div>
                 </div>
-              </span>
+              </li>
             {{/if}}
             
             <li class="nav-divider"></li>
             
             {{#each game.gameMatrix as |item index|}}
               <li>
-                {{#if (eq-num item.round game.roundCnt)}}
-                  <strong>{{t 'games.round'}} {{item.round}} {{t (concat 'games.' item.tradeType)}}</strong>
-                {{else}}
-                  {{t 'games.round'}} {{item.round}} {{t (concat 'games.' item.tradeType)}}
-                {{/if}}
+                <div class="label-nav">
+                  {{#if (eq-num item.round game.roundCnt)}}
+                    <strong>{{t 'games.tradeRound' round=item.round}} {{t (concat 'games.' item.tradeType)}}</strong>
+                  {{else}}
+                    {{t 'games.tradeRound' round=item.round}} {{t (concat 'games.' item.tradeType)}}
+                  {{/if}}
+                </div>
               </li>
             {{/each}}
             
@@ -178,7 +245,6 @@
               {{player-ov isEditing=isEditing store=store player=buyer game=game}}
             {{/each}}
             
-            <hr>
           </div>
         </div>
         
