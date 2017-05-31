@@ -146,3 +146,8 @@ span.golden-tomato-container {
   display: inline;
   width: 90%;
 }
+
+/* For inline space between elements that are not vertically aligned. */
+span.spacer {
+  padding-left: 1em;
+}
