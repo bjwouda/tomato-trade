@@ -1,7 +1,6 @@
 import Ember from 'ember';
 
 export default Ember.Mixin.create({
-
 	logPlayerOfferWithObj(store, game, offer, state) {
 		let self = this;
 
@@ -16,7 +15,7 @@ export default Ember.Mixin.create({
 			//console.log(idxOfOfferInGame);
 
 			self.logPlayerOffer(store, game, sender, receiver, tomatoes, price, state, offerId, idxOfOfferInGame);
-		})
+		});
 	},
 
 	logPlayerOffer(store, game, sender, receiver, tomatoes, price, state, offerId, idxOfOfferInGame) {
@@ -49,10 +48,6 @@ export default Ember.Mixin.create({
 	      // game.get('historyLogs').addObject(newHistoryObj);
 	      
 	      newHistoryObj.save();
-	  	
-	  })
-
+	  });
 	}
-
-
 });

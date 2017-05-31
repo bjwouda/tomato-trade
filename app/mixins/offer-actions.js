@@ -2,6 +2,8 @@ import Ember from 'ember';
 
 import LogFunctions from '../mixins/log-functions';
 
+import moment from 'moment';
+
 export default Ember.Mixin.create(LogFunctions, {
   actions: {
     // OFFERS
@@ -49,7 +51,7 @@ export default Ember.Mixin.create(LogFunctions, {
           game.save();
           return true;
         });
-      })
+      });
     },
 
     confirmOffer(game, offer) {
@@ -90,7 +92,7 @@ export default Ember.Mixin.create(LogFunctions, {
         if(receiverTomatoes || senderTomatoes) { 
           //console.log("Offer needed to be declined, otherwise seller would have sold more tomatoes than available")
           self.send("declineOffer", game, offer);
-          return
+          return;
         }
 
         offer.set("isAccepted", true);
@@ -98,7 +100,7 @@ export default Ember.Mixin.create(LogFunctions, {
         offer.set("notes", offer.get("notes") + `${moment().format()};accepted\n`);
 
         if(offer.get("receiver.content") !== null) {
-          var sign = offer.get("receiver.content.isSeller") ? 1 : -1;
+          let sign = offer.get("receiver.content.isSeller") ? 1 : -1;
           offer.set("receiver.content.money", +offer.get("receiver.content.money") + sign * offer.get("price") * offer.get("tomatoes"));
           offer.set("receiver.content.tomatoes", +offer.get("receiver.content.tomatoes") - sign * offer.get("tomatoes"));
           offer.set("receiver.content.hasDirtyAttributes", false);
@@ -106,7 +108,7 @@ export default Ember.Mixin.create(LogFunctions, {
         }
 
         if(offer.get("sender.content") !== null) {
-          var sign = offer.get("sender.content.isSeller") ? 1 : -1;
+          let sign = offer.get("sender.content.isSeller") ? 1 : -1;
           offer.set("sender.content.money", +offer.get("sender.content.money") + sign * offer.get("price") * offer.get("tomatoes"));
           offer.set("sender.content.tomatoes", +offer.get("sender.content.tomatoes") - sign * offer.get("tomatoes"));
           offer.set("sender.content.hasDirtyAttributes", false);
@@ -116,8 +118,7 @@ export default Ember.Mixin.create(LogFunctions, {
         offer.save();
 
         self.logPlayerOfferWithObj(self.store, game, offer, "accepted");
-        
-      })
+      });
     },
 
     declineOffer(game, offer) {
@@ -136,7 +137,5 @@ export default Ember.Mixin.create(LogFunctions, {
 
       this.logPlayerOfferWithObj(this.store, game, offer, "recalled - open");
     },
-
   }
-
 });

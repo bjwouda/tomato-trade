@@ -3,8 +3,6 @@ import Ember from 'ember';
 import OfferUtilities from "../mixins/offer-utilities";
 import TableUtilities from "../mixins/table-utilities";
 
-import _ from 'lodash/lodash';
-
 export default Ember.Component.extend(OfferUtilities, TableUtilities, {
   transactions: Ember.computed("histories.[]", "histories.@each", function() {
     let histories = this.get("histories");
@@ -36,7 +34,7 @@ export default Ember.Component.extend(OfferUtilities, TableUtilities, {
         receiver: receiver,
         amount: parseInt(offerParameters[1]),
         unitPrice: parseFloat(offerParameters[3])
-      }
+      };
     }, this);
   }),
   

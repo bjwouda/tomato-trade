@@ -58,4 +58,4 @@ export default {
     "confirm" : "Bevestigen",
     "recallConfirm" : "Bevestiging intrekken",
     "declined" : "Geweigerd",
-}
+};

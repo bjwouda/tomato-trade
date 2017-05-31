@@ -8,7 +8,7 @@ import _ from 'lodash/lodash';
 
 function calcSellerKPI(remainingTomatoes, money, avgTomatoPrice, fine, goalTomatoes) {
     if(remainingTomatoes < 0) {
-        money = money + remainingTomatoes * (avgTomatoPrice + fine)
+        money = money + remainingTomatoes * (avgTomatoPrice + fine);
     }
 
     return money / goalTomatoes;
@@ -49,11 +49,10 @@ export default Model.extend({
         let isSellerLUT = {
             true: ["goalTomatoes", "remainingTomatoes", "tomatoes", "sellerKPI"],
             false: ["goalTomatoes", "remainingTomatoes", "tomatoes", "buyerKPI"],
-        }
-        let propsToLog = isSellerLUT[this.get("isSeller")]
-        let vals = propsToLog.map(x => `${x}:${this.get(x)}`)
-        return vals.join(", ")
-
+        };
+        let propsToLog = isSellerLUT[this.get("isSeller")];
+        let vals = propsToLog.map(x => `${x}:${this.get(x)}`);
+        return vals.join(", ");
     }),
 
     remainingTomatoes: Ember.computed("tomatoes", "goalTomatoes", function() {
@@ -61,52 +60,50 @@ export default Model.extend({
     }),
 
     avgTomatoPrice: Ember.computed("tomatoes", "money", function() {
-        if(this.get("money") === 0) { return 0 }
+        if(this.get("money") === 0) { return 0; }
         return Math.abs(this.get("money") / this.get("tomatoes"));
     }),
 
     weeklyKPIOverview: Ember.computed("sellerKPI", "buyerKPI", function () {
-        let x = this.get("playerWeekStatus")
-        delete x["firebaseDummyPlaceholder"] // needs to be kicked out, otherwise causes trouble ;-)
+        let x = this.get("playerWeekStatus");
+        delete x["firebaseDummyPlaceholder"]; // needs to be kicked out, otherwise causes trouble ;-)
 
-        let xArr = _.map(x, (v,k) => {return _.extend({idx: k}, v) })
+        let xArr = _.map(x, (v,k) => {return _.extend({idx: k}, v); });
 
-        let fn = () => {}
+        let fn = () => {};
         if(this.get("isSeller")) {
             fn = (goalTomatoes, money, tomatoes) => {
                 let remainingTomatoes = +this.get("remainingTomatoes");
-                let fine              = +this.get("userGame.fine")
-                let avgTomatoPrice    = +this.get('avgTomatoPrice')
-                return calcSellerKPI(remainingTomatoes, money, avgTomatoPrice, fine, goalTomatoes)
-            }
+                let fine              = +this.get("userGame.fine");
+                let avgTomatoPrice    = +this.get('avgTomatoPrice');
+                return calcSellerKPI(remainingTomatoes, money, avgTomatoPrice, fine, goalTomatoes);
+            };
         } else {
             fn = (goalTomatoes, money, tomatoes) => {
                 let retailPrice       = +this.get("userGame.retailPrice");
                 let fixedCost         = +this.get("userGame.fixedCost");
                 let remainingTomatoes = +this.get("remainingTomatoes");
-                let fine              = +this.get("userGame.fine")
-                return calcBuyerKPI(money, tomatoes, goalTomatoes, retailPrice, remainingTomatoes, fine, fixedCost)
-            }        
+                let fine              = +this.get("userGame.fine");
+                return calcBuyerKPI(money, tomatoes, goalTomatoes, retailPrice, remainingTomatoes, fine, fixedCost);
+            };
         }
 
         xArr.forEach( (x) => {
-            x.kpi = fn(+(x.goalTomatoes || 0), +(x.money || 0), +(x.tomatoes || 0))
-        } )
+            x.kpi = fn(+(x.goalTomatoes || 0), +(x.money || 0), +(x.tomatoes || 0));
+        } );
 
-        return xArr
+        return xArr;
         // goalTomatoes, money, tomatoes
-
     }),
 
     sellerKPI: Ember.computed("tomatoes", "money", function() {
         let remainingTomatoes = +this.get("remainingTomatoes");
-        let money             = +this.get("money")
-        let fine              = +this.get("userGame.fine")
-        let avgTomatoPrice    = +this.get('avgTomatoPrice')
-        let goalTomatoes      = +this.get('goalTomatoes')
+        let money             = +this.get("money");
+        let fine              = +this.get("userGame.fine");
+        let avgTomatoPrice    = +this.get('avgTomatoPrice');
+        let goalTomatoes      = +this.get('goalTomatoes');
 
-        return calcSellerKPI(remainingTomatoes, money, avgTomatoPrice, fine, goalTomatoes)
-
+        return calcSellerKPI(remainingTomatoes, money, avgTomatoPrice, fine, goalTomatoes);
     }),
 
     buyerKPI: Ember.computed("userGame.fine", "userGame.fixedCost", "userGame.retailPrice", "money", "goalTomatoes", function() {
@@ -115,10 +112,10 @@ export default Model.extend({
         let tomatoes = this.get("tomatoes");
         let goalTomatoes = this.get("goalTomatoes");
         let remainingTomatoes = this.get("remainingTomatoes");
-        let fine = this.get("userGame.fine")
-        let money = this.get('money')
+        let fine = this.get("userGame.fine");
+        let money = this.get('money');
 
-        return calcBuyerKPI(money, tomatoes, goalTomatoes, retailPrice, remainingTomatoes, fine, fixedCost)
+        return calcBuyerKPI(money, tomatoes, goalTomatoes, retailPrice, remainingTomatoes, fine, fixedCost);
     }),
 
     //Result s1, s2, b1, b2...
@@ -159,7 +156,6 @@ export default Model.extend({
 
     // groupedReceivedOpenOffers: Ember.computed("traders.@each.id", "receivedOffers.@each.state", "sentOpenOffers.@each.state", "historicOffers.@each.state", function () {
     groupedReceivedOpenOffers: Ember.computed("traders.@each.id", "receivedOpenOffers", "sentOpenOffers", "historicOffers", function() {
-
         var userIds = this.get("traders").map((x) => {
             return { "id": x.get("id"), "ref": x };
         }); // [1, 2, 3]
@@ -231,6 +227,4 @@ export default Model.extend({
             return this.get('userGame.sellers');
         }
     }),
-
-
 });

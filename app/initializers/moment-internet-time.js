@@ -1,7 +1,7 @@
-import Ember from 'ember';
+import moment from 'moment';
 
 export function initialize( /* application */ ) {
-    let url = "https://prazza-utils.herokuapp.com/unix"
+    let url = "https://prazza-utils.herokuapp.com/unix";
 
     $.ajax({
         url: url,
@@ -10,14 +10,13 @@ export function initialize( /* application */ ) {
         async: false,
         crossDomain: true,
         success: function(unix) {
-            let offset = unix - moment().unix()
+            let offset = unix - moment().unix();
             moment.now = function() {
                 return +new Date() + offset * 1000;
-            }
+            };
         },
-        failure: function() {},
+        failure: function() {}
     });
-
 }
 
 export default {

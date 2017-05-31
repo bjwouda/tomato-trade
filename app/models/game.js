@@ -6,6 +6,8 @@ import { hasMany } from 'ember-data/relationships';
 import GameConfigParser from '../mixins/game-config-parser';
 import storeWithWeek from '../utils/store-with-week';
 
+import moment from 'moment';
+
 let rawConfigString = `
 game            , w1   , w2    , d1   , w3   , d2   , w4   , d3    , d4  # 4 weeks  , 10 trades
 retailPrice     , 1.0  , 1.0   , 1.0  , 1.0  , 1.0  , 1.0  , 1.0   , 1.0  # 4 weeks , 10 trades

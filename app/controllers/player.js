@@ -2,8 +2,6 @@ import Ember from 'ember';
 import OfferActions from '../mixins/offer-actions';
 import LangActions from '../mixins/lang-actions';
 
-import _ from 'lodash/lodash';
-
 let lastRound = 1;
 
 export default Ember.Controller.extend(OfferActions, LangActions, {

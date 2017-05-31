@@ -4,6 +4,8 @@ import attr from 'ember-data/attr';
 import { belongsTo } from 'ember-data/relationships';
 // import { belongsTo, hasMany } from 'ember-data/relationships';
 
+import moment from 'moment';
+
 export default Model.extend({
     offerId                 : attr('string'),
     userSender              : attr('string'), //e.g. Seller1
@@ -25,13 +27,12 @@ export default Model.extend({
 
         if(!this.get("offerId")) { return "status"; }
 
-        let gameOffers = this.get("historyGame.offers")
+        let gameOffers = this.get("historyGame.offers");
 
         if(gameOffers === undefined || gameOffers.map === undefined) { return ""; }
 
-        let ids = JSON.parse(sessionStorage["allObjIds"])
+        let ids = JSON.parse(sessionStorage["allObjIds"]);
         return ids.indexOf(this.get("offerId")) + 1;
-        
     }),
 
     tsDesc: Ember.computed('ts', function() {
@@ -41,5 +42,4 @@ export default Model.extend({
     //using descending sort
     //offerSortingDescById  : ['offerId:desc'],
     //sortedOffersById: Ember.computed.sort('offers', 'offerSortingDesc'),
-
 });

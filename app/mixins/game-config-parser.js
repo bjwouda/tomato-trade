@@ -6,9 +6,8 @@ let fn = function(self, tag) {
     let cleanLines = self.get("cleanLines");
     let retailPrice = cleanLines.filter( (x) => { return x.startsWith(tag); } )[0];
     return retailPrice.split(",")[round];
-    
-  }
-}
+  };
+};
 
 export default Ember.Mixin.create({
   i18n: Ember.inject.service(),
@@ -86,10 +85,10 @@ export default Ember.Mixin.create({
         let tradingFor = /\d+/.exec(x)[0];
         let currentWeek = +tradingFor + (x.startsWith("w") ? -1 : 0);
         
-        let roundTitle = "N-A (USE TRANSLATION)" // `#${round} Week: ${currentWeek}: ${tradeType} for Week ${tradingFor}`;
+        let roundTitle = "N-A (USE TRANSLATION)"; // `#${round} Week: ${currentWeek}: ${tradeType} for Week ${tradingFor}`;
         // currentWeek tradeType tradeWeek
         let playerSettings = allPlayerIds.map( (x)=> { return this.getValueForUserAndRound(cleanLines, x, round); } );
-        return { round, roundTitle, playerSettings, tradingFor, tradeType, currentWeek};
+        return {round, roundTitle, playerSettings, tradingFor, tradeType, currentWeek};
       });
 
       //console.log(gameMatrix[0]);

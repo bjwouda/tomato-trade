@@ -3,6 +3,7 @@ import Ember from 'ember';
 import TableUtilities from "../mixins/table-utilities";
 
 import _ from 'lodash/lodash';
+import moment from 'moment';
 
 export default Ember.Controller.extend(TableUtilities, {
   needsReload: Ember.computed("model.[]", function() {    

@@ -6,7 +6,7 @@ export default Ember.Mixin.create({
       labels: labels,
       datasets: dataSets,
       options: options
-    }
+    };
   },
   
   createChartDataSet(label, data, colors, borders, radii, color, dash) {

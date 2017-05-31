@@ -6,7 +6,7 @@ export default Ember.Route.extend({
   game: null,
   
   model(p) {
-    return new Promise((resolve, reject) => {
+    return new Ember.RSVP.Promise((resolve, reject) => {
       this.store.find('game', p.game_id).then((game) => {
         this.set('game', game);
         

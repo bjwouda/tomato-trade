@@ -1,5 +1,7 @@
 import Ember from 'ember';
 
+import moment from 'moment';
+
 export default Ember.Component.extend({
 	m: 0.0, // min (0-60)
 	h: 9.0, // hour (0-24) e.g. 9h - 17h = 8h
