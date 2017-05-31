@@ -50,8 +50,12 @@
                       <label for="offerTomato" class="form-control-static">{{t 'player.amount'}}</label>
                     </div>
                     <div class="col-6 col-sm-6 col-lg-6">
-                      <span class="to-tomato" />
-                      <span class="input-prefix">
+                      <div class="input-tomato">
+                        <span class="tomato-anchor">
+                          <span class="tomato-container">
+                            <span class="to-tomato" />
+                          </span>
+                        </span>
                         {{number-input 
                           class="form-control" 
                           placeholder=(t "player.amountPlaceholder")
@@ -62,7 +66,7 @@
                           decimal=false 
                           radix="."
                         }}
-                      </span>
+                      </div>
                     </div>
                     <div class="col-4 col-sm-4 col-lg-4">
                       <div class="form-control-static"><em>{{t 'player.externalOfferMaximum'}} {{model.extOfferTomato}}</em></div>
@@ -74,16 +78,19 @@
                       <label for="offerPrice" class="form-control-static">{{t 'player.unitPrice'}}</label>
                     </div>
                     <div class="col-6 col-sm-6 col-lg-6">
-                      <span class="to-money" />
-                      <span class="input-prefix">
+                      <div class="input-tomato">
+                        <span class="tomato-anchor">
+                          <span class="tomato-container">
+                            <span class="to-money" />
+                          </span>
+                        </span>
                         {{input-money
-                          prefix='€ ' 
                           number=model.extOfferPrice 
                           class="form-control" 
                           placeholder=(t "player.unitPricePlaceholder")
                           disabled=1
                         }}
-                      </span>
+                      </div>
                     </div>
                     <div class="col-4 col-sm-4 col-lg-4">
                       {{!-- check logic here is inverse to above --}}
@@ -118,8 +125,12 @@
                       <label for="offerTomato" class="form-control-static">{{t 'player.amount'}}</label>
                     </div>
                     <div class="col-5 col-sm-5 col-lg-5">
-                      <span class="to-tomato" />
-                      <span class="input-prefix">
+                      <div class="input-tomato">
+                        <span class="tomato-anchor">
+                          <span class="tomato-container">
+                            <span class="to-tomato" />
+                          </span>
+                        </span>
                         {{number-input 
                           class="form-control" 
                           placeholder=(t "player.amountPlaceholder")
@@ -130,7 +141,7 @@
                           decimal=false 
                           radix="."
                         }}
-                      </span>
+                      </div>
                     </div>
                   </div>
                   
@@ -139,14 +150,18 @@
                       <label for="offerPrice" class="form-control-static">{{t 'player.unitPrice'}}</label>
                     </div>
                     <div class="col-5 col-sm-5 col-lg-5">
-                      <span class="to-money" />
-                      <span class="input-prefix">
+                      <div class="input-tomato">
+                        <span class="tomato-anchor">
+                          <span class="tomato-container">
+                            <span class="to-money" />
+                          </span>
+                        </span>
                         {{input-money
                           number=obj.user._offerPrice 
                           class="form-control" 
                           placeholder=(t "player.unitPricePlaceholder")
                         }}
-                      </span>
+                      </div>
                     </div>
                     <div class="col-4 col-sm-4 col-lg-4">
                       {{!-- check logic here is inverse to above --}}
@@ -183,11 +198,11 @@
               <li class="list-group-item">
                 <strong>{{t "player.currentTransactions"}}</strong>
               </li>
-              {{player-offers 
-                store=store 
-                game=game 
+              {{player-offers
+                store=store
+                game=game
                 isSeller=model.isSeller
-                openOffers=(reverse obj.openOffers) 
+                openOffers=(reverse obj.openOffers)
                 sentOffers=(reverse obj.sentOffers)
                 remainingTomatoes=model.remainingTomatoes
               }}
