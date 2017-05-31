@@ -1,34 +1,9 @@
-<div style="position: relative" class="tom-clock">
-	
-{{!-- 	<div class="clock">
-	  <div class="top"></div>
-	  <div class="right"></div>
-	  <div class="bottom"></div>
-	  <div class="left"></div>
-	  <div class="center"></div>
-	  <div class="shadow"></div>
-	  <div style="transform: rotate({{mDeg}}deg);" class="hour"></div>
-	  <div style="transform: rotate({{hDeg}}deg);" class="minute"></div>
-	</div>
- --}}
-
- 	{{#if isOver}}
-		<h3 class="text-center" style="color: red">{{t "timeUp"}}</h3>
-	{{else}}
-		{{#if timeMissingAlert}}
-			<h3 class="text-center" style="color: red">{{timeMissingMin}} min {{num-modulo timeMissingSec 60}}s</h3>
-		{{else}}
-			<h3 class="text-center">{{timeMissingMin}} min {{num-modulo timeMissingSec 60}}s</h3>
-		{{/if}}
- 	{{/if}}
-	
-
-{{!-- 	<div class="note {{if isOver 'is-over'}}">
-		{{#if isOver}}
-			<b>Time is up</b>, please finish your trade.
-		{{else}}
-	    	You can trade till 5 o'clock. Following time remaining: <br> <b>{{moment-from-now timeEndTs interval=1000}}</b>
-		{{/if}}
-
-	</div> --}}
-</div>
+{{#if isOver}}
+  <p class="property-value"><span class="text-danger">{{t "timer.timeUp"}}</span></p>
+{{else}}
+  {{#if timeMissingAlert}}
+    <p class="property-value"><span class="glyphicon glyphicon-time clock-icon" /> <span class="text-danger">{{remainingTime}}</span></p>
+  {{else}}
+    <p class="property-value"><span class="glyphicon glyphicon-time clock-icon" /> {{remainingTime}}</p>
+  {{/if}}
+{{/if}}

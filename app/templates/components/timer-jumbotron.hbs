@@ -1,68 +1,46 @@
 <div class="jumbotron jumbotron-header">
-
+  
   <a href="#" class="visible-xs" data-toggle="offcanvas"><i class="fa fa-lg fa-reorder"></i></a>
-
+  
   <div class="row">
     <div class="col-sm-12">
-    
       <div class="title-container">
         {{yield}}
       </div>
-      
     </div>
   </div>
   
-  {{#if game.gameIsAboutToStart}}
-    <div class="row">
-      <div class="col-sm-12">
-      
-        <h4 class="text-center">{{t "GameIsAboutToStart"}}</h4>
-        
-      </div>
+  <div class="row">
+    <div class="col-sm-4">
+      <h3 class="property-label">{{t 'timer.trade'}}</h3>
     </div>
-  {{else if game.gameIsRunning}}
-    <div class="row">
-      <div class="col-sm-12">
-      
-        <h4 class="text-center">
-          {{liquid-bind (t "currentWeekDescription"
-            currentWeek=game.currentGameSettings.currentWeek
-          )}}
-        </h4>
-        
-      </div>
+    <div class="col-sm-4">
+      <h3 class="property-label">{{t 'timer.week'}}</h3>
     </div>
-    <div class="row">
-      <div class="col-sm-12">
-
-      <h4 class="text-center">
-        {{liquid-bind (t "tradeWeekDescription"
-          tradeType=(t game.currentGameSettings.tradeType)
-          tradeWeek=game.currentGameSettings.tradingFor
-        )}}
-      </h4>
-
-      </div>
+    <div class="col-sm-4">
+      <h3 class="property-label">{{t 'timer.time'}}</h3>
     </div>
-    <div class="row">
-      <div class="col-sm-12">
-      
+  </div>
+  <div class="row">
+    <div class="col-sm-4">
+      <p class="property-value">{{t (concat 'timer.' game.currentGameSettings.tradeType)}}</p>
+    </div>
+    <div class="col-sm-4">
+      <p class="property-value">{{game.currentGameSettings.tradingFor}}</p>
+    </div>
+    <div class="col-sm-4">
+      {{#if game.gameIsAboutToStart}}
+        <p class="property-label"><span class="text-success">{{t "timer.pending"}}</span></p>
+      {{else if game.gameIsRunning}}
         {{#if game.isPaused}}
-          <h3 class="text-center">{{t "GameIsPaused"}}</h3>
+          <p class="property-label"><span class="text-success">{{t "timer.paused"}}</span></p>
         {{else}}
           {{tom-clock timeStartTs=game.timeStartTs timeEndTs=game.timeEndTs}}
         {{/if}}
-        
-      </div>
+      {{else}}
+        <p class="property-label"><span class="text-success">{{t "timer.gameOver"}}</span></p>
+      {{/if}}
     </div>
-  {{else}}
-    <div class="row">
-      <div class="col-sm-12">
-      
-        <h4 class="text-center">{{t "GameHasEnded"}}</h4>
-        
-      </div>
-    </div>
-  {{/if}}
+  </div>
   
 </div>

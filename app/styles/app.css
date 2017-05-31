@@ -168,3 +168,8 @@ span.spacer {
   font-weight: normal;
   padding-left: 1em;
 }
+
+/* For the clock icon. */
+.clock-icon {
+  font-size: 80%;
+}

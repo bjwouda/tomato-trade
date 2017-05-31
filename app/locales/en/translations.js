@@ -1,15 +1,4 @@
 export default {
-  "GameIsPaused": "Game is paused",
-  "GameIsAboutToStart": "Game is about to start",
-  "GameHasEnded": "Game has ended",
-  "currentTomatoes": "Current Tomatoes",
-  "external": "External Trader",
-  "money": "Money",
-  "timeUp": "Time is up! Please finish your trade.",
-  "tomato": "Tomato",
-  "currentWeekDescription": "It is week <strong>{{currentWeek}}</strong>",
-  "tradeWeekDescription": "You are doing the <strong>{{tradeType}} trade</strong> for week <strong>{{tradeWeek}}</strong>",
-  
   "index": {
     "title": "Tomato Trade",
     "add": "Create a new game",
@@ -179,7 +168,15 @@ export default {
     }
   },
   "timer": {
-    
+    "trade": "Trade",
+    "week": "Week",
+    "time": "Time",
+    "weekly": "Weekly",
+    "daily": "Daily",
+    "starting": "Starting...",
+    "paused": "Paused",
+    "gameOver": "Game over!",
+    "timeUp": "Time up!"
   },
   "tutorial": {
     "player": {
