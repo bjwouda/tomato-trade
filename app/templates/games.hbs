@@ -168,14 +168,14 @@
           <div class="col-6 col-sm-6 col-lg-6">
             
             {{#each game.sellers as |seller|}}
-              {{player-ov isEditing=isEditing store=store player=seller game=game roleDescription=(t 'seller')}}
+              {{player-ov isEditing=isEditing store=store player=seller game=game}}
             {{/each}}
             
           </div>
           <div class="col-6 col-sm-6 col-lg-6">
             
             {{#each game.buyers as |buyer|}}
-              {{player-ov isEditing=isEditing store=store player=buyer game=game roleDescription=(t 'buyer')}}
+              {{player-ov isEditing=isEditing store=store player=buyer game=game}}
             {{/each}}
             
             <hr>
