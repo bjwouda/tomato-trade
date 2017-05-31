@@ -54,6 +54,10 @@ export default Model.extend({
         let vals = propsToLog.map(x => `${x}:${this.get(x)}`);
         return vals.join(", ");
     }),
+    
+    absoluteTomatoes: Ember.computed("tomatoes", function() {
+      return Math.abs(this.get("tomatoes"));
+    }),
 
     remainingTomatoes: Ember.computed("tomatoes", "goalTomatoes", function() {
         return this.get("goalTomatoes") - Math.abs(this.get("tomatoes"));
