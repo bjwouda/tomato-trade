@@ -12,8 +12,8 @@ export default Ember.Component.extend({
       return offerStateParameters[0];
     }
     else {
-      // This is nonsense but should be replaced soon as offerState is initialized.
-      return "open";
+      // This is what otherwise would have been used.
+      return undefined;
     }
   })
 });
