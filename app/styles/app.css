@@ -143,7 +143,7 @@ span.golden-tomato-container {
 
 /* Allows for a tomato or money icon before an input field. */
 .input-tomato {
-  padding-left: 0.65em;
+  padding-left: 1em;
 }
 
 span.tomato-anchor {
@@ -155,7 +155,7 @@ span.tomato-anchor {
 span.tomato-container {
   position: absolute;
   top: 1.55em;
-  left: -0.65em;
+  left: -1em;
 }
 
 /* For inline space between elements that are not vertically aligned. */
