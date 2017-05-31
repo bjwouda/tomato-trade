@@ -10,10 +10,10 @@
   </div>
   <div class="row">
     <div class="col-sm-6">
-      <p class="property-value">{{digit-group-format model.goalTomatoes}}</p>
+      <p class="property-value"><span class="to-tomato" />{{digit-group-format model.goalTomatoes}}</p>
     </div>
     <div class="col-sm-6">
-      <p class="property-value">{{digit-group-format model.tomatoes}}</p>
+      <p class="property-value"><span class="to-tomato" />{{digit-group-format model.tomatoes}}</p>
     </div>
   </div>
   
@@ -41,11 +41,11 @@
       {{/tutorial-inside-range}}
       
       {{#tutorial-outside-range tutorial='player' start='sellerPropertyRemaining' end='sellerPropertyAveragePrice' active=isTutorialActive}}
-        <p class="property-value">{{digit-group-format model.remainingTomatoes}}</p>
+        <p class="property-value"><span class="to-tomato" />{{digit-group-format model.remainingTomatoes}}</p>
       {{/tutorial-outside-range}}
     </div>
     <div class="col-sm-6">
-      <p class="property-value">{{digit-format model.avgTomatoPrice}}</p>
+      <p class="property-value"><span class="to-money" />{{digit-format model.avgTomatoPrice}}</p>
     </div>
   </div>
   
