@@ -2,16 +2,18 @@ import Ember from 'ember';
 
 import OfferActions from '../mixins/offer-actions';
 
-
 export default Ember.Component.extend(OfferActions, {
-
+  i18n: Ember.inject.service(),
+  
   actions: {
-    saveUser(user) { user.save(); },
-
+    saveUser(user) {
+      user.save();
+    },
+    
     changePercentageOfGoal(game, user) {
       var prc;
       do {
-        prc = prompt("How many % do you wanna alter the prognosis?");
+        prc = prompt(this.get("i18n").t("player.overview.prompt"));
 
         if(prc === null) { return; }
       }
@@ -21,7 +23,6 @@ export default Ember.Component.extend(OfferActions, {
       let newGoalTomatoes = Math.floor(currentTomatoes * (1.0 + 0.01 * +prc));
       user.set("goalTomatoes", newGoalTomatoes);
       user.save();
-
       
       var newHistoryObj = this.store.createRecord('history', {
         offerId      : undefined,
@@ -32,17 +33,15 @@ export default Ember.Component.extend(OfferActions, {
         offer        : "by " + prc + "%",
         round        : "Round " + game.get("roundCnt")
       });
-
+      
       game.get('historyLogs').addObject(newHistoryObj);
-
+      
       newHistoryObj.save().then(() => { 
         game.save();
         return true;
       });
-        
+      
       // need a log here
     },
-
   }
-
 });

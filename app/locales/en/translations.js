@@ -147,7 +147,8 @@ export default {
       "sendExternalOffer": "Send external offer",
       "money": "Money:",
       "averageUnitPrice": "Average unit price:",
-      "kpi": "KPI:"
+      "kpi": "KPI:",
+      "prompt": "Please enter the prognosis percentage:"
     },
     "results": {
       "player": {
