@@ -128,6 +128,26 @@ export default {
       "recalled": "recalled",
       "external": "External"
     },
+    "overview": {
+      "activate": "Activate",
+      "save": "Save",
+      "addPrognosis": "Add prognosis",
+      "name": "Name:",
+      "supply": "Supply:",
+      "demand": "Demand:",
+      "bought": "Bought:",
+      "sold": "Sold:",
+      "externalTradingEnabled": "External trading enabled",
+      "externalTradingDisabled": "External trading disabled",
+      "amount": "Amount:",
+      "amountPlaceholder": "kilograms",
+      "unitPrice": "Unit price:",
+      "unitPricePlaceholder": "price per kilogram",
+      "sendExternalOffer": "Send external offer",
+      "money": "Money:",
+      "averageUnitPrice": "Average unit price:",
+      "kpi": "KPI:"
+    },
     "results": {
       "player": {
         "averageUnitPrice": "Average unit price",

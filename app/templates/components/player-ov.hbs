@@ -1,157 +1,198 @@
-<div>
-  <span class="title-container">
-    <h4>{{#if player.name}}
-          {{player.descriptivePlayerIdInGame}}
-        {{else}}
-          {{player.descriptivePlayerIdInGame}}
-        {{/if}}
-    </h4>
-  </span>
-  {{#link-to 'player' player class="btn btn-info btn-xs"}}Activate{{/link-to}}
-  <button class="btn btn-primary btn-xs" {{action 'saveUser' player}}>Save</button>
-  <button class="btn btn-primary btn-xs" {{action 'changePercentageOfGoal' game player }}>Add % to prognosis</button>
+<div class="title-container">
+  <h4>{{t (concat 'player.' player.roleDescription)}} {{player.playerPosition}} {{player.name}}</h4>
+</div>
+
+<div class="btn-container">
+  <div class="btn-group btn-group-xs">
+    {{#link-to 'player' player class="btn btn-info"}}{{t 'player.overview.activate'}}{{/link-to}}
+
+    <button class="btn btn-primary" {{action 'saveUser' player}}>{{t 'player.overview.save'}}</button>
+    <button class="btn btn-primary" {{action 'changePercentageOfGoal' game player }}>{{t 'player.overview.addPrognosis'}}</button>
+  </div>
 </div>
 
 {{#if isEditing}}
-  <div class="form-group">
-    <label>Name: </label> {{input value=player.name class="form-control" }}
-  </div>
-
-<div class="table-responsive">
-  <table class="table-borderless">
-    <thead>
-      <tr>
-        <th>{{capitalize (t 'goalTomatoes')}}:</th>
-        <th><span style="margin-left:4em"></span></th>
-        <th>{{capitalize (t 'currentTomatoes')}}:</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>
-          {{number-input 
-            class="form-control" 
-            placeholder=(t "kgOfTomatoes")
-            unmaskedValue=player.goalTomatoes  
-            group=true 
-            groupSize=3 
-            separator="," 
-            decimal=false 
+<ul class="list-group">
+  <li class="list-group-item">
+    <div class="form-group row">
+      <div class="col-2 col-sm-2 col-lg-2">
+        <label class="form-control-static">{{t 'player.overview.name'}}</label>
+      </div>
+      <div class="col-10 col-sm-10 col-lg-10">
+        {{input value=player.name class="form-control"}}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-2 col-sm-2 col-lg-2">
+        <label class="form-control-static">{{t (if player.isSeller 'player.overview.supply' 'player.overview.demand')}}</label>
+      </div>
+      <div class="col-4 col-sm-4 col-lg-4">
+        <div class="input-tomato">
+          <span class="tomato-anchor">
+            <span class="tomato-container">
+              <span class="to-tomato" />
+            </span>
+          </span>
+          {{number-input
+            class="form-control"
+            placeholder=(t "player.overview.amountPlaceholder")
+            unmaskedValue=player.goalTomatoes
+            group=true
+            groupSize=3
+            separator=","
+            decimal=false
             radix="."
           }}
-        </td>
-        <td> </td>
-        <td>
-          {{number-input 
-            class="form-control" 
-            placeholder=(t "kgOfTomatoes")
-            unmaskedValue=player.tomatoes  
-            group=true 
-            groupSize=3 
-            separator="," 
-            decimal=false 
+        </div>
+      </div>
+      <div class="col-2 col-sm-2 col-lg-2">
+        <label class="form-control-static">{{t (if player.isSeller 'player.overview.sold' 'player.overview.bought')}}</label>
+      </div>
+      <div class="col-4 col-sm-4 col-lg-4">
+        <div class="input-tomato">
+          <span class="tomato-anchor">
+            <span class="tomato-container">
+              <span class="to-tomato" />
+            </span>
+          </span>
+          {{number-input
+            class="form-control"
+            placeholder=(t "player.overview.amountPlaceholder")
+            unmaskedValue=player.tomatoes
+            group=true
+            groupSize=3
+            separator=","
+            decimal=false
             radix="."
           }}
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-<hr>
-
+        </div>
+      </div>
+    </div>
+  </li>
+</ul>
+  
 {{/if}}
 
-  <ul class="list-group">
+<div class="btn-container">
+  <div class="btn-group btn-group-xs">
+    <button class="btn {{if player.enableExternalTrading 'btn-success' 'btn-danger'}}" {{action (pipe (toggle "enableExternalTrading" player) (invoke "save" player))}}>
+      {{t (if player.enableExternalTrading 'player.overview.externalTradingEnabled' 'player.overview.externalTradingDisabled')}}
+    </button>
+  </div>
+</div>
 
-    <li class="list-group-item">
-      <div class="table-responsive">
-        <button class="btn {{if player.enableExternalTrading "btn-success" "btn-danger"}} btn-xs" {{action (pipe (toggle "enableExternalTrading" player) (invoke "save" player))}}>
-          {{if player.enableExternalTrading "enabled" "disabled"}}
-        </button>
-        <table class="table-borderless">
-          <thead>
-            <tr>
-              <th>{{capitalize (t 'tomatoes')}}:</th>
-              <th><span style="margin-left:2em"></span></th>
-              <th>{{capitalize (t 'price')}}:</th>
-              <th><span style="margin-left:2em"></span></th>
-              <th><span style="margin-left:0em"></span></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>
-                {{number-input 
-                  class="form-control" 
-                  placeholder=(t "kgOfTomatoes")
-                  unmaskedValue=player.extOfferTomato  
-                  group=true 
-                  groupSize=3 
-                  separator="," 
-                  decimal=false 
-                  radix="."
-                }}
-              </td>
-              <td> </td>
-              <td>
-                  {{input-money
-                    prefix='€ ' 
-                    number=player.extOfferPrice 
-                    class="form-control" 
-                    placeholder=(t "pricePerKg")
-                  }}
-              </td>
-              <td> </td>
-              <td> <button class="btn btn-primary btn-xs" {{action 'sendOffer' game 0 player player.extOfferTomato player.extOfferPrice}}>Send Offer</button> </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </li>
+<ul class="list-group">
   
-    <li class="list-group-item">
-      <strong>Received offers</strong>
-    </li>
+  <li class="list-group-item">
+    <div class="form-group row">
+      <div class="col-3 col-sm-3 col-lg-3">
+        <label for="offerTomato" class="form-control-static">{{t 'player.overview.amount'}}</label>
+      </div>
+      <div class="col-5 col-sm-5 col-lg-5">
+        <div class="input-tomato">
+          <span class="tomato-anchor">
+            <span class="tomato-container">
+              <span class="to-tomato" />
+            </span>
+          </span>
+          {{number-input
+            class="form-control"
+            placeholder=(t "player.overview.amountPlaceholder")
+            unmaskedValue=player.extOfferTomato
+            group=true
+            groupSize=3
+            separator=","
+            decimal=false
+            radix="."
+          }}
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-3 col-sm-3 col-lg-3">
+        <label for="offerPrice" class="form-control-static">{{t 'player.overview.unitPrice'}}</label>
+      </div>
+      <div class="col-5 col-sm-5 col-lg-5">
+        <div class="input-tomato">
+          <span class="tomato-anchor">
+            <span class="tomato-container">
+              <span class="to-money" />
+            </span>
+          </span>
+          {{input-money
+            number=player.extOfferPrice
+            class="form-control"
+            placeholder=(t "player.overview.unitPricePlaceholder")
+          }}
+        </div>
+      </div>
+      <div class="col-4 col-sm-4 col-lg-4">
+        {{#if (and
+                (gt player.extOfferTomato 0)
+                (gt player.extOfferPrice 0)
+              )}}
+          <button class="btn btn-primary pull-right" {{action 'sendOffer' game 0 player player.extOfferTomato player.extOfferPrice}}>{{t 'player.overview.sendExternalOffer'}}</button>
+        {{else}}
+          <button disabled class="btn btn-default pull-right" {{action 'sendOffer' game 0 player player.extOfferTomato player.extOfferPrice}}>{{t 'player.overview.sendExternalOffer'}}</button>
+        {{/if}}
+      </div>
+    </div>
+  </li>
+  
+  {{!-- attention, the relationship of sent/received offers is switched in this view as the external party is the counter-party for the player --}}
+  {{player-offers store=store game=game openOffers=player.externalOffers.sentOffers sentOffers=player.externalOffers.openOffers}}
+  
+</ul>
 
-	{{!-- attention, the relation ship of sent/received offers is swiched in this view
-		  as the external party is the counter-party for the player --}}
-	{{player-offers store=store game=game openOffers=player.externalOffers.sentOffers sentOffers=player.externalOffers.openOffers}}
-
-{{!--   {{player-offers store=store game=game openOffers=player.externalOffers.openOffers sentOffers=player.externalOffers.sentOffers}} --}}
-
-  </ul>
-
-  <ul class="list-group">
-    <li class="list-group-item" style="padding: 0">
-      <table class="table">
-        <tbody>
-          <tr>
-            <td>{{t "goalTomatoes"}}</td>
-            <td>{{player.goalTomatoes}}</td>
-          </tr>
-          <tr>
-            <td>{{t "tomatoes"}}</td>
-            <td>{{player.tomatoes}}</td>
-          </tr>
-          <tr>
-            <td>{{t "money"}}</td>
-            <td>{{player.money}}</td>
-          </tr>
-          <tr>
-            <td>{{t "avgTomatoPrice"}}</td>
-            <td>{{digit-format player.avgTomatoPrice}}</td>
-          </tr>
-          <tr>
-            <td>{{t "sellerKPI"}}</td>
-            <td>{{digit-format player.sellerKPI}}</td>
-          </tr>
-          <tr>
-            <td>{{t "buyerKPI"}}</td>
-            <td>{{digit-format player.buyerKPI}}</td>
-          </tr>
-        </tbody>
-      </table>
-    </li>
-  </ul>
-
-{{yield}}
+<ul class="list-group">
+  <li class="list-group-item">
+    <div class="row">
+      <div class="col-6 col-sm-6 col-lg-6">
+        <strong>{{t (if player.isSeller 'player.overview.supply' 'player.overview.demand')}}</strong>
+      </div>
+      <div class="col-6 col-sm-6 col-lg-6">
+        <span class="to-tomato" />{{player.goalTomatoes}}
+      </div>
+    </div>
+  </li>
+  <li class="list-group-item">
+    <div class="row">
+      <div class="col-6 col-sm-6 col-lg-6">
+        <strong>{{t (if player.isSeller 'player.overview.sold' 'player.overview.bought')}}</strong>
+      </div>
+      <div class="col-6 col-sm-6 col-lg-6">
+        <span class="to-tomato" />{{player.tomatoes}}
+      </div>
+    </div>
+  </li>
+  <li class="list-group-item">
+    <div class="row">
+      <div class="col-6 col-sm-6 col-lg-6">
+        <strong>{{t 'player.overview.money'}}</strong>
+      </div>
+      <div class="col-6 col-sm-6 col-lg-6">
+        <span class="to-money" />{{digit-format player.money}}
+      </div>
+    </div>
+  </li>
+  <li class="list-group-item">
+    <div class="row">
+      <div class="col-6 col-sm-6 col-lg-6">
+        <strong>{{t 'player.overview.averageUnitPrice'}}</strong>
+      </div>
+      <div class="col-6 col-sm-6 col-lg-6">
+        <span class="to-money" />{{digit-format player.avgTomatoPrice}}
+      </div>
+    </div>
+  </li>
+  <li class="list-group-item">
+    <div class="row">
+      <div class="col-6 col-sm-6 col-lg-6">
+        <strong>{{t "player.overview.kpi"}}</strong>
+      </div>
+      <div class="col-6 col-sm-6 col-lg-6">
+        <span class="to-money" />{{digit-format (if player.isSeller player.sellerKPI player.buyerKPI)}}
+      </div>
+    </div>
+  </li>
+</ul>
