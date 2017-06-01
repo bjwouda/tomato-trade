@@ -173,3 +173,17 @@ span.spacer {
 .clock-icon {
   font-size: 80%;
 }
+
+/* For a uniform logo look. */
+.image-logo {
+  width: 100px;
+  margin-left: 25px;
+  margin-right: 25px;
+}
+
+/* For icons in the tutorial. */
+.tutorial-icon {
+  font-size: 60%;
+  margin-left: 1em;
+  margin-right: 1em;
+}

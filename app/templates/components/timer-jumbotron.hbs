@@ -23,14 +23,14 @@
   </div>
   <div class="row">
     <div class="col-sm-4">
-      <p class="property-value">{{t (concat 'timer.' game.currentGameSettings.tradeType)}}</p>
+      <p class="property-value">{{if game.currentGameSettings.tradeType (t (concat 'timer.' game.currentGameSettings.tradeType))}}</p>
     </div>
     <div class="col-sm-4">
-      <p class="property-value">{{game.currentGameSettings.tradingFor}}</p>
+      <p class="property-value">{{if game.currentGameSettings.tradingFor game.currentGameSettings.tradingFor}}</p>
     </div>
     <div class="col-sm-4">
       {{#if game.gameIsAboutToStart}}
-        <p class="property-label"><span class="text-success">{{t "timer.pending"}}</span></p>
+        <p class="property-label"><span class="text-success">{{t "timer.starting"}}</span></p>
       {{else if game.gameIsRunning}}
         {{#if game.isPaused}}
           <p class="property-label"><span class="text-success">{{t "timer.paused"}}</span></p>
