@@ -3,6 +3,12 @@ import Ember from 'ember';
 import _ from 'lodash/lodash';
 
 export default Ember.Route.extend({
+  i18n: Ember.inject.service(),
+  
+  title: function() {
+    return this.get("i18n").t("index.title");
+  },
+  
   game: null,
   
   model(p) {
