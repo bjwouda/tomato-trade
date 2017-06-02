@@ -8,7 +8,10 @@
     "game2",
     "game3",
     
+    "anchor1",
+    
     "sellerIntroduction",
+    "sellerAnchor",
     "sellerPropertiesIntroduction",
     "sellerPropertySupply",
     "sellerPropertySold",
@@ -18,6 +21,7 @@
     "sellerConclusion",
     
     "buyerIntroduction",
+    "buyerAnchor",
     "buyerPropertiesIntroduction1",
     "buyerPropertyDemand",
     "buyerPropertyBought",
@@ -31,6 +35,28 @@
     "buyerPropertiesConclusion2",
     "buyerConclusion",
     
-    "conclusion"
+    "anchor2",
+    
+    "clockIntroduction",
+    "clockPlayer",
+    "clockTrade",
+    "clockWeek",
+    "clockTime",
+    "clockConclusion",
+    
+    "tradeIntroduction",
+    "tradeSend",
+    "tradeReceive",
+    "tradeLast5",
+    "tradePreviouslyAccepted",
+    "tradeConclusion",
+    
+    "externalTradeIntroduction",
+    "externalTradeSend1",
+    "externalTradeSend2",
+    "externalTradeConclusion",
+    
+    "conclusion1",
+    "conclusion2"
   ]
 }

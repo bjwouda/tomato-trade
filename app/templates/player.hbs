@@ -13,21 +13,30 @@
     {{tutorial-row tutorial='player' step='trade2' active=isTutorialActive}}
     {{tutorial-row tutorial='player' step='game1' active=isTutorialActive}}
     {{tutorial-row tutorial='player' step='game2' active=isTutorialActive}}
+    {{tutorial-row tutorial='player' step='game3' active=isTutorialActive}}
+    {{tutorial-row tutorial='player' step='tradeIntroduction' active=isTutorialActive}}
+    {{tutorial-row tutorial='player' step='tradeConclusion' active=isTutorialActive}}
+    {{tutorial-row tutorial='player' step='externalTradeIntroduction' active=isTutorialActive}}
+    {{tutorial-row tutorial='player' step='externalTradeConclusion' active=isTutorialActive}}
+    {{tutorial-row tutorial='player' step='conclusion1' active=isTutorialActive}}
+    {{tutorial-row tutorial='player' step='conclusion2' next=null active=isTutorialActive}}
     
     {{#if model.isSeller}}
-      {{tutorial-row tutorial='player' step='game3' next='sellerIntroduction' active=isTutorialActive}}
+      {{tutorial-row tutorial='player' step='anchor1' next='sellerIntroduction' active=isTutorialActive}}
       
-      {{tutorial-row tutorial='player' step='sellerIntroduction' previous='game3' active=isTutorialActive}}
-      {{tutorial-row tutorial='player' step='sellerConclusion' next='conclusion' active=isTutorialActive}}
+      {{tutorial-row tutorial='player' step='sellerIntroduction' previous='anchor1' active=isTutorialActive}}
+      {{tutorial-row tutorial='player' step='sellerAnchor' active=isTutorialActive}}
+      {{tutorial-row tutorial='player' step='sellerConclusion' next='anchor2' active=isTutorialActive}}
       
-      {{tutorial-row tutorial='player' step='conclusion' previous='sellerConclusion' next=null active=isTutorialActive}}
+      {{tutorial-row tutorial='player' step='anchor2' previous='sellerConclusion' active=isTutorialActive}}
     {{else}}
-      {{tutorial-row tutorial='player' step='game3' next='buyerIntroduction' active=isTutorialActive}}
+      {{tutorial-row tutorial='player' step='anchor1' next='buyerIntroduction' active=isTutorialActive}}
       
-      {{tutorial-row tutorial='player' step='buyerIntroduction' previous='game3' active=isTutorialActive}}
-      {{tutorial-row tutorial='player' step='buyerConclusion' next='conclusion' active=isTutorialActive}}
+      {{tutorial-row tutorial='player' step='buyerIntroduction' previous='anchor1' active=isTutorialActive}}
+      {{tutorial-row tutorial='player' step='buyerAnchor' active=isTutorialActive}}
+      {{tutorial-row tutorial='player' step='buyerConclusion' next='anchor2' active=isTutorialActive}}
       
-      {{tutorial-row tutorial='player' step='conclusion' previous='buyerConclusion' next=null active=isTutorialActive}}
+      {{tutorial-row tutorial='player' step='anchor2' previous='buyerConclusion' active=isTutorialActive}}
     {{/if}}
     
     <div class="row">

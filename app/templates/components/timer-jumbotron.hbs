@@ -11,6 +11,12 @@
   </div>
   
   <div class="row">
+    <div class="col-sm-12">
+      {{tutorial-list tutorial='player' step='clockPlayer' active=isTutorialActive}}
+    </div>
+  </div>
+  
+  <div class="row">
     <div class="col-sm-4">
       <h3 class="property-label">{{t 'timer.trade'}}</h3>
     </div>
@@ -29,8 +35,10 @@
       <p class="property-value">{{if game.currentGameSettings.tradingFor game.currentGameSettings.tradingFor}}</p>
     </div>
     <div class="col-sm-4">
-      {{#if game.gameIsAboutToStart}}
-        <p class="property-label"><span class="text-success">{{t "timer.starting"}}</span></p>
+      {{#if game.isImported}}
+        <p class="property-label"><span class="text-success">{{t "timer.imported"}}</span></p>
+      {{else if game.gameIsAboutToStart}}
+        <p class="property-label"><span class="text-success">{{t "timer.tutorial"}}</span></p>
       {{else if game.gameIsRunning}}
         {{#if game.isPaused}}
           <p class="property-label"><span class="text-success">{{t "timer.paused"}}</span></p>
@@ -42,5 +50,20 @@
       {{/if}}
     </div>
   </div>
+  
+  <div class="row">
+    <div class="col-sm-4">
+      {{tutorial-list tutorial='player' step='clockTrade' active=isTutorialActive}}
+    </div>
+    <div class="col-sm-4">
+      {{tutorial-list tutorial='player' step='clockWeek' active=isTutorialActive}}
+    </div>
+    <div class="col-sm-4">
+      {{tutorial-list tutorial='player' step='clockTime' active=isTutorialActive}}
+    </div>
+  </div>
+  
+  {{tutorial-row tutorial='player' step='clockIntroduction' active=isTutorialActive}}
+  {{tutorial-row tutorial='player' step='clockConclusion' active=isTutorialActive}}
   
 </div>
