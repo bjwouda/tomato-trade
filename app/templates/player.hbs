@@ -260,13 +260,9 @@
               {{#if isTutorialActive}}
                 {{#tutorial-inside-range tutorial='player' start='introduction1' end='tradeTutorial1' active=isTutorialActive}}
                   {{player-offers
-                    store=store
-                    game=game
-                    isSeller=model.isSeller
                     openOffers=tutorialOpenOffersEmpty
                     sentOffers=tutorialSentOffersEmpty
-                    remainingTomatoes=0
-                    isTutorialActive=isTutorialActive
+                    isTutorialActive=true
                     isTutorialAccept=false
                     isTutorialConfirm=false
                     isTutorialDecline=false
@@ -276,13 +272,9 @@
                 {{/tutorial-inside-range}}
                 {{#tutorial-inside-range tutorial='player' start='tradeTutorial2' end='tradeTutorial2' active=isTutorialActive}}
                   {{player-offers
-                    store=store
-                    game=game
-                    isSeller=model.isSeller
                     openOffers=tutorialOpenOffersEmpty
                     sentOffers=tutorialSentOffers1
-                    remainingTomatoes=0
-                    isTutorialActive=isTutorialActive
+                    isTutorialActive=true
                     isTutorialAccept=false
                     isTutorialConfirm=false
                     isTutorialDecline=false
@@ -292,13 +284,9 @@
                 {{/tutorial-inside-range}}
                 {{#tutorial-inside-range tutorial='player' start='tradeTutorial3' end='tradeTutorial4' active=isTutorialActive}}
                   {{player-offers
-                    store=store
-                    game=game
-                    isSeller=model.isSeller
                     openOffers=tutorialOpenOffersEmpty
                     sentOffers=tutorialSentOffersEmpty
-                    remainingTomatoes=0
-                    isTutorialActive=isTutorialActive
+                    isTutorialActive=true
                     isTutorialAccept=false
                     isTutorialConfirm=false
                     isTutorialDecline=false
@@ -308,13 +296,9 @@
                 {{/tutorial-inside-range}}
                 {{#tutorial-inside-range tutorial='player' start='tradeTutorial5' end='tradeTutorial5' active=isTutorialActive}}
                   {{player-offers
-                    store=store
-                    game=game
-                    isSeller=model.isSeller
                     openOffers=tutorialOpenOffersEmpty
                     sentOffers=tutorialSentOffers2
-                    remainingTomatoes=0
-                    isTutorialActive=isTutorialActive
+                    isTutorialActive=true
                     isTutorialAccept=true
                     isTutorialConfirm=false
                     isTutorialDecline=false
@@ -324,13 +308,9 @@
                 {{/tutorial-inside-range}}
                 {{#tutorial-inside-range tutorial='player' start='tradeTutorial6' end='tradeTutorialBuyer3' active=isTutorialActive}}
                   {{player-offers
-                    store=store
-                    game=game
-                    isSeller=model.isSeller
                     openOffers=tutorialOpenOffersEmpty
                     sentOffers=tutorialSentOffersEmpty
-                    remainingTomatoes=0
-                    isTutorialActive=isTutorialActive
+                    isTutorialActive=true
                     isTutorialAccept=false
                     isTutorialConfirm=false
                     isTutorialDecline=false
@@ -340,13 +320,9 @@
                 {{/tutorial-inside-range}}
                 {{#tutorial-inside-range tutorial='player' start='tradeTutorial7' end='tradeTutorial7' active=isTutorialActive}}
                   {{player-offers
-                    store=store
-                    game=game
-                    isSeller=model.isSeller
                     openOffers=tutorialOpenOffers1
                     sentOffers=tutorialSentOffersEmpty
-                    remainingTomatoes=0
-                    isTutorialActive=isTutorialActive
+                    isTutorialActive=true
                     isTutorialAccept=false
                     isTutorialConfirm=false
                     isTutorialDecline=true
@@ -356,13 +332,10 @@
                 {{/tutorial-inside-range}}
                 {{#tutorial-inside-range tutorial='player' start='tradeConclusion' end='conclusion2' active=isTutorialActive}}
                   {{player-offers
-                    store=store
-                    game=game
-                    isSeller=model.isSeller
                     openOffers=tutorialOpenOffersEmpty
                     sentOffers=tutorialSentOffersEmpty
                     remainingTomatoes=0
-                    isTutorialActive=isTutorialActive
+                    isTutorialActive=true
                     isTutorialAccept=false
                     isTutorialConfirm=false
                     isTutorialDecline=false
@@ -378,7 +351,7 @@
                   openOffers=(reverse obj.openOffers)
                   sentOffers=(reverse obj.sentOffers)
                   remainingTomatoes=model.remainingTomatoes
-                  isTutorialActive=isTutorialActive
+                  isTutorialActive=false
                 }}
               {{/if}}
               
