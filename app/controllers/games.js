@@ -241,6 +241,38 @@ export default Ember.Controller.extend(OfferActions, LangActions, LogFunctions, 
         u.set("extOfferPrice", game.getValueforUserCurrentRound(u.get("playerIdInGame"), '_extPrice'));
         u.save();
       });
+      
+      // Automatically perform the prognosis adjustment.
+      if(!gameIsLastRound && game.get("currentGameSettings").tradeType === "daily") {
+        game.get("allUsers").forEach((user) => {
+          let index = _.random(5);
+          
+          let percentages = [-10, -5, 0, 0, 5, 10];
+          let percentage = percentages[index];
+          
+          // Straight up copied from player-ov.js.
+          let currentTomatoes = user.get("goalTomatoes");
+          let newGoalTomatoes = Math.floor(currentTomatoes * (1.0 + 0.01 * percentage));
+          
+          user.set("goalTomatoes", newGoalTomatoes);
+          user.save();
+          
+          let anotherNewHistoryObj = this.store.createRecord('history', {
+            offerId      : undefined,
+            userSender   : "Prognisis modification to " + user.get("descriptivePlayerIdInGame") ,
+            userReceiver : "",
+            state        : "",
+            cssStatus    : "info",
+            offer        : "by " + percentage + "%",
+            round        : "Round " + game.get("roundCnt")
+          });
+          
+          anotherNewHistoryObj.save().then(() => {
+            game.save();
+            return true;
+          });
+        });
+      }
     },
     
     saveSettings(game) {

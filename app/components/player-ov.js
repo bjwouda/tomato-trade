@@ -34,7 +34,7 @@ export default Ember.Component.extend(OfferActions, {
         round        : "Round " + game.get("roundCnt")
       });
       
-      game.get('historyLogs').addObject(newHistoryObj);
+      //game.get('historyLogs').addObject(newHistoryObj);
       
       newHistoryObj.save().then(() => { 
         game.save();
