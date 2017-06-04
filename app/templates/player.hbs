@@ -255,14 +255,132 @@
               <li class="list-group-item">
                 <strong>{{t "player.currentTransactions"}}</strong>
               </li>
-              {{player-offers
-                store=store
-                game=game
-                isSeller=model.isSeller
-                openOffers=(reverse obj.openOffers)
-                sentOffers=(reverse obj.sentOffers)
-                remainingTomatoes=model.remainingTomatoes
-              }}
+              
+              {{!-- Prepare thyself for what is coming. --}}
+              {{#if isTutorialActive}}
+                {{#tutorial-inside-range tutorial='player' start='introduction1' end='tradeTutorial1' active=isTutorialActive}}
+                  {{player-offers
+                    store=store
+                    game=game
+                    isSeller=model.isSeller
+                    openOffers=tutorialOpenOffersEmpty
+                    sentOffers=tutorialSentOffersEmpty
+                    remainingTomatoes=0
+                    isTutorialActive=isTutorialActive
+                    isTutorialAccept=false
+                    isTutorialConfirm=false
+                    isTutorialDecline=false
+                    isTutorialRecallOpen=false
+                    isTutorialRecallConfirm=false
+                  }}
+                {{/tutorial-inside-range}}
+                {{#tutorial-inside-range tutorial='player' start='tradeTutorial2' end='tradeTutorial2' active=isTutorialActive}}
+                  {{player-offers
+                    store=store
+                    game=game
+                    isSeller=model.isSeller
+                    openOffers=tutorialOpenOffersEmpty
+                    sentOffers=tutorialSentOffers1
+                    remainingTomatoes=0
+                    isTutorialActive=isTutorialActive
+                    isTutorialAccept=false
+                    isTutorialConfirm=false
+                    isTutorialDecline=false
+                    isTutorialRecallOpen=false
+                    isTutorialRecallConfirm=false
+                  }}
+                {{/tutorial-inside-range}}
+                {{#tutorial-inside-range tutorial='player' start='tradeTutorial3' end='tradeTutorial4' active=isTutorialActive}}
+                  {{player-offers
+                    store=store
+                    game=game
+                    isSeller=model.isSeller
+                    openOffers=tutorialOpenOffersEmpty
+                    sentOffers=tutorialSentOffersEmpty
+                    remainingTomatoes=0
+                    isTutorialActive=isTutorialActive
+                    isTutorialAccept=false
+                    isTutorialConfirm=false
+                    isTutorialDecline=false
+                    isTutorialRecallOpen=false
+                    isTutorialRecallConfirm=false
+                  }}
+                {{/tutorial-inside-range}}
+                {{#tutorial-inside-range tutorial='player' start='tradeTutorial5' end='tradeTutorial5' active=isTutorialActive}}
+                  {{player-offers
+                    store=store
+                    game=game
+                    isSeller=model.isSeller
+                    openOffers=tutorialOpenOffersEmpty
+                    sentOffers=tutorialSentOffers2
+                    remainingTomatoes=0
+                    isTutorialActive=isTutorialActive
+                    isTutorialAccept=true
+                    isTutorialConfirm=false
+                    isTutorialDecline=false
+                    isTutorialRecallOpen=false
+                    isTutorialRecallConfirm=false
+                  }}
+                {{/tutorial-inside-range}}
+                {{#tutorial-inside-range tutorial='player' start='tradeTutorial6' end='tradeTutorialBuyer3' active=isTutorialActive}}
+                  {{player-offers
+                    store=store
+                    game=game
+                    isSeller=model.isSeller
+                    openOffers=tutorialOpenOffersEmpty
+                    sentOffers=tutorialSentOffersEmpty
+                    remainingTomatoes=0
+                    isTutorialActive=isTutorialActive
+                    isTutorialAccept=false
+                    isTutorialConfirm=false
+                    isTutorialDecline=false
+                    isTutorialRecallOpen=false
+                    isTutorialRecallConfirm=false
+                  }}
+                {{/tutorial-inside-range}}
+                {{#tutorial-inside-range tutorial='player' start='tradeTutorial7' end='tradeTutorial7' active=isTutorialActive}}
+                  {{player-offers
+                    store=store
+                    game=game
+                    isSeller=model.isSeller
+                    openOffers=tutorialOpenOffers1
+                    sentOffers=tutorialSentOffersEmpty
+                    remainingTomatoes=0
+                    isTutorialActive=isTutorialActive
+                    isTutorialAccept=false
+                    isTutorialConfirm=false
+                    isTutorialDecline=true
+                    isTutorialRecallOpen=false
+                    isTutorialRecallConfirm=false
+                  }}
+                {{/tutorial-inside-range}}
+                {{#tutorial-inside-range tutorial='player' start='tradeConclusion' end='conclusion2' active=isTutorialActive}}
+                  {{player-offers
+                    store=store
+                    game=game
+                    isSeller=model.isSeller
+                    openOffers=tutorialOpenOffersEmpty
+                    sentOffers=tutorialSentOffersEmpty
+                    remainingTomatoes=0
+                    isTutorialActive=isTutorialActive
+                    isTutorialAccept=false
+                    isTutorialConfirm=false
+                    isTutorialDecline=false
+                    isTutorialRecallOpen=false
+                    isTutorialRecallConfirm=false
+                  }}
+                {{/tutorial-inside-range}}
+              {{else}}
+                {{player-offers
+                  store=store
+                  game=game
+                  isSeller=model.isSeller
+                  openOffers=(reverse obj.openOffers)
+                  sentOffers=(reverse obj.sentOffers)
+                  remainingTomatoes=model.remainingTomatoes
+                  isTutorialActive=isTutorialActive
+                }}
+              {{/if}}
               
               {{#if (not (eq k 'External'))}}
                 {{tutorial-list-item tutorial='player' step='tradeTutorial2' active=isTutorialActive}}
@@ -287,8 +405,13 @@
                     {{player-offer-display offer=offer}}
                   {{/each}}
                 {{/tutorial-inside-range}}
-                {{#tutorial-inside-range tutorial='player' start='tradeTutorial6' end='conclusion2' active=isTutorialActive}}
+                {{#tutorial-inside-range tutorial='player' start='tradeTutorial6' end='tradeTutorial7' active=isTutorialActive}}
                   {{#each tutorialLast5Transactions2 as |offer|}}
+                    {{player-offer-display offer=offer}}
+                  {{/each}}
+                {{/tutorial-inside-range}}
+                {{#tutorial-inside-range tutorial='player' start='tradeConclusion' end='conclusion2' active=isTutorialActive}}
+                  {{#each tutorialLast5Transactions3 as |offer|}}
                     {{player-offer-display offer=offer}}
                   {{/each}}
                 {{/tutorial-inside-range}}

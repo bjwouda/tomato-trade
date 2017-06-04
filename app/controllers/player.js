@@ -27,7 +27,19 @@ export default Ember.Controller.extend(OfferActions, LangActions, TutorialAction
   
   isTutorialActive: Ember.computed.alias("game.gameIsAboutToStart"),
   
-  tutorialOffer1: Ember.computed("model.name", function() {
+  tutorialOffer1Open: Ember.computed("model.name", function() {
+    return Ember.Object.create({
+      ts: moment(),
+      roundNumber: 0,
+      senderName: this.get("model.name"),
+      receiverName: "Tutorial",
+      tomatoes: 100,
+      price: 1.0,
+      state: "open"
+    });
+  }),
+  
+  tutorialOffer1Declined: Ember.computed("model.name", function() {
     return Ember.Object.create({
       ts: moment(),
       roundNumber: 0,
@@ -39,7 +51,20 @@ export default Ember.Controller.extend(OfferActions, LangActions, TutorialAction
     });
   }),
   
-  tutorialOffer2: Ember.computed("model.name", function() {
+  tutorialOffer2Confirmed: Ember.computed("model.name", function() {
+    return Ember.Object.create({
+      ts: moment(),
+      roundNumber: 0,
+      senderName: this.get("model.name"),
+      receiverName: "Tutorial",
+      tomatoes: 100,
+      price: 0.98,
+      state: "confirmed",
+      isConfirmed: true
+    });
+  }),
+  
+  tutorialOffer2Accepted: Ember.computed("model.name", function() {
     return Ember.Object.create({
       ts: moment(),
       roundNumber: 0,
@@ -51,22 +76,75 @@ export default Ember.Controller.extend(OfferActions, LangActions, TutorialAction
     });
   }),
   
-  tutorialLast5Transactions1: Ember.computed("tutorialOffer1", function() {
+  tutorialOffer3Open: Ember.computed("model.name", function() {
+    return Ember.Object.create({
+      ts: moment(),
+      roundNumber: 0,
+      senderName: "Tutorial",
+      receiverName: this.get("model.name"),
+      tomatoes: 60,
+      price: 0.75,
+      state: "open"
+    });
+  }),
+  
+  tutorialOffer3Declined: Ember.computed("model.name", function() {
+    return Ember.Object.create({
+      ts: moment(),
+      roundNumber: 0,
+      senderName: "Tutorial",
+      receiverName: this.get("model.name"),
+      tomatoes: 60,
+      price: 0.75,
+      state: "declined"
+    });
+  }),
+  
+  tutorialOpenOffersEmpty: [],
+  tutorialSentOffersEmpty: [],
+  
+  tutorialOpenOffers1: Ember.computed("tutorialOffer3Open", function() {
     return [
-      this.get("tutorialOffer1")
+      this.get("tutorialOffer3Open")
     ];
   }),
   
-  tutorialLast5Transactions2: Ember.computed("tutorialOffer1", "tutorialOffer2", function() {
+  tutorialSentOffers1: Ember.computed("tutorialOffer1Open", function() {
     return [
-      this.get("tutorialOffer2"),
-      this.get("tutorialOffer1")
+      this.get("tutorialOffer1Open")
     ];
   }),
   
-  previouslyAcceptedOffers1: Ember.computed("tutorialOffer2", function() {
+  tutorialSentOffers2: Ember.computed("tutorialOffer2Confirmed", function() {
     return [
-      this.get("tutorialOffer2")
+      this.get("tutorialOffer2Confirmed")
+    ];
+  }),
+  
+  tutorialLast5Transactions1: Ember.computed("tutorialOffer1Declined", function() {
+    return [
+      this.get("tutorialOffer1Declined")
+    ];
+  }),
+  
+  tutorialLast5Transactions2: Ember.computed("tutorialOffer1Declined", "tutorialOffer2Accepted", function() {
+    return [
+      this.get("tutorialOffer2Accepted"),
+      this.get("tutorialOffer1Declined")
+    ];
+  }),
+  
+  tutorialLast5Transactions3: Ember.computed("tutorialOffer1Declined", "tutorialOffer2Accepted", "tutorialOffer3Declined", function() {
+    return [
+      this.get("tutorialOffer3Declined"),
+      this.get("tutorialOffer2Accepted"),
+      this.get("tutorialOffer1Declined")
+    ];
+  }),
+  
+  previouslyAcceptedOffers1: Ember.computed("tutorialOffer2Accepted", function() {
+    return [
+      this.get("tutorialOffer2Accepted")
     ];
   }),
 });

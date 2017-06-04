@@ -1,11 +1,13 @@
 {{#each openOffers as |offer|}}
   <li class="list-group-item">
     
-    {{#if (and isSeller (lt remainingTomatoes offer.tomatoes))}}
-      <div class="alert alert-danger" role="alert">
-        {{t 'player.offers.offerExceedsRemainder' offerTomatoes=offer.tomatoes remainingTomato=remainingTomatoes}}
-      </div>
-    {{/if}}
+    {{#unless isTutorialActive}}
+      {{#if (and isSeller (lt remainingTomatoes offer.tomatoes))}}
+        <div class="alert alert-danger" role="alert">
+          {{t 'player.offers.offerExceedsRemainder' offerTomatoes=offer.tomatoes remainingTomato=remainingTomatoes}}
+        </div>
+      {{/if}}
+    {{/unless}}
     
     <div class="form-inline">
       <span class="form-control-static">
@@ -24,16 +26,40 @@
       <span class="btn-group pull-right">
       
         {{#if offer.isConfirmed}}
-          <button class="btn btn-warning" {{action 'recallConfirmationOffer' game offer}}>{{t 'player.offers.recallConfirm'}}</button>
-        {{else}}
-          {{#if (and isSeller (lt remainingTomatoes offer.tomatoes))}}
-            <button disabled class="btn btn-success" {{action 'confirmOffer' game offer}}>{{t 'player.offers.confirm'}}</button>
+          {{#if isTutorialActive}}
+            {{#if isTutorialRecallConfirm}}
+              <button class="btn btn-warning" {{action 'advanceTutorialState' 'player'}}>{{t 'player.offers.recallConfirm'}}</button>
+            {{else}}
+              <button disabled class="btn btn-warning">{{t 'player.offers.recallConfirm'}}</button>
+            {{/if}}
           {{else}}
-            <button class="btn btn-success" {{action 'confirmOffer' game offer}}>{{t 'player.offers.confirm'}}</button>
+            <button class="btn btn-warning" {{action 'recallConfirmationOffer' game offer}}>{{t 'player.offers.recallConfirm'}}</button>
+          {{/if}}
+        {{else}}
+          {{#if isTutorialActive}}
+            {{#if isTutorialConfirm}}
+              <button class="btn btn-success" {{action 'advanceTutorialState' 'player'}}>{{t 'player.offers.confirm'}}</button>
+            {{else}}
+              <button disabled class="btn btn-success">{{t 'player.offers.confirm'}}</button>
+            {{/if}}
+          {{else}}
+            {{#if (and isSeller (lt remainingTomatoes offer.tomatoes))}}
+              <button disabled class="btn btn-success" {{action 'confirmOffer' game offer}}>{{t 'player.offers.confirm'}}</button>
+            {{else}}
+              <button class="btn btn-success" {{action 'confirmOffer' game offer}}>{{t 'player.offers.confirm'}}</button>
+            {{/if}}
           {{/if}}
         {{/if}}
         
-        <button  class="btn btn-default" {{action 'declineOffer' game offer}}>{{t 'player.offers.decline'}}</button>
+        {{#if isTutorialActive}}
+          {{#if isTutorialDecline}}
+            <button class="btn btn-default" {{action 'advanceTutorialState' 'player'}}>{{t 'player.offers.decline'}}</button>
+          {{else}}
+            <button disabled class="btn btn-default">{{t 'player.offers.decline'}}</button>
+          {{/if}}
+        {{else}}
+          <button class="btn btn-default" {{action 'declineOffer' game offer}}>{{t 'player.offers.decline'}}</button>
+        {{/if}}
         
       </span>
     </div>
@@ -44,11 +70,13 @@
 {{#each sentOffers as |offer|}}
   <li class="list-group-item">
     
-    {{#if (and isSeller (lt remainingTomatoes offer.tomatoes))}}
-      <div class="alert alert-danger" role="alert">
-        {{t 'player.offers.offerExceedsRemainder' offerTomatoes=offer.tomatoes remainingTomato=remainingTomatoes}}
-      </div>
-    {{/if}}
+    {{#unless isTutorialActive}}
+      {{#if (and isSeller (lt remainingTomatoes offer.tomatoes))}}
+        <div class="alert alert-danger" role="alert">
+          {{t 'player.offers.offerExceedsRemainder' offerTomatoes=offer.tomatoes remainingTomato=remainingTomatoes}}
+        </div>
+      {{/if}}
+    {{/unless}}
     
     <div class="form-inline">
       <span class="form-control-static">
@@ -67,16 +95,32 @@
       <span class="btn-group pull-right">
         
         {{#if offer.isConfirmed}}
-          {{#if (and isSeller (lt remainingTomatoes offer.tomatoes))}}
-            <button disabled class="btn btn-success" {{action 'acceptOffer' game offer}}>{{t 'player.offers.accept'}}</button>
+          {{#if isTutorialActive}}
+            {{#if isTutorialAccept}}
+              <button class="btn btn-success" {{action 'advanceTutorialState' 'player'}}>{{t 'player.offers.accept'}}</button>
+            {{else}}
+              <button disabled class="btn btn-success">{{t 'player.offers.accept'}}</button>
+            {{/if}}
           {{else}}
-            <button class="btn btn-success" {{action 'acceptOffer' game offer}}>{{t 'player.offers.accept'}}</button>
+            {{#if (and isSeller (lt remainingTomatoes offer.tomatoes))}}
+              <button disabled class="btn btn-success" {{action 'acceptOffer' game offer}}>{{t 'player.offers.accept'}}</button>
+            {{else}}
+              <button class="btn btn-success" {{action 'acceptOffer' game offer}}>{{t 'player.offers.accept'}}</button>
+            {{/if}}
           {{/if}}
         {{else}}
           <button class="btn btn-default" disabled>{{t 'player.offers.pending'}}</button>
         {{/if}}
         
-        <button class="btn btn-default" {{action 'recallOffer' game offer}}>{{t 'player.offers.recallOpen'}}</button>
+        {{#if isTutorialActive}}
+          {{#if isTutorialRecallOpen}}
+            <button class="btn btn-default" {{action 'advanceTutorialState' 'player'}}>{{t 'player.offers.recallOpen'}}</button>
+          {{else}}
+            <button disabled class="btn btn-default">{{t 'player.offers.recallOpen'}}</button>
+          {{/if}}
+        {{else}}
+          <button class="btn btn-default" {{action 'recallOffer' game offer}}>{{t 'player.offers.recallOpen'}}</button>
+        {{/if}}
         
       </span>
     </div>
