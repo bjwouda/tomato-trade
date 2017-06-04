@@ -7,9 +7,7 @@
     "game1",
     "game2",
     "game3",
-    
     "anchor1",
-    
     "sellerIntroduction",
     "sellerAnchor",
     "sellerPropertiesIntroduction",
@@ -19,7 +17,6 @@
     "sellerPropertyAverageUnitPrice",
     "sellerPropertiesConclusion",
     "sellerConclusion",
-    
     "buyerIntroduction",
     "buyerAnchor",
     "buyerPropertiesIntroduction1",
@@ -34,28 +31,34 @@
     "buyerPropertyRetailPrice",
     "buyerPropertiesConclusion2",
     "buyerConclusion",
-    
     "anchor2",
-    
     "clockIntroduction",
     "clockPlayer",
     "clockTrade",
     "clockWeek",
     "clockTime",
     "clockConclusion",
-    
     "tradeIntroduction",
-    "tradeSend",
-    "tradeReceive",
-    "tradeLast5",
-    "tradePreviouslyAccepted",
+    "tradeSend1",
+    "tradeSend2",
+    "tradeTutorial1",
+    "tradeTutorial2",
+    "tradeTutorial3",
+    "tradeTutorial4",
+    "tradeTutorial5",
+    "tradeTutorial6",
+    "tradeTutorialSeller1",
+    "tradeTutorialSeller2",
+    "tradeTutorialSeller3",
+    "tradeTutorialBuyer1",
+    "tradeTutorialBuyer2",
+    "tradeTutorialBuyer3",
+    "tradeTutorial7",
     "tradeConclusion",
-    
     "externalTradeIntroduction",
     "externalTradeSend1",
     "externalTradeSend2",
     "externalTradeConclusion",
-    
     "conclusion1",
     "conclusion2"
   ]

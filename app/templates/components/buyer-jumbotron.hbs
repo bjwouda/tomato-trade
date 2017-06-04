@@ -10,10 +10,22 @@
   </div>
   <div class="row">
     <div class="col-sm-6">
-      <p class="property-value"><span class="to-money" />{{digit-format model.userGame.fine}}</p>
+      <p class="property-value">
+        {{#if isTutorialActive}}
+          <span class="to-money" />{{t 'tutorial.player.values.buyer.fine'}}
+        {{else}}
+          <span class="to-money" />{{digit-format model.userGame.fine}}
+        {{/if}}
+      </p>
     </div>
     <div class="col-sm-6">
-      <p class="property-value"><span class="to-money" />{{digit-format model.userGame.fixedCost}}</p>
+      <p class="property-value">
+        {{#if isTutorialActive}}
+          <span class="to-money" />{{t 'tutorial.player.values.buyer.fixedCosts'}}
+        {{else}}
+          <span class="to-money" />{{digit-format model.userGame.fixedCost}}
+        {{/if}}
+      </p>
     </div>
   </div>
   
@@ -36,7 +48,13 @@
   </div>
   <div class="row">
     <div class="col-sm-6">
-      <p class="property-value"><span class="to-money" />{{digit-format model.userGame.retailPrice}}</p>
+      <p class="property-value">
+        {{#if isTutorialActive}}
+          <span class="to-money" />{{t 'tutorial.player.values.buyer.retailPrice'}}
+        {{else}}
+          <span class="to-money" />{{digit-format model.userGame.retailPrice}}
+        {{/if}}
+      </p>
     </div>
     <div class="col-sm-6">
       <p class="property-value" />

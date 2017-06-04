@@ -211,7 +211,16 @@
                 {{/if}}
               </li>
               
-              {{tutorial-list-item tutorial='player' step='makeOffer' active=isTutorialActive}}
+              {{#if (eq k 'External')}}
+                {{tutorial-list-item tutorial='player' step='externalTradeSend1' active=isTutorialActive}}
+                {{tutorial-list-item tutorial='player' step='externalTradeSend2' active=isTutorialActive}}
+              {{else}}
+                {{tutorial-list-item tutorial='player' step='tradeSend1' active=isTutorialActive}}
+                {{tutorial-list-item tutorial='player' step='tradeSend2' active=isTutorialActive}}
+                
+                {{tutorial-list-item tutorial='player' step='tradeTutorial1' active=isTutorialActive}}
+                {{tutorial-list-item tutorial='player' step='tradeTutorial4' active=isTutorialActive}}
+              {{/if}}
               
             </ul>
 
@@ -229,7 +238,11 @@
                 remainingTomatoes=model.remainingTomatoes
               }}
               
-              {{tutorial-list-item tutorial='player' step='currentTransaction' active=isTutorialActive}}
+              {{#if (not (eq k 'External'))}}
+                {{tutorial-list-item tutorial='player' step='tradeTutorial2' active=isTutorialActive}}
+                {{tutorial-list-item tutorial='player' step='tradeTutorial5' active=isTutorialActive}}
+                {{tutorial-list-item tutorial='player' step='tradeTutorial7' previous=(if model.isSeller 'tradeTutorialSeller3' 'tradeTutorialBuyer3') active=isTutorialActive}}
+              {{/if}}
               
             </ul>
             
@@ -245,7 +258,9 @@
                 <li class="list-group-item">{{t "player.noTransactions"}}</li>
               {{/each}}
               
-              {{tutorial-list-item tutorial='player' step='last5Transactions' active=isTutorialActive}}
+              {{#if (not (eq k 'External'))}}
+                {{tutorial-list-item tutorial='player' step='tradeTutorial3' active=isTutorialActive}}
+              {{/if}}
               
             </ul>
             
@@ -260,10 +275,8 @@
                 <li class="list-group-item">{{t "player.noTransactions"}}</li>
               {{/each}}
               
-              {{#if model.isSeller}}
-                {{tutorial-list-item tutorial='player' step='previouslyAcceptedOffers' next='sellerIntroduction' active=isTutorialActive}}
-              {{else}}
-                {{tutorial-list-item tutorial='player' step='previouslyAcceptedOffers' next='buyerIntroduction' active=isTutorialActive}}
+              {{#if (not (eq k 'External'))}}
+                {{tutorial-list-item tutorial='player' step='tradeTutorial6' next=(if model.isSeller 'tradeTutorialSeller1' 'tradeTutorialBuyer1') active=isTutorialActive}}
               {{/if}}
               
             </ul>

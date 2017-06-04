@@ -29,24 +29,42 @@
   </div>
   <div class="row">
     <div class="col-sm-4">
-      <p class="property-value">{{if game.currentGameSettings.tradeType (t (concat 'timer.' game.currentGameSettings.tradeType))}}</p>
+      <p class="property-value">
+        {{#if isTutorialActive}}
+          {{t 'tutorial.player.values.tradeType'}}
+        {{else}}
+          {{if game.currentGameSettings.tradeType (t (concat 'timer.' game.currentGameSettings.tradeType))}}
+        {{/if}}
+      </p>
     </div>
     <div class="col-sm-4">
-      <p class="property-value">{{if game.currentGameSettings.tradingFor game.currentGameSettings.tradingFor}}</p>
+      <p class="property-value">
+        {{#if isTutorialActive}}
+          {{t 'tutorial.player.values.tradingFor'}}
+        {{else}}
+          {{if game.currentGameSettings.tradingFor game.currentGameSettings.tradingFor}}
+        {{/if}}
+      </p>
     </div>
     <div class="col-sm-4">
       {{#if game.isImported}}
-        <p class="property-label"><span class="text-success">{{t "timer.imported"}}</span></p>
+        <p class="property-value"><span class="text-success">{{t "timer.imported"}}</span></p>
       {{else if game.gameIsAboutToStart}}
-        <p class="property-label"><span class="text-success">{{t "timer.tutorial"}}</span></p>
+        <p class="property-value">
+          {{#if isTutorialActive}}
+            <span class="text-success">{{t "timer.tutorial"}}</span>
+          {{else}}
+            <span class="text-success">{{t "timer.pending"}}</span>
+          {{/if}}
+        </p>
       {{else if game.gameIsRunning}}
         {{#if game.isPaused}}
-          <p class="property-label"><span class="text-success">{{t "timer.paused"}}</span></p>
+          <p class="property-value"><span class="text-success">{{t "timer.paused"}}</span></p>
         {{else}}
           {{tom-clock timeStartTs=game.timeStartTs timeEndTs=game.timeEndTs}}
         {{/if}}
       {{else}}
-        <p class="property-label"><span class="text-success">{{t "timer.gameOver"}}</span></p>
+        <p class="property-value"><span class="text-success">{{t "timer.gameOver"}}</span></p>
       {{/if}}
     </div>
   </div>
