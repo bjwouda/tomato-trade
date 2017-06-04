@@ -259,7 +259,7 @@ export default Ember.Controller.extend(OfferActions, LangActions, LogFunctions, 
           
           let anotherNewHistoryObj = this.store.createRecord('history', {
             offerId      : undefined,
-            userSender   : "Prognisis modification to " + user.get("descriptivePlayerIdInGame") ,
+            userSender   : "Prognisis modification to " + user.get("descriptivePlayerIdInGame"),
             userReceiver : "",
             state        : "",
             cssStatus    : "info",

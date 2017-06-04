@@ -25,5 +25,48 @@ export default Ember.Controller.extend(OfferActions, LangActions, TutorialAction
     });
   }),
   
-  isTutorialActive: Ember.computed.alias("game.gameIsAboutToStart")
+  isTutorialActive: Ember.computed.alias("game.gameIsAboutToStart"),
+  
+  tutorialOffer1: Ember.computed("model.name", function() {
+    return Ember.Object.create({
+      ts: moment(),
+      roundNumber: 0,
+      senderName: this.get("model.name"),
+      receiverName: "Tutorial",
+      tomatoes: 100,
+      price: 1.0,
+      state: "declined"
+    });
+  }),
+  
+  tutorialOffer2: Ember.computed("model.name", function() {
+    return Ember.Object.create({
+      ts: moment(),
+      roundNumber: 0,
+      senderName: this.get("model.name"),
+      receiverName: "Tutorial",
+      tomatoes: 100,
+      price: 0.98,
+      state: "accepted"
+    });
+  }),
+  
+  tutorialLast5Transactions1: Ember.computed("tutorialOffer1", function() {
+    return [
+      this.get("tutorialOffer1")
+    ];
+  }),
+  
+  tutorialLast5Transactions2: Ember.computed("tutorialOffer1", "tutorialOffer2", function() {
+    return [
+      this.get("tutorialOffer2"),
+      this.get("tutorialOffer1")
+    ];
+  }),
+  
+  previouslyAcceptedOffers1: Ember.computed("tutorialOffer2", function() {
+    return [
+      this.get("tutorialOffer2")
+    ];
+  }),
 });
