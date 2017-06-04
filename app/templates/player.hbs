@@ -131,16 +131,18 @@
                   
                 {{else}}
                   
-                  {{#if (gte obj.sentOffers.length 3)}}
-                    <div class="alert alert-danger" role="alert">
-                      {{t "player.offerExceeds3StandingOffers"}}
-                    </div>
-                  {{/if}}
-                  {{#if (and model.isSeller (gt obj.user._offerTomato model.remainingTomatoes))}}
-                    <div class="alert alert-danger" role="alert">
-                      {{t "player.offerExceedsRemainder"}}
-                    </div>
-                  {{/if}}
+                  {{#unless isTutorialActive}}
+                    {{#if (gte obj.sentOffers.length 3)}}
+                      <div class="alert alert-danger" role="alert">
+                        {{t "player.offerExceeds3StandingOffers"}}
+                      </div>
+                    {{/if}}
+                    {{#if (and model.isSeller (gt obj.user._offerTomato model.remainingTomatoes))}}
+                      <div class="alert alert-danger" role="alert">
+                        {{t "player.offerExceedsRemainder"}}
+                      </div>
+                    {{/if}}
+                  {{/unless}}
                   
                   <div class="form-group row">
                     <div class="col-3 col-sm-3 col-lg-3">
@@ -187,7 +189,15 @@
                     </div>
                     <div class="col-4 col-sm-4 col-lg-4">
                       {{!-- check logic here is inverse to above --}}
-                      {{#if (and 
+                      {{#if isTutorialActive}}
+                        {{#tutorial-inside-range tutorial='player' start='tradeTutorial1' end='tradeTutorial1' active=isTutorialActive}}
+                          <button class="btn btn-default pull-right" {{action 'advanceTutorialState' 'player'}}>{{t 'player.send'}}</button>
+                        {{/tutorial-inside-range}}
+                        
+                        {{#tutorial-outside-range tutorial='player' start='tradeTutorial1' end='tradeTutorial1' active=isTutorialActive}}
+                          <button disabled class="btn btn-default pull-right">{{t 'player.send'}}</button>
+                        {{/tutorial-outside-range}}
+                      {{else if (and 
                               (lt obj.sentOffers.length 3)
                               (gt obj.user._offerTomato 0) 
                               (gt obj.user._offerPrice 0)
