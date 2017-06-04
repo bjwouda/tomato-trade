@@ -55,17 +55,18 @@
               <li class="list-group-item">
                 {{#if (eq k 'External')}}
                   
-                  {{#if (gte obj.sentOffers.length 3)}}
-                    <div class="alert alert-danger" role="alert">
-                      {{t "player.offerExceeds3StandingOffers"}}
-                    </div>
-                  {{/if}}
-                  
-                  {{#if (and model.isSeller (gt _ext_offerTomato model.remainingTomatoes))}}
-                    <div class="alert alert-danger" role="alert">
-                      {{t "player.offerExceedsRemainder"}}
-                    </div>
-                  {{/if}}
+                  {{#unless isTutorialActive}}
+                    {{#if (gte obj.sentOffers.length 3)}}
+                      <div class="alert alert-danger" role="alert">
+                        {{t "player.offerExceeds3StandingOffers"}}
+                      </div>
+                    {{/if}}
+                    {{#if (and model.isSeller (gt _ext_offerTomato model.remainingTomatoes))}}
+                      <div class="alert alert-danger" role="alert">
+                        {{t "player.offerExceedsRemainder"}}
+                      </div>
+                    {{/if}}
+                  {{/unless}}
                   
                   <div class="form-group row">
                     <div class="col-3 col-sm-3 col-lg-3">
@@ -91,7 +92,13 @@
                       </div>
                     </div>
                     <div class="col-4 col-sm-4 col-lg-4">
-                      <div class="form-control-static pull-right">{{t 'player.externalOfferMaximum'}} <span class="to-tomato" />{{model.extOfferTomato}}</div>
+                      <div class="form-control-static pull-right">
+                        {{#if isTutorialActive}}
+                          {{t 'player.externalOfferMaximum'}} <span class="to-tomato" />{{t 'tutorial.player.values.externalTradeMaximum'}}
+                        {{else}}
+                          {{t 'player.externalOfferMaximum'}} <span class="to-tomato" />{{model.extOfferTomato}}
+                        {{/if}}
+                      </div>
                     </div>
                   </div>
                   
@@ -116,7 +123,8 @@
                     </div>
                     <div class="col-4 col-sm-4 col-lg-4">
                       {{!-- check logic here is inverse to above --}}
-                      {{#if (and 
+                      {{#if (and
+                              (not isTutorialActive)
                               (lt obj.sentOffers.length 3) 
                               (gt _ext_offerTomato 0) 
                               (my-lte _ext_offerTomato model.extOfferTomato)

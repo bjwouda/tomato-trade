@@ -246,6 +246,7 @@ export default {
       "values": {
         "tradeType": "Weekly",
         "tradingFor": "1",
+        "externalTradeMaximum": "100",
         "seller": {
           "supply1": "1000",
           "supply2": "1000",
