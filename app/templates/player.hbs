@@ -49,7 +49,18 @@
             <h3 class="property-label">{{t (concat 'player.' obj.user.roleDescription)}} {{obj.user.playerPosition}} {{obj.user.name}}</h3>
           {{/if}}
           
-          {{#if (or model.enableExternalTrading (not (eq k 'External')))}}
+          {{!-- Hardcoded the tutorial-range condition to prevent the largest code duplication ever to be seen by mankind. --}}
+          {{#if
+            (or
+              model.enableExternalTrading
+              (not (eq k 'External'))
+              (and
+                isTutorialActive
+                (gte playerTutorialState (tutorial-state 'player' 'externalTradeIntroduction'))
+                (lte playerTutorialState (tutorial-state 'player' 'externalTradeConclusion'))
+              )
+            )
+          }}
             
             <ul class="list-group">
               <li class="list-group-item">
@@ -79,14 +90,14 @@
                             <span class="to-tomato" />
                           </span>
                         </span>
-                        {{number-input 
-                          class="form-control" 
+                        {{number-input
+                          class="form-control"
                           placeholder=(t "player.amountPlaceholder")
-                          unmaskedValue=_ext_offerTomato  
-                          group=true 
-                          groupSize=3 
-                          separator="," 
-                          decimal=false 
+                          unmaskedValue=_ext_offerTomato
+                          group=true
+                          groupSize=3
+                          separator=","
+                          decimal=false
                           radix="."
                         }}
                       </div>
@@ -114,8 +125,8 @@
                           </span>
                         </span>
                         {{input-money
-                          number=model.extOfferPrice 
-                          class="form-control" 
+                          number=model.extOfferPrice
+                          class="form-control"
                           placeholder=(t "player.unitPricePlaceholder")
                           disabled=1
                         }}
@@ -125,8 +136,8 @@
                       {{!-- check logic here is inverse to above --}}
                       {{#if (and
                               (not isTutorialActive)
-                              (lt obj.sentOffers.length 3) 
-                              (gt _ext_offerTomato 0) 
+                              (lt obj.sentOffers.length 3)
+                              (gt _ext_offerTomato 0)
                               (my-lte _ext_offerTomato model.extOfferTomato)
                               (or (not model.isSeller) (lte _ext_offerTomato model.remainingTomatoes))
                             )}}
@@ -163,14 +174,14 @@
                             <span class="to-tomato" />
                           </span>
                         </span>
-                        {{number-input 
-                          class="form-control" 
+                        {{number-input
+                          class="form-control"
                           placeholder=(t "player.amountPlaceholder")
-                          unmaskedValue=obj.user._offerTomato  
-                          group=true 
-                          groupSize=3 
-                          separator="," 
-                          decimal=false 
+                          unmaskedValue=obj.user._offerTomato
+                          group=true
+                          groupSize=3
+                          separator=","
+                          decimal=false
                           radix="."
                         }}
                       </div>
@@ -198,21 +209,25 @@
                     <div class="col-4 col-sm-4 col-lg-4">
                       {{!-- check logic here is inverse to above --}}
                       {{#if isTutorialActive}}
-                        {{#tutorial-inside-range tutorial='player' start='introduction1' end='tradeSend2' active=isTutorialActive}}
+                        {{#if (eq-num model.playerPosition 1)}}
+                          {{#tutorial-range tutorial='player' start='introduction1' end='tradeSend2'}}
+                            <button disabled class="btn btn-default pull-right">{{t 'player.send'}}</button>
+                          {{/tutorial-range}}
+                          {{#tutorial-range tutorial='player' start='tradeTutorial1' end='tradeTutorial1'}}
+                            <button class="btn btn-default pull-right" {{action 'advanceTutorialState' 'player'}}>{{t 'player.send'}}</button>
+                          {{/tutorial-range}}
+                          {{#tutorial-range tutorial='player' start='tradeTutorial2' end='tradeTutorial3'}}
+                            <button disabled class="btn btn-default pull-right">{{t 'player.send'}}</button>
+                          {{/tutorial-range}}
+                          {{#tutorial-range tutorial='player' start='tradeTutorial4' end='tradeTutorial4'}}
+                            <button class="btn btn-default pull-right" {{action 'advanceTutorialState' 'player'}}>{{t 'player.send'}}</button>
+                          {{/tutorial-range}}
+                          {{#tutorial-range tutorial='player' start='tradeTutorial5' end='conclusion2'}}
+                            <button disabled class="btn btn-default pull-right">{{t 'player.send'}}</button>
+                          {{/tutorial-range}}
+                        {{else}}
                           <button disabled class="btn btn-default pull-right">{{t 'player.send'}}</button>
-                        {{/tutorial-inside-range}}
-                        {{#tutorial-inside-range tutorial='player' start='tradeTutorial1' end='tradeTutorial1' active=isTutorialActive}}
-                          <button class="btn btn-default pull-right" {{action 'advanceTutorialState' 'player'}}>{{t 'player.send'}}</button>
-                        {{/tutorial-inside-range}}
-                        {{#tutorial-inside-range tutorial='player' start='tradeTutorial2' end='tradeTutorial3' active=isTutorialActive}}
-                          <button disabled class="btn btn-default pull-right">{{t 'player.send'}}</button>
-                        {{/tutorial-inside-range}}
-                        {{#tutorial-inside-range tutorial='player' start='tradeTutorial4' end='tradeTutorial4' active=isTutorialActive}}
-                          <button class="btn btn-default pull-right" {{action 'advanceTutorialState' 'player'}}>{{t 'player.send'}}</button>
-                        {{/tutorial-inside-range}}
-                        {{#tutorial-inside-range tutorial='player' start='tradeTutorial5' end='conclusion2' active=isTutorialActive}}
-                          <button disabled class="btn btn-default pull-right">{{t 'player.send'}}</button>
-                        {{/tutorial-inside-range}}
+                        {{/if}}
                       {{else if (and 
                               (lt obj.sentOffers.length 3)
                               (gt obj.user._offerTomato 0) 
@@ -240,7 +255,7 @@
               {{#if (eq k 'External')}}
                 {{tutorial-list-item tutorial='player' step='externalTradeSend1' active=isTutorialActive}}
                 {{tutorial-list-item tutorial='player' step='externalTradeSend2' active=isTutorialActive}}
-              {{else}}
+              {{else if (eq-num model.playerPosition 1)}}
                 {{tutorial-list-item tutorial='player' step='tradeSend1' active=isTutorialActive}}
                 {{tutorial-list-item tutorial='player' step='tradeSend2' active=isTutorialActive}}
                 
@@ -258,7 +273,92 @@
               
               {{!-- Prepare thyself for what is coming. --}}
               {{#if isTutorialActive}}
-                {{#tutorial-inside-range tutorial='player' start='introduction1' end='tradeTutorial1' active=isTutorialActive}}
+                {{#if (and (not-eq k 'External') (eq-num model.playerPosition 1))}}
+                  {{#tutorial-range tutorial='player' start='introduction1' end='tradeTutorial1'}}
+                    {{player-offers
+                      openOffers=tutorialOpenOffersEmpty
+                      sentOffers=tutorialSentOffersEmpty
+                      isTutorialActive=true
+                      isTutorialAccept=false
+                      isTutorialConfirm=false
+                      isTutorialDecline=false
+                      isTutorialRecallOpen=false
+                      isTutorialRecallConfirm=false
+                    }}
+                  {{/tutorial-range}}
+                  {{#tutorial-range tutorial='player' start='tradeTutorial2' end='tradeTutorial2'}}
+                    {{player-offers
+                      openOffers=tutorialOpenOffersEmpty
+                      sentOffers=tutorialSentOffers1
+                      isTutorialActive=true
+                      isTutorialAccept=false
+                      isTutorialConfirm=false
+                      isTutorialDecline=false
+                      isTutorialRecallOpen=false
+                      isTutorialRecallConfirm=false
+                    }}
+                  {{/tutorial-range}}
+                  {{#tutorial-range tutorial='player' start='tradeTutorial3' end='tradeTutorial4'}}
+                    {{player-offers
+                      openOffers=tutorialOpenOffersEmpty
+                      sentOffers=tutorialSentOffersEmpty
+                      isTutorialActive=true
+                      isTutorialAccept=false
+                      isTutorialConfirm=false
+                      isTutorialDecline=false
+                      isTutorialRecallOpen=false
+                      isTutorialRecallConfirm=false
+                    }}
+                  {{/tutorial-range}}
+                  {{#tutorial-range tutorial='player' start='tradeTutorial5' end='tradeTutorial5'}}
+                    {{player-offers
+                      openOffers=tutorialOpenOffersEmpty
+                      sentOffers=tutorialSentOffers2
+                      isTutorialActive=true
+                      isTutorialAccept=true
+                      isTutorialConfirm=false
+                      isTutorialDecline=false
+                      isTutorialRecallOpen=false
+                      isTutorialRecallConfirm=false
+                    }}
+                  {{/tutorial-range}}
+                  {{#tutorial-range tutorial='player' start='tradeTutorial6' end='tradeTutorialBuyer3'}}
+                    {{player-offers
+                      openOffers=tutorialOpenOffersEmpty
+                      sentOffers=tutorialSentOffersEmpty
+                      isTutorialActive=true
+                      isTutorialAccept=false
+                      isTutorialConfirm=false
+                      isTutorialDecline=false
+                      isTutorialRecallOpen=false
+                      isTutorialRecallConfirm=false
+                    }}
+                  {{/tutorial-range}}
+                  {{#tutorial-range tutorial='player' start='tradeTutorial7' end='tradeTutorial7'}}
+                    {{player-offers
+                      openOffers=tutorialOpenOffers1
+                      sentOffers=tutorialSentOffersEmpty
+                      isTutorialActive=true
+                      isTutorialAccept=false
+                      isTutorialConfirm=false
+                      isTutorialDecline=true
+                      isTutorialRecallOpen=false
+                      isTutorialRecallConfirm=false
+                    }}
+                  {{/tutorial-range}}
+                  {{#tutorial-range tutorial='player' start='tradeConclusion' end='conclusion2'}}
+                    {{player-offers
+                      openOffers=tutorialOpenOffersEmpty
+                      sentOffers=tutorialSentOffersEmpty
+                      isTutorialActive=true
+                      isTutorialAccept=false
+                      isTutorialConfirm=false
+                      isTutorialDecline=false
+                      isTutorialRecallOpen=false
+                      isTutorialRecallConfirm=false
+                    }}
+                  {{/tutorial-range}}
+                {{else}}
                   {{player-offers
                     openOffers=tutorialOpenOffersEmpty
                     sentOffers=tutorialSentOffersEmpty
@@ -269,80 +369,7 @@
                     isTutorialRecallOpen=false
                     isTutorialRecallConfirm=false
                   }}
-                {{/tutorial-inside-range}}
-                {{#tutorial-inside-range tutorial='player' start='tradeTutorial2' end='tradeTutorial2' active=isTutorialActive}}
-                  {{player-offers
-                    openOffers=tutorialOpenOffersEmpty
-                    sentOffers=tutorialSentOffers1
-                    isTutorialActive=true
-                    isTutorialAccept=false
-                    isTutorialConfirm=false
-                    isTutorialDecline=false
-                    isTutorialRecallOpen=false
-                    isTutorialRecallConfirm=false
-                  }}
-                {{/tutorial-inside-range}}
-                {{#tutorial-inside-range tutorial='player' start='tradeTutorial3' end='tradeTutorial4' active=isTutorialActive}}
-                  {{player-offers
-                    openOffers=tutorialOpenOffersEmpty
-                    sentOffers=tutorialSentOffersEmpty
-                    isTutorialActive=true
-                    isTutorialAccept=false
-                    isTutorialConfirm=false
-                    isTutorialDecline=false
-                    isTutorialRecallOpen=false
-                    isTutorialRecallConfirm=false
-                  }}
-                {{/tutorial-inside-range}}
-                {{#tutorial-inside-range tutorial='player' start='tradeTutorial5' end='tradeTutorial5' active=isTutorialActive}}
-                  {{player-offers
-                    openOffers=tutorialOpenOffersEmpty
-                    sentOffers=tutorialSentOffers2
-                    isTutorialActive=true
-                    isTutorialAccept=true
-                    isTutorialConfirm=false
-                    isTutorialDecline=false
-                    isTutorialRecallOpen=false
-                    isTutorialRecallConfirm=false
-                  }}
-                {{/tutorial-inside-range}}
-                {{#tutorial-inside-range tutorial='player' start='tradeTutorial6' end='tradeTutorialBuyer3' active=isTutorialActive}}
-                  {{player-offers
-                    openOffers=tutorialOpenOffersEmpty
-                    sentOffers=tutorialSentOffersEmpty
-                    isTutorialActive=true
-                    isTutorialAccept=false
-                    isTutorialConfirm=false
-                    isTutorialDecline=false
-                    isTutorialRecallOpen=false
-                    isTutorialRecallConfirm=false
-                  }}
-                {{/tutorial-inside-range}}
-                {{#tutorial-inside-range tutorial='player' start='tradeTutorial7' end='tradeTutorial7' active=isTutorialActive}}
-                  {{player-offers
-                    openOffers=tutorialOpenOffers1
-                    sentOffers=tutorialSentOffersEmpty
-                    isTutorialActive=true
-                    isTutorialAccept=false
-                    isTutorialConfirm=false
-                    isTutorialDecline=true
-                    isTutorialRecallOpen=false
-                    isTutorialRecallConfirm=false
-                  }}
-                {{/tutorial-inside-range}}
-                {{#tutorial-inside-range tutorial='player' start='tradeConclusion' end='conclusion2' active=isTutorialActive}}
-                  {{player-offers
-                    openOffers=tutorialOpenOffersEmpty
-                    sentOffers=tutorialSentOffersEmpty
-                    remainingTomatoes=0
-                    isTutorialActive=true
-                    isTutorialAccept=false
-                    isTutorialConfirm=false
-                    isTutorialDecline=false
-                    isTutorialRecallOpen=false
-                    isTutorialRecallConfirm=false
-                  }}
-                {{/tutorial-inside-range}}
+                {{/if}}
               {{else}}
                 {{player-offers
                   store=store
@@ -355,7 +382,7 @@
                 }}
               {{/if}}
               
-              {{#if (not (eq k 'External'))}}
+              {{#if (and (not-eq k 'External') (eq-num model.playerPosition 1))}}
                 {{tutorial-list-item tutorial='player' step='tradeTutorial2' active=isTutorialActive}}
                 {{tutorial-list-item tutorial='player' step='tradeTutorial5' active=isTutorialActive}}
                 {{tutorial-list-item tutorial='player' step='tradeTutorial7' previous=(if model.isSeller 'tradeTutorialSeller3' 'tradeTutorialBuyer3') active=isTutorialActive}}
@@ -370,24 +397,28 @@
               </li>
               
               {{#if isTutorialActive}}
-                {{#tutorial-inside-range tutorial='player' start='introduction1' end='tradeTutorial2' active=isTutorialActive}}
+                {{#if (and (not-eq k 'External') (eq-num model.playerPosition 1))}}
+                  {{#tutorial-range tutorial='player' start='introduction1' end='tradeTutorial2'}}
+                    <li class="list-group-item">{{t "player.noTransactions"}}</li>
+                  {{/tutorial-range}}
+                  {{#tutorial-range tutorial='player' start='tradeTutorial3' end='tradeTutorial5'}}
+                    {{#each tutorialLast5Transactions1 as |offer|}}
+                      {{player-offer-display offer=offer}}
+                    {{/each}}
+                  {{/tutorial-range}}
+                  {{#tutorial-range tutorial='player' start='tradeTutorial6' end='tradeTutorial7'}}
+                    {{#each tutorialLast5Transactions2 as |offer|}}
+                      {{player-offer-display offer=offer}}
+                    {{/each}}
+                  {{/tutorial-range}}
+                  {{#tutorial-range tutorial='player' start='tradeConclusion' end='conclusion2'}}
+                    {{#each tutorialLast5Transactions3 as |offer|}}
+                      {{player-offer-display offer=offer}}
+                    {{/each}}
+                  {{/tutorial-range}}
+                {{else}}
                   <li class="list-group-item">{{t "player.noTransactions"}}</li>
-                {{/tutorial-inside-range}}
-                {{#tutorial-inside-range tutorial='player' start='tradeTutorial3' end='tradeTutorial5' active=isTutorialActive}}
-                  {{#each tutorialLast5Transactions1 as |offer|}}
-                    {{player-offer-display offer=offer}}
-                  {{/each}}
-                {{/tutorial-inside-range}}
-                {{#tutorial-inside-range tutorial='player' start='tradeTutorial6' end='tradeTutorial7' active=isTutorialActive}}
-                  {{#each tutorialLast5Transactions2 as |offer|}}
-                    {{player-offer-display offer=offer}}
-                  {{/each}}
-                {{/tutorial-inside-range}}
-                {{#tutorial-inside-range tutorial='player' start='tradeConclusion' end='conclusion2' active=isTutorialActive}}
-                  {{#each tutorialLast5Transactions3 as |offer|}}
-                    {{player-offer-display offer=offer}}
-                  {{/each}}
-                {{/tutorial-inside-range}}
+                {{/if}}
               {{else}}
                 {{#each (take 5 (reverse obj.history)) as |offer|}}
                   {{player-offer-display offer=offer}}
@@ -396,7 +427,7 @@
                 {{/each}}
               {{/if}}
               
-              {{#if (not (eq k 'External'))}}
+              {{#if (and (not-eq k 'External') (eq-num model.playerPosition 1))}}
                 {{tutorial-list-item tutorial='player' step='tradeTutorial3' active=isTutorialActive}}
               {{/if}}
               
@@ -409,16 +440,20 @@
               </li>
               
               {{#if isTutorialActive}}
-                {{#tutorial-inside-range tutorial='player' start='introduction1' end='tradeTutorial5' active=isTutorialActive}}
-                  <li class="list-group-item">{{t "player.noTransactions"}}</li>
-                {{/tutorial-inside-range}}
-                {{#tutorial-inside-range tutorial='player' start='tradeTutorial6' end='conclusion2' active=isTutorialActive}}
-                  {{#each previouslyAcceptedOffers1 as |offer|}}
-                    {{player-offer-display offer=offer}}
-                  {{else}}
+                {{#if (and (not-eq k 'External') (eq-num model.playerPosition 1))}}
+                  {{#tutorial-range tutorial='player' start='introduction1' end='tradeTutorial5'}}
                     <li class="list-group-item">{{t "player.noTransactions"}}</li>
-                  {{/each}}
-                {{/tutorial-inside-range}}
+                  {{/tutorial-range}}
+                  {{#tutorial-range tutorial='player' start='tradeTutorial6' end='conclusion2'}}
+                    {{#each previouslyAcceptedOffers1 as |offer|}}
+                      {{player-offer-display offer=offer}}
+                    {{else}}
+                      <li class="list-group-item">{{t "player.noTransactions"}}</li>
+                    {{/each}}
+                  {{/tutorial-range}}
+                {{else}}
+                  <li class="list-group-item">{{t "player.noTransactions"}}</li>
+                {{/if}}
               {{else}}
                 {{#each (take 10 (filter-by "state" "accepted" (reverse obj.history))) as |offer|}}
                   {{player-offer-display offer=offer}}
@@ -427,7 +462,7 @@
                 {{/each}}
               {{/if}}
               
-              {{#if (not (eq k 'External'))}}
+              {{#if (and (not-eq k 'External') (eq-num model.playerPosition 1))}}
                 {{tutorial-list-item tutorial='player' step='tradeTutorial6' next=(if model.isSeller 'tradeTutorialSeller1' 'tradeTutorialBuyer1') active=isTutorialActive}}
               {{/if}}
               

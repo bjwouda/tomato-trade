@@ -27,6 +27,11 @@ export default Ember.Controller.extend(OfferActions, LangActions, TutorialAction
   
   isTutorialActive: Ember.computed.alias("game.gameIsAboutToStart"),
   
+  // Duplicated from tutorial-range.js to prevent the largest code duplication ever to be seen by mankind.
+  playerTutorialState: Ember.computed("tutorialState.tutorialState", "tutorialState.quantumState", function() {
+    return this.get("tutorialState").getTutorialState("player");
+  }),
+  
   tutorialOffer1Open: Ember.computed("model.name", function() {
     return Ember.Object.create({
       ts: moment(),
