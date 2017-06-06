@@ -15,6 +15,18 @@
   </div>
   <div class="row">
     <div class="col-sm-12">
+      {{player-results-player-kpis
+        player=player
+        buyers=buyers
+        sellers=sellers
+        weeks=weeks
+        positionsForPlayers=positionsForPlayers
+        kpiPerPlayerPerWeek=kpiPerPlayerPerWeek
+      }}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
       {{player-results-player-transactions
         player=player
         histories=histories

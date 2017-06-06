@@ -141,11 +141,19 @@ export default {
     },
     "results": {
       "player": {
+        "buyer": {
+          "averageUnitProfit": "Average unit profit",
+        },
         "seller": {
           "averageUnitPrice": "Average unit price",
         },
-        "buyer": {
-          "averageUnitProfit": "Average unit profit",
+        "kpis": {
+          "buyer": {
+            "title": "Unit profits",
+          },
+          "seller": {
+            "title": "Unit prices",
+          }
         },
         "transactions": {
           "title": "Transactions",
@@ -153,7 +161,7 @@ export default {
           "to": "To",
           "from": "From",
           "space": " "
-        }
+        },
       },
       "transactions": {
         "best": {
