@@ -4,14 +4,8 @@ import OfferUtilities from "../mixins/offer-utilities";
 import TableUtilities from "../mixins/table-utilities";
 
 export default Ember.Component.extend(OfferUtilities, TableUtilities, {
-  transactions: Ember.computed("histories.[]", "histories.@each", function() {
-    let histories = this.get("histories");
-    
-    let offers = histories.filter(function(history) {
-      return this.isOfferAcceptedState(history.get("state"));
-    }, this);
-    
-    return offers.map(function(offer) {
+  transactions: Ember.computed("offers", function() {
+    return this.get("offers").map(function(offer) {
       let roundParameters = offer.get("round").split(/ /);
       let senderParameters = offer.get("userSender").split(/[ -]+/);
       let receiverParameters = offer.get("userReceiver").split(/[ -]+/);

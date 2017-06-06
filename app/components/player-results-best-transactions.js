@@ -4,11 +4,10 @@ import OfferUtilities from "../mixins/offer-utilities";
 import TableUtilities from "../mixins/table-utilities";
 
 export default Ember.Component.extend(OfferUtilities, TableUtilities, {
-  transactions: Ember.computed("histories.[]", "histories.@each", function() {
-    let histories = this.get("histories");
-    
-    let offers = histories.filter(function(history) {
-      return this.isOfferAcceptedState(history.get("state")) && !this.isOfferExternalUser(history.get("userSender")) && !this.isOfferExternalUser(history.get("userReceiver"));
+  transactions: Ember.computed("offers", function() {
+    // Leave out external offers, they can be pretty high and take up the top spots all the time.
+    let offers = this.get("offers").filter(function(offer) {
+      return !this.isOfferExternalUser(offer.get("userSender")) && !this.isOfferExternalUser(offer.get("userReceiver"));
     }, this);
     
     return offers.map(function(offer) {
@@ -19,14 +18,6 @@ export default Ember.Component.extend(OfferUtilities, TableUtilities, {
       
       let sender = this.localize(senderParameters[0]) + " " + senderParameters[1] + " " + senderParameters[2];
       let receiver = this.localize(receiverParameters[0]) + " " + receiverParameters[1] + " " + receiverParameters[2];
-      
-      if(this.isOfferExternalUser(senderParameters[0])) {
-        sender = senderParameters[0];
-      }
-      
-      if(this.isOfferExternalUser(receiverParameters[0])) {
-        receiver = receiverParameters[0];
-      }
       
       return Ember.Object.create({
         round: parseInt(roundParameters[1]),

@@ -141,7 +141,12 @@ export default {
     },
     "results": {
       "player": {
-        "averageUnitPrice": "Average unit price",
+        "seller": {
+          "averageUnitPrice": "Average unit price",
+        },
+        "buyer": {
+          "averageUnitProfit": "Average unit profit",
+        },
         "transactions": {
           "title": "Transactions",
           "week": "Week:",
@@ -219,7 +224,7 @@ export default {
       "clockTrade": "This is the <strong>type of trade</strong> you are performing this round. This alternates between weekly and daily trade for the week you are trading for.",
       "clockWeek": "This is the <strong>week</strong> you are trading for. Each week consists of two rounds, the weekly trade round and the daily trade round.",
       "clockTime": "This is the <strong>time</strong> you have for performing your trades. If the game is paused or otherwise not running, it will be shown here instead.",
-      "clockConclusion": "Keep an eye on the clock. It will tick down until the <strong>time is up</strong>, at which point you are expected to <strong>finish any remaining trades</strong> so the next round can start. You have <strong>4</strong> or <strong>6</strong> minutes to perform your trade, depending on the type of trade you are performing.",
+      "clockConclusion": "Keep an eye on the clock. It will tick down until the <strong>time is up</strong>, at which point you are expected to <strong>finish any remaining trades</strong> so the next round can start. You have about <strong>7</strong> minutes to perform your trades.",
       "tradeIntroduction": "During the game, you will <strong>perform trades</strong> with other players. Let's take a look at how this works.",
       "tradeSend1": "Trading with another player consists of <strong>making a contract</strong> for the delivery of tomaties by <strong>offering</strong> an <strong>amount</strong> of tomatoes for a (unit) <strong>price</strong>.",
       "tradeSend2": "The other player then has the option to either <strong>decline</strong> or <strong>accept</strong> your offer. Let's try it now!",

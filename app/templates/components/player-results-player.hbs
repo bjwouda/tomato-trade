@@ -4,26 +4,26 @@
   </div>
   <div class="row">
     <div class="col-sm-12">
-      <h3 class="property-label">{{t 'player.results.player.averageUnitPrice'}}</h3>
+      {{player-results-player-properties
+        player=player
+        buyers=buyers
+        sellers=sellers
+        positionsForPlayers=positionsForPlayers
+        averageKPIPerPlayer=averageKPIPerPlayer
+      }}
     </div>
   </div>
   <div class="row">
     <div class="col-sm-12">
-      <p class="property-value">
-        <span class="to-money" />{{digit-format averageUnitPrice}}
-        {{#if isWinner}}
-          <span class="golden-tomato-anchor">
-            <span class="golden-tomato-container">
-              <span class="to-tomato golden-tomato" />
-            </span>
-          </span>
-        {{/if}}
-      </p>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-sm-12">
-      {{player-results-player-transactions player=player histories=histories buyers=buyers sellers=sellers}}
+      {{player-results-player-transactions
+        player=player
+        histories=histories
+        buyers=buyers
+        sellers=sellers
+        weeks=weeks
+        weeksForRounds=weeksForRounds
+        typesForRounds=typesForRounds
+      }}
     </div>
   </div>
 </div>

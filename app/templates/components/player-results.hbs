@@ -3,7 +3,17 @@
     {{#each sellers as |seller|}}
       <div class="row">
         <div class="col-sm-12">
-          {{player-results-player player=seller histories=histories buyers=buyers sellers=sellers}}
+          {{player-results-player
+            player=seller
+            histories=histories
+            buyers=buyers
+            sellers=sellers
+            weeks=weeks
+            weeksForRounds=weeksForRounds
+            typesForRounds=typesForRounds
+            positionsForPlayers=positionsForPlayers
+            averageKPIPerPlayer=averageKPIPerPlayer
+          }}
         </div>
       </div>
     {{/each}}
@@ -12,7 +22,17 @@
     {{#each buyers as |buyer|}}
       <div class="row">
         <div class="col-sm-12">
-          {{player-results-player player=buyer histories=histories buyers=buyers sellers=sellers}}
+          {{player-results-player
+            player=buyer
+            histories=histories
+            buyers=buyers
+            sellers=sellers
+            weeks=weeks
+            weeksForRounds=weeksForRounds
+            typesForRounds=typesForRounds
+            positionsForPlayers=positionsForPlayers
+            averageKPIPerPlayer=averageKPIPerPlayer
+          }}
         </div>
       </div>
     {{/each}}
@@ -21,16 +41,16 @@
 
 <div class="row">
   <div class="col-sm-6">
-    {{player-results-best-transactions role='seller' histories=histories}}
+    {{player-results-best-transactions role='seller' offers=offers}}
   </div>
   
   <div class="col-sm-6">
-    {{player-results-best-transactions role='buyer' histories=histories}}
+    {{player-results-best-transactions role='buyer' offers=offers}}
   </div>
 </div>
 
 <div class="row">
   <div class="col-sm-12">
-    {{player-results-all-transactions histories=histories}}
+    {{player-results-all-transactions offers=offers}}
   </div>
 </div>

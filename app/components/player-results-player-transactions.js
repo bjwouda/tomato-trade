@@ -102,60 +102,6 @@ export default Ember.Component.extend(OfferUtilities, ChartUtilities, {
   
   selectedWeek: 1,
   
-  configuration: Ember.computed("histories.[]", "histories.@each", function() {
-    let history = this.get("histories").find(function(history) {
-      return history.get("state") === "New Config loaded";
-    });
-    
-    let gameConfigurationSafe = history.get("offer");
-    
-    let gameConfigParser = Ember.Object.extend(GameConfigParser).create({
-      gameConfigurationSafe: gameConfigurationSafe
-    });
-    
-    return gameConfigParser.get("gameMatrix");
-  }),
-  
-  weeks: Ember.computed("configuration", function() {
-    let configuration = this.get("configuration");
-    
-    let weeks = configuration.map(function(round) {
-      return parseInt(round.tradingFor);
-    });
-    
-    return _.uniq(weeks).sort(function(value1, value2) {
-      return value1 - value2;
-    });
-  }),
-  
-  weeksForRounds: Ember.computed("configuration", function() {
-    let configuration = this.get("configuration");
-    
-    let weeksForRounds = [];
-    
-    configuration.forEach(function(roundConfiguration) {
-      let round = parseInt(roundConfiguration.round);
-      
-      weeksForRounds[round] = parseInt(roundConfiguration.tradingFor);
-    });
-    
-    return weeksForRounds;
-  }),
-  
-  typesForRounds: Ember.computed("configuration", function() {
-    let configuration = this.get("configuration");
-    
-    let typesForRounds = [];
-    
-    configuration.forEach(function(roundConfiguration) {
-      let round = parseInt(roundConfiguration.round);
-      
-      typesForRounds[round] = roundConfiguration.tradeType;
-    });
-    
-    return typesForRounds;
-  }),
-  
   offers: Ember.computed("histories.[]", "histories.@each", function() {
     return this.get("histories").filter(function(history) {
       let state = history.get("state");
