@@ -1,7 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Mixin.create({
-  createChartData(dataSets, options, labels) {
+  createChartData(dataSets, labels, options) {
     return {
       labels: labels,
       datasets: dataSets,
@@ -9,7 +9,7 @@ export default Ember.Mixin.create({
     };
   },
   
-  createChartDataSet(label, data, colors, borders, radii, color, dash) {
+  createLineChartDataSet(label, data, colors, borders, radii, color, dash) {
     if(typeof colors === "undefined") {
       colors = "hsl(9,100%,64%)";
     }
@@ -45,6 +45,27 @@ export default Ember.Mixin.create({
       pointHoverRadius: radii,
       pointHitRadius: radii,
       borderDash: dash,
+      data: data
+    };
+  },
+  
+  createBarChartDataSet(label, data, colors, borders) {
+    if(typeof colors === "undefined") {
+      colors = "hsl(9,100%,64%)";
+    }
+    
+    if(typeof borders === "undefined") {
+      borders = "hsl(9,100%,44%)";
+    }
+    
+    return {
+      label: label,
+      backgroundColor: colors,
+      borderColor: borders,
+      borderWidth: 2,
+      hoverBackgroundColor: colors,
+      hoverBorderColor: borders,
+      hoverBorderWidth: 2,
       data: data
     };
   }

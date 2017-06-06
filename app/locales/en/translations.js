@@ -148,18 +148,22 @@ export default {
           "averageUnitPrice": "Average unit price",
         },
         "kpis": {
-          "buyer": {
-            "title": "Unit profits",
+          "title": {
+            "buyer": "Unit profits",
+            "seller": "Unit prices"
           },
-          "seller": {
-            "title": "Unit prices",
-          }
+          "buyer": "Trader",
+          "seller": "Cooperative",
+          "week": "Week",
+          "space": " "
         },
         "transactions": {
           "title": "Transactions",
           "week": "Week:",
           "to": "To",
           "from": "From",
+          "buyer": "trader",
+          "seller": "cooperative",
           "space": " "
         },
       },
@@ -285,6 +289,9 @@ export default {
         }
       }
     }
+  },
+  "chart": {
+    "toolTipSeparator": ": "
   },
   "table": {
     "tableSummary": "Displaying %@ through %@ out of the %@ entries",

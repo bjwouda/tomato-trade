@@ -26,16 +26,10 @@ export default Ember.Component.extend({
     
     let positionsForPlayers = this.get("positionsForPlayers");
     
-    let contenders;
-    
-    if(player.get("isSeller")) {
-      contenders = sellers;
-    }
-    else {
-      contenders = buyers;
-    };
-    
     let playerPosition = player.get("playerPosition");
+    let playerIsSeller = player.get("isSeller");
+        
+    let contenders = playerIsSeller ? sellers : buyers;
     
     let maximum = Number.MIN_VALUE;
     let winnerPosition = -1;

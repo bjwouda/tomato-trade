@@ -214,7 +214,7 @@ export default Ember.Component.extend(OfferUtilities, ChartUtilities, {
         
         let labels = [
           i18n.t(key),
-          i18n.t(clientRole),
+          i18n.t("player.results.player.transactions." + clientRole),
           clientPosition
         ];
         
@@ -227,7 +227,7 @@ export default Ember.Component.extend(OfferUtilities, ChartUtilities, {
         let color = getColorForPosition(clientPosition);
         let dash = getDashForDirection(action);
         
-        let dataSet = this.createChartDataSet(label, data, colors, borders, radii, color, dash);
+        let dataSet = this.createLineChartDataSet(label, data, colors, borders, radii, color, dash);
         
         dataSets.pushObject(dataSet);
       }, this);
