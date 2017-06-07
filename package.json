@@ -11,6 +11,7 @@
     "ember": "ember",
     "bower": "bower",
     "build": "ember build",
+    "deploy": "ember build --environment production",
     "start": "ember server",
     "test": "ember test"
   },
