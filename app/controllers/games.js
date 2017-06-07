@@ -232,19 +232,19 @@ export default Ember.Controller.extend(OfferActions, LangActions, LogFunctions, 
           let newVal = game[fnName](game.get("roundCnt"));
           game.set(attrName, newVal);
         }
+        
         game.save();
       });
       
-      game.get("allUsers").forEach((u) => {
-        u.set("goalTomatoes", game.getValueforUserCurrentRound(u.get("playerIdInGame")));
-        u.set("extOfferTomato", game.getValueforUserCurrentRound(u.get("playerIdInGame"), '_extTomato'));
-        u.set("extOfferPrice", game.getValueforUserCurrentRound(u.get("playerIdInGame"), '_extPrice'));
-        u.save();
-      });
+      let currentGameSettings = game.get("currentGameSettings");
       
       // Automatically perform the prognosis adjustment.
-      if(!gameIsLastRound && game.get("currentGameSettings").tradeType === "daily") {
+      if(currentGameSettings && currentGameSettings.tradeType === "daily") {
         game.get("allUsers").forEach((user) => {
+          user.set("goalTomatoes", game.getValueforUserCurrentRound(user.get("playerIdInGame")));
+          user.set("extOfferTomato", game.getValueforUserCurrentRound(user.get("playerIdInGame"), '_extTomato'));
+          user.set("extOfferPrice", game.getValueforUserCurrentRound(user.get("playerIdInGame"), '_extPrice'));
+          
           let index = _.random(5);
           
           let percentages = [-10, -5, 0, 0, 5, 10];
@@ -259,18 +259,26 @@ export default Ember.Controller.extend(OfferActions, LangActions, LogFunctions, 
           
           let anotherNewHistoryObj = this.store.createRecord('history', {
             offerId      : undefined,
-            userSender   : "Prognisis modification to " + user.get("descriptivePlayerIdInGame"),
+            userSender   : "Prognosis modification to " + user.get("roleDescription") + " " + user.get("playerPosition"),
             userReceiver : "",
             state        : "",
             cssStatus    : "info",
             offer        : "by " + percentage + "%",
-            round        : "Round " + game.get("roundCnt")
+            round        : "Round " + game.get("roundCnt"),
+            historyGame  : game
           });
           
           anotherNewHistoryObj.save().then(() => {
-            game.save();
             return true;
           });
+        });
+      }
+      else {
+        game.get("allUsers").forEach((u) => {
+          u.set("goalTomatoes", game.getValueforUserCurrentRound(u.get("playerIdInGame")));
+          u.set("extOfferTomato", game.getValueforUserCurrentRound(u.get("playerIdInGame"), '_extTomato'));
+          u.set("extOfferPrice", game.getValueforUserCurrentRound(u.get("playerIdInGame"), '_extPrice'));
+          u.save();
         });
       }
     },

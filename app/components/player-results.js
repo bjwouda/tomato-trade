@@ -256,7 +256,7 @@ export default Ember.Component.extend(OfferUtilities, {
     this.get("histories").forEach(function(history) {
       let sender = history.get("userSender");
       
-      let prefix = "Prognisis modification to ";
+      let prefix = "Prognosis modification to ";
       
       // Don't look at me, I'm hideous!
       if(sender.startsWith(prefix)) {
@@ -266,7 +266,7 @@ export default Ember.Component.extend(OfferUtilities, {
         let role = userParameters[0];
         let position = parseInt(userParameters[1]);
         
-        let percentageParameters = history.get("offer").match(/by (\d+)%/);
+        let percentageParameters = history.get("offer").match(/by (-?\d+)%/);
         let percentage = parseInt(percentageParameters[1]);
         
         let roundParameters = history.get("round").split(/ /);
