@@ -3,6 +3,8 @@ import OfferActions from '../mixins/offer-actions';
 import LangActions from '../mixins/lang-actions';
 import TutorialActions from '../mixins/tutorial-actions';
 
+import moment from 'moment';
+
 let lastRound = 1;
 
 export default Ember.Controller.extend(OfferActions, LangActions, TutorialActions, {
@@ -17,12 +19,16 @@ export default Ember.Controller.extend(OfferActions, LangActions, TutorialAction
     }
     
     lastRound = roundCnt;
-
+    
     this.set("_ext_offerTomato", "");
-    this.get("game.users").forEach((u) => {
-      u.set("_offerTomato", "");
-      u.set("_offerPrice", "");
-    });
+    
+    // Prevents an error when you reset the configuration.
+    if(this.get("game.users")) {
+      this.get("game.users").forEach((u) => {
+        u.set("_offerTomato", "");
+        u.set("_offerPrice", "");
+      });
+    }
   }),
   
   isTutorialActive: Ember.computed.alias("game.gameIsAboutToStart"),
