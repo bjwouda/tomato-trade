@@ -1,6 +1,8 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
+  tagName: '',
+  
   offerState: Ember.computed("offer.state", function() {
     let offerState = this.get("offer.state");
     
