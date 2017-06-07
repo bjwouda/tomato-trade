@@ -31,7 +31,7 @@ export default Ember.Component.extend({
         
     let contenders = playerIsSeller ? sellers : buyers;
     
-    let maximum = Number.MIN_VALUE;
+    let maximum = -Number.MAX_VALUE;
     let winnerPosition = -1;
     
     contenders.forEach(function(contender) {
