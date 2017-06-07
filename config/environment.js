@@ -9,12 +9,10 @@ module.exports = function(environment) {
     locationType: 'auto',
 
     firebase: {
-      apiKey: "AIzaSyDGoGRx9ddQ3xx7yoX0TdtHEO1ZEhnO7Hk",
-      authDomain: "tomato-trade.firebaseapp.com",
-      databaseURL: "https://tomato-trade.firebaseio.com",
-      projectId: "tomato-trade",
-      storageBucket: "tomato-trade.appspot.com",
-      messagingSenderId: "556950163412"
+      apiKey: "AIzaSyB62IKGJyM3h6e29cLzNPovStBUH2JZmSc",
+      authDomain: "tomato2-f1fcb.firebaseapp.com",
+      databaseURL: "https://tomato2-f1fcb.firebaseio.com",
+      storageBucket: ""
     },
 
     EmberENV: {
