@@ -11,8 +11,12 @@ export default Ember.Component.extend(OfferUtilities, TableUtilities, {
       let receiverParameters = offer.get("userReceiver").split(/[ -]+/);
       let offerParameters = offer.get("offer").split(/:|, /);
       
-      let sender = this.localize("player.results.transactions.all." + senderParameters[0]) + " " + senderParameters[1] + " " + senderParameters[2];
-      let receiver = this.localize("player.results.transactions.all." + receiverParameters[0]) + " " + receiverParameters[1] + " " + receiverParameters[2];
+      let role = senderParameters[0];
+      let position = senderParameters[1];
+      let name = senderParameters[2];
+      
+      let sender = this.localize("player.results.transactions.all." + role) + " " + position + (name ? " " + name : "");
+      let receiver = this.localize("player.results.transactions.all." + role) + " " + position + (name ? " " + name : "");
       
       if(this.isOfferExternalUser(senderParameters[0])) {
         sender = this.localize("player.results.transactions.all.external");
