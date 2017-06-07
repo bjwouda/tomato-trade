@@ -171,10 +171,16 @@ export default {
         "best": {
           "title": "Best transactions",
           "buyerTitle": "Best trader transactions",
-          "sellerTitle": "Best cooperative transactions"
+          "sellerTitle": "Best cooperative transactions",
+          "buyer": "Trader",
+          "seller": "Cooperative",
+          "external": "External"
         },
         "all": {
-          "title": "All transactions"
+          "title": "All transactions",
+          "buyer": "Trader",
+          "seller": "Cooperative",
+          "external": "External"
         },
         "round": "Round",
         "sender": "Sender",

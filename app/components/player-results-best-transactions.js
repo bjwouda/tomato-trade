@@ -16,8 +16,8 @@ export default Ember.Component.extend(OfferUtilities, TableUtilities, {
       let receiverParameters = offer.get("userReceiver").split(/[ -]+/);
       let offerParameters = offer.get("offer").split(/:|, /);
       
-      let sender = this.localize(senderParameters[0]) + " " + senderParameters[1] + " " + senderParameters[2];
-      let receiver = this.localize(receiverParameters[0]) + " " + receiverParameters[1] + " " + receiverParameters[2];
+      let sender = this.localize("player.results.transactions.best." + senderParameters[0]) + " " + senderParameters[1] + " " + senderParameters[2];
+      let receiver = this.localize("player.results.transactions.best." + receiverParameters[0]) + " " + receiverParameters[1] + " " + receiverParameters[2];
       
       return Ember.Object.create({
         round: parseInt(roundParameters[1]),
