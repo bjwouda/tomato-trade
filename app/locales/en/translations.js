@@ -72,7 +72,7 @@ export default {
     "buyer": "Trader",
     "seller": "Cooperative",
     "offerExceeds3StandingOffers": "You can't have more than 3 standing offers.",
-    "offerExceedsRemainder": "Your can't trade more than your remainder.",
+    "offerExceedsRemainder": "You can't trade more than your remainder.",
     "amount": "Amount:",
     "externalOfferMaximum": "Maximum of",
     "amountPlaceholder": "kilograms",
@@ -100,7 +100,7 @@ export default {
       "averageUnitPrice": "Average price"
     },
     "offers": {
-      "offerExceedsRemainder": "Your can't trade more than your remainder.",
+      "offerExceedsRemainder": "You can't trade more than your remainder.",
       "for": "for",
       "accept": "Accept",
       "confirm": "Confirm",
@@ -136,8 +136,7 @@ export default {
       "sendExternalOffer": "Send external offer",
       "money": "Money:",
       "averageUnitPrice": "Average unit price:",
-      "kpi": "KPI:",
-      "prompt": "Please enter the prognosis percentage:"
+      "kpi": "KPI:"
     },
     "results": {
       "player": {
