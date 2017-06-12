@@ -90,11 +90,21 @@ export default Ember.Component.extend(ChartUtilities, {
     return this.createChartData(dataSets, labels);
   }),
   
-  options: Ember.computed("i18n.locale", function() {
+  options: Ember.computed("i18n.locale", "player", function() {
     let i18n = this.get("i18n");
+    let player = this.get("player");
     
-    // These options format the tool tip value to something readable.
     return {
+      // These options attempt to force negative barcharts to include the zero line.
+      scales: {
+        yAxes: [{
+          ticks: {
+            min: player.get("isSeller") ? 0.0 : -1.0,
+            max: player.get("isSeller") ? 2.0 : 1.0
+          }
+        }]
+      },
+      // These options format the tool tip value to something readable.
       tooltips: {
         callbacks: {
           label: function(toolTipItem, data) {
