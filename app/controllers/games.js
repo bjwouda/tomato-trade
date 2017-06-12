@@ -136,6 +136,12 @@ export default Ember.Controller.extend(OfferActions, LangActions, LogFunctions, 
       game.save();
     },
     
+    letGameEnd(game) {
+      game.set("roundCnt", game.get("numberOfRounds.total"));
+      
+      this.send("nextRound", game);
+    },
+    
     nextRound(game, minutesPerRound) {
       let gameIsLastRound = this.get('game.isLastRound');
       

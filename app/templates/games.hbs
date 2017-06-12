@@ -23,14 +23,15 @@
             {{#if game.gameIsRunning}}
               
               {{#if game.isPaused}}
-                <li class="active" {{action 'resumeGame' game}}><a href="">{{t 'games.resumeGame'}}</a></li>
+                <li class="active" {{action 'resumeGame' game}}><a href="">{{t 'games.resume'}}</a></li>
               {{else}}
-                <li class="active" {{action 'pauseGame' game}}><a href="">{{t 'games.pauseGame'}}</a></li>
+                <li class="active" {{action 'pauseGame' game}}><a href="">{{t 'games.pause'}}</a></li>
               {{/if}}
-              <li class="active" {{action 'letGameEndInXMinutes' game game.minutesPerRound 1}}><a href="">{{t 'games.restartGame'}}</a></li>
-              <li class="active" {{action 'letGameEndInXMinutes' game 5}}><a href="">{{t 'games.endGameIn5Minutes'}}</a></li>
-              <li class="active" {{action 'letGameEndInXMinutes' game 1}}><a href="">{{t 'games.endGameIn1Minute'}}</a></li>
-              <li class="active" {{action 'letGameEndInXMinutes' game 0}}><a href="">{{t 'games.endGameNow'}}</a></li>
+              <li class="active" {{action 'letGameEndInXMinutes' game game.minutesPerRound 1}}><a href="">{{t 'games.restartRound'}}</a></li>
+              <li class="active" {{action 'letGameEndInXMinutes' game 5}}><a href="">{{t 'games.endRoundIn5Minutes'}}</a></li>
+              <li class="active" {{action 'letGameEndInXMinutes' game 1}}><a href="">{{t 'games.endRoundIn1Minute'}}</a></li>
+              <li class="active" {{action 'letGameEndInXMinutes' game 0}}><a href="">{{t 'games.endRoundNow'}}</a></li>
+              <li class="active" {{action 'letGameEnd' game}}><a href="">{{t 'games.endGameNow'}}</a></li>
               <li class="active" {{action 'allowGlobalExternalTrading'}}><a href="">{{t 'games.globalTrading'}}</a></li>
               <li class="nav-divider"></li>
               <li>
