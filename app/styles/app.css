@@ -217,3 +217,15 @@ span.spacer {
 .legend-recalled {
   color: hsl(9,0%,64%);
 }
+
+.legend-spacer {
+  padding-left: 0.5em;
+}
+
+.legend-weekly {
+  color: hsl(9,100%,44%);
+}
+
+.legend-daily {
+  color: hsl(129,100%,24%);
+}

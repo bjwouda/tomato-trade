@@ -48,6 +48,7 @@ function getBordersForOffers(offers, typesForRounds) {
     
     let type = typesForRounds[round];
     
+    // See also the ".legend-*" classes in "app.css".
     let typeBorders = {
       "weekly" : "hsl(9,100%,44%)",
       "daily"  : "hsl(129,100%,24%)"

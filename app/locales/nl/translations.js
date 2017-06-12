@@ -164,6 +164,8 @@ export default {
           "accepted": "Accepted",
           "confirmed": "Confirmed",
           "recalled": "Recalled",
+          "weekly": "Weekly",
+          "daily": "Daily",
           "to": "To",
           "from": "From",
           "buyer": "handelshuis",
