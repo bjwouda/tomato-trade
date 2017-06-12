@@ -28,6 +28,7 @@ function getColorsForOffers(offers) {
   return offers.map(function(offer) {
     let state = offer.get("state");
     
+    // See also the ".legend-*" classes in "app.css".
     let stateColors = {
       "open"                 : "hsl(9,0%,100%)",
       "confirmed"            : "hsl(69,100%,64%)",

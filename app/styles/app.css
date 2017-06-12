@@ -187,3 +187,33 @@ span.spacer {
   margin-left: 1em;
   margin-right: 1em;
 }
+
+/* For the extra legend of the transactions chart. See also "stateColors" in "player-results-player-transactions.js". */
+.legend-container {
+  padding: 10px;
+  text-align: center;
+}
+
+.label-legend {
+  background-color: hsl(9,100%,64%);
+}
+
+.legend-open {
+  color: hsl(9,0%,100%);
+}
+
+.legend-declined {
+  color: hsl(9,100%,44%);
+}
+
+.legend-accepted {
+  color: hsl(69,100%,64%);
+}
+
+.legend-confirmed {
+  color: hsl(129,100%,64%);
+}
+
+.legend-recalled {
+  color: hsl(9,0%,64%);
+}

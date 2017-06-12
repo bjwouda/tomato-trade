@@ -159,13 +159,18 @@ export default {
         },
         "transactions": {
           "title": "Transactions",
-          "week": "Week:",
+          "open": "Open",
+          "declined": "Declined",
+          "accepted": "Accepted",
+          "confirmed": "Confirmed",
+          "recalled": "Recalled",
           "to": "To",
           "from": "From",
           "buyer": "trader",
           "seller": "cooperative",
-          "space": " "
-        },
+          "space": " ",
+          "week": "Week:"
+        }
       },
       "transactions": {
         "best": {

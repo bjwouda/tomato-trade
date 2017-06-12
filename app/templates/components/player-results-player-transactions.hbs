@@ -5,6 +5,19 @@
 </div>
 <div class="row">
   <div class="col-sm-12">
+    <div class="legend-container">
+      <span class="label label-legend">
+        <span class="legend-open">{{t 'player.results.player.transactions.open'}}</span>
+        <span class="legend-declined">{{t 'player.results.player.transactions.declined'}}</span>
+        <span class="legend-accepted">{{t 'player.results.player.transactions.accepted'}}</span>
+        <span class="legend-confirmed">{{t 'player.results.player.transactions.confirmed'}}</span>
+        <span class="legend-recalled">{{t 'player.results.player.transactions.recalled'}}</span>
+      </span>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-12">
     {{ember-chart type='line' data=data options=options}}
   </div>
 </div>
