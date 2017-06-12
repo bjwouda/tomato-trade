@@ -140,6 +140,17 @@ export default {
       "kpi": "KPI:"
     },
     "results": {
+      "kpis": {
+        "buyer": {
+          "title": "Gemiddelde stukswinstex",
+          "role": "Handelshuis"
+        },
+        "seller": {
+          "title": "Gemiddelde stuksprijzen",
+          "role": "Coöperatie"
+        },
+        "space": " "
+      },
       "player": {
         "buyer": {
           "averageUnitProfit": "Gemiddelde stukswinst",

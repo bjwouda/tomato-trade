@@ -7,6 +7,21 @@ import GameConfigParser from "../mixins/game-config-parser";
 import _ from 'lodash/lodash';
 import moment from 'moment';
 
+// This is used as the configuration when no data has yet been loaded. Since there will be no players, it won't actually be used.
+let emptyConfiguration = `
+game            , w1 , d1
+retailPrice     ,  0 ,  0
+fine            ,  0 ,  0
+fixedCost       ,  0 ,  0
+minutesPerRound ,  0 ,  0
+b1              ,  0 ,  0
+b1_extPrice     ,  0 ,  0
+b1_extTomato    ,  0 ,  0
+s1              ,  0 ,  0
+s1_extPrice     ,  0 ,  0
+s1_extTomato    ,  0 ,  0
+`;
+
 export default Ember.Component.extend(OfferUtilities, {
   store: Ember.inject.service(),
   
@@ -142,7 +157,8 @@ export default Ember.Component.extend(OfferUtilities, {
       return history.get("state") === "New Config loaded";
     });
     
-    let gameConfigurationSafe = history.get("offer");
+    // Return an empty configuration if the histories have not yet loaded. Since there will be no players, it won't be used.
+    let gameConfigurationSafe = history ? history.get("offer") : emptyConfiguration;
     
     let gameConfigParser = Ember.Object.extend(GameConfigParser).create({
       gameConfigurationSafe: gameConfigurationSafe

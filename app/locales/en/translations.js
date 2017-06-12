@@ -140,6 +140,17 @@ export default {
       "kpi": "KPI:"
     },
     "results": {
+      "kpis": {
+        "buyer": {
+          "title": "Average unit profits",
+          "role": "Trader"
+        },
+        "seller": {
+          "title": "Average unit prices",
+          "role": "Cooperative"
+        },
+        "space": " "
+      },
       "player": {
         "buyer": {
           "averageUnitProfit": "Average unit profit",

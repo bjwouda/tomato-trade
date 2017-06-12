@@ -1,0 +1,10 @@
+<div class="jumbotron">
+  <div class="title-container">
+    {{t (concat 'player.results.kpis.' role '.title')}}
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      {{ember-chart type='bar' data=data options=options}}
+    </div>
+  </div>
+</div>
