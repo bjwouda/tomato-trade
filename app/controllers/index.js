@@ -13,7 +13,11 @@ export default Ember.Controller.extend(TableUtilities, {
       {
         "propertyName": "ts",
         "title": this.localize("index.date"),
-        "template": "custom/moment-date-time-column"
+        "template": "custom/moment-date-time-column",
+        
+        // Sort on descending date by default.
+        "sortPrecedence": 1000,
+        "sortDirection": "desc"
       },
       {
         "propertyName": "id",
