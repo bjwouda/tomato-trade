@@ -4,7 +4,7 @@ import OfferUtilities from "../mixins/offer-utilities";
 import TableUtilities from "../mixins/table-utilities";
 
 export default Ember.Component.extend(OfferUtilities, TableUtilities, {
-  transactions: Ember.computed("offers", function() {
+  transactions: Ember.computed("i18n.locale", "offers", function() {
     return this.get("offers").map(function(offer) {
       let roundParameters = offer.get("round").split(/ /);
       let senderParameters = offer.get("userSender").split(/[ -]+/);

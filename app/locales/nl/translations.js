@@ -6,9 +6,9 @@ export default {
     "name": "Name",
     "date": "Date",
     "id": "ID",
-    "remove": "Remove",
-    "confirm": "Confirm",
-    "cancel": "Cancel"
+    "remove": "Verwijderen",
+    "confirm": "Bevestigen",
+    "cancel": "Annuleren"
   },
   "games": {
     "startGame": "Start game",
@@ -142,7 +142,7 @@ export default {
     "results": {
       "kpis": {
         "buyer": {
-          "title": "Gemiddelde stukswinstex",
+          "title": "Gemiddelde stukswinsten",
           "role": "Handelshuis"
         },
         "seller": {

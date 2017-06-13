@@ -15,7 +15,7 @@ export default Ember.Controller.extend(TableUtilities, {
         "title": this.localize("index.date"),
         "template": "custom/moment-date-time-column",
         
-        // Sort on descending date by default.
+        // Sort on descending moment of creation by default, so new games are at the top of the list.
         "sortPrecedence": 1000,
         "sortDirection": "desc"
       },

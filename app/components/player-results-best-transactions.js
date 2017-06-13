@@ -4,7 +4,7 @@ import OfferUtilities from "../mixins/offer-utilities";
 import TableUtilities from "../mixins/table-utilities";
 
 export default Ember.Component.extend(OfferUtilities, TableUtilities, {
-  transactions: Ember.computed("offers", function() {
+  transactions: Ember.computed("i18n.locale", "offers", function() {
     // Leave out external offers, they can be pretty high and take up the top spots all the time.
     let offers = this.get("offers").filter(function(offer) {
       return !this.isOfferExternalUser(offer.get("userSender")) && !this.isOfferExternalUser(offer.get("userReceiver"));

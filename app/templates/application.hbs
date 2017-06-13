@@ -1,10 +1,12 @@
-{{!-- The game is only used in one language at the moment. Some of the other language translations may be missing. --}}
-{{!--
+{{outlet}}
+
 <div class="container-fluid">
-  <div class="row text-right">
-    <a href="#" class="{{if (eq i18n.locale 'en') 'lead'}}" {{action "changeLang" 'en'}}>EN</a>
-    <a href="#" class="{{if (eq i18n.locale 'nl') 'lead'}}" {{action "changeLang" 'nl'}}>NL</a>
+  <div class="row">
+    <div class="col-12 col-sm-12 col-lg-12">
+      <div class="text-center">
+        <a href="#" {{action "changeLang" 'en'}}>{{world-flag "gb" 32}}</a>
+        <a href="#" {{action "changeLang" 'nl'}}>{{world-flag "nl" 32}}</a>
+      </div>
+    </div>
   </div>
 </div>
---}}
-{{outlet}}
