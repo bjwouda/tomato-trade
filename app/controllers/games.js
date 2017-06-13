@@ -285,6 +285,7 @@ export default Ember.Controller.extend(OfferActions, LangActions, LogFunctions, 
           u.set("goalTomatoes", game.getValueforUserCurrentRound(u.get("playerIdInGame")));
           u.set("extOfferTomato", game.getValueforUserCurrentRound(u.get("playerIdInGame"), '_extTomato'));
           u.set("extOfferPrice", game.getValueforUserCurrentRound(u.get("playerIdInGame"), '_extPrice'));
+          u.set("prognosis", 0);
           u.save();
         });
       }
