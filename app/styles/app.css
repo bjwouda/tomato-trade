@@ -229,3 +229,8 @@ span.spacer {
 .legend-daily {
   color: hsl(129,100%,24%);
 }
+
+/* For the prognosis label visible during daily trade rounds. */
+.label-prognosis {
+  font-size: 60%;
+}

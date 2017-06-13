@@ -39,7 +39,9 @@ export default Model.extend({
     enableExternalTrading: attr('boolean', { default: false }),
     isSeller: attr('boolean'),
     playerWeekStatus: attr('json'),
-
+    
+    prognosis: attr('number', { default: 0.0 }),
+    
     // relational attributes
     userGame: belongsTo('game'),
     receivedOffers: hasMany('offer', { async: true, inverse: 'receiver' }),

@@ -261,6 +261,7 @@ export default Ember.Controller.extend(OfferActions, LangActions, LogFunctions, 
           let newGoalTomatoes = Math.floor(currentTomatoes * (1.0 + 0.01 * percentage));
           
           user.set("goalTomatoes", newGoalTomatoes);
+          user.set("prognosis", percentage);
           user.save();
           
           let anotherNewHistoryObj = this.store.createRecord('history', {
