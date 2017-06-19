@@ -373,6 +373,20 @@ export default Ember.Controller.extend(OfferActions, LangActions, LogFunctions, 
       
       self.get("game.users").clear();
       
+      let historyQuery = this.get('store').query('history', {
+        orderBy: "historyGame",
+        equalTo: this.get("game.id")
+      });
+      
+      historyQuery.then(function(record) {
+        console.log(record);
+        record.content.forEach(function(rec) {
+          Ember.run.once(this, function() {
+            rec.destroyRecord();
+          });
+        }, this);
+      });
+      
       Ember.RSVP.Promise.all(promiseArr).then(function() {
         self.set("game.gameConfigurationSafe", self.get("game.gameConfigurationRO"));
         self.set("game.roundCnt", 0);
@@ -387,17 +401,16 @@ export default Ember.Controller.extend(OfferActions, LangActions, LogFunctions, 
           
           self.set("isConfiguration", false);
           //self.send("nextRound", self.get("game"), 5);
-          self.send("clearHistoryLogs");
           
-          var newHistoryObj = self.get("store").createRecord('history', {
-              offerId: undefined,
-              userSender: "---",
-              userReceiver: "---",
-              state: "New Config loaded",
-              cssStatus: "info",
-              offer: self.get("game.gameConfigurationSafe"), // We could also include tomato goal for each user
-              round: "---",
-              historyGame: self.get("game")
+          let newHistoryObj = self.get("store").createRecord('history', {
+            offerId: undefined,
+            userSender: "---",
+            userReceiver: "---",
+            state: "New Config loaded",
+            cssStatus: "info",
+            offer: self.get("game.gameConfigurationSafe"),
+            round: "---",
+            historyGame: self.get("game")
           });
           newHistoryObj.save();
         });
@@ -417,25 +430,6 @@ export default Ember.Controller.extend(OfferActions, LangActions, LogFunctions, 
             console.log(x);
           }
         });
-      });
-    },
-    
-    clearHistoryLogs() {
-      //this.get("game.historyLogs").clear();
-      this.get("game").save();
-      
-      let historyQuery = this.get('store').query('history', {
-        orderBy: "historyGame",
-        equalTo: this.get("game.id")
-      });
-      
-      historyQuery.then(function(record) {
-        record.content.forEach(function(rec) {
-          Ember.run.once(this, function() {
-            rec.deleteRecord();
-            rec.save();
-          });
-        }, this);
       });
     }
   }
