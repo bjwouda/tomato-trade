@@ -5,7 +5,7 @@
 <div class="btn-container">
   <div class="btn-group btn-group-xs">
     {{#link-to 'player' player class="btn btn-info"}}{{t 'player.overview.activate'}}{{/link-to}}
-
+    
     <button class="btn btn-primary" {{action 'saveUser' player}}>{{t 'player.overview.save'}}</button>
     {{!--
     <button class="btn btn-primary" {{action 'changePercentageOfGoal' game player }}>{{t 'player.overview.addPrognosis'}}</button>
@@ -26,7 +26,9 @@
     </div>
     <div class="row">
       <div class="col-2 col-sm-2 col-lg-2">
-        <label class="form-control-static">{{t (if player.isSeller 'player.overview.supply' 'player.overview.demand')}}</label>
+        <label class="form-control-static">
+          {{t (if player.isSeller 'player.overview.supply' 'player.overview.demand')}}
+        </label>
       </div>
       <div class="col-4 col-sm-4 col-lg-4">
         <div class="input-tomato">
@@ -155,6 +157,19 @@
     <div class="row">
       <div class="col-6 col-sm-6 col-lg-6">
         <strong>{{t (if player.isSeller 'player.overview.supply' 'player.overview.demand')}}</strong>
+        {{#if (eq game.currentGameSettings.tradeType 'daily')}}
+          {{#if (lt player.prognosis -5)}}
+            <span class="label label-danger label-prognosis">{{player.prognosis}}%</span>
+          {{else if (lt player.prognosis 0)}}
+            <span class="label label-warning label-prognosis">{{player.prognosis}}%</span>
+          {{else if (gt player.prognosis 5)}}
+            <span class="label label-danger label-prognosis">+{{player.prognosis}}%</span>
+          {{else if (gt player.prognosis 0)}}
+            <span class="label label-warning label-prognosis">+{{player.prognosis}}%</span>
+          {{else}}
+            <span class="label label-success label-prognosis">+0%</span>
+          {{/if}}
+        {{/if}}
       </div>
       <div class="col-6 col-sm-6 col-lg-6">
         <span class="to-tomato" />{{player.goalTomatoes}}
