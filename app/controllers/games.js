@@ -9,6 +9,7 @@ import _ from 'lodash/lodash';
 import moment from 'moment';
 
 export default Ember.Controller.extend(OfferActions, LangActions, LogFunctions, {
+  autoTradingString: "",
   autoTradingArr: [],
   activeUser: null,
   gameConfiguration: null,
@@ -270,68 +271,90 @@ export default Ember.Controller.extend(OfferActions, LangActions, LogFunctions, 
       game.incrementProperty("roundCnt", 1);
       
       game.get("offers").map(x => x.destroyRecord());
+          
+      game.save();
       
-      game.save().then(() => {
-        let lut = [
-          ["getRetailpriceForRound", "retailPrice"],
-          ["getMinutesPerRoundForRound", "minutesPerRound"],
-          ["getSellerFineForRound", "fine"],
-          ["getSellerFixedCostForRound", "fixedCost"],
-        ];
-        
-        for (let [fnName, attrName] of lut) {
-          //console.log(fnName);
-          //console.log(attrName);
-          let newVal = game[fnName](game.get("roundCnt"));
-          game.set(attrName, newVal);
-        }
-        
-        game.save();
-      });
-      
-      let currentGameSettings = game.get("currentGameSettings");
-      
-      // Automatically perform the prognosis adjustment.
-      if(currentGameSettings && currentGameSettings.tradeType === "daily") {
-        game.get("allUsers").forEach((user) => {
-          user.set("goalTomatoes", game.getValueforUserCurrentRound(user.get("playerIdInGame")));
-          user.set("extOfferTomato", game.getValueforUserCurrentRound(user.get("playerIdInGame"), '_extTomato'));
-          user.set("extOfferPrice", game.getValueforUserCurrentRound(user.get("playerIdInGame"), '_extPrice'));
+      if(game.get("gameIsRunning")) {
+        game.save().then(() => {
+          let lut = [
+            ["getRetailpriceForRound", "retailPrice"],
+            ["getMinutesPerRoundForRound", "minutesPerRound"],
+            ["getSellerFineForRound", "fine"],
+            ["getSellerFixedCostForRound", "fixedCost"],
+          ];
           
-          let index = _.random(5);
+          for (let [fnName, attrName] of lut) {
+            //console.log(fnName);
+            //console.log(attrName);
+            let newVal = game[fnName](game.get("roundCnt"));
+            game.set(attrName, newVal);
+          }
           
-          let percentages = [-10, -5, 0, 0, 5, 10];
-          let percentage = percentages[index];
-          
-          // Straight up copied from player-ov.js.
-          let currentTomatoes = user.get("goalTomatoes");
-          let newGoalTomatoes = Math.floor(currentTomatoes * (1.0 + 0.01 * percentage));
-          
-          user.set("goalTomatoes", newGoalTomatoes);
-          user.set("prognosis", percentage);
-          user.save();
-          
-          let anotherNewHistoryObj = this.store.createRecord('history', {
-            offerId      : undefined,
-            userSender   : "Prognosis modification to " + user.get("roleDescription") + " " + user.get("playerPosition"),
-            userReceiver : "",
-            state        : "",
-            cssStatus    : "info",
-            offer        : "by " + percentage + "%",
-            round        : "Round " + game.get("roundCnt"),
-            historyGame  : game
-          });
-          
-          anotherNewHistoryObj.save().then(() => {
-            return true;
-          });
+          game.save();
         });
+        
+        let autoTradingString = game.getTradingScheduleForRound(game.get("roundCnt"));
+        let arr = autoTradingString.split(";").map(x => x.split("-"));
+        let autoTradingArr = arr.map(x => x.map(y => parseInt(+y * 60 * 1000)).sort((a, b) => a - b));
+        this.set("autoTradingString", autoTradingString);
+        this.set("autoTradingArr", autoTradingArr);
+        this.set("autoTradingTs", moment().format("LTS"));
+        
+        // Automatically perform the prognosis adjustment.
+        if(game.get("currentGameSettings").tradeType === "daily") {
+          game.get("allUsers").forEach((user) => {
+            user.set("goalTomatoes", game.getValueforUserCurrentRound(user.get("playerIdInGame")));
+            user.set("extOfferTomato", game.getValueforUserCurrentRound(user.get("playerIdInGame"), '_extTomato'));
+            user.set("extOfferPrice", game.getValueforUserCurrentRound(user.get("playerIdInGame"), '_extPrice'));
+            
+            let index = _.random(5);
+            
+            let percentages = [-10, -5, 0, 0, 5, 10];
+            let percentage = percentages[index];
+            
+            // Straight up copied from player-ov.js.
+            let currentTomatoes = user.get("goalTomatoes");
+            let newGoalTomatoes = Math.floor(currentTomatoes * (1.0 + 0.01 * percentage));
+            
+            user.set("goalTomatoes", newGoalTomatoes);
+            user.set("prognosis", percentage);
+            user.save();
+            
+            let anotherNewHistoryObj = this.store.createRecord('history', {
+              offerId      : undefined,
+              userSender   : "Prognosis modification to " + user.get("roleDescription") + " " + user.get("playerPosition"),
+              userReceiver : "",
+              state        : "",
+              cssStatus    : "info",
+              offer        : "by " + percentage + "%",
+              round        : "Round " + game.get("roundCnt"),
+              historyGame  : game
+            });
+            
+            anotherNewHistoryObj.save().then(() => {
+              return true;
+            });
+          });
+        }
+        else {
+          game.get("allUsers").forEach((u) => {
+            u.set("goalTomatoes", game.getValueforUserCurrentRound(u.get("playerIdInGame")));
+            u.set("extOfferTomato", game.getValueforUserCurrentRound(u.get("playerIdInGame"), '_extTomato'));
+            u.set("extOfferPrice", game.getValueforUserCurrentRound(u.get("playerIdInGame"), '_extPrice'));
+            u.set("prognosis", 0);
+            u.save();
+          });
+        }
       }
       else {
+        this.set("autoTradingString", "");
+        this.set("autoTradingArr", []);
+        this.set("autoTradingTs", undefined);
+        
         game.get("allUsers").forEach((u) => {
-          u.set("goalTomatoes", game.getValueforUserCurrentRound(u.get("playerIdInGame")));
-          u.set("extOfferTomato", game.getValueforUserCurrentRound(u.get("playerIdInGame"), '_extTomato'));
-          u.set("extOfferPrice", game.getValueforUserCurrentRound(u.get("playerIdInGame"), '_extPrice'));
+          u.set("goalTomatoes", 0);
+          u.set("extOfferTomato", 0);
+          u.set("extOfferPrice", 0);
           u.set("prognosis", 0);
           u.save();
         });
@@ -365,54 +388,52 @@ export default Ember.Controller.extend(OfferActions, LangActions, LogFunctions, 
       
       self.set("game.isNew", false);
       
-      var promiseArr = self.get("game.users").filter((x) => {
-        return x && !x.get("isDeleted");
-      }).map((x) => {
-        return x.destroyRecord();
-      });
-      
-      self.get("game.users").clear();
-      
       let historyQuery = this.get('store').query('history', {
         orderBy: "historyGame",
         equalTo: this.get("game.id")
       });
       
-      historyQuery.then(function(record) {
-        console.log(record);
-        record.content.forEach(function(rec) {
-          Ember.run.once(this, function() {
-            rec.destroyRecord();
+      historyQuery.then(function(records) {
+        let historyPromises = records.map(function(record) {
+          return record.destroyRecord();
+        });
+        
+        let userPromises = self.get("game.users").filter((x) => {
+          return x && !x.get("isDeleted");
+        }).map((x) => {
+          return x.destroyRecord();
+        });
+        
+        self.get("game.users").clear();
+        
+        let promises = historyPromises.concat(userPromises);
+        
+        Ember.RSVP.Promise.all(promises).then(function() {
+          self.set("game.gameConfigurationSafe", self.get("game.gameConfigurationRO"));
+          self.set("game.roundCnt", 0);
+          self.get("game").save().then(function() {
+            _.range(self.get("game.numberOfPlayers.nrOfBuyers")).forEach(function() {
+              self.send("addUser", self.get("game"), "buyer");
+            });
+            
+            _.range(self.get("game.numberOfPlayers.nrOfSellers")).forEach(function() {
+              self.send("addUser", self.get("game"), "seller");
+            });
+            
+            self.set("isConfiguration", false);
+            
+            let newHistoryObj = self.get("store").createRecord('history', {
+              offerId: undefined,
+              userSender: "---",
+              userReceiver: "---",
+              state: "New Config loaded",
+              cssStatus: "info",
+              offer: self.get("game.gameConfigurationSafe"),
+              round: "---",
+              historyGame: self.get("game")
+            });
+            newHistoryObj.save();
           });
-        }, this);
-      });
-      
-      Ember.RSVP.Promise.all(promiseArr).then(function() {
-        self.set("game.gameConfigurationSafe", self.get("game.gameConfigurationRO"));
-        self.set("game.roundCnt", 0);
-        self.get("game").save().then(function() {
-          _.range(self.get("game.numberOfPlayers.nrOfBuyers")).forEach(function() {
-            self.send("addUser", self.get("game"), "buyer");
-          });
-          
-          _.range(self.get("game.numberOfPlayers.nrOfSellers")).forEach(function() {
-            self.send("addUser", self.get("game"), "seller");
-          });
-          
-          self.set("isConfiguration", false);
-          //self.send("nextRound", self.get("game"), 5);
-          
-          let newHistoryObj = self.get("store").createRecord('history', {
-            offerId: undefined,
-            userSender: "---",
-            userReceiver: "---",
-            state: "New Config loaded",
-            cssStatus: "info",
-            offer: self.get("game.gameConfigurationSafe"),
-            round: "---",
-            historyGame: self.get("game")
-          });
-          newHistoryObj.save();
         });
       });
     },

@@ -40,11 +40,11 @@
                     <label class="label-nav form-control-static">{{t 'games.globalTradingSchedule'}}</label>
                   </div>
                   <div class="col-6 col-sm-6 col-lg-6">
-                    {{input value=_autoTradingString enter=(action "setAutoTrading" _autoTradingString) class="form-control"}}
+                    {{input value=autoTradingString enter=(action "setAutoTrading" autoTradingString) class="form-control"}}
                   </div>
                 </div>
               </li>
-              <li class="active" {{action "setAutoTrading" _autoTradingString}}><a href="">{{t 'games.saveGlobalTradingSchedule'}}
+              <li class="active" {{action "setAutoTrading" autoTradingString}}><a href="">{{t 'games.saveGlobalTradingSchedule'}}
                 {{#if autoTradingTs}}
                   ({{autoTradingTs}})
                 {{/if}}

@@ -145,10 +145,11 @@ export default Ember.Mixin.create({
   getSellerFineForRound(round) { return fn(this, "fine")(round); },
   getSellerFixedCostForRound(round) { return fn(this, "fixedCost")(round); },
   getMinutesPerRoundForRound(round) { return fn(this, "minutesPerRound")(round); },
+  getTradingScheduleForRound(round) { return fn(this, "tradingSchedule")(round); },
 
   sanityCheck(rawConfigString) {
     let cleanLines = rawConfigString.split("\n")
-      .filter( (x) => {return /^(game|b\d+|s\d+|retailPrice|fine|fixedCost|minutesPerRound)/.test(x);} )
+      .filter( (x) => {return /^(game|b\d+|s\d+|retailPrice|fine|fixedCost|minutesPerRound|tradingSchedule)/.test(x);} )
       .map((x) => { return x.replace(/#.*$/, "").replace(/\s+/g, ""); });
 
     let gameLinePresent = cleanLines
@@ -159,7 +160,7 @@ export default Ember.Mixin.create({
     let checkNumbers = cleanLines.map((x) => { return x.split(",").length - 1; });
     let sameCommas = checkNumbers.every((x) => { return x === checkNumbers[0]; });
     if(!sameCommas) {
-      throw "The game config has not the same amount of colums in every row, plase cound <,> in the config again"; }
+      throw "The game config has not the same amount of colums in every row, please count <,> in the config again"; }
 
     let uniqueUsers = cleanLines
       .filter( (x) => { return /^(b|s)\d+\b/.test(x); } )
