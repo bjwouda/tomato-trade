@@ -51,6 +51,21 @@ export default Ember.Controller.extend(OfferActions, LangActions, LogFunctions, 
       this.get("game.users").forEach((u) => {
         u.set("enableExternalTrading", !flankDown);
         u.save();
+        
+        let newHistoryObj = this.get("store").createRecord('history', {
+          offerId: undefined,
+          userSender: u.get("descriptivePlayerIdInGameForLogger"),
+          userReceiver: "",
+          state: "Automatic change to external trade status",
+          cssStatus: "",
+          offer: u.get("enableExternalTrading") ? "Enabled" : "Disabled",
+          round: "Round " + (this.get("game.roundCnt") + 1),
+          historyGame: this.get("game")
+        });
+        
+        newHistoryObj.save().then(() => {
+          return true;
+        });
       });
     }, 1000);
   }),
@@ -68,6 +83,21 @@ export default Ember.Controller.extend(OfferActions, LangActions, LogFunctions, 
       this.get("game.users").forEach((u) => {
         u.toggleProperty("enableExternalTrading");
         u.save();
+        
+        let newHistoryObj = this.get("store").createRecord('history', {
+          offerId: undefined,
+          userSender: u.get("descriptivePlayerIdInGameForLogger"),
+          userReceiver: "",
+          state: "Global change to external trade status",
+          cssStatus: "",
+          offer: u.get("enableExternalTrading") ? "Enabled" : "Disabled",
+          round: "Round " + (this.get("game.roundCnt") + 1),
+          historyGame: this.get("game")
+        });
+        
+        newHistoryObj.save().then(() => {
+          return true;
+        });
       });
     },
     
@@ -198,7 +228,24 @@ export default Ember.Controller.extend(OfferActions, LangActions, LogFunctions, 
             userTotalHistory.save();
           }
           
-          u.set("enableExternalTrading", false);
+          if(u.get("enableExternalTrading")) {
+            u.set("enableExternalTrading", false);
+            
+            let newHistoryObj = this.get("store").createRecord('history', {
+              offerId: undefined,
+              userSender: u.get("descriptivePlayerIdInGameForLogger"),
+              userReceiver: "",
+              state: "End of round change to external trade status",
+              cssStatus: "",
+              offer: u.get("enableExternalTrading") ? "Enabled" : "Disabled",
+              round: "Round " + (this.get("game.roundCnt") + 1),
+              historyGame: this.get("game")
+            });
+            
+            newHistoryObj.save().then(() => {
+              return true;
+            });
+          }
         });
       }
       else {
@@ -390,6 +437,6 @@ export default Ember.Controller.extend(OfferActions, LangActions, LogFunctions, 
           });
         }, this);
       });
-    },
+    }
   }
 });

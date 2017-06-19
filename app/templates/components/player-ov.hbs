@@ -79,7 +79,7 @@
 
 <div class="btn-container">
   <div class="btn-group btn-group-xs">
-    <button class="btn {{if player.enableExternalTrading 'btn-success' 'btn-danger'}}" {{action (pipe (toggle "enableExternalTrading" player) (invoke "save" player))}}>
+    <button class="btn {{if player.enableExternalTrading 'btn-success' 'btn-danger'}}" {{action 'toggleExternalTrading' player}}>
       {{t (if player.enableExternalTrading 'player.overview.externalTradingEnabled' 'player.overview.externalTradingDisabled')}}
     </button>
   </div>
