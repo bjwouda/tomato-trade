@@ -1,18 +1,34 @@
 <div class="btn-group btn-group-xs pull-right">
   
+  {{#if (not-null first)}}
+    {{#if (not-undefined first)}}
+      <button class="btn btn-info" {{action 'changeTutorialState' tutorial (tutorial-state tutorial first)}}><span class="glyphicon glyphicon-chevron-left" /><span class="glyphicon glyphicon-chevron-left" /></button>
+    {{else}}
+      <button class="btn btn-info" {{action 'changeTutorialState' tutorial (tutorial-first-state tutorial)}}><span class="glyphicon glyphicon-chevron-left" /><span class="glyphicon glyphicon-chevron-left" /></button>
+    {{/if}}
+  {{/if}}
+  
   {{#if (not-null previous)}}
     {{#if (not-undefined previous)}}
-      <button class="btn btn-info" {{action 'changeTutorialState' tutorial (tutorial-state tutorial previous)}}><span class="glyphicon glyphicon-arrow-left" /></button>
+      <button class="btn btn-info" {{action 'changeTutorialState' tutorial (tutorial-state tutorial previous)}}><span class="glyphicon glyphicon-chevron-left" /></button>
     {{else}}
-      <button class="btn btn-info" {{action 'recedeTutorialState' tutorial}}><span class="glyphicon glyphicon-arrow-left" /></button>
+      <button class="btn btn-info" {{action 'recedeTutorialState' tutorial}}><span class="glyphicon glyphicon-chevron-left" /></button>
     {{/if}}
   {{/if}}
   
   {{#if (not-null next)}}
     {{#if (not-undefined next)}}
-      <button class="btn btn-info" {{action 'changeTutorialState' tutorial (tutorial-state tutorial next)}}><span class="glyphicon glyphicon-arrow-right" /></button>
+      <button class="btn btn-info" {{action 'changeTutorialState' tutorial (tutorial-state tutorial next)}}><span class="glyphicon glyphicon-chevron-right" /></button>
     {{else}}
-      <button class="btn btn-info" {{action 'advanceTutorialState' tutorial}}><span class="glyphicon glyphicon-arrow-right" /></button>
+      <button class="btn btn-info" {{action 'advanceTutorialState' tutorial}}><span class="glyphicon glyphicon-chevron-right" /></button>
+    {{/if}}
+  {{/if}}
+  
+  {{#if (not-null last)}}
+    {{#if (not-undefined last)}}
+      <button class="btn btn-info" {{action 'changeTutorialState' tutorial (tutorial-state tutorial last)}}><span class="glyphicon glyphicon-chevron-right" /><span class="glyphicon glyphicon-chevron-right" /></button>
+    {{else}}
+      <button class="btn btn-info" {{action 'changeTutorialState' tutorial (tutorial-last-state tutorial)}}><span class="glyphicon glyphicon-chevron-right" /><span class="glyphicon glyphicon-chevron-right" /></button>
     {{/if}}
   {{/if}}
   
