@@ -2,6 +2,8 @@ import Ember from 'ember';
 
 import ChartUtilities from "../mixins/chart-utilities";
 
+import _ from 'lodash/lodash';
+
 function getDataForPosition(position, averageKPIPerPlayer) {
   return [
     averageKPIPerPlayer[position]
@@ -26,6 +28,52 @@ function getBordersForPosition(position) {
 
 export default Ember.Component.extend(ChartUtilities, {
   i18n: Ember.inject.service(),
+  
+  minimumAverageKPI: -1.0,
+  maximumAverageKPI: 1.0,
+  
+  quantumState: false,
+  
+  calculateAverageKPIBounds: Ember.on("init", Ember.observer("role", "players", "positionsForPlayers", "averageKPIPerPlayer", function() {
+    let role = this.get("role");
+    let players = this.get("players");
+    
+    let positionsForPlayers = this.get("positionsForPlayers");
+    let averageKPIPerPlayer = this.get("averageKPIPerPlayer");
+    
+    let minimumAverageKPI = -1.0;
+    let maximumAverageKPI = 1.0;
+    
+    if(players.length > 0) {
+      let minimum = Number.MAX_VALUE;
+      let maximum = -Number.MAX_VALUE;
+      
+      players.forEach(function(player) {
+        let position = player.get("playerPosition");
+        
+        let playerPosition = positionsForPlayers[role][position];
+        
+        let average = averageKPIPerPlayer[playerPosition];
+        
+        if(average < minimum) {
+          minimum = average;
+        }
+        
+        if(average > maximum) {
+          maximum = average;
+        }
+      });
+      
+      minimumAverageKPI = _.min([0.0, minimum]);
+      maximumAverageKPI = _.max([0.0, maximum]);
+    }
+    
+    this.set("minimumAverageKPI", minimumAverageKPI);
+    this.set("maximumAverageKPI", maximumAverageKPI);
+    
+    // Force the chart to update.
+    this.set("quantumState", !this.get("quantumState"));
+  })),
   
   data: Ember.computed("i18n.locale", "role", "players", "positionsForPlayers", "averageKPIPerPlayer", function() {
     let i18n = this.get("i18n");
@@ -62,19 +110,19 @@ export default Ember.Component.extend(ChartUtilities, {
     return this.createChartData(dataSets, labels);
   }),
   
-  options: Ember.computed("i18n.locale", "role", function() {
+  options: Ember.computed("i18n.locale", "minimumAverageKPI", "maximumAverageKPI", function() {
     let i18n = this.get("i18n");
-    let role = this.get("role");
     
-    let isSeller = role === "seller";
+    let minimumAverageKPI = this.get("minimumAverageKPI");
+    let maximumAverageKPI = this.get("maximumAverageKPI");
     
     return {
       // These options attempt to force negative barcharts to include the zero line.
       scales: {
         yAxes: [{
           ticks: {
-            min: isSeller ? 0.0 : -1.0,
-            max: isSeller ? 2.0 : 1.0
+            min: minimumAverageKPI * 1.1,
+            max: maximumAverageKPI * 1.1
           }
         }]
       },

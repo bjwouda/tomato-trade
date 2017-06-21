@@ -36,7 +36,7 @@ export default Ember.Component.extend(OfferUtilities, {
   players: [],
   positions: [],
   
-  loadHistories: Ember.on('init', Ember.observer("game.gameHasEnded", "game.isImported", function() {
+  loadHistories: Ember.on("init", Ember.observer("game.gameHasEnded", "game.isImported", function() {
     if(this.get("game.gameHasEnded") || this.get("game.isImported")) {
       // Load the data only when the game ends (or is imported).
       let self = this;
